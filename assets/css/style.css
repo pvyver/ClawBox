@@ -117,8 +117,17 @@ img { max-width: 100%; height: auto; }
 .header-inner {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
+  gap: 0.75rem;
   height: 64px;
+}
+
+.header-inner .site-logo {
+  margin-right: auto;
+}
+
+.header-inner .site-nav {
+  margin-left: auto;
 }
 
 .site-logo {
@@ -525,6 +534,82 @@ img { max-width: 100%; height: auto; }
 }
 
 /* ═══ Responsive ═══ */
+
+/* ═══ Freshness indicator ═══ */
+
+.freshness-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.3rem 0.65rem;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-family: var(--font-mono);
+  white-space: nowrap;
+  transition: background var(--transition), border-color var(--transition);
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+}
+
+.freshness-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  transition: background var(--transition), box-shadow var(--transition);
+}
+
+/* 🟢 Live — data updated within 60s */
+.freshness-badge.live {
+  border-color: rgba(34, 197, 94, 0.3);
+  background: rgba(34, 197, 94, 0.08);
+}
+.freshness-badge.live .freshness-dot {
+  background: var(--success);
+  box-shadow: 0 0 6px var(--success);
+}
+.freshness-badge.live .freshness-dot {
+  animation: pulse-fresh 2s ease-in-out infinite;
+}
+
+/* 🟡 Stale — data 1-10 min old */
+.freshness-badge.stale {
+  border-color: rgba(234, 179, 8, 0.3);
+  background: rgba(234, 179, 8, 0.08);
+}
+.freshness-badge.stale .freshness-dot {
+  background: var(--warning);
+  box-shadow: 0 0 6px var(--warning);
+}
+
+/* 🔴 Offline — data >10 min old */
+.freshness-badge.offline {
+  border-color: rgba(239, 68, 68, 0.3);
+  background: rgba(239, 68, 68, 0.08);
+}
+.freshness-badge.offline .freshness-dot {
+  background: var(--danger);
+  box-shadow: 0 0 6px var(--danger);
+}
+
+.freshness-text {
+  color: var(--text-muted);
+}
+
+@keyframes pulse-fresh {
+  0%, 100% { opacity: 1; box-shadow: 0 0 4px var(--success); }
+  50% { opacity: 0.6; box-shadow: 0 0 10px var(--success); }
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .freshness-badge.live .freshness-dot {
+    animation: none;
+  }
+  @keyframes pulse-fresh {
+    0%, 100% { opacity: 1; box-shadow: 0 0 4px var(--success); }
+  }
+}
 
 /* ═══ Theme toggle button ═══ */
 .theme-btn {
