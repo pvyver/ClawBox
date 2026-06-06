@@ -343,6 +343,31 @@ img { max-width: 100%; height: auto; }
 .data-table tr:last-child td { border-bottom: none; }
 .data-table tr:hover td { background: rgba(249, 115, 22, 0.04); }
 
+/* ═══ Dashboard overview table ═══ */
+.dash-tagline {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.5rem;
+  padding: 0.35rem 0;
+}
+.dash-link {
+  font-weight: 600;
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+.dash-val {
+  font-family: var(--font-mono);
+  font-weight: 500;
+}
+.dash-table td {
+  padding: 0.45rem 0.75rem;
+  font-size: 0.82rem;
+}
+.dash-table th {
+  padding: 0.45rem 0.75rem;
+  font-size: 0.72rem;
+}
+
 /* ═══ Footer ═══ */
 
 .site-footer {
@@ -379,152 +404,6 @@ img { max-width: 100%; height: auto; }
   0%, 100% { opacity: 1; box-shadow: 0 0 4px var(--success); }
   50% { opacity: 0.5; box-shadow: 0 0 8px var(--success); }
 }
-
-/* ═══ Tagline bar (compact homepage) ═══ */
-
-.tagline-bar {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.35rem 0.75rem;
-  margin-bottom: 0.75rem;
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-md);
-  font-size: 0.85rem;
-  color: var(--text-secondary);
-  flex-wrap: wrap;
-}
-.tagline-icon { font-size: 1rem; }
-.tagline-time {
-  margin-left: auto;
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  color: var(--text-muted);
-  white-space: nowrap;
-}
-
-/* ═══ Compact live stats bar ═══ */
-
-.stats-bar {
-  display: flex;
-  gap: 0.5rem;
-  margin-bottom: 0.75rem;
-  flex-wrap: wrap;
-}
-
-.stat-chip {
-  flex: 1;
-  min-width: 130px;
-  display: flex;
-  align-items: center;
-  gap: 0.35rem;
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-md);
-  padding: 0.5rem 0.65rem;
-  font-size: 0.8rem;
-  transition: all var(--transition);
-}
-.stat-chip:hover {
-  border-color: var(--accent);
-  background: var(--bg-card-hover);
-}
-
-.chip-icon { font-size: 0.95rem; }
-.chip-label {
-  color: var(--text-muted);
-  font-size: 0.72rem;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  min-width: 28px;
-}
-.chip-value {
-  font-family: var(--font-mono);
-  font-weight: 600;
-  font-size: 0.85rem;
-  margin-left: auto;
-}
-.chip-badge { margin-left: 0.25rem; }
-.chip-bar { margin-left: 0.25rem; }
-
-.mini-bar {
-  display: inline-block;
-  width: 32px;
-  height: 4px;
-  background: var(--border);
-  border-radius: 999px;
-  overflow: hidden;
-  vertical-align: middle;
-}
-.mini-fill {
-  height: 100%;
-  border-radius: 999px;
-  transition: width 0.8s ease;
-}
-
-/* ═══ Compact cards grid ═══ */
-
-.compact-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0.75rem;
-}
-
-.compact-card {
-  display: block;
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-md);
-  padding: 0.85rem 1rem;
-  transition: all var(--transition);
-  text-decoration: none;
-  color: inherit;
-}
-.compact-card:hover {
-  background: var(--bg-card-hover);
-  border-color: var(--accent);
-  box-shadow: var(--shadow-card), 0 0 20px var(--accent-glow);
-  transform: translateY(-1px);
-}
-
-.compact-card-header {
-  display: flex;
-  align-items: center;
-  gap: 0.45rem;
-  margin-bottom: 0.6rem;
-}
-.compact-card-icon { font-size: 1.15rem; }
-.compact-card-title {
-  font-size: 0.92rem;
-  font-weight: 600;
-  color: var(--text-primary);
-}
-
-.compact-card-stats {
-  display: flex;
-  gap: 0.75rem;
-  flex-wrap: wrap;
-}
-.compact-card-stats > span {
-  display: flex;
-  align-items: center;
-  gap: 0.25rem;
-}
-.cs-label {
-  font-size: 0.7rem;
-  color: var(--text-muted);
-  text-transform: uppercase;
-  letter-spacing: 0.03em;
-}
-.cs-value {
-  font-family: var(--font-mono);
-  font-size: 0.78rem;
-  font-weight: 500;
-  color: var(--text-primary);
-}
-
-/* ═══ Responsive ═══ */
 
 /* ═══ Theme toggle button ═══ */
 .theme-btn {
@@ -578,17 +457,6 @@ img { max-width: 100%; height: auto; }
   }
 
   .dashboard-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .stats-bar {
-    flex-direction: column;
-  }
-  .stat-chip {
-    min-width: 100%;
-  }
-
-  .compact-grid {
     grid-template-columns: 1fr;
   }
 
