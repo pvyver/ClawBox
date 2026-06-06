@@ -88,5 +88,80 @@
     });
   })();
 
+  // ⏱ Data freshness indicator
+  (function initFreshness() {
+    var badge = document.getElementById('freshness-badge');
+    var label = document.getElementById('freshness-label');
+    if (!badge || !label) return;
+
+    // Reference timestamp: injected by Jekyll from site.json
+    var lastUpdated = null;
+    var metaEl = document.getElementById('data-last-updated');
+    if (metaEl && metaEl.getAttribute('data-iso')) {
+      lastUpdated = new Date(metaEl.getAttribute('data-iso'));
+    }
+
+    // Fallback: also try to parse inline data from footer/header page info
+    var dataEl = document.getElementById('data-last-updated-inline');
+    if (!lastUpdated && dataEl && dataEl.textContent) {
+      lastUpdated = new Date(dataEl.textContent);
+    }
+
+    function updateFreshness() {
+      var now = Date.now();
+      var badgeEl = document.getElementById('freshness-badge');
+      var labelEl = document.getElementById('freshness-label');
+      if (!badgeEl || !labelEl) return;
+
+      if (!lastUpdated || isNaN(lastUpdated.getTime())) {
+        badgeEl.className = 'freshness-badge offline';
+        labelEl.textContent = 'No data';
+        return;
+      }
+
+      var elapsedMs = now - lastUpdated.getTime();
+      var elapsedSec = Math.floor(elapsedMs / 1000);
+
+      if (elapsedMs < 0) {
+        // Timestamp is in the future — treat as live
+        badgeEl.className = 'freshness-badge live';
+        labelEl.textContent = 'Live';
+        return;
+      }
+
+      var className, text;
+
+      if (elapsedSec <= 60) {
+        // 🟢 Live: within 60s
+        className = 'live';
+        text = elapsedSec <= 5 ? 'Live' : elapsedSec + 's ago';
+      } else if (elapsedSec <= 600) {
+        // 🟡 Stale: 1-10 min
+        className = 'stale';
+        var min = Math.floor(elapsedSec / 60);
+        var sec = elapsedSec % 60;
+        text = min + 'm ' + sec + 's ago';
+      } else {
+        // 🔴 Offline: >10 min
+        className = 'offline';
+        var minutes = Math.floor(elapsedSec / 60);
+        var hours = Math.floor(minutes / 60);
+        if (hours >= 1) {
+          var remMin = minutes % 60;
+          text = hours + 'h ' + remMin + 'm ago';
+        } else {
+          text = minutes + 'm ago';
+        }
+      }
+
+      badgeEl.className = 'freshness-badge ' + className;
+      labelEl.textContent = text;
+    }
+
+    // Update immediately, then every 1s
+    updateFreshness();
+    setInterval(updateFreshness, 1000);
+  })();
+
   console.log('🦞 ClawBox dashboard loaded \u2014', nowISO());
 })();
