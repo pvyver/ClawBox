@@ -429,15 +429,12 @@ img { max-width: 100%; height: auto; }
   background: var(--btn-hover-bg);
   border-color: var(--accent);
 }
-.theme-btn .theme-icon-light { display: none; }
-.theme-btn .theme-icon-dark { display: inline; }
-[data-theme="light"] .theme-btn .theme-icon-light { display: none; }
-[data-theme="light"] .theme-btn .theme-icon-dark { display: inline; }
-[data-theme="dark"] .theme-btn .theme-icon-light { display: inline; }
-[data-theme="dark"] .theme-btn .theme-icon-dark { display: none; }
-/* No data-theme set = dark default */
-:root:not([data-theme]) .theme-btn .theme-icon-light { display: none; }
-:root:not([data-theme]) .theme-btn .theme-icon-dark { display: inline; }
+/* Dark/default → show sun icon (click for light) */
+.theme-icon-dark { display: none; }
+.theme-icon-light { display: inline; }
+/* Light → show moon icon (click for dark) */
+[data-theme="light"] .theme-icon-dark { display: inline; }
+[data-theme="light"] .theme-icon-light { display: none; }
 
 @media (max-width: 768px) {
   .nav-toggle {
