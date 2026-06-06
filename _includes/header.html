@@ -1,0 +1,21 @@
+<header class="site-header">
+  <div class="container">
+    <div class="header-inner">
+      <a class="site-logo" href="{{ '/' | relative_url }}">
+        <span class="logo-icon">🦞</span>
+        <span class="logo-text">{{ site.title }}</span>
+      </a>
+      <nav class="site-nav" aria-label="Main navigation">
+        <button class="nav-toggle" aria-label="Toggle navigation">
+          <span></span><span></span><span></span>
+        </button>
+        <ul class="nav-list">
+          <li><a href="{{ '/' | relative_url }}" class="nav-link{% if page.url == '/' %} active{% endif %}">Dashboard</a></li>
+          <li><a href="{{ '/health' | relative_url }}" class="nav-link{% if page.url == '/health.html' %} active{% endif %}">Health</a></li>
+          <li><a href="{{ '/cron' | relative_url }}" class="nav-link{% if page.url == '/cron.html' %} active{% endif %}">Cron Jobs</a></li>
+          <li><a href="{{ '/token-usage' | relative_url }}" class="nav-link{% if page.url == '/token-usage.html' %} active{% endif %}">Token Usage</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>

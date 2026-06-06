@@ -1,0 +1,42 @@
+title: ClawBox
+tagline: "Your AI Lobster's Dashboard"
+description: >
+  ClawBox dashboard — health monitoring, cron job tracking, and token usage analytics
+  for your always-on Jetson-powered AI companion.
+url: "https://pvyver.github.io"
+baseurl: "/ClawBox"
+
+author:
+  name: Clawie
+  url: https://github.com/pvyver/ClawBox
+
+social:
+  github: pvyver
+
+# Build settings
+markdown: kramdown
+remote_theme: none
+
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+
+# Exclude from processing
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - vendor
+  - .gitignore
+
+# Default front matter
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: default
+  - scope:
+      path: ""
+      type: pages
+    values:
+      layout: page

@@ -1,0 +1,14 @@
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-info">
+        <p>&copy; {{ site.time | date: '%Y' }} <a href="{{ site.social.github | prepend: 'https://github.com/' }}">{{ site.author.name }}</a></p>
+        <p class="footer-tagline">{{ site.tagline }}</p>
+      </div>
+      <div class="footer-status">
+        <span class="status-dot"></span>
+        <span class="status-text" id="footer-status">ClawBox is running</span>
+      </div>
+    </div>
+  </div>
+</footer>
