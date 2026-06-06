@@ -1,89 +1,114 @@
 /**
  * ClawBox Dashboard — Client-side data refresh
  *
- * Fetches latest site.json and updates dashboard placeholders.
+ * Fetches latest data JSON and updates compact dashboard elements.
  */
 (function () {
   'use strict';
+
+  var basePath = window.location.pathname.includes('/ClawBox/')
+    ? '/ClawBox/assets/data/'
+    : '/assets/data/';
 
   function setText(id, text) {
     var el = document.getElementById(id);
     if (el) el.textContent = text || '\u2014';
   }
 
-  function fetchData() {
-    var url = window.location.pathname.includes('/ClawBox/')
-      ? '/ClawBox/assets/data/site.json'
-      : '/assets/data/site.json';
+  function setBadge(id, text, cls) {
+    var el = document.getElementById(id);
+    if (el) {
+      el.textContent = text;
+      el.className = 'badge ' + cls;
+    }
+  }
 
-    fetch(url)
-      .then(function (r) {
-        if (!r.ok) throw new Error('HTTP ' + r.status);
-        return r.json();
-      })
-      .then(function (data) {
-        var ts = data.update_timestamp || '';
-        setText('health-time', ts);
+  function setMiniBar(id, pct, cls) {
+    var el = document.getElementById(id);
+    if (el) {
+      el.style.width = Math.min(pct, 100) + '%';
+      el.className = 'mini-fill ' + cls;
+    }
+  }
+
+  function round1(v) { return Math.round(v * 10) / 10; }
+
+  // ── Fetch all data ───────────────────────────────────────────────────
+
+  function fetchAll() {
+    // Site meta (timestamp)
+    fetch(basePath + 'site.json')
+      .then(function (r) { return r.ok ? r.json() : Promise.reject(); })
+      .then(function (d) {
+        var ts = d.update_timestamp || '';
         setText('live-updated', ts);
-        setText('site-updated', ts);
       })
-      .catch(function (err) {
-        console.warn('Dashboard data fetch:', err.message);
-      });
+      .catch(function () {});
 
-    // Also fetch health for live snapshot
-    var hurl = window.location.pathname.includes('/ClawBox/')
-      ? '/ClawBox/assets/data/health.json'
-      : '/assets/data/health.json';
-
-    fetch(hurl)
-      .then(function (r) {
-        if (!r.ok) throw new Error('HTTP ' + r.status);
-        return r.json();
-      })
+    // Health data
+    fetch(basePath + 'health.json')
+      .then(function (r) { return r.ok ? r.json() : Promise.reject(); })
       .then(function (h) {
-        if (h.temperature && h.temperature.display) setText('live-temp', h.temperature.display);
-        if (h.memory && h.memory.used_human) setText('live-ram', h.memory.used_human);
-        if (h.disk) {
-          setText('live-disk', h.disk.used_human ? h.disk.used_human + ' used' : (h.disk.used_percent != null ? h.disk.used_percent + '% used' : ''));
-        }
+        var temp = h.temperature || {};
+        var mem = h.memory || {};
+        var disk = h.disk || {};
+        var cpu = h.cpu || {};
+        var up = h.uptime || {};
+
+        var tempVal = temp.value_celsius || 0;
+        var memPct = mem.used_percent || 0;
+        var diskPct = disk.used_percent || 0;
+
+        setText('stat-temp', temp.display || '\u2014');
+        setText('stat-ram', mem.used_human || '\u2014');
+        setText('stat-disk', disk.used_human || '\u2014');
+        setText('stat-uptime', up.display || '\u2014');
+
+        setText('cc-cpu', cpu.load_1m != null ? round1(cpu.load_1m) : '\u2014');
+        setText('cc-temp', temp.display || '\u2014');
+        setText('cc-mem', mem.used_human || '\u2014');
+
+        var tempCls = tempVal > 80 ? 'badge-err' : tempVal > 70 ? 'badge-warn' : 'badge-ok';
+        var memCls = memPct > 90 ? 'badge-err' : memPct > 80 ? 'badge-warn' : 'badge-ok';
+        var diskCls = diskPct > 95 ? 'badge-err' : diskPct > 80 ? 'badge-warn' : 'badge-ok';
+
+        setBadge('stat-temp-badge', round1(tempVal) + '\u00B0', tempCls);
+        setMiniBar('stat-ram-bar', memPct, memCls);
+        setMiniBar('stat-disk-bar', diskPct, diskCls);
       })
       .catch(function () {});
 
-    // Fetch token usage for today
-    var turl = window.location.pathname.includes('/ClawBox/')
-      ? '/ClawBox/assets/data/token-usage.json'
-      : '/assets/data/token-usage.json';
-
-    fetch(turl)
-      .then(function (r) {
-        if (!r.ok) throw new Error('HTTP ' + r.status);
-        return r.json();
-      })
+    // Token usage
+    fetch(basePath + 'token-usage.json')
+      .then(function (r) { return r.ok ? r.json() : Promise.reject(); })
       .then(function (tu) {
-        if (tu.today && tu.today.total_human) setText('token-today', tu.today.total_human);
+        var t = tu.today || {};
+        var pct = t.used_percent || 0;
+        var human = t.total_human || '\u2014';
+        setText('stat-tokens', human);
+        setText('cc-tokens', human);
+        setText('cc-cap', tu.daily_cap_human || '250M');
+        setText('cc-pct', round1(pct) + '%');
+
+        var cls = pct > 90 ? 'badge-err' : pct > 70 ? 'badge-warn' : 'badge-ok';
+        setBadge('stat-token-badge', Math.round(pct) + '%', cls);
       })
       .catch(function () {});
 
-    // Fetch cron for counts
-    var curl = window.location.pathname.includes('/ClawBox/')
-      ? '/ClawBox/assets/data/cron-jobs.json'
-      : '/assets/data/cron-jobs.json';
-
-    fetch(curl)
-      .then(function (r) {
-        if (!r.ok) throw new Error('HTTP ' + r.status);
-        return r.json();
-      })
+    // Cron jobs
+    fetch(basePath + 'cron-jobs.json')
+      .then(function (r) { return r.ok ? r.json() : Promise.reject(); })
       .then(function (cj) {
-        if (cj.total != null) setText('cron-count', cj.total);
+        var count = cj.total || 0;
+        setText('stat-crons', count);
+        setText('cc-active', count);
       })
       .catch(function () {});
   }
 
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', fetchData);
+    document.addEventListener('DOMContentLoaded', fetchAll);
   } else {
-    fetchData();
+    fetchAll();
   }
 })();

@@ -11,79 +11,105 @@ permalink: /
 {% assign mem = h.memory %}
 {% assign temp = h.temperature %}
 {% assign disk = h.disk %}
+{% assign gpu = h.gpu %}
+{% assign up = h.uptime %}
 
 {% assign health_time = s.update_timestamp | default: "pending..." %}
 {% assign cron_count = cj.total | default: 0 %}
 {% assign token_today = tu.today.total_human | default: "\u2014" %}
 {% assign token_pct = tu.today.used_percent | default: 0 %}
+{% assign mem_pct = mem.used_percent | default: 0 %}
+{% assign disk_pct = disk.used_percent | default: 0 %}
+{% assign temp_val = temp.value_celsius | default: 0 %}
 
-<section class="hero">
-  <div class="hero-icon">🦞</div>
-  <h1><span>ClawBox</span> Dashboard</h1>
-  <p>Your AI lobster companion's control center. Health, schedules, and token usage at a glance.</p>
-</section>
+{% capture mem_badge %}{% if mem_pct > 90 %}badge-err{% elsif mem_pct > 80 %}badge-warn{% else %}badge-ok{% endif %}{% endcapture %}
+{% capture disk_badge %}{% if disk_pct > 95 %}badge-err{% elsif disk_pct > 80 %}badge-warn{% else %}badge-ok{% endif %}{% endcapture %}
+{% capture temp_badge %}{% if temp_val > 80 %}badge-err{% elsif temp_val > 70 %}badge-warn{% else %}badge-ok{% endif %}{% endcapture %}
+{% capture token_badge %}{% if token_pct > 90 %}badge-err{% elsif token_pct > 70 %}badge-warn{% else %}badge-ok{% endif %}{% endcapture %}
 
-<div class="dashboard-grid">
-  <a href="{{ '/health' | relative_url }}" class="dashboard-card">
-    <div class="card-icon">❤️</div>
-    <h2 class="card-title">System Health</h2>
-    <p class="card-desc">CPU, memory, disk, temperature &mdash; everything your Jetson needs to stay sharp.</p>
-    <div class="card-meta">
-      <span>Last check: <span id="health-time">{{ health_time }}</span></span>
-      <span class="badge badge-ok">Online</span>
+<!-- Tagline bar -->
+<div class="tagline-bar">
+  <span class="tagline-icon">🦞</span>
+  <span>Your AI lobster companion's control center &mdash; real-time system overview.</span>
+  <span class="tagline-time" id="live-updated">{{ s.update_timestamp | default: "" }}</span>
+</div>
+
+<!-- Compact live stats bar -->
+<div class="stats-bar" id="stats-bar">
+  <div class="stat-chip">
+    <span class="chip-icon">🌡️</span>
+    <span class="chip-label">Temp</span>
+    <span class="chip-value" id="stat-temp">{{ temp.display | default: "\u2014" }}</span>
+    <span class="chip-badge"><span class="badge {{ temp_badge }}" id="stat-temp-badge">{{ temp_val }}°</span></span>
+  </div>
+  <div class="stat-chip">
+    <span class="chip-icon">💾</span>
+    <span class="chip-label">RAM</span>
+    <span class="chip-value" id="stat-ram">{{ mem.used_human | default: "\u2014" }}</span>
+    <span class="chip-bar"><span class="mini-bar"><span class="mini-fill {{ mem_badge }}" id="stat-ram-bar" style="width: {{ mem_pct | round: 0 }}%"></span></span></span>
+  </div>
+  <div class="stat-chip">
+    <span class="chip-icon">💽</span>
+    <span class="chip-label">Disk</span>
+    <span class="chip-value" id="stat-disk">{{ disk.used_human | default: "\u2014" }}</span>
+    <span class="chip-bar"><span class="mini-bar"><span class="mini-fill {{ disk_badge }}" id="stat-disk-bar" style="width: {{ disk_pct | round: 0 }}%"></span></span></span>
+  </div>
+  <div class="stat-chip">
+    <span class="chip-icon">📊</span>
+    <span class="chip-label">Tokens</span>
+    <span class="chip-value" id="stat-tokens">{{ token_today }}</span>
+    <span class="chip-badge"><span class="badge {{ token_badge }}" id="stat-token-badge">{{ token_pct | round: 0 }}%</span></span>
+  </div>
+  <div class="stat-chip">
+    <span class="chip-icon">⏰</span>
+    <span class="chip-label">Crons</span>
+    <span class="chip-value" id="stat-crons">{{ cron_count }}</span>
+    <span class="chip-badge">active</span>
+  </div>
+  <div class="stat-chip">
+    <span class="chip-icon">🕐</span>
+    <span class="chip-label">Uptime</span>
+    <span class="chip-value" id="stat-uptime">{{ up.display | default: "\u2014" }}</span>
+    <span class="chip-badge">online</span>
+  </div>
+</div>
+
+<!-- Compact dashboard cards -->
+<div class="compact-grid">
+  <a href="{{ '/health' | relative_url }}" class="compact-card">
+    <div class="compact-card-header">
+      <span class="compact-card-icon">❤️</span>
+      <span class="compact-card-title">System Health</span>
+    </div>
+    <div class="compact-card-stats">
+      <span><span class="cs-label">CPU</span> <span id="cc-cpu" class="cs-value">{% if h.cpu.load_1m %}{{ h.cpu.load_1m }}{% else %}\u2014{% endif %}</span></span>
+      <span><span class="cs-label">Temp</span> <span id="cc-temp" class="cs-value">{{ temp.display | default: "\u2014" }}</span></span>
+      <span><span class="cs-label">Mem</span> <span id="cc-mem" class="cs-value">{{ mem.used_human | default: "\u2014" }}</span></span>
     </div>
   </a>
 
-  <a href="{{ '/cron' | relative_url }}" class="dashboard-card">
-    <div class="card-icon">⏰</div>
-    <h2 class="card-title">Cron Jobs</h2>
-    <p class="card-desc">Scheduled tasks, recurring jobs, and background maintenance routines.</p>
-    <div class="card-meta">
-      <span>Active jobs: <span id="cron-count">{{ cron_count }}</span></span>
-      <span class="badge badge-ok">Monitoring</span>
+  <a href="{{ '/cron' | relative_url }}" class="compact-card">
+    <div class="compact-card-header">
+      <span class="compact-card-icon">⏰</span>
+      <span class="compact-card-title">Cron Jobs</span>
+    </div>
+    <div class="compact-card-stats">
+      <span><span class="cs-label">Active</span> <span id="cc-active" class="cs-value">{{ cron_count }}</span></span>
+      <span><span class="cs-label">Last</span> <span id="cc-last" class="cs-value">{{ health_time | default: "\u2014" }}</span></span>
     </div>
   </a>
 
-  <a href="{{ '/token-usage' | relative_url }}" class="dashboard-card">
-    <div class="card-icon">📊</div>
-    <h2 class="card-title">Token Usage</h2>
-    <p class="card-desc">Consumption per model, daily budgets, and cost tracking across cloud and local.</p>
-    <div class="card-meta">
-      <span>Today: <span id="token-today">{{ token_today }}</span></span>
-      <span class="badge {% if token_pct > 90 %}badge-err{% elsif token_pct > 70 %}badge-warn{% else %}badge-ok{% endif %}">
-        {% if token_pct > 90 %}Critical{% elsif token_pct > 70 %}Warning{% else %}Tracking{% endif %}
-      </span>
+  <a href="{{ '/token-usage' | relative_url }}" class="compact-card">
+    <div class="compact-card-header">
+      <span class="compact-card-icon">📊</span>
+      <span class="compact-card-title">Token Usage</span>
+    </div>
+    <div class="compact-card-stats">
+      <span><span class="cs-label">Today</span> <span id="cc-tokens" class="cs-value">{{ token_today }}</span></span>
+      <span><span class="cs-label">Cap</span> <span id="cc-cap" class="cs-value">{{ tu.daily_cap_human | default: "250M" }}</span></span>
+      <span><span class="cs-label">Used</span> <span id="cc-pct" class="cs-value {{ token_badge }}">{{ token_pct | round: 1 }}%</span></span>
     </div>
   </a>
 </div>
-
-<section>
-  <h2 style="margin-bottom: 1rem; font-size: 1.3rem;">Live Snapshot</h2>
-  <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 1.5rem;">
-    <p style="color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 1rem;">
-      System data is updated automatically by ClawBox background jobs. These values represent the most recent snapshot.
-    </p>
-    <div class="stat-row">
-      <span class="stat-label">🧠 Model</span>
-      <span class="stat-value">DeepSeek Flash / Gemma 4</span>
-    </div>
-    <div class="stat-row">
-      <span class="stat-label">🌡️ Jetson Temp</span>
-      <span class="stat-value" id="live-temp">{{ temp.display | default: "~58°C" }}</span>
-    </div>
-    <div class="stat-row">
-      <span class="stat-label">💾 RAM</span>
-      <span class="stat-value" id="live-ram">{{ mem.used_human | default: "7.6 GB" }}</span>
-    </div>
-    <div class="stat-row">
-      <span class="stat-label">💽 Disk</span>
-      <span class="stat-value" id="live-disk">{{ disk.used_human | default: "11% used" }}</span>
-    </div>
-    <div class="stat-row">
-      <span class="stat-label">📅 Last Updated</span>
-      <span class="stat-value" id="live-updated">{{ s.update_timestamp | default: "—" }}</span>
-    </div>
-  </div>
-</section>
 
 <script src="{{ '/assets/js/dashboard.js' | relative_url }}"></script>
