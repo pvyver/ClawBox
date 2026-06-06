@@ -3,13 +3,12 @@
   'use strict';
 
   // 🧭 Mobile nav toggle
-  const toggle = document.querySelector('.nav-toggle');
-  const navList = document.querySelector('.nav-list');
+  var toggle = document.querySelector('.nav-toggle');
+  var navList = document.querySelector('.nav-list');
   if (toggle && navList) {
     toggle.addEventListener('click', function() {
       navList.classList.toggle('open');
     });
-    // Close nav on outside click
     document.addEventListener('click', function(e) {
       if (!e.target.closest('.site-nav')) {
         navList.classList.remove('open');
@@ -24,32 +23,31 @@
 
   // 📊 Fill empty stat placeholders
   function fillPlaceholders() {
-    const now = nowISO();
+    var now = nowISO();
 
-    // Dashboard index cards
-    const healthTime = document.getElementById('health-time');
+    var healthTime = document.getElementById('health-time');
     if (healthTime && healthTime.textContent === 'pending...') healthTime.textContent = now;
 
-    const cronCount = document.getElementById('cron-count');
+    var cronCount = document.getElementById('cron-count');
     if (cronCount && cronCount.textContent === 'pending...') cronCount.textContent = '2';
 
-    const tokenToday = document.getElementById('token-today');
-    if (tokenToday && tokenToday.textContent === 'pending...') tokenToday.textContent = '—';
+    var tokenToday = document.getElementById('token-today');
+    if (tokenToday && tokenToday.textContent === 'pending...') tokenToday.textContent = '\u2014';
 
-    const liveUpdated = document.getElementById('live-updated');
+    var liveUpdated = document.getElementById('live-updated');
     if (liveUpdated) liveUpdated.textContent = now;
   }
 
   fillPlaceholders();
 
   // 🟢 Animate progress bars on scroll
-  const bars = document.querySelectorAll('.progress-fill');
+  var bars = document.querySelectorAll('.progress-fill');
   if (bars.length && 'IntersectionObserver' in window) {
-    const observer = new IntersectionObserver(function(entries) {
+    var observer = new IntersectionObserver(function(entries) {
       entries.forEach(function(entry) {
         if (entry.isIntersecting) {
-          const bar = entry.target;
-          const target = bar.getAttribute('data-target') || bar.style.width || '0%';
+          var bar = entry.target;
+          var target = bar.getAttribute('data-target') || bar.style.width || '0%';
           bar.style.transition = 'width 1.2s cubic-bezier(0.22, 1, 0.36, 1)';
           bar.style.width = '0%';
           requestAnimationFrame(function() {
@@ -61,8 +59,7 @@
     }, { threshold: 0.1 });
 
     bars.forEach(function(bar) {
-      // Store current width as data-target then reset
-      const w = bar.style.width;
+      var w = bar.style.width;
       if (w && w !== '0%') {
         bar.setAttribute('data-target', w);
         bar.style.width = '0%';
@@ -71,5 +68,25 @@
     });
   }
 
-  console.log('🦞 ClawBox dashboard loaded —', nowISO());
+  // 🌗 Theme toggle
+  (function initTheme() {
+    var btn = document.getElementById('theme-toggle');
+    if (!btn) return;
+
+    // Read saved preference
+    var saved = localStorage.getItem('clawbox-theme');
+    if (saved === 'light' || saved === 'dark') {
+      document.documentElement.setAttribute('data-theme', saved);
+    }
+    // If no saved pref and system prefers light, let the @media query handle it
+
+    btn.addEventListener('click', function() {
+      var current = document.documentElement.getAttribute('data-theme');
+      var next = current === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('clawbox-theme', next);
+    });
+  })();
+
+  console.log('🦞 ClawBox dashboard loaded \u2014', nowISO());
 })();

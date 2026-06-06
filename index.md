@@ -4,6 +4,19 @@ title: Dashboard
 permalink: /
 ---
 
+{% assign h = site.data.health %}
+{% assign tu = site.data.token-usage %}
+{% assign cj = site.data.cron-jobs %}
+{% assign s = site.data.site %}
+{% assign mem = h.memory %}
+{% assign temp = h.temperature %}
+{% assign disk = h.disk %}
+
+{% assign health_time = s.update_timestamp | default: "pending..." %}
+{% assign cron_count = cj.total | default: 0 %}
+{% assign token_today = tu.today.total_human | default: "\u2014" %}
+{% assign token_pct = tu.today.used_percent | default: 0 %}
+
 <section class="hero">
   <div class="hero-icon">🦞</div>
   <h1><span>ClawBox</span> Dashboard</h1>
@@ -16,7 +29,7 @@ permalink: /
     <h2 class="card-title">System Health</h2>
     <p class="card-desc">CPU, memory, disk, temperature &mdash; everything your Jetson needs to stay sharp.</p>
     <div class="card-meta">
-      <span>Last check: <span id="health-time">pending...</span></span>
+      <span>Last check: <span id="health-time">{{ health_time }}</span></span>
       <span class="badge badge-ok">Online</span>
     </div>
   </a>
@@ -26,7 +39,7 @@ permalink: /
     <h2 class="card-title">Cron Jobs</h2>
     <p class="card-desc">Scheduled tasks, recurring jobs, and background maintenance routines.</p>
     <div class="card-meta">
-      <span>Active jobs: <span id="cron-count">pending...</span></span>
+      <span>Active jobs: <span id="cron-count">{{ cron_count }}</span></span>
       <span class="badge badge-ok">Monitoring</span>
     </div>
   </a>
@@ -36,8 +49,10 @@ permalink: /
     <h2 class="card-title">Token Usage</h2>
     <p class="card-desc">Consumption per model, daily budgets, and cost tracking across cloud and local.</p>
     <div class="card-meta">
-      <span>Today: <span id="token-today">pending...</span></span>
-      <span class="badge badge-ok">Tracking</span>
+      <span>Today: <span id="token-today">{{ token_today }}</span></span>
+      <span class="badge {% if token_pct > 90 %}badge-err{% elsif token_pct > 70 %}badge-warn{% else %}badge-ok{% endif %}">
+        {% if token_pct > 90 %}Critical{% elsif token_pct > 70 %}Warning{% else %}Tracking{% endif %}
+      </span>
     </div>
   </a>
 </div>
@@ -54,19 +69,21 @@ permalink: /
     </div>
     <div class="stat-row">
       <span class="stat-label">🌡️ Jetson Temp</span>
-      <span class="stat-value" id="live-temp">~58&deg;C</span>
+      <span class="stat-value" id="live-temp">{{ temp.display | default: "~58°C" }}</span>
     </div>
     <div class="stat-row">
       <span class="stat-label">💾 RAM</span>
-      <span class="stat-value" id="live-ram">7.6 GB</span>
+      <span class="stat-value" id="live-ram">{{ mem.used_human | default: "7.6 GB" }}</span>
     </div>
     <div class="stat-row">
       <span class="stat-label">💽 Disk</span>
-      <span class="stat-value" id="live-disk">11% used</span>
+      <span class="stat-value" id="live-disk">{{ disk.used_human | default: "11% used" }}</span>
     </div>
     <div class="stat-row">
       <span class="stat-label">📅 Last Updated</span>
-      <span class="stat-value" id="live-updated">—</span>
+      <span class="stat-value" id="live-updated">{{ s.update_timestamp | default: "—" }}</span>
     </div>
   </div>
 </section>
+
+<script src="{{ '/assets/js/dashboard.js' | relative_url }}"></script>
