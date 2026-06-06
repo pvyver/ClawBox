@@ -1,7 +1,7 @@
 /**
  * ClawBox Dashboard — Client-side data refresh
  *
- * Fetches latest data JSON and updates the dashboard overview table.
+ * Fetches latest data JSON and updates compact dashboard elements.
  */
 (function () {
   'use strict';
@@ -15,21 +15,6 @@
     if (el) el.textContent = text || '\u2014';
   }
 
-  function round1(v) { return Math.round(v * 10) / 10; }
-
-  function badgeClass(pct, warn, crit) {
-    return pct > crit ? 'badge-err' : pct > warn ? 'badge-warn' : 'badge-ok';
-  }
-  function badgeText(pct, warn, crit) {
-    return pct > crit ? 'Critical' : pct > warn ? 'Warning' : 'OK';
-  }
-  function cpuBadge(load) {
-    return load > 4 ? 'badge-err' : load > 2.5 ? 'badge-warn' : 'badge-ok';
-  }
-  function cpuText(load) {
-    return load > 4 ? 'High' : load > 2.5 ? 'Moderate' : 'Normal';
-  }
-
   function setBadge(id, text, cls) {
     var el = document.getElementById(id);
     if (el) {
@@ -38,52 +23,58 @@
     }
   }
 
-  // Use first td child of the parent row
-  function setRowBadge(rowId, text, cls) {
-    var row = document.getElementById(rowId);
-    if (!row) return;
-    var badgeEl = row.querySelector('.badge');
-    if (badgeEl) {
-      badgeEl.textContent = text;
-      badgeEl.className = 'badge ' + cls;
+  function setMiniBar(id, pct, cls) {
+    var el = document.getElementById(id);
+    if (el) {
+      el.style.width = Math.min(pct, 100) + '%';
+      el.className = 'mini-fill ' + cls;
     }
   }
 
+  function round1(v) { return Math.round(v * 10) / 10; }
+
+  // ── Fetch all data ───────────────────────────────────────────────────
+
   function fetchAll() {
-    // Timestamp
+    // Site meta (timestamp)
     fetch(basePath + 'site.json')
       .then(function (r) { return r.ok ? r.json() : Promise.reject(); })
       .then(function (d) {
-        setText('live-updated', d.update_timestamp || '');
+        var ts = d.update_timestamp || '';
+        setText('live-updated', ts);
       })
       .catch(function () {});
 
-    // Health
+    // Health data
     fetch(basePath + 'health.json')
       .then(function (r) { return r.ok ? r.json() : Promise.reject(); })
       .then(function (h) {
-        var cpu = h.cpu || {};
+        var temp = h.temperature || {};
         var mem = h.memory || {};
         var disk = h.disk || {};
-        var temp = h.temperature || {};
-        var gpu = h.gpu || {};
+        var cpu = h.cpu || {};
         var up = h.uptime || {};
 
-        var load = cpu.load_1m || 0;
+        var tempVal = temp.value_celsius || 0;
         var memPct = mem.used_percent || 0;
         var diskPct = disk.used_percent || 0;
-        var tempVal = temp.value_celsius || 0;
 
-        setText('dash-cpu', round1(load));
-        setText('dash-temp', temp.display || '\u2014');
-        setText('dash-mem', (mem.used_human || '\u2014') + ' / ' + (mem.total_human || '7.6 GB'));
-        setText('dash-disk', (disk.used_human || '\u2014') + ' / ' + (disk.total_human || '467 GB'));
-        setText('dash-gpu-temp', 'GPU ' + (gpu.temperature_celsius || '?') + '\u00B0');
+        setText('stat-temp', temp.display || '\u2014');
+        setText('stat-ram', mem.used_human || '\u2014');
+        setText('stat-disk', disk.used_human || '\u2014');
+        setText('stat-uptime', up.display || '\u2014');
 
-        setBadge('dash-cpu-badge', cpuText(load), cpuBadge(load));
-        setBadge('dash-temp-badge', badgeText(tempVal, 70, 80), badgeClass(tempVal, 70, 80));
-        setBadge('dash-mem-badge', badgeText(memPct, 80, 90), badgeClass(memPct, 80, 90));
-        setBadge('dash-disk-badge', badgeText(diskPct, 80, 95), badgeClass(diskPct, 80, 95));
+        setText('cc-cpu', cpu.load_1m != null ? round1(cpu.load_1m) : '\u2014');
+        setText('cc-temp', temp.display || '\u2014');
+        setText('cc-mem', mem.used_human || '\u2014');
+
+        var tempCls = tempVal > 80 ? 'badge-err' : tempVal > 70 ? 'badge-warn' : 'badge-ok';
+        var memCls = memPct > 90 ? 'badge-err' : memPct > 80 ? 'badge-warn' : 'badge-ok';
+        var diskCls = diskPct > 95 ? 'badge-err' : diskPct > 80 ? 'badge-warn' : 'badge-ok';
+
+        setBadge('stat-temp-badge', round1(tempVal) + '\u00B0', tempCls);
+        setMiniBar('stat-ram-bar', memPct, memCls);
+        setMiniBar('stat-disk-bar', diskPct, diskCls);
       })
       .catch(function () {});
 
@@ -93,16 +84,14 @@
       .then(function (tu) {
         var t = tu.today || {};
         var pct = t.used_percent || 0;
-        var total = t.total_human || '\u2014';
-        var cap = tu.daily_cap_human || '250M';
+        var human = t.total_human || '\u2014';
+        setText('stat-tokens', human);
+        setText('cc-tokens', human);
+        setText('cc-cap', tu.daily_cap_human || '250M');
+        setText('cc-pct', round1(pct) + '%');
 
-        setText('dash-ds', t.deepseek_human || '\u2014');
-        setText('dash-gm', t.gemma4_human || '\u2014');
-        setText('dash-total', total + ' / ' + cap);
-        setText('dash-calls', (t.calls || 0) + ' calls');
-
-        setBadge('dash-token-badge', round1(pct) + '%', badgeClass(pct, 70, 90));
-        setBadge('dash-ds-badge', badgeText(pct, 70, 90), badgeClass(pct, 70, 90));
+        var cls = pct > 90 ? 'badge-err' : pct > 70 ? 'badge-warn' : 'badge-ok';
+        setBadge('stat-token-badge', Math.round(pct) + '%', cls);
       })
       .catch(function () {});
 
@@ -111,7 +100,8 @@
       .then(function (r) { return r.ok ? r.json() : Promise.reject(); })
       .then(function (cj) {
         var count = cj.total || 0;
-        setText('dash-crons', count + ' active');
+        setText('stat-crons', count);
+        setText('cc-active', count);
       })
       .catch(function () {});
   }
