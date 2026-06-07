@@ -21,10 +21,9 @@ REPO_DIR = Path(__file__).resolve().parent.parent
 WORKSPACE = Path(os.environ.get("HOME", "/home/clawbox")) / ".openclaw" / "workspace"
 TOKEN_WATCH_DIR = WORKSPACE / "data" / "token-watch"
 STATE_DIR = Path(os.environ.get("OPENCLAW_STATE_DIR", str(Path.home() / ".openclaw")))
-OPENCLAW_BIN = os.environ.get(
-    "OPENCLAW_CLI",
-    str(Path.home() / ".local" / "bin" / "openclaw"),
-)
+OPENCLAW_BIN = str(Path.home() / ".local" / "bin" / "openclaw")
+# OPENCLAW_CLI env var is an internal OpenClaw runtime var (value: "1"),
+# so we ignore it here and use the explicit path.
 
 DATA_DIR = REPO_DIR / "_data"
 ASSETS_DATA_DIR = REPO_DIR / "assets" / "data"
