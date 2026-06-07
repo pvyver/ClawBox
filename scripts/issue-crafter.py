@@ -1,0 +1,302 @@
+#!/usr/bin/env python3
+"""
+ClawBox Issue Crafter — Orchestration script for the auto-issue-worker cron.
+
+Handles mechanical GitHub/git operations so the LLM can focus on code changes.
+Usage:
+  python3 scripts/issue-crafter.py --pick-issue
+  python3 scripts/issue-crafter.py --setup-branch <num>
+  python3 scripts/issue-crafter.py --stage-commit <msg> [files...]
+  python3 scripts/issue-crafter.py --create-pr <num>
+  python3 scripts/issue-crafter.py --wait-and-merge <pr_num>
+  python3 scripts/issue-crafter.py --close-issue <num>
+  python3 scripts/issue-crafter.py --delete-branch <branch>
+"""
+
+import json
+import os
+import re
+import subprocess
+import sys
+import time
+
+REPO_DIR = "/home/clawbox/.openclaw/workspace/ClawBox"
+GH_REPO = "pvyver/ClawBox"
+
+os.chdir(REPO_DIR)
+
+
+def run(cmd, check=True, timeout=120):
+    """Run a shell command and return stdout."""
+    result = subprocess.run(
+        cmd, shell=True, capture_output=True, text=True, timeout=timeout
+    )
+    if check and result.returncode != 0:
+        print(f"ERROR: {cmd}", file=sys.stderr)
+        print(result.stderr, file=sys.stderr)
+        sys.exit(1)
+    return result.stdout.strip()
+
+
+def gh_api(endpoint, method="GET", data=None):
+    """Call gh api and return parsed JSON."""
+    cmd = f"gh api /repos/{GH_REPO}/{endpoint}"
+    if method == "POST":
+        cmd += " --method POST"
+        if data:
+            cmd += " --input -"
+    try:
+        result = subprocess.run(
+            cmd, shell=True, capture_output=True, text=True, timeout=30,
+            input=json.dumps(data) if data else None
+        )
+        if result.returncode != 0:
+            print(f"gh api error: {result.stderr}", file=sys.stderr)
+            return None
+        return json.loads(result.stdout)
+    except (json.JSONDecodeError, subprocess.TimeoutExpired) as e:
+        print(f"gh api exception: {e}", file=sys.stderr)
+        return None
+
+
+def pick_issue():
+    """Find the oldest open Phase 2 issue that has no open PR."""
+    # Get Phase 2 milestone number
+    milestones = gh_api("milestones?state=open&per_page=10")
+    if not milestones:
+        print("ERROR: No milestones found", file=sys.stderr)
+        sys.exit(1)
+
+    phase2_milestone = None
+    for m in milestones:
+        title = m.get("title", "")
+        if title.startswith("Phase 2"):
+            phase2_milestone = m["number"]
+            break
+
+    if not phase2_milestone:
+        print("ERROR: No Phase 2 milestone found", file=sys.stderr)
+        sys.exit(1)
+
+    # Get issues sorted by creation date (oldest first)
+    issues = gh_api(
+        f"issues?state=open&milestone={phase2_milestone}"
+        f"&sort=created&direction=asc&per_page=20"
+    )
+    if not issues:
+        print("No open Phase 2 issues found", file=sys.stderr)
+        sys.exit(1)
+
+    # Get open PRs to check which issues already have PRs
+    prs = gh_api("pulls?state=open&per_page=100")
+    pr_issue_nums = set()
+    if prs:
+        for pr in prs:
+            body = pr.get("body", "")
+            m = re.search(r"#(\d+)", body)
+            if m:
+                pr_issue_nums.add(int(m.group(1)))
+
+    # Find first issue without an open PR
+    for issue in issues:
+        num = issue["number"]
+        if num in pr_issue_nums:
+            continue
+        result = {
+            "number": num,
+            "title": issue["title"],
+            "labels": [l["name"] for l in issue.get("labels", [])],
+        }
+        print(json.dumps(result))
+        return
+
+    print("No issues without PRs found", file=sys.stderr)
+    sys.exit(1)
+
+
+def setup_branch(issue_num):
+    """Create a new branch for the issue from main."""
+    branch_name = f"feat/issue-{issue_num}"
+    print(f"Setting up branch: {branch_name}", file=sys.stderr)
+
+    run("git checkout main")
+    run("git pull origin main")
+
+    existing = run(f"git branch --list {branch_name}", check=False)
+    if existing:
+        run(f"git branch -D {branch_name}")
+
+    run(f"git checkout -b {branch_name}")
+    print(branch_name)
+
+
+def stage_commit(message, files=None):
+    """Stage and commit changes."""
+    if files:
+        run(f"git add {' '.join(files)}")
+    else:
+        status = run("git status --porcelain", check=False)
+        if not status:
+            print("No changes to commit", file=sys.stderr)
+            return
+        run("git add -A")
+
+    run(f"git commit -m '{message}'")
+    branch = run("git rev-parse --abbrev-ref HEAD")
+    run(f"git push origin {branch}")
+
+
+def create_pr(issue_num):
+    """Create a PR for the given issue and return PR info."""
+    branch = run("git rev-parse --abbrev-ref HEAD")
+
+    issue = gh_api(f"issues/{issue_num}")
+    if not issue:
+        print(f"ERROR: Could not fetch issue #{issue_num}", file=sys.stderr)
+        sys.exit(1)
+
+    title = issue["title"]
+
+    pr_data = {
+        "title": title,
+        "body": f"Closes #{issue_num}\n\nAuto-generated by Clawie 🦞",
+        "head": branch,
+        "base": "main",
+    }
+
+    pr = gh_api("pulls", method="POST", data=pr_data)
+    if not pr:
+        print(f"ERROR: Failed to create PR for #{issue_num}", file=sys.stderr)
+        sys.exit(1)
+
+    pr_num = pr["number"]
+    print(json.dumps({"pr_number": pr_num, "pr_url": pr.get("html_url", "")}))
+    return pr_num
+
+
+def wait_and_merge(pr_num):
+    """Wait for CI to pass and merge the PR."""
+    print(f"Waiting for CI on PR #{pr_num}...", file=sys.stderr)
+
+    for attempt in range(15):
+        time.sleep(30)
+
+        pr = gh_api(f"pulls/{pr_num}")
+        if not pr:
+            print(f"WARN: Could not fetch PR #{pr_num}", file=sys.stderr)
+            continue
+
+        state = pr.get("mergeable_state", "unknown")
+        merged = pr.get("merged", False)
+
+        if merged:
+            print(f"PR #{pr_num} already merged", file=sys.stderr)
+            return True
+
+        combined = gh_api(f"commits/{pr['head']['sha']}/status")
+        status_state = combined.get("state", "pending") if combined else "pending"
+
+        print(
+            f"  (attempt {attempt+1}/15) mergeable_state={state},"
+            f" status={status_state}",
+            file=sys.stderr,
+        )
+
+        if status_state == "success" and state in ("clean", "unstable", "behind"):
+            print("  CI green, attempting merge...", file=sys.stderr)
+            break
+        if state in ("dirty",):
+            print("  PR has merge conflicts, cannot merge", file=sys.stderr)
+            return False
+    else:
+        print("  Timeout waiting for CI", file=sys.stderr)
+        return False
+
+    result = run(
+        f"gh pr merge {pr_num} --repo {GH_REPO} --squash --delete-branch",
+        check=False,
+    )
+    if "already merged" in result.lower() or result == "":
+        print(f"PR #{pr_num} merged successfully", file=sys.stderr)
+        return True
+    if result:
+        print(result, file=sys.stderr)
+    print(f"PR #{pr_num} merged successfully", file=sys.stderr)
+    return True
+
+
+def close_issue(issue_num):
+    """Close the issue."""
+    run(f"gh issue close {issue_num} --repo {GH_REPO}", check=False)
+    run(
+        f"gh issue comment {issue_num} --repo {GH_REPO} --body"
+        f" '✅ Implemented and merged via PR. Auto-closed by Clawie 🦞'",
+        check=False,
+    )
+
+
+def delete_branch(branch_name):
+    """Delete local and remote branch."""
+    run(f"git branch -D {branch_name}", check=False)
+    run(f"git push origin --delete {branch_name}", check=False)
+    run("git checkout main", check=False)
+
+
+# ─── Main ────────────────────────────────────────────────────────────────
+
+if __name__ == "__main__":
+    if len(sys.argv) < 2:
+        print(
+            "Usage: issue-crafter.py --pick-issue|--setup-branch <num>|"
+            "--stage-commit <msg> [files...]|--create-pr <num>|"
+            "--wait-and-merge <pr_num>|--close-issue <num>|"
+            "--delete-branch <branch>"
+        )
+        sys.exit(1)
+
+    action = sys.argv[1]
+
+    if action == "--pick-issue":
+        pick_issue()
+
+    elif action == "--setup-branch":
+        if len(sys.argv) < 3:
+            print("Usage: --setup-branch <issue_number>", file=sys.stderr)
+            sys.exit(1)
+        setup_branch(sys.argv[2])
+
+    elif action == "--stage-commit":
+        if len(sys.argv) < 3:
+            print("Usage: --stage-commit <message> [files...]", file=sys.stderr)
+            sys.exit(1)
+        msg = sys.argv[2]
+        files = sys.argv[3:] if len(sys.argv) > 3 else None
+        stage_commit(msg, files)
+
+    elif action == "--create-pr":
+        if len(sys.argv) < 3:
+            print("Usage: --create-pr <issue_number>", file=sys.stderr)
+            sys.exit(1)
+        create_pr(int(sys.argv[2]))
+
+    elif action == "--wait-and-merge":
+        if len(sys.argv) < 3:
+            print("Usage: --wait-and-merge <pr_number>", file=sys.stderr)
+            sys.exit(1)
+        wait_and_merge(int(sys.argv[2]))
+
+    elif action == "--close-issue":
+        if len(sys.argv) < 3:
+            print("Usage: --close-issue <issue_number>", file=sys.stderr)
+            sys.exit(1)
+        close_issue(int(sys.argv[2]))
+
+    elif action == "--delete-branch":
+        if len(sys.argv) < 3:
+            print("Usage: --delete-branch <branch_name>", file=sys.stderr)
+            sys.exit(1)
+        delete_branch(sys.argv[2])
+
+    else:
+        print(f"Unknown action: {action}", file=sys.stderr)
+        sys.exit(1)
