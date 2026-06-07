@@ -4,13 +4,14 @@ ClawBox Issue Crafter — Orchestration script for the auto-issue-worker cron.
 
 Handles mechanical GitHub/git operations so the LLM can focus on code changes.
 Usage:
-  python3 scripts/issue-crafter.py --pick-issue
+  python3 scripts/issue-crafter.py --pick-issue [<label_filter>]
   python3 scripts/issue-crafter.py --setup-branch <num>
   python3 scripts/issue-crafter.py --stage-commit <msg> [files...]
   python3 scripts/issue-crafter.py --create-pr <num>
   python3 scripts/issue-crafter.py --wait-and-merge <pr_num>
   python3 scripts/issue-crafter.py --close-issue <num>
   python3 scripts/issue-crafter.py --delete-branch <branch>
+  python3 scripts/issue-crafter.py --add-labels <issue> <label1,label2>
 """
 
 import json
@@ -59,8 +60,9 @@ def gh_api(endpoint, method="GET", data=None):
         return None
 
 
-def pick_issue():
-    """Find the oldest open Phase 2 issue that has no open PR."""
+def pick_issue(label_filter=None):
+    """Find the oldest open Phase 2 issue that has no open PR.
+    Optionally filter by label name (e.g. 'frontend', 'backend')."""
     # Get Phase 2 milestone number
     milestones = gh_api("milestones?state=open&per_page=10")
     if not milestones:
@@ -97,20 +99,24 @@ def pick_issue():
             if m:
                 pr_issue_nums.add(int(m.group(1)))
 
-    # Find first issue without an open PR
+    # Find first issue without an open PR, optionally filtered by label
     for issue in issues:
         num = issue["number"]
         if num in pr_issue_nums:
             continue
+        issue_labels = [l["name"] for l in issue.get("labels", [])]
+        if label_filter and label_filter not in issue_labels:
+            continue
         result = {
             "number": num,
             "title": issue["title"],
-            "labels": [l["name"] for l in issue.get("labels", [])],
+            "labels": issue_labels,
         }
         print(json.dumps(result))
         return
 
-    print("No issues without PRs found", file=sys.stderr)
+    label_msg = f" with label '{label_filter}'" if label_filter else ""
+    print(f"No issues{label_msg} without PRs found", file=sys.stderr)
     sys.exit(1)
 
 
@@ -241,22 +247,37 @@ def delete_branch(branch_name):
     run("git checkout main", check=False)
 
 
+def add_labels(issue_num, labels):
+    """Add GitHub labels to an issue."""
+    result = gh_api(f"issues/{issue_num}/labels", method="POST",
+                    data={"labels": labels})
+    if result:
+        applied = [l["name"] for l in result]
+        print(json.dumps({"issue": issue_num, "labels": applied}))
+    else:
+        print(f"ERROR: Failed to add labels to #{issue_num}", file=sys.stderr)
+        sys.exit(1)
+
+
 # ─── Main ────────────────────────────────────────────────────────────────
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:
         print(
-            "Usage: issue-crafter.py --pick-issue|--setup-branch <num>|"
+            "Usage: issue-crafter.py --pick-issue [<label_filter>]|"
+            "--setup-branch <num>|"
             "--stage-commit <msg> [files...]|--create-pr <num>|"
             "--wait-and-merge <pr_num>|--close-issue <num>|"
-            "--delete-branch <branch>"
+            "--delete-branch <branch>|"
+            "--add-labels <issue> <label1,label2>"
         )
         sys.exit(1)
 
     action = sys.argv[1]
 
     if action == "--pick-issue":
-        pick_issue()
+        label_filter = sys.argv[2] if len(sys.argv) > 2 else None
+        pick_issue(label_filter)
 
     elif action == "--setup-branch":
         if len(sys.argv) < 3:
@@ -295,6 +316,13 @@ if __name__ == "__main__":
             print("Usage: --delete-branch <branch_name>", file=sys.stderr)
             sys.exit(1)
         delete_branch(sys.argv[2])
+
+    elif action == "--add-labels":
+        if len(sys.argv) < 4:
+            print("Usage: --add-labels <issue_number> <label1,label2>",
+                  file=sys.stderr)
+            sys.exit(1)
+        add_labels(int(sys.argv[2]), sys.argv[3].split(","))
 
     else:
         print(f"Unknown action: {action}", file=sys.stderr)
