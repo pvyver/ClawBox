@@ -186,26 +186,25 @@ def wait_and_merge(pr_num):
             print(f"WARN: Could not fetch PR #{pr_num}", file=sys.stderr)
             continue
 
-        state = pr.get("mergeable_state", "unknown")
-        merged = pr.get("merged", False)
+        merge_state = pr.get("mergeStateStatus", "UNKNOWN")
+        mergeable = pr.get("mergeable", "MERGEABLE")
+        merged_at = pr.get("mergedAt")
 
-        if merged:
+        if merged_at:
             print(f"PR #{pr_num} already merged", file=sys.stderr)
             return True
 
-        combined = gh_api(f"commits/{pr['head']['sha']}/status")
-        status_state = combined.get("state", "pending") if combined else "pending"
-
         print(
-            f"  (attempt {attempt+1}/15) mergeable_state={state},"
-            f" status={status_state}",
+            f"  (attempt {attempt+1}/15) mergeStateStatus={merge_state},"
+            f" mergeable={mergeable}",
             file=sys.stderr,
         )
 
-        if status_state == "success" and state in ("clean", "unstable", "behind"):
+        if merge_state == "CLEAN" and mergeable == "MERGEABLE":
             print("  CI green, attempting merge...", file=sys.stderr)
             break
-        if state in ("dirty",):
+        if merge_state == "DIRTY" or (merge_state == "BLOCKED"
+                                       and mergeable == "CONFLICTING"):
             print("  PR has merge conflicts, cannot merge", file=sys.stderr)
             return False
     else:
