@@ -10,9 +10,9 @@
       "status": "ok",
       "badge": "badge-ok",
       "enabled": true,
-      "next_run": 1780853700174,
-      "last_run": 1780851900174,
-      "last_duration_ms": 53153,
+      "next_run": 1780855500187,
+      "last_run": 1780853700187,
+      "last_duration_ms": 47299,
       "consecutive_errors": 0
     },
     {
@@ -25,15 +25,15 @@
       "status": "ok",
       "badge": "badge-ok",
       "enabled": true,
-      "next_run": 1780854000080,
-      "last_run": 1780852200080,
-      "last_duration_ms": 75625,
+      "next_run": 1780855800092,
+      "last_run": 1780854000092,
+      "last_duration_ms": 52793,
       "consecutive_errors": 0
     },
     {
       "id": "076c2650-df05-45ad-8103-595152e2fb07",
       "name": "issue-crafter",
-      "description": "Auto-handle one Phase 2 GitHub issue every 6h. Picks oldest open issue, implements, PRs, merges, closes. Reports via Telegram.",
+      "description": "Auto-handle one Phase 2 GitHub issue every 6h with parallel specialist lanes. Picks issues by label (frontend/backend), uses sub-agent for implementation, reports via Telegram.",
       "schedule": "Cron: 0 */6 * * * (Brussels)",
       "model": "llamacpp/gemma4-e2b-it-q4_0",
       "session_target": "isolated",
@@ -107,5 +107,5 @@
     }
   ],
   "total": 7,
-  "last_updated": "2026-06-07T17:35:20.779044+00:00"
+  "last_updated": "2026-06-07T18:05:43.223311+00:00"
 }
