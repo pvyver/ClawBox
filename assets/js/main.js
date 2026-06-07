@@ -163,5 +163,32 @@
     setInterval(updateFreshness, 1000);
   })();
 
+  // 📥 Export dropdown toggle
+  (function initExportDropdown() {
+    var toggle = document.getElementById('export-toggle');
+    var menu = document.getElementById('export-menu');
+    if (!toggle || !menu) return;
+
+    toggle.addEventListener('click', function (e) {
+      e.stopPropagation();
+      menu.classList.toggle('open');
+    });
+
+    // Close on outside click
+    document.addEventListener('click', function (e) {
+      if (!e.target.closest('.nav-export-item')) {
+        menu.classList.remove('open');
+      }
+    });
+
+    // Close on option click
+    var opts = menu.querySelectorAll('.export-opt');
+    Array.prototype.forEach.call(opts, function (opt) {
+      opt.addEventListener('click', function () {
+        menu.classList.remove('open');
+      });
+    });
+  })();
+
   console.log('🦞 ClawBox dashboard loaded \u2014', nowISO());
 })();
