@@ -402,13 +402,15 @@ def write_data_files(health, token_usage, cron_jobs):
 # ── 5. Git Commit & Push ───────────────────────────────────────────────
 
 def git_push():
-    """Stage data files, commit, and push to origin."""
+    """Stage data files, commit, pull rebase, and push to origin."""
     rc, _, _ = run_cmd(
         ["git", "-C", str(REPO_DIR), "diff", "--quiet", "--", "_data/", "assets/data/"],
         timeout=10,
     )
     if rc == 0:
         print("  ℹ No new data to commit.")
+        # Still pull to keep local in sync
+        run_cmd(["git", "-C", str(REPO_DIR), "pull", "--rebase", "origin", "main"], timeout=30)
         return True
 
     cmds = [
@@ -418,6 +420,8 @@ def git_push():
           "commit", "-m",
           f"auto: update site data [{NOW.strftime('%Y-%m-%d %H:%M UTC')}]"],
          "Committing"),
+        (["git", "-C", str(REPO_DIR), "pull", "--rebase", "origin", "main"],
+         "Pulling remote changes"),
         (["git", "-C", str(REPO_DIR), "push", "origin", "main"],
          "Pushing"),
     ]
@@ -425,10 +429,12 @@ def git_push():
     for cmd, label in cmds:
         rc, out, err = run_cmd(cmd, timeout=30)
         if rc != 0:
+            # pull --rebase can conflict; try to abort
+            if "pull" in cmd and rc != 0:
+                run_cmd(["git", "-C", str(REPO_DIR), "rebase", "--abort"], timeout=10)
             print(f"  ✗ {label}: {err or out}")
             return False
         if out:
-            # Show first line of output
             first = out.split("\n")[0]
             print(f"  ✓ {first[:120]}")
 
