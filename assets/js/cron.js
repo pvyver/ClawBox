@@ -41,7 +41,7 @@
 
   function modelDisplay(model) {
     if (!model) return 'default';
-    if (model.indexOf('gemma') !== -1) return 'Gemma 4 (local)';
+    if (model.indexOf('llama') !== -1) return 'Llama 3.2 (local)';
     if (model.indexOf('deepseek') !== -1) return 'DeepSeek Flash';
     return model;
   }

@@ -32,7 +32,7 @@
 
   var labels = rawHistory.map(function (d) { return d.date; });
   var dsData = rawHistory.map(function (d) { return d.deepseek_tokens || 0; });
-  var gmData = rawHistory.map(function (d) { return d.gemma4_tokens || 0; });
+  var gmData = rawHistory.map(function (d) { return d.llama3_tokens || 0; });
   var capLine = rawHistory.map(function () { return dailyCap; });
 
   // Format ticks: millions
@@ -66,7 +66,7 @@
           borderRadius: 2,
         },
         {
-          label: 'Gemma 4 (Local)',
+          label: 'Llama 3.2 (Local)',
           data: gmData,
           backgroundColor: success + 'cc',
           borderColor: success,

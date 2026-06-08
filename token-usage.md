@@ -7,7 +7,7 @@ permalink: /token-usage/
 {% assign tu = site.data.token-usage %}
 {% assign today = tu.today %}
 {% assign ds_tokens = today.deepseek_tokens | default: 0 %}
-{% assign gm_tokens = today.gemma4_tokens | default: 0 %}
+{% assign gm_tokens = today.llama3_tokens | default: 0 %}
 {% assign total_tokens = today.total_tokens | default: 0 %}
 {% assign used_pct = today.used_percent | default: 0 %}
 {% assign cap = tu.daily_cap | default: 250000000 %}
@@ -28,7 +28,7 @@ permalink: /token-usage/
 
 <p class="section-intro">
   Token consumption tracking across all models. ClawBox monitors usage to stay within
-  budget &mdash; local Gemma 4 is free, DeepSeek Flash usage is capped.
+  budget &mdash; local Llama 3.2 3B is free, DeepSeek Flash usage is capped.
 </p>
 
 <div class="dashboard-grid">
@@ -55,7 +55,7 @@ permalink: /token-usage/
 
   <div class="dashboard-card">
     <div class="card-icon">🏠</div>
-    <h2 class="card-title">Gemma 4 (Local)</h2>
+    <h2 class="card-title">Llama 3.2 (Local)</h2>
     <p class="card-desc">Local model on Jetson GPU. Free to use &mdash; no budget tracking needed.</p>
     <div class="stat-row">
       <span class="stat-label">Cost</span>
@@ -63,7 +63,7 @@ permalink: /token-usage/
     </div>
     <div class="stat-row">
       <span class="stat-label">Usage Today</span>
-      <span class="stat-value" id="gm-today">{{ today.gemma4_human | default: "&mdash;" }}</span>
+      <span class="stat-value" id="gm-today">{{ today.llama3_human | default: "&mdash;" }}</span>
     </div>
     <div class="stat-row">
       <span class="stat-label">Total Calls</span>
@@ -86,7 +86,7 @@ permalink: /token-usage/
   </canvas>
   <p style="margin-top: 1rem; font-size: 0.8rem; color: var(--text-muted); text-align: center;">
     <span style="display: inline-block; width: 12px; height: 12px; background: #f97316; border-radius: 2px; vertical-align: middle; margin: 0 4px;"></span> DeepSeek Flash
-    <span style="display: inline-block; width: 12px; height: 12px; background: #22c55e; border-radius: 2px; vertical-align: middle; margin: 0 4px 0 16px;"></span> Gemma 4 (Local)
+    <span style="display: inline-block; width: 12px; height: 12px; background: #22c55e; border-radius: 2px; vertical-align: middle; margin: 0 4px 0 16px;"></span> Llama 3.2 (Local)
     <span style="display: inline-block; width: 12px; height: 12px; background: #ef4444; border-radius: 2px; vertical-align: middle; margin: 0 4px 0 16px;"></span> Daily Cap
   </p>
 </div>
@@ -99,7 +99,7 @@ permalink: /token-usage/
       <tr>
         <th>Date</th>
         <th>DeepSeek Flash</th>
-        <th>Gemma 4</th>
+        <th>Llama 3.2</th>
         <th>Total</th>
         <th>% of Cap</th>
         <th>Calls</th>
@@ -130,7 +130,7 @@ permalink: /token-usage/
         <tr>
           <td>{{ day.date }}</td>
           <td>{{ day.deepseek_tokens | default: 0 }}</td>
-          <td>{{ day.gemma4_tokens | default: 0 }}</td>
+          <td>{{ day.llama3_tokens | default: 0 }}</td>
           <td>{{ day.total_tokens | default: 0 }}</td>
           <td>{{ day_pct | round: 1 }}%</td>
           <td>{{ day.calls | default: 0 }}</td>

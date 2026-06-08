@@ -85,7 +85,7 @@ permalink: /cron/
       <tr>
         <td>token-watch-check</td>
         <td>Every 30 min</td>
-        <td>Gemma 4 (local)</td>
+        <td>Llama 3.2 (local)</td>
         <td><span class="badge badge-ok">Active</span></td>
         <td id="tw-last">&mdash;</td>
         <td>&mdash;</td>
@@ -93,7 +93,7 @@ permalink: /cron/
       <tr>
         <td>heartbeat</td>
         <td>~Every 30 min</td>
-        <td>Gemma 4 (local)</td>
+        <td>Llama 3.2 (local)</td>
         <td><span class="badge badge-ok">Active</span></td>
         <td id="hb-last">&mdash;</td>
         <td>&mdash;</td>
@@ -123,7 +123,7 @@ permalink: /cron/
       <tr{% if job.consecutive_errors > 0 %} class="cron-row-error" id="cron-error-{{ job.name | slugify }}"{% endif %}>
         <td>{{ job.name }}</td>
         <td>{{ job.schedule }}</td>
-        <td>{% if job.model contains 'gemma' %}Gemma 4 (local){% elsif job.model contains 'deepseek' %}DeepSeek Flash{% else %}{{ job.model }}{% endif %}</td>
+        <td>{% if job.model contains 'llama' %}Llama 3.2 (local){% elsif job.model contains 'deepseek' %}DeepSeek Flash{% else %}{{ job.model }}{% endif %}</td>
         <td><span class="badge {{ job.badge | default: 'badge-ok' }}">
           {% if job.status == 'ok' %}Active{% elsif job.status == 'error' %}Error{% else %}{{ job.status | capitalize }}{% endif %}
         {% if job.consecutive_errors > 0 %} ({{ job.consecutive_errors }}x){% endif %}
