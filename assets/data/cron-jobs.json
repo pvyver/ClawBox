@@ -7,13 +7,13 @@
       "schedule": "Every 30 min",
       "model": "llamacpp/gemma4-e2b-it-q4_0",
       "session_target": "isolated",
-      "status": "error",
-      "badge": "badge-err",
+      "status": "ok",
+      "badge": "badge-ok",
       "enabled": true,
-      "next_run": 1780902450539,
-      "last_run": 1780902300053,
-      "last_duration_ms": 120486,
-      "consecutive_errors": 1
+      "next_run": 1780907700000,
+      "last_run": 1780905900014,
+      "last_duration_ms": 63385,
+      "consecutive_errors": 0
     },
     {
       "id": "528620d6-e3e1-42da-bd49-ce9599ec3d88",
@@ -25,9 +25,9 @@
       "status": "ok",
       "badge": "badge-ok",
       "enabled": true,
-      "next_run": 1780902600036,
-      "last_run": 1780900800036,
-      "last_duration_ms": 82978,
+      "next_run": 1780908000075,
+      "last_run": 1780906200075,
+      "last_duration_ms": 78364,
       "consecutive_errors": 0
     },
     {
@@ -41,8 +41,8 @@
       "badge": "badge-ok",
       "enabled": true,
       "next_run": 1780912855704,
-      "last_run": 1780891363068,
-      "last_duration_ms": 443713,
+      "last_run": 1780903241832,
+      "last_duration_ms": 446750,
       "consecutive_errors": 0
     },
     {
@@ -65,30 +65,30 @@
       "name": "wind-forecast",
       "description": "Wind forecast for Marollegat/Oesterdam, Domburg, Blankenberge at 6AM CEST. Windfinder Superforecast with colour indicators for 15+ kt.",
       "schedule": "Cron: 0 6 * * * (Brussels)",
-      "model": "deepseek/deepseek-v4-flash",
+      "model": "llamacpp/gemma4-e2b-it-q4_0",
       "session_target": "isolated",
-      "status": "ok",
-      "badge": "badge-ok",
+      "status": "error",
+      "badge": "badge-err",
       "enabled": true,
       "next_run": 1780977600000,
-      "last_run": 1780901731725,
-      "last_duration_ms": 249665,
-      "consecutive_errors": 0
+      "last_run": 1780903390561,
+      "last_duration_ms": 99243,
+      "consecutive_errors": 1
     },
     {
       "id": "065d0da8-cecc-45b9-83f1-7138c0b66cb7",
       "name": "Azure Blog Digest",
       "description": "Daily Azure blog digest: fetches recent articles from Tech Community RSS feeds, formats as Telegram message. No LLM summarization. Delivered at 6:30AM CEST.",
       "schedule": "Cron: 30 6 * * * (Brussels)",
-      "model": "deepseek/deepseek-v4-flash",
+      "model": "llamacpp/gemma4-e2b-it-q4_0",
       "session_target": "isolated",
       "status": "error",
       "badge": "badge-err",
       "enabled": true,
       "next_run": 1780979400000,
-      "last_run": 1780902337851,
-      "last_duration_ms": 60886,
-      "consecutive_errors": 1
+      "last_run": 1780904589433,
+      "last_duration_ms": 214636,
+      "consecutive_errors": 5
     },
     {
       "id": "a05c1a5d-c105-4f46-a226-ef15b87e5a06",
@@ -107,5 +107,5 @@
     }
   ],
   "total": 7,
-  "last_updated": "2026-06-08T07:08:43.449029+00:00"
+  "last_updated": "2026-06-08T08:35:34.027682+00:00"
 }
