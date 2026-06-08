@@ -52,6 +52,10 @@
   // ── Init Chart ───────────────────────────────────────────────────────
   var ctx = canvas.getContext('2d');
 
+  // Store unfiltered data for pill bar re-filtering
+  var fullHistory = rawHistory.slice();
+  var dataKeys = ['deepseek_tokens', 'llama3_tokens'];
+
   var chart = new Chart(ctx, {
     type: 'bar',
     data: {
@@ -136,4 +140,10 @@
       },
     },
   });
+
+  // ── Time range pill bar ──────────────────────────────────────────────
+  // Initialize after charts library and util are loaded
+  if (window.TimeRangeFilter) {
+    window.TimeRangeFilter.initPillBar('time-range-bar', chart, fullHistory, dataKeys, dailyCap);
+  }
 })();
