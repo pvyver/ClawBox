@@ -7,13 +7,13 @@
       "schedule": "Every 30 min",
       "model": "llamacpp/gemma4-e2b-it-q4_0",
       "session_target": "isolated",
-      "status": "ok",
-      "badge": "badge-ok",
+      "status": "error",
+      "badge": "badge-err",
       "enabled": true,
-      "next_run": 1780909500014,
-      "last_run": 1780907700014,
-      "last_duration_ms": 67269,
-      "consecutive_errors": 0
+      "next_run": 1780916700000,
+      "last_run": 1780914900074,
+      "last_duration_ms": 23563,
+      "consecutive_errors": 2
     },
     {
       "id": "528620d6-e3e1-42da-bd49-ce9599ec3d88",
@@ -25,9 +25,9 @@
       "status": "ok",
       "badge": "badge-ok",
       "enabled": true,
-      "next_run": 1780909800089,
-      "last_run": 1780908000089,
-      "last_duration_ms": 189018,
+      "next_run": 1780917000000,
+      "last_run": 1780915200011,
+      "last_duration_ms": 41080,
       "consecutive_errors": 0
     },
     {
@@ -35,14 +35,14 @@
       "name": "issue-crafter",
       "description": "Auto-handle one Phase 2 GitHub issue every 6h with parallel specialist lanes. Picks issues by label (frontend/backend), uses sub-agent for implementation, reports via Telegram.",
       "schedule": "Cron: 0 */6 * * * (Brussels)",
-      "model": "llamacpp/gemma4-e2b-it-q4_0",
+      "model": "deepseek/deepseek-v4-flash",
       "session_target": "isolated",
       "status": "ok",
       "badge": "badge-ok",
       "enabled": true,
-      "next_run": 1780912855704,
-      "last_run": 1780903241832,
-      "last_duration_ms": 446750,
+      "next_run": 1780934455704,
+      "last_run": 1780915034085,
+      "last_duration_ms": 274136,
       "consecutive_errors": 0
     },
     {
@@ -101,11 +101,11 @@
       "badge": "badge-ok",
       "enabled": true,
       "next_run": 1780984800000,
-      "last_run": 1780898400017,
-      "last_duration_ms": 89827,
+      "last_run": 1780910098961,
+      "last_duration_ms": 210133,
       "consecutive_errors": 0
     }
   ],
   "total": 7,
-  "last_updated": "2026-06-08T09:05:37.265490+00:00"
+  "last_updated": "2026-06-08T11:05:20.304768+00:00"
 }
