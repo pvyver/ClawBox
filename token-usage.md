@@ -79,6 +79,7 @@ permalink: /token-usage/
 <h2 style="font-size: 1.2rem; margin: 2rem 0 1rem;">Daily Trend</h2>
 
 <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 1.5rem; margin-bottom: 2rem;">
+  <div id="time-range-bar" class="time-range-bar"></div>
   <canvas id="usage-chart" width="800" height="320"
     style="display: block; width: 100%; height: auto; aspect-ratio: 800/320;"
     data-cap="{{ cap }}"
@@ -143,4 +144,5 @@ permalink: /token-usage/
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+<script src="{{ '/assets/js/chart-utils.js' | relative_url }}"></script>
 <script src="{{ '/assets/js/token-chart.js' | relative_url }}"></script>
