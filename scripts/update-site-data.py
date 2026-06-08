@@ -326,6 +326,36 @@ def collect_power_thermal():
     return data
 
 
+def collect_services():
+    """Query systemd for service statuses."""
+    services = ["openclaw", "ssh", "NetworkManager", "docker", "cron", "nginx"]
+    result = {}
+    for svc in services:
+        rc, active_out, _ = run_cmd(["systemctl", "is-active", svc], timeout=10)
+        state = active_out.strip() or "unknown"
+
+        if rc == 0 and state == "active":
+            _, since_out, _ = run_cmd(
+                ["systemctl", "show", svc, "--property=ActiveEnterTimestamp"], timeout=10
+            )
+            _, load_out, _ = run_cmd(
+                ["systemctl", "show", svc, "--property=LoadState"], timeout=10
+            )
+            _, sub_out, _ = run_cmd(
+                ["systemctl", "show", svc, "--property=SubState"], timeout=10
+            )
+            entry = {
+                "state": state,
+                "load_state": load_out.replace("LoadState=", "").strip() if load_out else "loaded",
+                "sub_state": sub_out.replace("SubState=", "").strip() if sub_out else "running",
+                "since": since_out.replace("ActiveEnterTimestamp=", "").strip() if since_out else "",
+            }
+        else:
+            entry = {"state": state, "load_state": "", "sub_state": "", "since": ""}
+        result[svc] = entry
+    return result
+
+
 def collect_system_stats():
     """Gather all system stats."""
     return {
@@ -337,6 +367,7 @@ def collect_system_stats():
         "gpu": collect_gpu_stats(),
         "uptime": collect_uptime(),
         "power_thermal": collect_power_thermal(),
+        "services": collect_services(),
     }
 
 

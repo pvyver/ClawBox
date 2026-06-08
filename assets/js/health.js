@@ -161,6 +161,24 @@
       reasonEl.textContent = pw.throttle_reason;
     }
 
+    // ── System Services ──
+    var svc = data.services || {};
+    var svcTable = document.getElementById('services-table');
+    if (svcTable) {
+      var keys = Object.keys(svc);
+      if (keys.length > 0) {
+        var html = '<table class="services-table"><thead><tr><th>Service</th><th>Status</th><th>Since</th></tr></thead><tbody>';
+        for (var si = 0; si < keys.length; si++) {
+          var name = keys[si];
+          var s = svc[name];
+          var statusCls = s.state === 'active' ? 'badge-ok' : (s.state === 'failed' ? 'badge-err' : 'badge-warn');
+          html += '<tr><td>' + name + '</td><td><span class="badge ' + statusCls + '">' + (s.state || '?') + '</span></td><td>' + (s.since || '\u2014') + '</td></tr>';
+        }
+        html += '</tbody></table>';
+        svcTable.innerHTML = html;
+      }
+    }
+
     // ── Uptime / timestamp ──
     if (up.display) setText('uptime-display', up.display);
     if (data.timestamp) {

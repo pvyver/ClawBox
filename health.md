@@ -191,6 +191,29 @@ permalink: /health/
   </div>
 </div>
 
+{% assign svc = h.services | default: nil %}
+<div id="services-section" style="background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 1.5rem; margin-top: 1rem;">
+  <h2 style="font-size: 1.1rem; margin-bottom: 0.75rem;">⚙️ System Services</h2>
+  <div id="services-table">
+    {% if svc %}
+    <table class="services-table">
+      <thead><tr><th>Service</th><th>Status</th><th>Since</th></tr></thead>
+      <tbody>
+      {% for entry in svc %}
+      <tr>
+        <td>{{ entry[0] }}</td>
+        <td><span class="badge badge-{% if entry[1].state == 'active' %}ok{% elsif entry[1].state == 'failed' %}err{% else %}warn{% endif %}">{{ entry[1].state }}</span></td>
+        <td>{{ entry[1].since | default: "&mdash;" }}</td>
+      </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+    {% else %}
+    <p style="color: var(--text-muted); font-size: 0.9rem;">No service data available yet.</p>
+    {% endif %}
+  </div>
+</div>
+
 <div style="margin-top: 1.5rem; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 1rem 1.5rem;">
   <div class="stat-row" style="border: none;">
     <span class="stat-label">🕐 Uptime</span>
