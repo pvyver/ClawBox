@@ -116,6 +116,35 @@ permalink: /
     </div>
   </a>
 
+  {% comment %} ── Network Health card ── {% endcomment %}
+  {% assign nh = site.data.network-health | default: nil %}
+  {% assign nh_ok = nh.services_ok | default: 0 %}
+  {% assign nh_total = nh.services_total | default: 0 %}
+  {% assign nh_label = "Not checked" %}
+  {% if nh_total > 0 %}
+    {% if nh_ok == nh_total %}
+      {% assign nh_label = "All OK" %}
+    {% elsif nh_ok > 0 %}
+      {% assign nh_label = nh_ok | append: "/" | append: nh_total %}
+    {% else %}
+      {% assign nh_label = "Unreachable" %}
+    {% endif %}
+  {% endif %}
+  {% assign nh_badge = "badge-ok" %}
+  {% if nh_ok == 0 and nh_total > 0 %}{% assign nh_badge = "badge-err" %}{% endif %}
+  {% if nh_ok > 0 and nh_ok < nh_total %}{% assign nh_badge = "badge-warn" %}{% endif %}
+  <a href="{{ '/health' | relative_url }}" class="compact-card" id="network-card">
+    <div class="compact-card-header">
+      <span class="compact-card-icon">🌐</span>
+      <span class="compact-card-title">Network Health</span>
+    </div>
+    <div class="compact-card-stats">
+      <span><span class="cs-label">Status</span> <span id="cc-nh-status" class="cs-value"><span class="badge {{ nh_badge }}">{{ nh_label }}</span></span></span>
+      <span><span class="cs-label">Loss</span> <span id="cc-nh-loss" class="cs-value">&mdash;</span></span>
+      <span><span class="cs-label">Latency</span> <span id="cc-nh-latency" class="cs-value">&mdash;</span></span>
+    </div>
+  </a>
+
   {% comment %} ── Processes card ── {% endcomment %}
   {% assign procs = h.processes | default: nil %}
   {% assign top_cpu_name = "—" %}

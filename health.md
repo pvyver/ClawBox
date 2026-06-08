@@ -214,6 +214,56 @@ permalink: /health/
   </div>
 </div>
 
+{% comment %} ── Network Health section ── {% endcomment %}
+{% assign nh = site.data.network-health | default: nil %}
+<div id="network-health-section" style="background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 1.5rem; margin-top: 1rem;">
+  <h2 style="font-size: 1.1rem; margin-bottom: 0.75rem;">🌐 Network Health</h2>
+  <div id="network-health-table">
+    {% if nh and nh.services.size > 0 %}
+    <table class="services-table" style="width: 100%;">
+      <thead><tr><th>Service</th><th>Latency</th><th>Status</th><th>Loss</th><th>Trend</th></tr></thead>
+      <tbody>
+      {% for svc in nh.services %}
+      {% assign svc_status_badge = "badge-ok" %}
+      {% if svc.status == "degraded" %}{% assign svc_status_badge = "badge-warn" %}{% endif %}
+      {% if svc.status == "down" %}{% assign svc_status_badge = "badge-err" %}{% endif %}
+      <tr>
+        <td>{{ svc.name }}</td>
+        <td>{{ svc.latency_ms }} ms</td>
+        <td><span class="badge {{ svc_status_badge }}">{{ svc.status }}</span></td>
+        <td>{{ svc.packet_loss }}%</td>
+        <td>
+          {% if svc.history.size > 1 %}
+          <svg width="80" height="20" viewBox="0 0 {% if svc.history.size > 10 %}80{% else %}{{ svc.history.size | times: 8 }}{% endif %} 20" style="vertical-align: middle;">
+            {% assign max_h = svc.history | max | default: 1 %}
+            {% if max_h == 0 %}{% assign max_h = 1 %}{% endif %}
+            {% assign points = "" %}
+            {% for val in svc.history %}
+              {% assign px = forloop.index0 | times: 8 %}
+              {% assign py = 20 | minus: val | times: 18 | divided_by: max_h | round %}
+              {% if py < 0 %}{% assign py = 0 %}{% endif %}
+              {% if py > 18 %}{% assign py = 18 %}{% endif %}
+              {% assign points = points | append: px | append: "," | append: py | append: " " %}
+            {% endfor %}
+            <polyline points="{{ points | strip }}" fill="none" stroke="var(--accent)" stroke-width="1.5"/>
+          </svg>
+          {% else %}
+          <span style="color: var(--text-muted); font-size: 0.8rem;">&mdash;</span>
+          {% endif %}
+        </td>
+      </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+    <p style="color: var(--text-muted); font-size: 0.8rem; margin-top: 0.5rem;">
+      {{ nh.services_ok }}/{{ nh.services_total }} reachable &middot; Last checked: {{ nh.last_checked | date: "%H:%M:%S UTC" }}
+    </p>
+    {% else %}
+    <p style="color: var(--text-muted); font-size: 0.9rem;">No network health data available yet.</p>
+    {% endif %}
+  </div>
+</div>
+
 {% comment %} ── Top Processes section ── {% endcomment %}
 {% assign procs = h.processes | default: nil %}
 <div id="processes-section" style="background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 1.5rem; margin-top: 1rem;">

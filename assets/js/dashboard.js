@@ -115,6 +115,42 @@
       })
       .catch(function () {});
 
+    // Network health
+    fetch(basePath + 'network-health.json')
+      .then(function (r) { return r.ok ? r.json() : Promise.reject(); })
+      .then(function (nh) {
+        var ok = nh.services_ok || 0;
+        var total = nh.services_total || 0;
+        var label = 'Not checked';
+        if (total > 0) {
+          if (ok === total) label = 'All OK';
+          else if (ok > 0) label = ok + '/' + total;
+          else label = 'Unreachable';
+        }
+        var cls = 'badge-ok';
+        if (ok === 0 && total > 0) cls = 'badge-err';
+        else if (ok > 0 && ok < total) cls = 'badge-warn';
+
+        var statusEl = document.getElementById('cc-nh-status');
+        if (statusEl) statusEl.innerHTML = '<span class="badge ' + cls + '">' + label + '</span>';
+
+        // Average loss and latency across services
+        var services = nh.services || [];
+        var avgLoss = 0;
+        var avgLat = 0;
+        for (var i = 0; i < services.length; i++) {
+          avgLoss += services[i].packet_loss || 0;
+          avgLat += services[i].latency_ms || 0;
+        }
+        if (services.length > 0) {
+          avgLoss = Math.round(avgLoss / services.length * 10) / 10;
+          avgLat = Math.round(avgLat / services.length);
+        }
+        setText('cc-nh-loss', avgLoss + '%');
+        setText('cc-nh-latency', avgLat + 'ms');
+      })
+      .catch(function () {});
+
     // Cron jobs
     fetch(basePath + 'cron-jobs.json')
       .then(function (r) { return r.ok ? r.json() : Promise.reject(); })

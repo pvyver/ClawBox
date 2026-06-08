@@ -356,6 +356,104 @@ def collect_services():
     return result
 
 
+# ── Network Health State ────────────────────────────────────────────────
+NETWORK_HEALTH_STATE_FILE = WORKSPACE / "data" / "network-health-state.json"
+PING_COUNT = 3
+PING_TIMEOUT = 2  # seconds per ping
+
+
+def get_default_gateway():
+    """Get the default gateway IP from `ip route`."""
+    rc, out, _ = run_cmd(["ip", "route", "show", "default"], timeout=5)
+    if rc == 0 and out:
+        parts = out.split()
+        if len(parts) >= 3:
+            return parts[2]
+    return None
+
+
+def ping_host(host):
+    """Ping a host and return (avg_latency_ms, packet_loss_pct)."""
+    rc, out, _ = run_cmd(
+        ["ping", "-c", str(PING_COUNT), "-W", str(PING_TIMEOUT), host],
+        timeout=15,
+    )
+
+    # packet loss
+    loss = 100.0
+    m = re.search(r"(\d+(?:\.\d+)?)%\s*packet loss", out)
+    if m:
+        loss = float(m.group(1))
+
+    # average latency
+    avg = None
+    m = re.search(r"(?:rtt|round-trip)\s+.*?\s+([0-9.]+)/([0-9.]+)/([0-9.]+)/([0-9.]+)\s*ms", out, re.IGNORECASE)
+    if m:
+        avg = round(float(m.group(2)), 1)
+    elif rc == 0:
+        avg = 0.0  # reachable but no rtt line (unlikely but safe)
+
+    return avg, loss
+
+
+def collect_network_health():
+    """Ping key endpoints and record latency + packet loss history."""
+    state = read_json(NETWORK_HEALTH_STATE_FILE, {})
+    history = state.get("history", {})
+
+    services_config = [
+        {"name": "GitHub API", "host": "api.github.com"},
+        {"name": "Cloudflare DNS", "host": "1.1.1.1"},
+        {"name": "Google DNS", "host": "8.8.8.8"},
+    ]
+
+    gw = get_default_gateway()
+    if gw:
+        services_config.append({"name": "Gateway", "host": gw})
+
+    services = []
+    for svc in services_config:
+        key = svc["host"]
+        svc_history = history.get(key, [])
+
+        avg, loss = ping_host(svc["host"])
+
+        if avg is not None:
+            svc_history.append(avg)
+            # keep last 10 entries
+            svc_history = svc_history[-10:]
+
+        # Determine status
+        if avg is None or loss >= 5 or (avg is not None and avg > 500):
+            status = "down"
+        elif avg >= 300 or loss >= 1:
+            status = "degraded"
+        else:
+            status = "ok"
+
+        services.append({
+            "name": svc["name"],
+            "host": svc["host"],
+            "latency_ms": avg if avg is not None else 0,
+            "packet_loss": round(loss, 1),
+            "status": status,
+            "history": svc_history,
+        })
+
+        history[key] = svc_history
+
+    # Persist history
+    state["history"] = history
+    write_json(NETWORK_HEALTH_STATE_FILE, state)
+
+    return {
+        "services": services,
+        "last_checked": NOW_ISO,
+        "services_ok": sum(1 for s in services if s["status"] == "ok"),
+        "services_total": len(services),
+    }
+
+
 def collect_processes():
     """Collect top processes by CPU and memory usage."""
     claw_keywords = ["node", "openclaw", "python3"]
@@ -579,7 +677,7 @@ def collect_cron_jobs():
 
 # ── 4. Write All Data ──────────────────────────────────────────────────
 
-def write_data_files(health, token_usage, cron_jobs):
+def write_data_files(health, token_usage, cron_jobs, network_health):
     """Write JSON to _data/ (Jekyll) and assets/data/ (static)."""
     site_meta = {
         "site_name": "ClawBox Dashboard",
@@ -591,10 +689,12 @@ def write_data_files(health, token_usage, cron_jobs):
         (DATA_DIR / "health.json", health),
         (DATA_DIR / "token-usage.json", token_usage),
         (DATA_DIR / "cron-jobs.json", cron_jobs),
+        (DATA_DIR / "network-health.json", network_health),
         (DATA_DIR / "site.json", site_meta),
         (ASSETS_DATA_DIR / "health.json", health),
         (ASSETS_DATA_DIR / "token-usage.json", token_usage),
         (ASSETS_DATA_DIR / "cron-jobs.json", cron_jobs),
+        (ASSETS_DATA_DIR / "network-health.json", network_health),
         (ASSETS_DATA_DIR / "site.json", site_meta),
     ]
 
@@ -677,9 +777,15 @@ def main():
     cron_jobs = collect_cron_jobs()
     print(f"   {cron_jobs['total']} jobs found")
 
+    print("🌐 Collecting network health...")
+    network_health = collect_network_health()
+    ok_count = network_health['services_ok']
+    total_count = network_health['services_total']
+    print(f"   {ok_count}/{total_count} services reachable")
+
     print()
     print("💾 Writing data files...")
-    site_meta = write_data_files(health, token_usage, cron_jobs)
+    site_meta = write_data_files(health, token_usage, cron_jobs, network_health)
 
     print()
     print("📤 Pushing to GitHub...")

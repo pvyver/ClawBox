@@ -224,6 +224,67 @@
     }
   }
 
+  // ── Network Health ────────────────────────────────────────────────
+
+  function applyNetworkHealth(data) {
+    if (!data || !data.services) return;
+
+    var table = document.getElementById('network-health-table');
+    if (!table) return;
+
+    var services = data.services || [];
+    if (services.length === 0) {
+      table.innerHTML = '<p style="color: var(--text-muted); font-size: 0.9rem;">No network health data available yet.</p>';
+      return;
+    }
+
+    function svgSparkline(history) {
+      if (!history || history.length < 2) return '<span style="color: var(--text-muted); font-size: 0.8rem;">\u2014</span>';
+      var maxH = Math.max.apply(null, history) || 1;
+      var w = Math.min(history.length * 8, 80);
+      var points = '';
+      for (var i = 0; i < history.length; i++) {
+        var px = i * 8;
+        var py = Math.min(Math.max(Math.round((20 - history[i]) * 18 / maxH), 0), 18);
+        points += px + ',' + py + ' ';
+      }
+      return '<svg width="80" height="20" viewBox="0 0 ' + w + ' 20" style="vertical-align: middle;">'
+        + '<polyline points="' + points.trim() + '" fill="none" stroke="var(--accent)" stroke-width="1.5"/></svg>';
+    }
+
+    var html = '<table class="services-table" style="width: 100%;"><thead><tr><th>Service</th><th>Latency</th><th>Status</th><th>Loss</th><th>Trend</th></tr></thead><tbody>';
+    for (var i = 0; i < services.length; i++) {
+      var s = services[i];
+      var statusCls = s.status === 'ok' ? 'badge-ok' : (s.status === 'degraded' ? 'badge-warn' : 'badge-err');
+      html += '<tr><td>' + (s.name || s.host) + '</td>'
+        + '<td>' + (s.latency_ms || 0) + ' ms</td>'
+        + '<td><span class="badge ' + statusCls + '">' + s.status + '</span></td>'
+        + '<td>' + s.packet_loss + '%</td>'
+        + '<td>' + svgSparkline(s.history) + '</td></tr>';
+    }
+    html += '</tbody></table>';
+    html += '<p style="color: var(--text-muted); font-size: 0.8rem; margin-top: 0.5rem;">'
+      + data.services_ok + '/' + data.services_total + ' reachable &middot; Last checked: ' + (data.last_checked || '') + '</p>';
+
+    table.innerHTML = html;
+  }
+
+  function fetchNetworkHealth() {
+    const url = window.location.pathname.includes('/ClawBox/')
+      ? '/ClawBox/assets/data/network-health.json'
+      : '/assets/data/network-health.json';
+
+    fetch(url)
+      .then(function (r) {
+        if (!r.ok) throw new Error('HTTP ' + r.status);
+        return r.json();
+      })
+      .then(applyNetworkHealth)
+      .catch(function (err) {
+        console.warn('Network health fetch failed:', err.message);
+      });
+  }
+
   function fetchHealth() {
     const src = document.currentScript
       ? document.currentScript.src.replace(/\/[^/]+$/, '/../data/health.json')
@@ -294,9 +355,11 @@
     document.addEventListener('DOMContentLoaded', function () {
       fetchHealth();
       fetchCronStatus();
+      fetchNetworkHealth();
     });
   } else {
     fetchHealth();
     fetchCronStatus();
+    fetchNetworkHealth();
   }
 })();
