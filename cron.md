@@ -120,7 +120,7 @@ permalink: /cron/
         {% assign dur_str = "&mdash;" %}
       {% endif %}
 
-      <tr>
+      <tr{% if job.consecutive_errors > 0 %} class="cron-row-error" id="cron-error-{{ job.name | slugify }}"{% endif %}>
         <td>{{ job.name }}</td>
         <td>{{ job.schedule }}</td>
         <td>{% if job.model contains 'gemma' %}Gemma 4 (local){% elsif job.model contains 'deepseek' %}DeepSeek Flash{% else %}{{ job.model }}{% endif %}</td>

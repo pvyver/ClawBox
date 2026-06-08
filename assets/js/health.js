@@ -131,11 +131,58 @@
       });
   }
 
+  // ── Cron status ──────────────────────────────────────────────────────
+
+  function fetchCronStatus() {
+    const url = window.location.pathname.includes('/ClawBox/')
+      ? '/ClawBox/assets/data/cron-jobs.json'
+      : '/assets/data/cron-jobs.json';
+
+    fetch(url)
+      .then(function (r) { return r.ok ? r.json() : Promise.reject(); })
+      .then(function (cj) {
+        var jobs = cj.jobs || [];
+        var failing = 0;
+        for (var i = 0; i < jobs.length; i++) {
+          if (jobs[i].consecutive_errors > 0) failing++;
+        }
+        var el = document.getElementById('cron-fail-status');
+        if (el) {
+          var p = el.parentNode;
+          if (failing > 0) {
+            el.textContent = failing + ' failing';
+            el.className = 'badge badge-err';
+            if (p && !p.querySelector('#cron-fail-names')) {
+              var names = document.createElement('span');
+              names.id = 'cron-fail-names';
+              names.style.cssText = 'margin-left: 0.5rem; color: var(--danger); font-size: 0.8rem;';
+              var ns = [];
+              for (var j = 0; j < jobs.length; j++) {
+                if (jobs[j].consecutive_errors > 0) ns.push(jobs[j].name);
+              }
+              names.textContent = '(' + ns.join(', ') + ')';
+              p.appendChild(names);
+            }
+          } else {
+            el.textContent = 'All OK';
+            el.className = 'badge badge-ok';
+            var namesEl = document.getElementById('cron-fail-names');
+            if (namesEl) namesEl.parentNode.removeChild(namesEl);
+          }
+        }
+      })
+      .catch(function () {});
+  }
+
   // ── Init ─────────────────────────────────────────────────────────────
 
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', fetchHealth);
+    document.addEventListener('DOMContentLoaded', function () {
+      fetchHealth();
+      fetchCronStatus();
+    });
   } else {
     fetchHealth();
+    fetchCronStatus();
   }
 })();

@@ -278,6 +278,40 @@ img { max-width: 100%; height: auto; }
 .badge-warn  { background: rgba(234, 179, 8, 0.15);  color: var(--warning); }
 .badge-err   { background: rgba(239, 68, 68, 0.15);  color: var(--danger); }
 
+/* Card warn state (failing cron jobs) */
+.card-warn {
+  border-color: var(--danger) !important;
+  box-shadow: 0 0 12px rgba(239, 68, 68, 0.15) !important;
+}
+.card-warn .compact-card-title {
+  color: var(--danger);
+}
+
+/* Nav badge (cron failure indicator) */
+.nav-badge {
+  display: none;
+}
+.nav-badge-warn {
+  display: inline-block;
+  background: rgba(239, 68, 68, 0.2);
+  color: var(--danger);
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 1px 5px;
+  border-radius: 8px;
+  vertical-align: super;
+  margin-left: 2px;
+  line-height: 1.2;
+}
+
+/* Failing cron table row */
+.cron-row-error {
+  background: rgba(239, 68, 68, 0.08);
+}
+.cron-row-error td:first-child {
+  border-left: 3px solid var(--danger);
+}
+
 /* Stat display */
 .stat-row {
   display: flex;

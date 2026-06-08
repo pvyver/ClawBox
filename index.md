@@ -16,6 +16,9 @@ permalink: /
 
 {% assign health_time = s.update_timestamp | default: "pending..." %}
 {% assign cron_count = cj.total | default: 0 %}
+{% assign failing_jobs = cj.jobs | where_exp: "j", "j.consecutive_errors > 0" %}
+{% assign failing_count = failing_jobs | size %}
+{% assign failing_name = failing_jobs[0].name | default: "" %}
 {% assign token_today = tu.today.total_human | default: "\u2014" %}
 {% assign token_pct = tu.today.used_percent | default: 0 %}
 {% assign mem_pct = mem.used_percent | default: 0 %}
@@ -64,7 +67,8 @@ permalink: /
     <span class="chip-icon">⏰</span>
     <span class="chip-label">Crons</span>
     <span class="chip-value" id="stat-crons">{{ cron_count }}</span>
-    <span class="chip-badge">active</span>
+    <span class="chip-badge">active{% if failing_count > 0 %}</span>
+    <span class="chip-badge"><span class="badge badge-err" id="stat-cron-fail">{{ failing_count }} failing</span></span>{% endif %}
   </div>
   <div class="stat-chip">
     <span class="chip-icon">🕐</span>
@@ -88,13 +92,15 @@ permalink: /
     </div>
   </a>
 
-  <a href="{{ '/cron' | relative_url }}" class="compact-card">
+  <a href="{{ '/cron' | relative_url }}" class="compact-card{% if failing_count > 0 %} card-warn{% endif %}" id="cron-card">
     <div class="compact-card-header">
       <span class="compact-card-icon">⏰</span>
       <span class="compact-card-title">Cron Jobs</span>
+      {% if failing_count > 0 %}<span class="badge badge-err" id="cc-cron-fail">{{ failing_count }}</span>{% endif %}
     </div>
     <div class="compact-card-stats">
       <span><span class="cs-label">Active</span> <span id="cc-active" class="cs-value">{{ cron_count }}</span></span>
+      <span><span class="cs-label">Failing</span> <span id="cc-failing" class="cs-value">{{ failing_count }}</span></span>
       <span><span class="cs-label">Last</span> <span id="cc-last" class="cs-value">{{ health_time | default: "\u2014" }}</span></span>
     </div>
   </a>
