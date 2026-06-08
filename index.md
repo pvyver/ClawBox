@@ -28,7 +28,7 @@ permalink: /
 {% capture mem_badge %}{% if mem_pct > 90 %}badge-err{% elsif mem_pct > 80 %}badge-warn{% else %}badge-ok{% endif %}{% endcapture %}
 {% capture disk_badge %}{% if disk_pct > 95 %}badge-err{% elsif disk_pct > 80 %}badge-warn{% else %}badge-ok{% endif %}{% endcapture %}
 {% capture temp_badge %}{% if temp_val > 80 %}badge-err{% elsif temp_val > 70 %}badge-warn{% else %}badge-ok{% endif %}{% endcapture %}
-{% capture token_badge %}{% if token_pct > 90 %}badge-err{% elsif token_pct > 70 %}badge-warn{% else %}badge-ok{% endif %}{% endcapture %}
+{% capture token_badge %}{% if token_pct > 90 %}badge-err{% elsif token_pct > 80 %}badge-warn{% else %}badge-ok{% endif %}{% endcapture %}
 
 <!-- Tagline bar -->
 <div class="tagline-bar">
@@ -113,6 +113,27 @@ permalink: /
       <span><span class="cs-label">Today</span> <span id="cc-tokens" class="cs-value">{{ token_today }}</span></span>
       <span><span class="cs-label">Cap</span> <span id="cc-cap" class="cs-value">{{ tu.daily_cap_human | default: "250M" }}</span></span>
       <span><span class="cs-label">Used</span> <span id="cc-pct" class="cs-value {{ token_badge }}">{{ token_pct | round: 1 }}%</span></span>
+    </div>
+  </a>
+
+  {% comment %} ── Processes card ── {% endcomment %}
+  {% assign procs = h.processes | default: nil %}
+  {% assign top_cpu_name = "—" %}
+  {% assign top_cpu_pct = "" %}
+  {% assign top_mem_name = "—" %}
+  {% assign top_mem_pct = "" %}
+  {% if procs.by_cpu.size > 0 %}{% assign p = procs.by_cpu[0] %}{% assign top_cpu_name = p.name %}{% assign top_cpu_pct = p.cpu_percent %}{% endif %}
+  {% if procs.by_mem.size > 0 %}{% assign p = procs.by_mem[0] %}{% assign top_mem_name = p.name %}{% assign top_mem_pct = p.mem_percent %}{% endif %}
+  {% assign proc_count = procs.total_processes | default: 0 %}
+  <a href="{{ '/health' | relative_url }}" class="compact-card">
+    <div class="compact-card-header">
+      <span class="compact-card-icon">🔧</span>
+      <span class="compact-card-title">Top Processes</span>
+    </div>
+    <div class="compact-card-stats">
+      <span><span class="cs-label">Top CPU</span> <span id="cc-top-cpu" class="cs-value">{{ top_cpu_name }} {{ top_cpu_pct }}%</span></span>
+      <span><span class="cs-label">Top MEM</span> <span id="cc-top-mem" class="cs-value">{{ top_mem_name }} {{ top_mem_pct }}%</span></span>
+      <span><span class="cs-label">Processes</span> <span id="cc-proc-count" class="cs-value">{{ proc_count }}</span></span>
     </div>
   </a>
 </div>
