@@ -179,6 +179,43 @@
       }
     }
 
+    // ── Top Processes ──
+    var procs = data.processes || {};
+    var procTable = document.getElementById('processes-table');
+    if (procTable) {
+      var byCpu = procs.by_cpu || [];
+      var byMem = procs.by_mem || [];
+      var total = procs.total_processes || 0;
+
+      function procRowHtml(p) {
+        var sev = p.severity || 'ok';
+        var clawIcon = p.is_claw ? '🦜 ' : '';
+        var rowClass = p.is_claw ? ' class="claw-row"' : '';
+        return '<tr' + rowClass + '><td>' + p.pid + '</td><td>' + clawIcon + (p.name || '?') + '</td>'
+          + '<td><span class="badge badge-' + sev + '">' + (p.cpu_percent || 0) + '%</span></td>'
+          + '<td>' + (p.mem_percent || 0) + '%</td>'
+          + '<td>' + (p.user || '?') + '</td></tr>';
+      }
+
+      var html = '';
+      if (byCpu.length > 0) {
+        html += '<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">';
+        html += '<div><h3 style="font-size: 0.9rem; margin-bottom: 0.5rem; color: var(--text-secondary);">Top 5 by CPU</h3>';
+        html += '<table class="services-table" style="width: 100%;"><thead><tr><th>PID</th><th>Name</th><th>CPU%</th><th>MEM%</th><th>User</th></tr></thead><tbody>';
+        for (var pi = 0; pi < byCpu.length; pi++) html += procRowHtml(byCpu[pi]);
+        html += '</tbody></table></div>';
+        html += '<div><h3 style="font-size: 0.9rem; margin-bottom: 0.5rem; color: var(--text-secondary);">Top 5 by Memory</h3>';
+        html += '<table class="services-table" style="width: 100%;"><thead><tr><th>PID</th><th>Name</th><th>CPU%</th><th>MEM%</th><th>User</th></tr></thead><tbody>';
+        for (var pi = 0; pi < byMem.length; pi++) html += procRowHtml(byMem[pi]);
+        html += '</tbody></table></div>';
+        html += '</div>';
+        html += '<p style="color: var(--text-muted); font-size: 0.8rem; margin-top: 0.5rem;">Total: ' + total + ' processes</p>';
+      } else {
+        html = '<p style="color: var(--text-muted); font-size: 0.9rem;">No process data available yet.</p>';
+      }
+      procTable.innerHTML = html;
+    }
+
     // ── Uptime / timestamp ──
     if (up.display) setText('uptime-display', up.display);
     if (data.timestamp) {

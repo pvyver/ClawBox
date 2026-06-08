@@ -75,6 +75,26 @@
         setBadge('stat-temp-badge', round1(tempVal) + '\u00B0', tempCls);
         setMiniBar('stat-ram-bar', memPct, memCls);
         setMiniBar('stat-disk-bar', diskPct, diskCls);
+
+        // Top processes card
+        var procs = h.processes || {};
+        var byCpu = procs.by_cpu || [];
+        var byMem = procs.by_mem || [];
+        var total = procs.total_processes || 0;
+
+        if (byCpu.length > 0) {
+          var topCpu = byCpu[0];
+          setText('cc-top-cpu', topCpu.name + ' ' + round1(topCpu.cpu_percent) + '%');
+        } else {
+          setText('cc-top-cpu', '\u2014');
+        }
+        if (byMem.length > 0) {
+          var topMem = byMem[0];
+          setText('cc-top-mem', topMem.name + ' ' + round1(topMem.mem_percent) + '%');
+        } else {
+          setText('cc-top-mem', '\u2014');
+        }
+        setText('cc-proc-count', total);
       })
       .catch(function () {});
 
@@ -90,7 +110,7 @@
         setText('cc-cap', tu.daily_cap_human || '250M');
         setText('cc-pct', round1(pct) + '%');
 
-        var cls = pct > 90 ? 'badge-err' : pct > 70 ? 'badge-warn' : 'badge-ok';
+        var cls = pct > 90 ? 'badge-err' : pct > 80 ? 'badge-warn' : 'badge-ok';
         setBadge('stat-token-badge', Math.round(pct) + '%', cls);
       })
       .catch(function () {});

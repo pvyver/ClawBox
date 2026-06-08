@@ -277,6 +277,15 @@ img { max-width: 100%; height: auto; }
 .badge-ok    { background: rgba(34, 197, 94, 0.15);  color: var(--success); }
 .badge-warn  { background: rgba(234, 179, 8, 0.15);  color: var(--warning); }
 .badge-err   { background: rgba(239, 68, 68, 0.15);  color: var(--danger); }
+.badge-critical { background: rgba(239, 68, 68, 0.2);  color: var(--danger); border: 1px solid rgba(239, 68, 68, 0.3); }
+
+/* Claw process row highlight */
+.claw-row {
+  background: rgba(249, 115, 22, 0.08);
+}
+.claw-row td:first-child {
+  border-left: 3px solid var(--accent);
+}
 
 /* Card warn state (failing cron jobs) */
 .card-warn {

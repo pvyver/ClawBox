@@ -214,6 +214,59 @@ permalink: /health/
   </div>
 </div>
 
+{% comment %} ── Top Processes section ── {% endcomment %}
+{% assign procs = h.processes | default: nil %}
+<div id="processes-section" style="background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 1.5rem; margin-top: 1rem;">
+  <h2 style="font-size: 1.1rem; margin-bottom: 0.75rem;">🔧 Top Processes</h2>
+  <div id="processes-table">
+    {% if procs and procs.by_cpu.size > 0 %}
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+      <div>
+        <h3 style="font-size: 0.9rem; margin-bottom: 0.5rem; color: var(--text-secondary);">Top 5 by CPU</h3>
+        <table class="services-table" style="width: 100%;">
+          <thead><tr><th>PID</th><th>Name</th><th>CPU%</th><th>MEM%</th><th>User</th></tr></thead>
+          <tbody>
+          {% for p in procs.by_cpu %}
+          {% assign sev = p.severity | default: "ok" %}
+          {% capture row_class %}{% if p.is_claw %}claw-row{% endif %}{% endcapture %}
+          <tr class="{{ row_class }}">
+            <td>{{ p.pid }}</td>
+            <td>{% if p.is_claw %}🦜 {% endif %}{{ p.name }}</td>
+            <td><span class="badge badge-{{ sev }}">{{ p.cpu_percent }}%</span></td>
+            <td>{{ p.mem_percent }}%</td>
+            <td>{{ p.user }}</td>
+          </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <h3 style="font-size: 0.9rem; margin-bottom: 0.5rem; color: var(--text-secondary);">Top 5 by Memory</h3>
+        <table class="services-table" style="width: 100%;">
+          <thead><tr><th>PID</th><th>Name</th><th>CPU%</th><th>MEM%</th><th>User</th></tr></thead>
+          <tbody>
+          {% for p in procs.by_mem %}
+          {% assign sev = p.severity | default: "ok" %}
+          {% capture row_class %}{% if p.is_claw %}claw-row{% endif %}{% endcapture %}
+          <tr class="{{ row_class }}">
+            <td>{{ p.pid }}</td>
+            <td>{% if p.is_claw %}🦜 {% endif %}{{ p.name }}</td>
+            <td><span class="badge badge-{{ sev }}">{{ p.cpu_percent }}%</span></td>
+            <td>{{ p.mem_percent }}%</td>
+            <td>{{ p.user }}</td>
+          </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <p style="color: var(--text-muted); font-size: 0.8rem; margin-top: 0.5rem;">Total: {{ procs.total_processes }} processes</p>
+    {% else %}
+    <p style="color: var(--text-muted); font-size: 0.9rem;">No process data available yet.</p>
+    {% endif %}
+  </div>
+</div>
+
 <div style="margin-top: 1.5rem; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 1rem 1.5rem;">
   <div class="stat-row" style="border: none;">
     <span class="stat-label">🕐 Uptime</span>

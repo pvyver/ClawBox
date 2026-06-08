@@ -356,6 +356,68 @@ def collect_services():
     return result
 
 
+def collect_processes():
+    """Collect top processes by CPU and memory usage."""
+    claw_keywords = ["node", "openclaw", "python3"]
+    all_procs = []
+    rc, out, _ = run_cmd(
+        ["ps", "aux", "--sort=-%cpu"], timeout=10
+    )
+    if rc != 0:
+        return {"by_cpu": [], "by_mem": [], "total_processes": 0, "timestamp": NOW_ISO}
+
+    lines = out.strip().split("\n")
+    if len(lines) < 2:
+        return {"by_cpu": [], "by_mem": [], "total_processes": 0, "timestamp": NOW_ISO}
+
+    for line in lines[1:]:
+        parts = line.split(None, 10)
+        if len(parts) < 11:
+            continue
+        try:
+            pid = int(parts[1])
+            cpu = float(parts[2])
+            mem = float(parts[3])
+            user = parts[0]
+            cmd = parts[10][:60]  # truncate long command lines
+            name = cmd.split("/")[-1].split()[0] if cmd else "?"
+
+            is_claw = any(kw in cmd.lower() for kw in claw_keywords)
+
+            if cpu > 50.0:
+                severity = "critical"
+            elif cpu > 30.0:
+                severity = "warning"
+            else:
+                severity = "ok"
+
+            all_procs.append({
+                "pid": pid,
+                "name": name,
+                "cmd": cmd,
+                "cpu_percent": round(cpu, 1),
+                "mem_percent": round(mem, 1),
+                "user": user,
+                "is_claw": is_claw,
+                "severity": severity,
+            })
+        except (ValueError, IndexError):
+            continue
+
+    # Top 5 by CPU (already sorted from ps)
+    by_cpu = all_procs[:5]
+
+    # Top 5 by memory
+    by_mem = sorted(all_procs, key=lambda p: p["mem_percent"], reverse=True)[:5]
+
+    return {
+        "by_cpu": by_cpu,
+        "by_mem": by_mem,
+        "total_processes": len(all_procs),
+        "timestamp": NOW_ISO,
+    }
+
+
 def collect_system_stats():
     """Gather all system stats."""
     return {
@@ -368,6 +430,7 @@ def collect_system_stats():
         "uptime": collect_uptime(),
         "power_thermal": collect_power_thermal(),
         "services": collect_services(),
+        "processes": collect_processes(),
     }
 
 
