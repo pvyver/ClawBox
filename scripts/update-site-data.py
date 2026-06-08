@@ -516,6 +516,53 @@ def collect_processes():
     }
 
 
+# ── GPU History ─────────────────────────────────────────────────────────
+GPU_HISTORY_FILE = DATA_DIR / "gpu-history.json"
+
+
+def collect_gpu_history():
+    """Append current GPU snapshot to history, keep last 30 days.
+
+    GPU metrics are collected at this moment. We append to a JSON array
+    so trends accumulate over time. Old entries (>= 30 days) are pruned.
+    """
+    gpu_now = collect_gpu_stats()
+    if not gpu_now or "raw" in gpu_now and len(gpu_now) <= 1:
+        # No meaningful GPU data; skip this collection
+        print("   ⚠ No GPU data to record")
+        return read_json(GPU_HISTORY_FILE, {"history": []})
+
+    snapshot = {
+        "timestamp": NOW_ISO,
+        "temperature_celsius": gpu_now.get("temperature_celsius"),
+        "usage_percent": gpu_now.get("usage_percent"),
+    }
+
+    history_data = read_json(GPU_HISTORY_FILE, {"history": []})
+    history_data["history"].append(snapshot)
+
+    # Prune entries older than 30 days
+    cutoff = NOW.timestamp() - (30 * 86400)
+    history_data["history"] = [
+        e for e in history_data["history"]
+        if _ts_of(e) >= cutoff
+    ]
+
+    history_data["last_updated"] = NOW_ISO
+    history_data["total_entries"] = len(history_data["history"])
+    return history_data
+
+
+def _ts_of(entry):
+    """Parse ISO timestamp from an entry to a Unix timestamp float."""
+    ts = entry.get("timestamp", "")
+    try:
+        dt = datetime.fromisoformat(ts)
+        return dt.timestamp()
+    except (ValueError, TypeError, AttributeError):
+        return 0
+
+
 def collect_system_stats():
     """Gather all system stats."""
     return {
@@ -677,7 +724,7 @@ def collect_cron_jobs():
 
 # ── 4. Write All Data ──────────────────────────────────────────────────
 
-def write_data_files(health, token_usage, cron_jobs, network_health):
+def write_data_files(health, token_usage, cron_jobs, network_health, gpu_history):
     """Write JSON to _data/ (Jekyll) and assets/data/ (static)."""
     site_meta = {
         "site_name": "ClawBox Dashboard",
@@ -690,11 +737,13 @@ def write_data_files(health, token_usage, cron_jobs, network_health):
         (DATA_DIR / "token-usage.json", token_usage),
         (DATA_DIR / "cron-jobs.json", cron_jobs),
         (DATA_DIR / "network-health.json", network_health),
+        (DATA_DIR / "gpu-history.json", gpu_history),
         (DATA_DIR / "site.json", site_meta),
         (ASSETS_DATA_DIR / "health.json", health),
         (ASSETS_DATA_DIR / "token-usage.json", token_usage),
         (ASSETS_DATA_DIR / "cron-jobs.json", cron_jobs),
         (ASSETS_DATA_DIR / "network-health.json", network_health),
+        (ASSETS_DATA_DIR / "gpu-history.json", gpu_history),
         (ASSETS_DATA_DIR / "site.json", site_meta),
     ]
 
@@ -783,9 +832,13 @@ def main():
     total_count = network_health['services_total']
     print(f"   {ok_count}/{total_count} services reachable")
 
+    print("📈 Collecting GPU history...")
+    gpu_history = collect_gpu_history()
+    print(f"   {gpu_history.get('total_entries', 0)} entries recorded")
+
     print()
     print("💾 Writing data files...")
-    site_meta = write_data_files(health, token_usage, cron_jobs, network_health)
+    site_meta = write_data_files(health, token_usage, cron_jobs, network_health, gpu_history)
 
     print()
     print("📤 Pushing to GitHub...")

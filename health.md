@@ -127,6 +127,24 @@ permalink: /health/
   </div>
 </div>
 
+{% comment %} ── GPU Performance chart section ── {% endcomment %}
+{% assign gpu_history = site.data.gpu-history %}
+<div id="gpu-performance-section" style="background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 1.5rem; margin-top: 1rem;">
+  <h2 style="font-size: 1.1rem; margin-bottom: 0.75rem;">📈 GPU Performance</h2>
+  <div id="gpu-time-range-bar" class="time-range-bar"></div>
+  <div id="gpu-chart-container">
+    <canvas id="gpu-chart" width="800" height="280"
+      style="display: block; width: 100%; height: auto; aspect-ratio: 800/280;">
+    </canvas>
+  </div>
+  <p style="margin-top: 0.75rem; font-size: 0.8rem; color: var(--text-muted); text-align: center;">
+    <span style="display: inline-block; width: 10px; height: 10px; background: #f97316; border-radius: 2px; vertical-align: middle; margin: 0 4px;"></span> GPU Usage
+    <span style="display: inline-block; width: 14px; height: 3px; background: #ef4444; border-radius: 2px; vertical-align: middle; margin: 0 4px 0 16px;"></span> GPU Temperature
+    <span style="display: inline-block; width: 10px; height: 10px; background: #ef4444; opacity: 0.15; border-radius: 2px; vertical-align: middle; margin: 0 4px 0 16px;"></span> Temp Fill
+  </p>
+  <script id="gpu-history-data" type="application/json" data-gpu-history='{{ gpu_history.history | jsonify | escape }}'></script>
+</div>
+
 {% comment %} ── Power & Thermal section ── {% endcomment %}
 <div id="power-thermal-section" class="power-thermal-section" style="background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 1.5rem; margin-top: 1rem;">
   <h2 style="font-size: 1.1rem; margin-bottom: 0.75rem;">
@@ -333,3 +351,5 @@ permalink: /health/
 </div>
 
 <script src="{{ '/assets/js/health.js' | relative_url }}"></script>
+<script src="{{ '/assets/js/chart-utils.js' | relative_url }}"></script>
+<script src="{{ '/assets/js/gpu-chart.js' | relative_url }}"></script>
