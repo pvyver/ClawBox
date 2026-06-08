@@ -60,8 +60,9 @@
       var lastRun = formatMs(j.last_run);
       var dur = durStr(j.last_duration_ms);
       var errors = j.consecutive_errors || 0;
+      var rowId = errors > 0 ? ' id="cron-error-' + slugify(name) + '" class="cron-row-error"' : '';
 
-      html += '<tr>' +
+      html += '<tr' + rowId + '>' +
         '<td>' + escHtml(name) + '</td>' +
         '<td>' + escHtml(sched) + '</td>' +
         '<td>' + escHtml(model) + '</td>' +
@@ -74,9 +75,28 @@
     tbody.innerHTML = html || '<tr><td colspan="6" style="text-align:center;color:var(--text-muted)">No jobs found.</td></tr>';
   }
 
+  function slugify(s) {
+    return String(s).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+  }
+
   function escHtml(s) {
     if (!s) return '';
     return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  }
+
+  function scrollToFailing() {
+    var hash = window.location.hash.replace(/^#/, '');
+    if (hash === 'failing') {
+      var firstErr = document.querySelector('.cron-row-error');
+      if (firstErr) {
+        setTimeout(function () { firstErr.scrollIntoView({ behavior: 'smooth', block: 'center' }); }, 200);
+      }
+    } else if (hash) {
+      var target = document.getElementById(hash) || document.getElementById('cron-error-' + hash);
+      if (target) {
+        setTimeout(function () { target.scrollIntoView({ behavior: 'smooth', block: 'center' }); }, 200);
+      }
+    }
   }
 
   fetch(dataUrl)
@@ -85,7 +105,10 @@
       return r.json();
     })
     .then(function (data) {
-      if (data.jobs) renderTable(data.jobs);
+      if (data.jobs) {
+        renderTable(data.jobs);
+        scrollToFailing();
+      }
     })
     .catch(function (err) {
       console.warn('Cron data fetch:', err.message);

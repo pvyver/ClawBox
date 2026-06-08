@@ -11,6 +11,10 @@ permalink: /health/
 {% assign temp = h.temperature %}
 {% assign gpu = h.gpu %}
 {% assign up = h.uptime %}
+{% assign cj = site.data.cron-jobs %}
+{% assign failing_jobs_cron = cj.jobs | where_exp: "j", "j.consecutive_errors > 0" %}
+{% assign failing_cron_count = failing_jobs_cron | size %}
+{% capture cron_fail_msg %}{% if failing_cron_count > 0 %}<span class="badge badge-err" id="cron-fail-status">{{ failing_cron_count }} failing</span>{% else %}<span class="badge badge-ok" id="cron-fail-status">All OK</span>{% endif %}{% endcapture %}
 
 {% comment %} ── Threshold logic (duplicated in JS for client-side refresh) ── {% endcomment %}
 {% assign cpu_pct = cpu.load_1m | default: 0 | times: 16.67 | round: 1 %}
@@ -125,6 +129,10 @@ permalink: /health/
   <div class="stat-row" style="border: none;">
     <span class="stat-label">📅 Last Updated</span>
     <span class="stat-value" id="health-updated">{{ site.data.site.update_timestamp | default: "&mdash;" }}</span>
+  </div>
+  <div class="stat-row" style="border: none;">
+    <span class="stat-label">⏰ Cron Jobs</span>
+    <span class="stat-value" id="health-cron-status">{{ cron_fail_msg }}</span>
   </div>
 </div>
 

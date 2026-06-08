@@ -100,8 +100,79 @@
       .then(function (r) { return r.ok ? r.json() : Promise.reject(); })
       .then(function (cj) {
         var count = cj.total || 0;
+        var jobs = cj.jobs || [];
+        var failing = 0;
+        var failingName = '';
+        for (var i = 0; i < jobs.length; i++) {
+          if (jobs[i].consecutive_errors > 0) {
+            failing++;
+            if (!failingName) failingName = jobs[i].name;
+          }
+        }
+
         setText('stat-crons', count);
         setText('cc-active', count);
+        setText('cc-failing', failing);
+
+        // Stats bar failing badge
+        var failBadge = document.getElementById('stat-cron-fail');
+        if (failing > 0) {
+          if (!failBadge) {
+            var chip = document.getElementById('stat-crons').parentNode.parentNode;
+            var existing = chip.querySelector('.chip-badge');
+            if (existing) {
+              var newBadge = document.createElement('span');
+              newBadge.className = 'chip-badge';
+              newBadge.innerHTML = '<span class="badge badge-err" id="stat-cron-fail">' + failing + ' failing</span>';
+              chip.appendChild(newBadge);
+            }
+          } else {
+            failBadge.textContent = failing + ' failing';
+          }
+        } else if (failBadge) {
+          failBadge.parentNode.removeChild(failBadge);
+        }
+
+        // Compact card warn state
+        var card = document.getElementById('cron-card');
+        if (card) {
+          if (failing > 0) {
+            card.classList.add('card-warn');
+          } else {
+            card.classList.remove('card-warn');
+          }
+        }
+
+        // Badge on compact card header
+        var ccBadge = document.getElementById('cc-cron-fail');
+        if (failing > 0) {
+          if (!ccBadge) {
+            var header = document.querySelector('#cron-card .compact-card-header');
+            if (header) {
+              var b = document.createElement('span');
+              b.className = 'badge badge-err';
+              b.id = 'cc-cron-fail';
+              b.textContent = failing;
+              header.appendChild(b);
+            }
+          } else {
+            ccBadge.textContent = failing;
+          }
+        } else if (ccBadge) {
+          ccBadge.parentNode.removeChild(ccBadge);
+        }
+
+        // Nav badge
+        var navBadge = document.getElementById('nav-cron-badge');
+        if (navBadge) {
+          if (failing > 0) {
+            navBadge.textContent = failing;
+            navBadge.className = 'nav-badge nav-badge-warn';
+          } else {
+            navBadge.textContent = '';
+            navBadge.className = 'nav-badge';
+          }
+        }
       })
       .catch(function () {});
   }
