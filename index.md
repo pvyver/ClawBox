@@ -67,8 +67,7 @@ permalink: /
     <span class="chip-icon">⏰</span>
     <span class="chip-label">Crons</span>
     <span class="chip-value" id="stat-crons">{{ cron_count }}</span>
-    <span class="chip-badge">active{% if failing_count > 0 %}</span>
-    <span class="chip-badge"><span class="badge badge-err" id="stat-cron-fail">{{ failing_count }} failing</span></span>{% endif %}
+    <span class="chip-badge">active{% if failing_count > 0 %} <span class="badge badge-err" id="stat-cron-fail">{{ failing_count }} failing</span>{% endif %}</span>
   </div>
   <div class="stat-chip">
     <span class="chip-icon">🕐</span>
