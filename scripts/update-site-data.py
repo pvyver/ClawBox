@@ -215,6 +215,117 @@ def collect_uptime():
         return {"display": "unknown"}
 
 
+def collect_power_thermal():
+    """Collect Jetson power & thermal monitoring data.
+
+    Reads from sysfs (INA3221 power monitor, PWM fan, cooling devices)
+    and parses tegrastats for power rail data when available.
+    """
+    data = {
+        "power": {"vdd_in_watts": 0, "vdd_cpu_watts": 0, "vdd_gpu_watts": 0,
+                  "total_watts": 0, "throttled": False, "throttle_reason": ""},
+        "thermal": {"fan_speed_pct": 0, "fan_rpm": 0,
+                     "junction_temp": 0, "throttle_temp": 85.0},
+    }
+
+    # ── INA3221 power monitor (hwmon1) ──
+    try:
+        path_in4 = Path("/sys/class/hwmon/hwmon1/in4_input")
+        path_in5 = Path("/sys/class/hwmon/hwmon1/in5_input")
+        path_in6 = Path("/sys/class/hwmon/hwmon1/in6_input")
+        if path_in4.exists():
+            vdd_in_mw = int(path_in4.read_text().strip())
+            data["power"]["vdd_in_watts"] = round(vdd_in_mw / 1000, 2)
+        if path_in5.exists():
+            cpu_mw = int(path_in5.read_text().strip())
+            data["power"]["vdd_cpu_watts"] = round(cpu_mw / 1000, 2)
+        if path_in6.exists():
+            gpu_mw = int(path_in6.read_text().strip())
+            data["power"]["vdd_gpu_watts"] = round(gpu_mw / 1000, 2)
+    except (OSError, ValueError):
+        pass
+
+    # Fallback: parse tegrastats raw for power data
+    if data["power"]["vdd_in_watts"] == 0:
+        try:
+            gpu_raw = collect_gpu_stats().get("raw", "")
+            m = re.search(r"VDD_IN\s+(\d+)mW", gpu_raw)
+            if m:
+                data["power"]["vdd_in_watts"] = round(int(m.group(1)) / 1000, 2)
+            m = re.search(r"VDD_CPU_GPU_CV\s+(\d+)mW", gpu_raw)
+            if m:
+                data["power"]["vdd_cpu_watts"] = round(int(m.group(1)) / 1000, 2)
+            m = re.search(r"VDD_SOC\s+(\d+)mW", gpu_raw)
+            if m:
+                data["power"]["vdd_gpu_watts"] = round(int(m.group(1)) / 1000, 2)
+        except (OSError, ValueError):
+            pass
+
+    total = data["power"]["vdd_in_watts"] + data["power"]["vdd_cpu_watts"] + data["power"]["vdd_gpu_watts"]
+    data["power"]["total_watts"] = round(total, 2)
+
+    # ── Throttle status from cooling device alert states ──
+    try:
+        throttled_parts = []
+        throttle_map = {
+            "cpu-throttle-alert": "CPU",
+            "gpu-throttle-alert": "GPU",
+            "cv0-throttle-alert": "CV0",
+            "cv1-throttle-alert": "CV1",
+            "cv2-throttle-alert": "CV2",
+            "soc0-throttle-alert": "SOC0",
+            "soc1-throttle-alert": "SOC1",
+            "soc2-throttle-alert": "SOC2",
+            "hot-surface-alert": "Surface",
+        }
+        for cd_path in sorted(Path("/sys/devices/virtual/thermal").glob("cooling_device*")):
+            try:
+                ctype = cd_path.joinpath("type").read_text().strip()
+            except OSError:
+                continue
+            if ctype in throttle_map:
+                try:
+                    state = int(cd_path.joinpath("cur_state").read_text().strip())
+                    if state > 0:
+                        throttled_parts.append(throttle_map[ctype])
+                except (OSError, ValueError):
+                    pass
+        if throttled_parts:
+            data["power"]["throttled"] = True
+            data["power"]["throttle_reason"] = ", ".join(throttled_parts)
+    except OSError:
+        pass
+
+    # ── Fan speed (RPM + PWM percentage) ──
+    try:
+        rpm_path = Path("/sys/class/hwmon/hwmon2/rpm")
+        if rpm_path.exists():
+            data["thermal"]["fan_rpm"] = int(rpm_path.read_text().strip())
+    except (OSError, ValueError):
+        pass
+
+    try:
+        pwm_path = Path("/sys/class/hwmon/hwmon0/pwm1")
+        max_state_path = Path("/sys/devices/virtual/thermal/cooling_device2/max_state")
+        if pwm_path.exists() and max_state_path.exists():
+            pwm_val = int(pwm_path.read_text().strip())
+            max_val = int(max_state_path.read_text().strip())
+            max_pwm = 255
+            data["thermal"]["fan_speed_pct"] = round((pwm_val / max_pwm) * 100)
+    except (OSError, ValueError):
+        pass
+
+    # ── Junction temperature ──
+    try:
+        tj_path = Path("/sys/devices/virtual/thermal/thermal_zone8/temp")
+        if tj_path.exists():
+            data["thermal"]["junction_temp"] = round(int(tj_path.read_text().strip()) / 1000, 1)
+    except (OSError, ValueError):
+        pass
+
+    return data
+
+
 def collect_system_stats():
     """Gather all system stats."""
     return {
@@ -225,6 +336,7 @@ def collect_system_stats():
         "temperature": collect_temperature(),
         "gpu": collect_gpu_stats(),
         "uptime": collect_uptime(),
+        "power_thermal": collect_power_thermal(),
     }
 
 

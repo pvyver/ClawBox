@@ -102,6 +102,65 @@
     if (gpu.temperature_celsius != null) setText('gpu-temp', gpu.temperature_celsius + '\u00B0C');
     if (gpu.usage_percent != null) setText('gpu-usage', gpu.usage_percent + '%');
 
+    // ── Power & Thermal ──
+    var pt = data.power_thermal || {};
+    var pw = pt.power || {};
+    var th = pt.thermal || {};
+
+    var maxGauge = 15; // 15W maps to 100% gauge width
+    function gaugeWidth(watts) {
+      return Math.min(Math.round((watts / maxGauge) * 100), 100);
+    }
+    function gaugeCls(watts) {
+      if (watts >= 12) return 'gauge-bar gauge-bar-critical';
+      if (watts >= 8) return 'gauge-bar gauge-bar-warn';
+      return 'gauge-bar';
+    }
+
+    // Power bars
+    var vddInW = pw.vdd_in_watts || 0;
+    var vddCpuW = pw.vdd_cpu_watts || 0;
+    var vddGpuW = pw.vdd_gpu_watts || 0;
+    var totalW = pw.total_watts || 0;
+
+    var gIn = document.getElementById('gauge-vdd-in');
+    if (gIn) { gIn.style.width = gaugeWidth(vddInW) + '%'; gIn.className = gaugeCls(vddInW); }
+    setText('gauge-vdd-in-val', round1(vddInW) + ' W');
+
+    var gCpu = document.getElementById('gauge-vdd-cpu');
+    if (gCpu) { gCpu.style.width = gaugeWidth(vddCpuW) + '%'; gCpu.className = gaugeCls(vddCpuW); }
+    setText('gauge-vdd-cpu-val', round1(vddCpuW) + ' W');
+
+    var gGpu = document.getElementById('gauge-vdd-gpu');
+    if (gGpu) { gGpu.style.width = gaugeWidth(vddGpuW) + '%'; gGpu.className = gaugeCls(vddGpuW); }
+    setText('gauge-vdd-gpu-val', round1(vddGpuW) + ' W');
+
+    var gTot = document.getElementById('gauge-total');
+    if (gTot) { gTot.style.width = gaugeWidth(totalW) + '%'; }
+    setText('gauge-total-val', round1(totalW) + ' W');
+
+    // Thermal values
+    if (th.junction_temp != null) setText('junct-temp', round1(th.junction_temp) + '\u00B0C');
+    if (th.fan_speed_pct != null) setText('fan-speed', round0(th.fan_speed_pct) + '%');
+    if (th.fan_rpm != null) setText('fan-rpm', th.fan_rpm);
+    if (th.throttle_temp != null) setText('throttle-temp', round1(th.throttle_temp) + '\u00B0C');
+
+    // Throttle warning
+    var throttled = pw.throttled || false;
+    var warnEl = document.getElementById('throttle-warning');
+    var detailEl = document.getElementById('throttle-detail');
+    var reasonEl = document.getElementById('throttle-reason');
+
+    if (warnEl) {
+      warnEl.style.display = throttled ? 'inline-block' : 'none';
+    }
+    if (detailEl) {
+      detailEl.style.display = throttled ? 'block' : 'none';
+    }
+    if (reasonEl && pw.throttle_reason) {
+      reasonEl.textContent = pw.throttle_reason;
+    }
+
     // ── Uptime / timestamp ──
     if (up.display) setText('uptime-display', up.display);
     if (data.timestamp) {

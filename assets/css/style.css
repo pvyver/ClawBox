@@ -793,3 +793,133 @@ img { max-width: 100%; height: auto; }
     text-align: center;
   }
 }
+
+/* ═══ Power & Thermal Section ═══ */
+.power-thermal-section {
+  scroll-margin-top: 72px;
+}
+
+.power-thermal-section h2 {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.throttle-warning {
+  font-size: 0.8rem;
+  background: var(--danger);
+  color: #fff;
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  animation: pulse-warn 2s infinite;
+}
+
+@keyframes pulse-warn {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+.throttle-detail {
+  margin-top: 0.75rem;
+  padding: 0.5rem 0.75rem;
+  background: rgba(239, 68, 68, 0.12);
+  border: 1px solid var(--danger);
+  border-radius: var(--radius-sm);
+}
+
+/* ── Gauge bars (power rails) ── */
+.power-gauge-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.gauge-card {
+  background: var(--bg-primary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 0.75rem;
+  text-align: center;
+}
+
+.gauge-card-total {
+  border-color: var(--accent);
+}
+
+.gauge-label {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.5rem;
+}
+
+.gauge-bar-container {
+  height: 8px;
+  background: var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 0.4rem;
+}
+
+.gauge-bar {
+  height: 100%;
+  border-radius: 4px;
+  background: var(--success);
+  transition: width 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.gauge-bar-warn {
+  background: var(--warning);
+}
+
+.gauge-bar-critical {
+  background: var(--danger);
+}
+
+.gauge-bar-total {
+  background: var(--accent);
+}
+
+.gauge-value {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.gauge-value-total {
+  color: var(--accent);
+}
+
+/* ── Thermal grid ── */
+.thermal-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 0.75rem;
+}
+
+.thermal-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.thermal-item .stat-label {
+  font-size: 0.75rem;
+}
+
+.thermal-item .stat-value {
+  font-size: 1rem;
+}
+
+@media (max-width: 640px) {
+  .power-gauge-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .thermal-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
