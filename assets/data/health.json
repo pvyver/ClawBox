@@ -1,58 +1,58 @@
 {
-  "timestamp": "2026-06-09T18:06:00.108784+00:00",
+  "timestamp": "2026-06-09T18:25:17.179582+00:00",
   "cpu": {
     "cores": 6,
     "model": "Cortex-A78AE",
-    "load_1m": 0.1,
-    "load_5m": 0.08,
-    "load_15m": 0.07,
-    "runnable": 2,
-    "total_processes": 734
+    "load_1m": 0.14,
+    "load_5m": 0.05,
+    "load_15m": 0.04,
+    "runnable": 1,
+    "total_processes": 729
   },
   "memory": {
     "total_bytes": 7976779776,
-    "used_bytes": 6158671872,
-    "free_bytes": 127971328,
-    "available_bytes": 1668890624,
-    "used_percent": 77.2,
+    "used_bytes": 1554669568,
+    "free_bytes": 6025412608,
+    "available_bytes": 6273417216,
+    "used_percent": 19.5,
     "total_human": "7.4 GB",
-    "used_human": "5.7 GB"
+    "used_human": "1.4 GB"
   },
   "disk": {
     "total_bytes": 501386080256,
-    "used_bytes": 63383400448,
-    "free_bytes": 438002679808,
+    "used_bytes": 63383920640,
+    "free_bytes": 438002159616,
     "used_percent": 12.6,
     "total_human": "467.0 GB",
     "used_human": "59.0 GB",
     "free_human": "407.9 GB"
   },
   "temperature": {
-    "value_celsius": 64.8,
-    "display": "64.8\u00b0C"
+    "value_celsius": 57.4,
+    "display": "57.4\u00b0C"
   },
   "gpu": {
-    "temperature_celsius": 64.125,
+    "temperature_celsius": 56.187,
     "usage_percent": 0,
-    "raw": "06-09-2026 18:06:01 RAM 5873/7607MB (lfb 2x4MB) SWAP 1392/3804MB (cached 2MB) CPU [0%@1728,0%@1728,0%@1728,0%@1728,0%@1728,0%@1728] GR3D_FREQ 0% cpu@63.687C soc2@62.343C soc0@63.25C gpu@64.125C tj@64.718C soc1@64.718C VDD_IN 7116mW/7116mW VDD_CPU_GPU_CV 1756mW/1756mW VDD_SOC 2346mW/2346mW"
+    "raw": "06-09-2026 18:25:18 RAM 1483/7607MB (lfb 63x4MB) SWAP 1408/3804MB (cached 1MB) CPU [1%@1728,0%@1728,0%@1728,0%@1728,0%@1728,0%@1728] GR3D_FREQ 0% cpu@55.906C soc2@54.281C soc0@55.218C gpu@56.187C tj@57.468C soc1@57.468C VDD_IN 6658mW/6658mW VDD_CPU_GPU_CV 1522mW/1522mW VDD_SOC 2268mW/2268mW"
   },
   "uptime": {
-    "seconds": 476404.41,
-    "display": "5d 12h 20m"
+    "seconds": 477561.48,
+    "display": "5d 12h 39m"
   },
   "power_thermal": {
     "power": {
-      "vdd_in_watts": 7.0,
-      "vdd_cpu_watts": 1.6,
-      "vdd_gpu_watts": 2.36,
-      "total_watts": 10.96,
+      "vdd_in_watts": 6.76,
+      "vdd_cpu_watts": 1.52,
+      "vdd_gpu_watts": 2.32,
+      "total_watts": 10.6,
       "throttled": false,
       "throttle_reason": ""
     },
     "thermal": {
-      "fan_speed_pct": 51,
-      "fan_rpm": 2976,
-      "junction_temp": 64.7,
+      "fan_speed_pct": 38,
+      "fan_rpm": 2149,
+      "junction_temp": 57.4,
       "throttle_temp": 85.0
     }
   },
@@ -97,83 +97,73 @@
   "processes": {
     "by_cpu": [
       {
-        "pid": 451871,
-        "name": "ollama",
-        "cmd": "/usr/local/lib/ollama/llama-server --model /usr/share/ollama",
-        "cpu_percent": 9.5,
-        "mem_percent": 58.6,
-        "user": "ollama",
-        "is_claw": false,
-        "severity": "ok"
-      },
-      {
-        "pid": 451471,
+        "pid": 452133,
         "name": "openclaw",
         "cmd": "openclaw",
-        "cpu_percent": 4.4,
-        "mem_percent": 5.4,
+        "cpu_percent": 4.6,
+        "mem_percent": 5.7,
         "user": "clawbox",
         "is_claw": true,
         "severity": "ok"
       },
       {
-        "pid": 451908,
+        "pid": 452271,
         "name": "update-site-data.py",
         "cmd": "python3 scripts/update-site-data.py",
-        "cpu_percent": 2.5,
+        "cpu_percent": 3.0,
         "mem_percent": 0.1,
         "user": "clawbox",
         "is_claw": true,
         "severity": "ok"
       },
       {
-        "pid": 451843,
+        "pid": 452187,
         "name": "cla",
         "cmd": "/home/clawbox/.bun/bin/bun run /home/clawbox/clawbox/mcp/cla",
-        "cpu_percent": 1.0,
-        "mem_percent": 0.7,
+        "cpu_percent": 0.9,
+        "mem_percent": 0.9,
         "user": "clawbox",
         "is_claw": false,
         "severity": "ok"
       },
       {
-        "pid": 451532,
-        "name": "cla",
-        "cmd": "/home/clawbox/.bun/bin/bun run /home/clawbox/clawbox/mcp/cla",
-        "cpu_percent": 0.3,
-        "mem_percent": 0.8,
-        "user": "clawbox",
+        "pid": 127,
+        "name": "[kswapd0]",
+        "cmd": "[kswapd0]",
+        "cpu_percent": 0.1,
+        "mem_percent": 0.0,
+        "user": "root",
+        "is_claw": false,
+        "severity": "ok"
+      },
+      {
+        "pid": 326,
+        "name": "systemd-udevd",
+        "cmd": "/lib/systemd/systemd-udevd",
+        "cpu_percent": 0.1,
+        "mem_percent": 0.0,
+        "user": "root",
         "is_claw": false,
         "severity": "ok"
       }
     ],
     "by_mem": [
       {
-        "pid": 451871,
-        "name": "ollama",
-        "cmd": "/usr/local/lib/ollama/llama-server --model /usr/share/ollama",
-        "cpu_percent": 9.5,
-        "mem_percent": 58.6,
-        "user": "ollama",
-        "is_claw": false,
-        "severity": "ok"
-      },
-      {
-        "pid": 451471,
+        "pid": 452133,
         "name": "openclaw",
         "cmd": "openclaw",
-        "cpu_percent": 4.4,
-        "mem_percent": 5.4,
+        "cpu_percent": 4.6,
+        "mem_percent": 5.7,
         "user": "clawbox",
         "is_claw": true,
         "severity": "ok"
       },
       {
-        "pid": 451532,
+        "pid": 452187,
         "name": "cla",
         "cmd": "/home/clawbox/.bun/bin/bun run /home/clawbox/clawbox/mcp/cla",
-        "cpu_percent": 0.3,
-        "mem_percent": 0.8,
+        "cpu_percent": 0.9,
+        "mem_percent": 0.9,
         "user": "clawbox",
         "is_claw": false,
         "severity": "ok"
@@ -183,24 +173,34 @@
         "name": "gnome-shell",
         "cmd": "/usr/bin/gnome-shell",
         "cpu_percent": 0.1,
-        "mem_percent": 0.8,
+        "mem_percent": 0.7,
         "user": "clawbox",
         "is_claw": false,
         "severity": "ok"
       },
       {
-        "pid": 451843,
-        "name": "cla",
-        "cmd": "/home/clawbox/.bun/bin/bun run /home/clawbox/clawbox/mcp/cla",
-        "cpu_percent": 1.0,
-        "mem_percent": 0.7,
+        "pid": 409153,
+        "name": "next-server",
+        "cmd": "next-server (v16.1.6)",
+        "cpu_percent": 0.1,
+        "mem_percent": 0.6,
         "user": "clawbox",
+        "is_claw": false,
+        "severity": "ok"
+      },
+      {
+        "pid": 774,
+        "name": "tailscaled.s",
+        "cmd": "/usr/sbin/tailscaled --state=/var/lib/tailscale/tailscaled.s",
+        "cpu_percent": 0.0,
+        "mem_percent": 0.3,
+        "user": "root",
         "is_claw": false,
         "severity": "ok"
       }
     ],
     "total_processes": 353,
-    "timestamp": "2026-06-09T18:06:00.108784+00:00"
+    "timestamp": "2026-06-09T18:25:17.179582+00:00"
   },
   "network": {
     "interfaces": [
@@ -217,12 +217,12 @@
       },
       {
         "name": "enP8p1s0",
-        "rx_bytes": 6480959667,
-        "tx_bytes": 1729686165,
+        "rx_bytes": 6484068541,
+        "tx_bytes": 1742369022,
         "state": "UP",
         "ip": "192.168.0.122",
-        "rx_rate": 3569,
-        "tx_rate": 13400,
+        "rx_rate": 8455,
+        "tx_rate": 79746,
         "total_in_human": "6.0 GB",
         "total_out_human": "1.6 GB"
       },
@@ -273,19 +273,362 @@
       {
         "name": "tailscale0",
         "rx_bytes": 1346823,
-        "tx_bytes": 24546824,
+        "tx_bytes": 24548072,
         "state": "UNKNOWN",
         "ip": "100.68.32.105",
-        "rx_rate": 49,
-        "tx_rate": 1240,
+        "rx_rate": 0,
+        "tx_rate": 2,
         "total_in_human": "1.3 MB",
         "total_out_human": "23.4 MB"
       }
     ],
-    "active_connections": 9,
+    "active_connections": 7,
     "total_in_human": "6.0 GB",
     "total_out_human": "1.6 GB",
-    "total_in_bytes": 6482306490,
-    "total_out_bytes": 1754232989
+    "total_in_bytes": 6485415364,
+    "total_out_bytes": 1766917094
+  },
+  "sessions": {
+    "active_count": 0,
+    "total_visible": 28,
+    "sessions": [
+      {
+        "id": "e460a909-6353-402f-a76e-80960ad87053",
+        "key": "agent:main:main",
+        "model": "deepseek-chat",
+        "channel": "unknown",
+        "started_ago": "0s ago",
+        "started_ms": 0,
+        "age_seconds": 0,
+        "estimated_tokens": 169310,
+        "tokens_human": "169K",
+        "status": ""
+      },
+      {
+        "id": "4a41ed8a-91b3-49ff-bfe5-110ca14ff528",
+        "key": "agent:main:cron:528620d6-e3e1-42da-bd49-ce9599ec3d88",
+        "model": "llama3.2:3b",
+        "channel": "unknown",
+        "started_ago": "0s ago",
+        "started_ms": 0,
+        "age_seconds": 0,
+        "estimated_tokens": 0,
+        "tokens_human": "0",
+        "status": ""
+      },
+      {
+        "id": "4ae463bf-a9cf-4670-bc00-d6d9498b4c95",
+        "key": "agent:main:cron:685c7ce0-58ad-4aef-9aee-2665249f1f4b",
+        "model": "llama3.2:3b",
+        "channel": "unknown",
+        "started_ago": "0s ago",
+        "started_ms": 0,
+        "age_seconds": 0,
+        "estimated_tokens": 4297,
+        "tokens_human": "4K",
+        "status": ""
+      },
+      {
+        "id": "1e991537-fa45-4e2b-8211-6da1c5590fd4",
+        "key": "agent:main:cron:076c2650-df05-45ad-8103-595152e2fb07",
+        "model": "deepseek-v4-flash",
+        "channel": "unknown",
+        "started_ago": "0s ago",
+        "started_ms": 0,
+        "age_seconds": 0,
+        "estimated_tokens": 0,
+        "tokens_human": "0",
+        "status": ""
+      },
+      {
+        "id": "1baa41f7-3fe2-4fb7-a6a8-6b6a345de931",
+        "key": "agent:main:cron:2a73d80d-85f0-41c3-b964-f3414b6f94d8",
+        "model": "llama3.2:3b",
+        "channel": "unknown",
+        "started_ago": "0s ago",
+        "started_ms": 0,
+        "age_seconds": 0,
+        "estimated_tokens": 5263,
+        "tokens_human": "5K",
+        "status": ""
+      },
+      {
+        "id": "4e269de9-dc73-4ae5-a4a4-e394f3b372a6",
+        "key": "agent:main:cron:ff6d63bf-2dbd-47f8-898e-f1cab1fee1c3",
+        "model": "gemma4-e2b-it-q4_0",
+        "channel": "unknown",
+        "started_ago": "0s ago",
+        "started_ms": 0,
+        "age_seconds": 0,
+        "estimated_tokens": 0,
+        "tokens_human": "0",
+        "status": ""
+      },
+      {
+        "id": "3054f15f-e7af-4828-bdbf-54eb669bcd61",
+        "key": "agent:main:cron:685c7ce0-58ad-4aef-9aee-2665249f1f4b:run:a9d0f59b-29c7-49c6-ad9d-3dd807e044ae",
+        "model": "deepseek-v4-flash",
+        "channel": "unknown",
+        "started_ago": "0s ago",
+        "started_ms": 0,
+        "age_seconds": 0,
+        "estimated_tokens": 30711,
+        "tokens_human": "30K",
+        "status": ""
+      },
+      {
+        "id": "b13b999a-3952-4c7b-bf79-95b7696ea782",
+        "key": "agent:main:cron:685c7ce0-58ad-4aef-9aee-2665249f1f4b:run:4f10cfec-4920-4de5-a941-622cca38d28d",
+        "model": "deepseek-v4-flash",
+        "channel": "unknown",
+        "started_ago": "0s ago",
+        "started_ms": 0,
+        "age_seconds": 0,
+        "estimated_tokens": 31552,
+        "tokens_human": "31K",
+        "status": ""
+      },
+      {
+        "id": "c06f9fe2-b430-4462-bb9a-2691fda2c8db",
+        "key": "agent:main:cron:685c7ce0-58ad-4aef-9aee-2665249f1f4b:run:5bfdb6b5-a0c5-4c9c-9f03-0fa52675e5f7",
+        "model": "deepseek-v4-flash",
+        "channel": "unknown",
+        "started_ago": "0s ago",
+        "started_ms": 0,
+        "age_seconds": 0,
+        "estimated_tokens": 36236,
+        "tokens_human": "36K",
+        "status": ""
+      },
+      {
+        "id": "ebab4f0b-a3cc-4a54-a6de-f4ff8fe69a0b",
+        "key": "agent:main:subagent:3d2d0188-a00f-4156-8109-e0f18a67a58a",
+        "model": "llama3.2:3b",
+        "channel": "unknown",
+        "started_ago": "0s ago",
+        "started_ms": 0,
+        "age_seconds": 0,
+        "estimated_tokens": 0,
+        "tokens_human": "0",
+        "status": ""
+      },
+      {
+        "id": "5f5e9d06-4321-4acb-82ab-af59f18f6a6c",
+        "key": "agent:main:cron:685c7ce0-58ad-4aef-9aee-2665249f1f4b:run:bdd5a0f9-9d24-4364-a4dc-2c26e8d37e28",
+        "model": "deepseek-v4-flash",
+        "channel": "unknown",
+        "started_ago": "0s ago",
+        "started_ms": 0,
+        "age_seconds": 0,
+        "estimated_tokens": 31452,
+        "tokens_human": "31K",
+        "status": ""
+      },
+      {
+        "id": "461542b9-4d15-40c1-ac36-fb39370bd022",
+        "key": "agent:main:cron:685c7ce0-58ad-4aef-9aee-2665249f1f4b:run:c6a5c69a-7639-413e-9ed4-804bbdd3a17c",
+        "model": "deepseek-v4-flash",
+        "channel": "unknown",
+        "started_ago": "0s ago",
+        "started_ms": 0,
+        "age_seconds": 0,
+        "estimated_tokens": 31371,
+        "tokens_human": "31K",
+        "status": ""
+      },
+      {
+        "id": "8f1b9199-a967-4c1b-95b7-ef148e29b60b",
+        "key": "agent:main:dashboard:44ab8919-4ae6-49ec-9b61-354e95bd0a11",
+        "model": "deepseek-chat",
+        "channel": "unknown",
+        "started_ago": "0s ago",
+        "started_ms": 0,
+        "age_seconds": 0,
+        "estimated_tokens": 85774,
+        "tokens_human": "85K",
+        "status": ""
+      },
+      {
+        "id": "ea9cd061-2840-4d00-9ad1-57e8bd6af3f6",
+        "key": "agent:main:dashboard:f423d09a-a6d7-4347-b017-c0d981a76cd3",
+        "model": "deepseek-chat",
+        "channel": "unknown",
+        "started_ago": "0s ago",
+        "started_ms": 0,
+        "age_seconds": 0,
+        "estimated_tokens": 55271,
+        "tokens_human": "55K",
+        "status": ""
+      },
+      {
+        "id": "d17c00f8-cae2-4a1e-9a68-21abd77e24b7",
+        "key": "agent:main:cron:685c7ce0-58ad-4aef-9aee-2665249f1f4b:run:f31611bf-4616-4af6-a73f-956bb7a48b4c",
+        "model": "deepseek-v4-flash",
+        "channel": "unknown",
+        "started_ago": "0s ago",
+        "started_ms": 0,
+        "age_seconds": 0,
+        "estimated_tokens": 31531,
+        "tokens_human": "31K",
+        "status": ""
+      },
+      {
+        "id": "8cef9edb-a66b-4a1a-865a-1635eb0c9103",
+        "key": "agent:main:cron:a05c1a5d-c105-4f46-a226-ef15b87e5a06",
+        "model": "llama3.2:3b",
+        "channel": "unknown",
+        "started_ago": "0s ago",
+        "started_ms": 0,
+        "age_seconds": 0,
+        "estimated_tokens": 5449,
+        "tokens_human": "5K",
+        "status": ""
+      },
+      {
+        "id": "0e650e06-14ef-4839-b25a-63229f104360",
+        "key": "agent:main:dashboard:b9ee1fb3-c183-474c-95ef-836da03535c8",
+        "model": "deepseek-v4-flash",
+        "channel": "unknown",
+        "started_ago": "0s ago",
+        "started_ms": 0,
+        "age_seconds": 0,
+        "estimated_tokens": 123265,
+        "tokens_human": "123K",
+        "status": ""
+      },
+      {
+        "id": "6b296ef1-5bae-4da8-b942-6a244687e73a",
+        "key": "agent:main:cron:685c7ce0-58ad-4aef-9aee-2665249f1f4b:run:2b4c4006-2db4-45a8-9777-e287ff1a010f",
+        "model": "deepseek-v4-flash",
+        "channel": "unknown",
+        "started_ago": "0s ago",
+        "started_ms": 0,
+        "age_seconds": 0,
+        "estimated_tokens": 32422,
+        "tokens_human": "32K",
+        "status": ""
+      },
+      {
+        "id": "e118a50f-e856-4991-b5b7-1004877ceb5c",
+        "key": "agent:main:cron:065d0da8-cecc-45b9-83f1-7138c0b66cb7",
+        "model": "llama3.2:3b",
+        "channel": "unknown",
+        "started_ago": "0s ago",
+        "started_ms": 0,
+        "age_seconds": 0,
+        "estimated_tokens": 5387,
+        "tokens_human": "5K",
+        "status": ""
+      },
+      {
+        "id": "c69e895e-a27a-47e1-b979-412d404a5222",
+        "key": "agent:main:cron:dea2f6dd-2dbf-425d-b6d9-c6752d962a87",
+        "model": "llama3.2:3b",
+        "channel": "unknown",
+        "started_ago": "0s ago",
+        "started_ms": 0,
+        "age_seconds": 0,
+        "estimated_tokens": 0,
+        "tokens_human": "0",
+        "status": ""
+      },
+      {
+        "id": "b9c6f206-97d2-431f-b397-c84ddba31f25",
+        "key": "agent:main:cron:685c7ce0-58ad-4aef-9aee-2665249f1f4b:run:e8a89430-f52a-4f38-931b-db0cf2255db6",
+        "model": "deepseek-v4-flash",
+        "channel": "unknown",
+        "started_ago": "0s ago",
+        "started_ms": 0,
+        "age_seconds": 0,
+        "estimated_tokens": 31643,
+        "tokens_human": "31K",
+        "status": ""
+      },
+      {
+        "id": "003ea008-2d1d-4b8f-95c2-1a4c22b27975",
+        "key": "agent:main:cron:685c7ce0-58ad-4aef-9aee-2665249f1f4b:run:d64c3728-0057-42c8-ba14-05a7ce61c21e",
+        "model": "deepseek-v4-flash",
+        "channel": "unknown",
+        "started_ago": "0s ago",
+        "started_ms": 0,
+        "age_seconds": 0,
+        "estimated_tokens": 32040,
+        "tokens_human": "32K",
+        "status": ""
+      },
+      {
+        "id": "f793c7bd-d70e-4fc1-b9be-76850762a590",
+        "key": "agent:main:cron:685c7ce0-58ad-4aef-9aee-2665249f1f4b:run:bb20bc10-7c50-4363-af15-9a6c27714588",
+        "model": "deepseek-v4-flash",
+        "channel": "unknown",
+        "started_ago": "0s ago",
+        "started_ms": 0,
+        "age_seconds": 0,
+        "estimated_tokens": 30226,
+        "tokens_human": "30K",
+        "status": ""
+      },
+      {
+        "id": "0ea8863e-7fb9-4ffa-ade5-ad38f680922a",
+        "key": "agent:main:cron:685c7ce0-58ad-4aef-9aee-2665249f1f4b:run:34ca759e-6e4d-4020-8299-2e413ad773af",
+        "model": "deepseek-v4-flash",
+        "channel": "unknown",
+        "started_ago": "0s ago",
+        "started_ms": 0,
+        "age_seconds": 0,
+        "estimated_tokens": 31752,
+        "tokens_human": "31K",
+        "status": ""
+      },
+      {
+        "id": "b3967761-8cf1-4ea1-803a-a58ed66a6495",
+        "key": "agent:main:cron:685c7ce0-58ad-4aef-9aee-2665249f1f4b:run:2412247d-6180-4e60-8cb9-b521b20cbae9",
+        "model": "deepseek-v4-flash",
+        "channel": "unknown",
+        "started_ago": "0s ago",
+        "started_ms": 0,
+        "age_seconds": 0,
+        "estimated_tokens": 30523,
+        "tokens_human": "30K",
+        "status": ""
+      },
+      {
+        "id": "419bd227-986f-4c59-80dc-caa2ac0e2b88",
+        "key": "agent:main:cron:685c7ce0-58ad-4aef-9aee-2665249f1f4b:run:3d834465-328c-46dc-a41d-0cd9e3aeadb6",
+        "model": "deepseek-v4-flash",
+        "channel": "unknown",
+        "started_ago": "0s ago",
+        "started_ms": 0,
+        "age_seconds": 0,
+        "estimated_tokens": 31325,
+        "tokens_human": "31K",
+        "status": ""
+      },
+      {
+        "id": "8c32f3fc-1364-4445-84eb-64ce57c5bbc8",
+        "key": "agent:main:cron:685c7ce0-58ad-4aef-9aee-2665249f1f4b:run:582a8c94-631e-4da0-8821-607814f8e03b",
+        "model": "deepseek-v4-flash",
+        "channel": "unknown",
+        "started_ago": "0s ago",
+        "started_ms": 0,
+        "age_seconds": 0,
+        "estimated_tokens": 31522,
+        "tokens_human": "31K",
+        "status": ""
+      },
+      {
+        "id": "913122d6-686a-4bbf-b56a-6228927e5810",
+        "key": "agent:main:dashboard:66ab8194-1ffe-4faf-b1a7-a4a6ad902d20",
+        "model": "deepseek-chat",
+        "channel": "unknown",
+        "started_ago": "0s ago",
+        "started_ms": 0,
+        "age_seconds": 0,
+        "estimated_tokens": 0,
+        "tokens_human": "0",
+        "status": ""
+      }
+    ],
+    "last_updated": "2026-06-09T18:25:17.179582+00:00"
   }
 }
