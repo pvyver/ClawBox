@@ -714,7 +714,75 @@ def collect_system_stats():
         "services": collect_services(),
         "processes": collect_processes(),
         "network": collect_network_traffic(),
+        "sessions": collect_active_sessions(),
     }
+
+
+# ── Active Sessions ───────────────────────────────────────────────────
+
+
+def collect_active_sessions():
+    """Query OpenClaw for active and recent sessions."""
+    rc, out, _ = run_cmd([OPENCLAW_BIN, "sessions", "list", "--json"], timeout=15)
+    if rc != 0:
+        return {"active_count": 0, "sessions": [], "error": "query_failed"}
+
+    try:
+        raw = json.loads(out)
+    except json.JSONDecodeError:
+        return {"active_count": 0, "sessions": [], "error": "parse_failed"}
+
+    raw_sessions = raw.get("sessions", [])
+    now_ms = NOW.timestamp() * 1000
+
+    sessions = []
+    active_count = 0
+    for s in raw_sessions:
+        status = s.get("status", "")
+        started = s.get("startedAt", 0)
+        started_secs = (now_ms - started) / 1000 if started else 0
+
+        if started_secs < 60:
+            started_display = "%ds ago" % int(started_secs)
+        elif started_secs < 3600:
+            started_display = "%dm ago" % int(started_secs / 60)
+        else:
+            started_display = "%dh ago" % int(started_secs / 3600)
+
+        model = s.get("model", "unknown")
+        channel = s.get("channel", s.get("lastChannel", "unknown"))
+        tokens = s.get("totalTokens", 0) or 0
+
+        entry = {
+            "id": s.get("sessionId", ""),
+            "key": s.get("key", ""),
+            "model": model,
+            "channel": channel,
+            "started_ago": started_display,
+            "started_ms": started,
+            "age_seconds": int(started_secs),
+            "estimated_tokens": tokens,
+            "tokens_human": human_token_count(tokens),
+            "status": status,
+        }
+        sessions.append(entry)
+        if status == "running":
+            active_count += 1
+
+    return {
+        "active_count": active_count,
+        "total_visible": len(sessions),
+        "sessions": sessions,
+        "last_updated": NOW_ISO,
+    }
+
+
+def human_token_count(tokens):
+    if tokens >= 1_000_000:
+        return "%.1fM" % (tokens / 1_000_000)
+    if tokens >= 1_000:
+        return "%dK" % (tokens / 1_000)
+    return str(tokens)
 
 
 # ── 2. Token Watch ─────────────────────────────────────────────────────
@@ -953,6 +1021,8 @@ def main():
           f"Disk: {disk.get('used_percent', '?')}% | "
           f"Temp: {temp.get('display', '?')} | "
           f"Net: {net.get('total_in_human', '?')} in / {net.get('total_out_human', '?')} out / {net.get('active_connections', '?')} conns")
+    sessions = health.get("sessions", {})
+    print(f"   Sessions: {sessions.get('active_count', 0)} active, {sessions.get('total_visible', 0)} visible")
 
     print("📊 Collecting token usage...")
     token_usage = collect_token_usage()

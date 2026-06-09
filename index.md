@@ -162,6 +162,22 @@ permalink: /
     </div>
   </a>
 
+  {% comment %} ── Active Sessions card ── {% endcomment %}
+  {% assign sess = h.sessions | default: nil %}
+  {% assign sess_active = sess.active_count | default: 0 %}
+  {% assign sess_total = sess.total_visible | default: 0 %}
+  <a href="{{ '/health' | relative_url }}" class="compact-card" id="sessions-card">
+    <div class="compact-card-header">
+      <span class="compact-card-icon">💬</span>
+      <span class="compact-card-title">Active Sessions</span>
+    </div>
+    <div class="compact-card-stats">
+      <span><span class="cs-label">Active</span> <span id="cc-sess-active" class="cs-value">{{ sess_active }}</span></span>
+      <span><span class="cs-label">Recent</span> <span id="cc-sess-total" class="cs-value">{{ sess_total }}</span></span>
+      <span><span class="cs-label">Model</span> <span id="cc-sess-model" class="cs-value">&mdash;</span></span>
+    </div>
+  </a>
+
   {% comment %} ── Processes card ── {% endcomment %}
   {% assign procs = h.processes | default: nil %}
   {% assign top_cpu_name = "—" %}

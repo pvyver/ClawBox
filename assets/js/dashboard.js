@@ -199,6 +199,31 @@
       })
       .catch(function () {});
 
+    // Active sessions (from health.json sessions key)
+    fetch(bust(basePath + 'health.json'))
+      .then(function (r) { return r.ok ? r.json() : Promise.reject(); })
+      .then(function (h) {
+        var ss = h.sessions || {};
+        var active = ss.active_count || 0;
+        var total = ss.total_visible || 0;
+        setText('cc-sess-active', active);
+        setText('cc-sess-total', total);
+
+        // Show the model of the first active session
+        var sessions = ss.sessions || [];
+        var modelLabel = '\u2014';
+        for (var i = 0; i < sessions.length; i++) {
+          if (sessions[i].status === 'running') {
+            var m = sessions[i].model || '';
+            modelLabel = m.replace('deepseek/', 'DS ').replace('ollama/', '');
+            if (modelLabel.length > 15) modelLabel = modelLabel.substr(0, 15) + '\u2026';
+            break;
+          }
+        }
+        setText('cc-sess-model', modelLabel);
+      })
+      .catch(function () {});
+
     // Token usage
     fetch(bust(basePath + 'token-usage.json'))
       .then(function (r) { return r.ok ? r.json() : Promise.reject(); })
