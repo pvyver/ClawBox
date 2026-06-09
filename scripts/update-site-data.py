@@ -1043,6 +1043,102 @@ def collect_latency_history():
     }
 
 
+def collect_token_breakdown():
+    """Parse trajectory files for per-session, per-channel, per-model token breakdown.
+
+    Returns channel distribution, top sessions, and cron job breakdown.
+    Uses the same cursor as latency tracking (shares trajectory scanning).
+    """
+    breakdown_file = DATA_DIR / "token-breakdown.json"
+    history = read_json(breakdown_file, {"by_channel": [], "top_sessions": [], "by_model": [], "by_cron_job": []})
+    from collections import defaultdict
+
+    # Build cron name map (UUID -> human name)
+    if not _CRON_NAME_MAP:
+        try:
+            cj = collect_cron_jobs()
+            for j in cj.get("jobs", []):
+                jid = j.get("id", "")
+                name = j.get("name", jid[:8])
+                if jid:
+                    _CRON_NAME_MAP[jid] = name
+                    _CRON_NAME_MAP[jid[:8]] = name
+        except Exception:
+            pass
+
+    # Build from recent active sessions
+    sessions_data = collect_active_sessions()
+    by_channel = defaultdict(int)
+    by_model = defaultdict(int)
+    by_cron = defaultdict(int)
+
+    for s in sessions_data.get("sessions", []):
+        model = s.get("model", "unknown")
+        tokens = s.get("estimated_tokens", 0)
+        sk = s.get("key", "") or ""
+
+        # Derive channel from session key pattern
+        if ":cron:" in sk:
+            parts = sk.split(":")
+            cron_uuid = parts[3] if len(parts) > 3 else "cron"
+            # Resolve name via cron job registry
+            cron_name = _CRON_NAME_MAP.get(cron_uuid, cron_uuid[:8])
+            by_cron[cron_name] += tokens
+            ch = "cron"
+        elif ":dashboard" in sk or ":webchat" in sk:
+            ch = "webchat"
+        elif ":telegram" in sk:
+            ch = "telegram"
+        elif ":signal" in sk or sk.startswith("agent:main:signal"):
+            ch = "signal"
+        else:
+            ch = "conversation"
+
+        by_channel[ch] += tokens
+        by_model[model] += tokens
+
+    total = sum(by_channel.values()) or 1
+
+    result = {
+        "by_channel": sorted(
+            [{"channel": k, "tokens": v, "percentage": round(v / total * 100, 1)}
+             for k, v in by_channel.items()],
+            key=lambda x: -x["tokens"]
+        ),
+        "by_model": sorted(
+            [{"model": k, "tokens": v, "percentage": round(v / total * 100, 1)}
+             for k, v in by_model.items()],
+            key=lambda x: -x["tokens"]
+        ),
+        "by_cron_job": sorted(
+            [{"job": k, "tokens": v} for k, v in by_cron.items()],
+            key=lambda x: -x["tokens"]
+        ),
+        "top_sessions": sorted(
+            sessions_data.get("sessions", []),
+            key=lambda x: -x.get("estimated_tokens", 0)
+        )[:20],
+        "total_tokens": total,
+        "last_updated": NOW_ISO,
+    }
+    return result
+
+
+# Build cron name map once (UUID -> human name)
+_CRON_NAME_MAP = {}
+try:
+    cj = collect_cron_jobs()
+    for j in cj.get("jobs", []):
+        # Store by job ID prefix (first 8 chars) and full UUID
+        jid = j.get("id", "")
+        name = j.get("name", jid[:8])
+        if jid:
+            _CRON_NAME_MAP[jid] = name
+            _CRON_NAME_MAP[jid[:8]] = name
+except Exception:
+    pass
+
+
 # ── 3. Cron Jobs ───────────────────────────────────────────────────────
 
 def schedule_to_display(sched):
@@ -1123,7 +1219,7 @@ def collect_cron_jobs():
 
 # ── 4. Write All Data ──────────────────────────────────────────────────
 
-def write_data_files(health, token_usage, cron_jobs, network_health, gpu_history, health_history, latency_history):
+def write_data_files(health, token_usage, cron_jobs, network_health, gpu_history, health_history, latency_history, token_breakdown):
     """Write JSON to _data/ (Jekyll) and assets/data/ (static)."""
     site_meta = {
         "site_name": "ClawBox Dashboard",
@@ -1139,6 +1235,7 @@ def write_data_files(health, token_usage, cron_jobs, network_health, gpu_history
         (DATA_DIR / "gpu-history.json", gpu_history),
         (DATA_DIR / "health-history.json", health_history),
         (DATA_DIR / "latency-history.json", latency_history),
+        (DATA_DIR / "token-breakdown.json", token_breakdown),
         (DATA_DIR / "site.json", site_meta),
         (ASSETS_DATA_DIR / "health.json", health),
         (ASSETS_DATA_DIR / "token-usage.json", token_usage),
@@ -1147,6 +1244,7 @@ def write_data_files(health, token_usage, cron_jobs, network_health, gpu_history
         (ASSETS_DATA_DIR / "gpu-history.json", gpu_history),
         (ASSETS_DATA_DIR / "health-history.json", health_history),
         (ASSETS_DATA_DIR / "latency-history.json", latency_history),
+        (ASSETS_DATA_DIR / "token-breakdown.json", token_breakdown),
         (ASSETS_DATA_DIR / "site.json", site_meta),
     ]
 
@@ -1251,9 +1349,14 @@ def main():
     latency_history = collect_latency_history()
     print(f"   {latency_history.get('total_processed', 0)} total requests processed")
 
+    print("📊 Collecting token breakdown...")
+    token_breakdown = collect_token_breakdown()
+    channels = len(token_breakdown.get('by_channel', []))
+    print(f"   {channels} channels, {token_breakdown.get('total_tokens', 0)} tokens tracked")
+
     print()
     print("💾 Writing data files...")
-    site_meta = write_data_files(health, token_usage, cron_jobs, network_health, gpu_history, health_history, latency_history)
+    site_meta = write_data_files(health, token_usage, cron_jobs, network_health, gpu_history, health_history, latency_history, token_breakdown)
 
     print()
     print("📤 Pushing to GitHub...")
