@@ -1,58 +1,58 @@
 {
-  "timestamp": "2026-06-09T14:35:57.971078+00:00",
+  "timestamp": "2026-06-09T15:08:40.611765+00:00",
   "cpu": {
     "cores": 6,
     "model": "Cortex-A78AE",
-    "load_1m": 0.23,
-    "load_5m": 0.07,
+    "load_1m": 0.34,
+    "load_5m": 0.19,
     "load_15m": 0.07,
     "runnable": 1,
-    "total_processes": 737
+    "total_processes": 745
   },
   "memory": {
     "total_bytes": 7976779776,
-    "used_bytes": 6077620224,
-    "free_bytes": 226131968,
-    "available_bytes": 1747099648,
-    "used_percent": 76.2,
+    "used_bytes": 6549164032,
+    "free_bytes": 1227358208,
+    "available_bytes": 1275506688,
+    "used_percent": 82.1,
     "total_human": "7.4 GB",
-    "used_human": "5.7 GB"
+    "used_human": "6.1 GB"
   },
   "disk": {
     "total_bytes": 501386080256,
-    "used_bytes": 63372857344,
-    "free_bytes": 438013222912,
+    "used_bytes": 63375114240,
+    "free_bytes": 438010966016,
     "used_percent": 12.6,
     "total_human": "467.0 GB",
     "used_human": "59.0 GB",
     "free_human": "407.9 GB"
   },
   "temperature": {
-    "value_celsius": 64.3,
-    "display": "64.3\u00b0C"
+    "value_celsius": 66.1,
+    "display": "66.1\u00b0C"
   },
   "gpu": {
-    "temperature_celsius": 63.406,
+    "temperature_celsius": 65.312,
     "usage_percent": 0,
-    "raw": "06-09-2026 14:35:58 RAM 5796/7607MB (lfb 20x2MB) SWAP 1414/3804MB (cached 2MB) CPU [0%@1728,1%@1728,0%@1728,0%@1728,0%@1728,0%@1728] GR3D_FREQ 0% cpu@63.031C soc2@61.625C soc0@62.562C gpu@63.406C tj@64.125C soc1@64.125C VDD_IN 7089mW/7089mW VDD_CPU_GPU_CV 1717mW/1717mW VDD_SOC 2346mW/2346mW"
+    "raw": "06-09-2026 15:08:41 RAM 6244/7607MB (lfb 5x4MB) SWAP 1905/3804MB (cached 1MB) CPU [3%@1728,2%@1728,10%@1728,0%@1728,0%@1728,0%@1728] GR3D_FREQ 0% cpu@64.968C soc2@63.562C soc0@64.125C gpu@65.312C tj@65.875C soc1@65.875C VDD_IN 7586mW/7586mW VDD_CPU_GPU_CV 2065mW/2065mW VDD_SOC 2420mW/2420mW"
   },
   "uptime": {
-    "seconds": 463802.27,
-    "display": "5d 8h 50m"
+    "seconds": 465764.91,
+    "display": "5d 9h 22m"
   },
   "power_thermal": {
     "power": {
-      "vdd_in_watts": 6.96,
-      "vdd_cpu_watts": 1.6,
-      "vdd_gpu_watts": 2.36,
-      "total_watts": 10.92,
+      "vdd_in_watts": 7.24,
+      "vdd_cpu_watts": 1.76,
+      "vdd_gpu_watts": 2.4,
+      "total_watts": 11.4,
       "throttled": false,
       "throttle_reason": ""
     },
     "thermal": {
       "fan_speed_pct": 52,
-      "fan_rpm": 2977,
-      "junction_temp": 63.9,
+      "fan_rpm": 3094,
+      "junction_temp": 65.9,
       "throttle_temp": 85.0
     }
   },
@@ -97,12 +97,22 @@
   "processes": {
     "by_cpu": [
       {
-        "pid": 447005,
+        "pid": 447381,
         "name": "ollama",
         "cmd": "/usr/local/lib/ollama/llama-server --model /usr/share/ollama",
-        "cpu_percent": 8.5,
-        "mem_percent": 60.9,
+        "cpu_percent": 6.8,
+        "mem_percent": 62.7,
         "user": "ollama",
+        "is_claw": false,
+        "severity": "ok"
+      },
+      {
+        "pid": 447474,
+        "name": "cla",
+        "cmd": "/home/clawbox/.bun/bin/bun run /home/clawbox/clawbox/mcp/cla",
+        "cpu_percent": 4.4,
+        "mem_percent": 0.1,
+        "user": "clawbox",
         "is_claw": false,
         "severity": "ok"
       },
@@ -110,17 +120,17 @@
         "pid": 446825,
         "name": "openclaw",
         "cmd": "openclaw",
-        "cpu_percent": 3.4,
-        "mem_percent": 4.8,
+        "cpu_percent": 3.2,
+        "mem_percent": 3.4,
         "user": "clawbox",
         "is_claw": true,
         "severity": "ok"
       },
       {
-        "pid": 447051,
+        "pid": 447507,
         "name": "update-site-data.py",
         "cmd": "python3 scripts/update-site-data.py",
-        "cpu_percent": 3.0,
+        "cpu_percent": 2.0,
         "mem_percent": 0.1,
         "user": "clawbox",
         "is_claw": true,
@@ -130,30 +140,20 @@
         "pid": 445352,
         "name": "ollama",
         "cmd": "/usr/local/bin/ollama serve",
-        "cpu_percent": 2.0,
-        "mem_percent": 0.4,
+        "cpu_percent": 1.9,
+        "mem_percent": 0.1,
         "user": "ollama",
-        "is_claw": false,
-        "severity": "ok"
-      },
-      {
-        "pid": 446977,
-        "name": "cla",
-        "cmd": "/home/clawbox/.bun/bin/bun run /home/clawbox/clawbox/mcp/cla",
-        "cpu_percent": 1.0,
-        "mem_percent": 0.7,
-        "user": "clawbox",
         "is_claw": false,
         "severity": "ok"
       }
     ],
     "by_mem": [
       {
-        "pid": 447005,
+        "pid": 447381,
         "name": "ollama",
         "cmd": "/usr/local/lib/ollama/llama-server --model /usr/share/ollama",
-        "cpu_percent": 8.5,
-        "mem_percent": 60.9,
+        "cpu_percent": 6.8,
+        "mem_percent": 62.7,
         "user": "ollama",
         "is_claw": false,
         "severity": "ok"
@@ -162,17 +162,17 @@
         "pid": 446825,
         "name": "openclaw",
         "cmd": "openclaw",
-        "cpu_percent": 3.4,
-        "mem_percent": 4.8,
+        "cpu_percent": 3.2,
+        "mem_percent": 3.4,
         "user": "clawbox",
         "is_claw": true,
         "severity": "ok"
       },
       {
-        "pid": 446977,
-        "name": "cla",
-        "cmd": "/home/clawbox/.bun/bin/bun run /home/clawbox/clawbox/mcp/cla",
-        "cpu_percent": 1.0,
+        "pid": 409153,
+        "name": "next-server",
+        "cmd": "next-server (v16.1.6)",
+        "cpu_percent": 0.1,
         "mem_percent": 0.7,
         "user": "clawbox",
         "is_claw": false,
@@ -183,23 +183,23 @@
         "name": "gnome-shell",
         "cmd": "/usr/bin/gnome-shell",
         "cpu_percent": 0.1,
-        "mem_percent": 0.7,
+        "mem_percent": 0.5,
         "user": "clawbox",
         "is_claw": false,
         "severity": "ok"
       },
       {
-        "pid": 446876,
+        "pid": 447202,
         "name": "cla",
         "cmd": "/home/clawbox/.bun/bin/bun run /home/clawbox/clawbox/mcp/cla",
-        "cpu_percent": 0.1,
-        "mem_percent": 0.7,
+        "cpu_percent": 0.2,
+        "mem_percent": 0.4,
         "user": "clawbox",
         "is_claw": false,
         "severity": "ok"
       }
     ],
     "total_processes": 353,
-    "timestamp": "2026-06-09T14:35:57.971078+00:00"
+    "timestamp": "2026-06-09T15:08:40.611765+00:00"
   }
 }
