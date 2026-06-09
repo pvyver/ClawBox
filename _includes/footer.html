@@ -5,9 +5,21 @@
         <p>&copy; {{ site.time | date: '%Y' }} <a href="{{ site.social.github | prepend: 'https://github.com/' }}">{{ site.author.name }}</a></p>
         <p class="footer-tagline">{{ site.tagline }}</p>
       </div>
-      <div class="footer-status">
-        <span class="status-dot"></span>
-        <span class="status-text" id="footer-status">ClawBox is running</span>
+      <div class="footer-controls">
+        <div class="refresh-control">
+          <label class="refresh-label" for="refresh-interval-select">⏳ Live:</label>
+          <select id="refresh-interval-select" class="refresh-select" aria-label="Auto-refresh interval">
+            <option value="5000">5s</option>
+            <option value="15000" selected>15s</option>
+            <option value="30000">30s</option>
+            <option value="60000">1m</option>
+            <option value="0">Off</option>
+          </select>
+        </div>
+        <div class="footer-status">
+          <span class="status-dot"></span>
+          <span class="status-text" id="footer-status">ClawBox is running</span>
+        </div>
       </div>
     </div>
   </div>

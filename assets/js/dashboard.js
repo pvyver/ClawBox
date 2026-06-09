@@ -10,6 +10,37 @@
     ? '/ClawBox/assets/data/'
     : '/assets/data/';
 
+  // ── Configurable refresh interval ────────────────────────────────
+  var REFRESH_KEY = 'clawbox-refresh-interval';
+  var REFRESH_DEFAULTS = { label: '15s', ms: 15000 };
+  var REFRESH_OPTIONS = [
+    { label: '5s',  ms:  5000 },
+    { label: '15s', ms: 15000 },
+    { label: '30s', ms: 30000 },
+    { label: '1m',  ms: 60000 },
+    { label: 'Off', ms:     0 },
+  ];
+
+  function getRefreshInterval() {
+    try {
+      var saved = localStorage.getItem(REFRESH_KEY);
+      if (saved !== null) {
+        var ms = parseInt(saved, 10);
+        if (!isNaN(ms) && ms >= 0) return ms;
+      }
+    } catch (e) {}
+    return REFRESH_DEFAULTS.ms;
+  }
+
+  function setRefreshInterval(ms) {
+    try { localStorage.setItem(REFRESH_KEY, String(ms)); } catch (e) {}
+  }
+
+  function cacheBust(url) {
+    var sep = url.indexOf('?') === -1 ? '?' : '&';
+    return url + sep + 't=' + Date.now();
+  }
+
   function setText(id, text) {
     var el = document.getElementById(id);
     if (el) el.textContent = text || '\u2014';
@@ -33,11 +64,56 @@
 
   function round1(v) { return Math.round(v * 10) / 10; }
 
+  // ── Pulse animation trigger ────────────────────────────────────────
+  var pulseTimer = null;
+  var PULSE_DURATION = 600;
+
+  function triggerRefreshPulse() {
+    var bar = document.getElementById('stats-bar');
+    if (!bar) return;
+    bar.classList.remove('refresh-pulse');
+    // Force reflow so the class re-triggers the animation
+    void bar.offsetWidth;
+    bar.classList.add('refresh-pulse');
+    if (pulseTimer) clearTimeout(pulseTimer);
+    pulseTimer = setTimeout(function () {
+      bar.classList.remove('refresh-pulse');
+    }, PULSE_DURATION);
+  }
+
+  // ── Real-time last-updated clock ───────────────────────────────────
+  var lastUpdated = null;
+  var clockInterval = null;
+
+  function updateLastUpdatedClock() {
+    var el = document.getElementById('live-updated');
+    if (!el) return;
+    if (!lastUpdated) return;
+    var elapsed = Math.floor((Date.now() - lastUpdated) / 1000);
+    var text;
+    if (elapsed < 3) {
+      text = 'just now';
+    } else if (elapsed < 60) {
+      text = elapsed + 's ago';
+    } else {
+      var min = Math.floor(elapsed / 60);
+      var sec = elapsed % 60;
+      text = min + 'm ' + sec + 's ago';
+    }
+    el.textContent = text;
+  }
+
+  function startClock() {
+    if (clockInterval) clearInterval(clockInterval);
+    updateLastUpdatedClock();
+    clockInterval = setInterval(updateLastUpdatedClock, 1000);
+  }
+
   // ── Fetch all data ───────────────────────────────────────────────────
 
   function fetchAll() {
     // Site meta (timestamp)
-    fetch(basePath + 'site.json')
+    fetch(cacheBust(basePath + 'site.json'))
       .then(function (r) { return r.ok ? r.json() : Promise.reject(); })
       .then(function (d) {
         var ts = d.update_timestamp || '';
@@ -46,7 +122,7 @@
       .catch(function () {});
 
     // Health data
-    fetch(basePath + 'health.json')
+    fetch(cacheBust(basePath + 'health.json'))
       .then(function (r) { return r.ok ? r.json() : Promise.reject(); })
       .then(function (h) {
         var temp = h.temperature || {};
@@ -99,7 +175,7 @@
       .catch(function () {});
 
     // Token usage
-    fetch(basePath + 'token-usage.json')
+    fetch(cacheBust(basePath + 'token-usage.json'))
       .then(function (r) { return r.ok ? r.json() : Promise.reject(); })
       .then(function (tu) {
         var t = tu.today || {};
@@ -116,7 +192,7 @@
       .catch(function () {});
 
     // Network health
-    fetch(basePath + 'network-health.json')
+    fetch(cacheBust(basePath + 'network-health.json'))
       .then(function (r) { return r.ok ? r.json() : Promise.reject(); })
       .then(function (nh) {
         var ok = nh.services_ok || 0;
@@ -152,7 +228,7 @@
       .catch(function () {});
 
     // Cron jobs
-    fetch(basePath + 'cron-jobs.json')
+    fetch(cacheBust(basePath + 'cron-jobs.json'))
       .then(function (r) { return r.ok ? r.json() : Promise.reject(); })
       .then(function (cj) {
         var count = cj.total || 0;
@@ -231,6 +307,13 @@
         }
       })
       .catch(function () {});
+
+    // Trigger pulse animation
+    triggerRefreshPulse();
+
+    // Update real-time clock reference
+    lastUpdated = Date.now();
+    startClock();
   }
 
   // ── Live Data Client (SSE + polling fallback) ─────────────────────
@@ -242,8 +325,9 @@
     this.pollTimer = null;
     this.retryDelay = 1000;
     this.maxRetry = 30000;
-    this.pollInterval = 10000;
+    this.pollInterval = getRefreshInterval();
     this.usingSse = false;
+    this._hidden = false;
 
     // Auto-detect SSE server — check common local IPs
     this._detectServer();
@@ -384,28 +468,85 @@
     this.retryDelay = 1000; // Reset on successful connect
   };
 
-  LiveDataClient.prototype._fallback = function () {
+  LiveDataClient.prototype._startPolling = function () {
     var self = this;
-    this.usingSse = false;
-    // Poll every pollInterval
-    fetchAll(); // immediate first fetch
     if (this.pollTimer) clearInterval(this.pollTimer);
+    this.pollInterval = getRefreshInterval();
+
+    if (this.pollInterval <= 0) {
+      // Polling is disabled — just show the mode indicator
+      self._updatePollIndicator();
+      return;
+    }
+
     this.pollTimer = setInterval(function () {
+      if (self._hidden) return; // Skip while tab is hidden
       fetchAll();
     }, this.pollInterval);
 
-    // Show indicator that we're polling
-    var ts = document.getElementById('live-updated');
-    if (ts) {
+    self._updatePollIndicator();
+  };
+
+  LiveDataClient.prototype._updatePollIndicator = function () {
+    var interval = getRefreshInterval();
+    var indicator = document.getElementById('live-mode');
+    var container = document.getElementById('live-updated');
+    if (!container) return;
+
+    if (interval <= 0) {
+      if (indicator) indicator.textContent = '\u23F3 polling off';
+      else {
+        var el = document.createElement('small');
+        el.style.display = 'block';
+        el.style.fontSize = '0.75em';
+        el.style.opacity = '0.6';
+        el.id = 'live-mode';
+        el.textContent = '\u23F3 polling off';
+        container.parentNode.appendChild(el);
+      }
+      return;
+    }
+
+    var label = '15s';
+    for (var i = 0; i < REFRESH_OPTIONS.length; i++) {
+      if (REFRESH_OPTIONS[i].ms === interval) {
+        label = REFRESH_OPTIONS[i].label;
+        break;
+      }
+    }
+
+    if (indicator) {
+      indicator.textContent = '\u23F3 every ' + label;
+    } else {
       var note = document.createElement('small');
       note.style.display = 'block';
       note.style.fontSize = '0.75em';
       note.style.opacity = '0.6';
       note.id = 'live-mode';
-      if (!document.getElementById('live-mode')) {
-        ts.parentNode.appendChild(note);
+      note.textContent = '\u23F3 every ' + label;
+      container.parentNode.appendChild(note);
+    }
+  };
+
+  LiveDataClient.prototype._fallback = function () {
+    var self = this;
+    this.usingSse = false;
+    // Poll according to config
+    fetchAll(); // immediate first fetch
+    this._startPolling();
+
+    // Page Visibility API — pause when hidden, resume when visible
+    function onVisibilityChange() {
+      self._hidden = document.hidden || document.webkitHidden;
+      if (!self._hidden && self.pollTimer) {
+        // Tab became visible again — do an immediate refresh
+        fetchAll();
       }
-      note.textContent = '\u23F3 polling every ' + (self.pollInterval / 1000) + 's';
+    }
+
+    if (typeof document.addEventListener !== 'undefined') {
+      document.addEventListener('visibilitychange', onVisibilityChange);
+      document.addEventListener('webkitvisibilitychange', onVisibilityChange);
     }
   };
 
@@ -589,7 +730,37 @@
         }
       } catch (e) {}
     }
+
+    // Trigger pulse and clock on SSE data arrival too
+    triggerRefreshPulse();
+    lastUpdated = Date.now();
+    startClock();
   };
+
+  // ── Refresh interval config sync ─────────────────────────────────
+
+  function applyRefreshInterval(ms) {
+    setRefreshInterval(ms);
+    if (liveClient) {
+      liveClient.pollInterval = getRefreshInterval();
+      if (liveClient.pollTimer) clearInterval(liveClient.pollTimer);
+      liveClient._startPolling();
+    }
+    // Update the dropdown UI
+    var dropdown = document.getElementById('refresh-interval-select');
+    if (dropdown) {
+      dropdown.value = String(ms);
+    }
+    // Fire a custom event so other components can react
+    var evt = new CustomEvent('clawbox:refresh-interval-change', { detail: { ms: ms } });
+    document.dispatchEvent(evt);
+  }
+
+  // Expose globally for the footer dropdown
+  window.clawbox = window.clawbox || {};
+  window.clawbox.refreshOptions = REFRESH_OPTIONS;
+  window.clawbox.getRefreshInterval = getRefreshInterval;
+  window.clawbox.applyRefreshInterval = applyRefreshInterval;
 
   // ── Init ──────────────────────────────────────────────────────────
 
@@ -598,6 +769,12 @@
   function init() {
     fetchAll(); // Initial fetch from GitHub Pages
     liveClient = new LiveDataClient();
+
+    // Sync initial interval value into any dropdown that already exists
+    var dropdown = document.getElementById('refresh-interval-select');
+    if (dropdown) {
+      dropdown.value = String(getRefreshInterval());
+    }
   }
 
   if (document.readyState === 'loading') {

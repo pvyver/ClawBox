@@ -190,5 +190,30 @@
     });
   })();
 
+  // ⏳ Refresh interval dropdown (footer)
+  (function initRefreshInterval() {
+    var select = document.getElementById('refresh-interval-select');
+    if (!select) return;
+
+    // Restore saved preference
+    if (window.clawbox && window.clawbox.getRefreshInterval) {
+      select.value = String(window.clawbox.getRefreshInterval());
+    }
+
+    select.addEventListener('change', function () {
+      var ms = parseInt(this.value, 10);
+      if (!isNaN(ms)) {
+        if (window.clawbox && window.clawbox.applyRefreshInterval) {
+          window.clawbox.applyRefreshInterval(ms);
+        }
+      }
+    });
+
+    // React to external interval changes
+    document.addEventListener('clawbox:refresh-interval-change', function (e) {
+      select.value = String(e.detail.ms);
+    });
+  })();
+
   console.log('🦞 ClawBox dashboard loaded \u2014', nowISO());
 })();
