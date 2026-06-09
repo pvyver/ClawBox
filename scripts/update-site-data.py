@@ -356,6 +356,139 @@ def collect_services():
     return result
 
 
+# ── Network Traffic Stats ──────────────────────────────────────────────
+NET_TRAFFIC_STATE_FILE = WORKSPACE / "data" / "network-traffic-state.json"
+
+
+def collect_network_traffic():
+    """Read /proc/net/dev for per-interface traffic and /proc/net/tcp for
+    active connection count. Also capture interface metadata from `ip addr`.
+
+    Returns a dict suitable for embedding in health.json under a `network` key.
+    """
+    # ── Per-interface bytes from /proc/net/dev ──
+    interfaces = []
+    try:
+        with open("/proc/net/dev") as f:
+            lines = f.readlines()
+    except OSError:
+        lines = []
+
+    # Lines look like:
+    #   eth0: 123456  789  0  0  0  0  0  0  654321  456  0  0  0  0  0  0
+    for line in lines:
+        line = line.strip()
+        if not line or line.startswith("Inter-|") or line.startswith(" face"):
+            continue
+        parts = line.split()
+        iface = parts[0].rstrip(":")
+        if iface == "lo":
+            continue
+        try:
+            rx_bytes = int(parts[1])
+            tx_bytes = int(parts[9])
+            interfaces.append({
+                "name": iface,
+                "rx_bytes": rx_bytes,
+                "tx_bytes": tx_bytes,
+            })
+        except (ValueError, IndexError):
+            continue
+
+    # ── Active TCP connections from /proc/net/tcp ──
+    active_connections = 0
+    try:
+        with open("/proc/net/tcp") as f:
+            for line in f:
+                line = line.strip()
+                if not line or line.startswith("sl"):
+                    continue
+                parts = line.split()
+                if len(parts) >= 4:
+                    # State is numeric in /proc/net/tcp; 01 = ESTABLISHED
+                    if parts[3] == "01":
+                        active_connections += 1
+    except OSError:
+        pass
+
+    # Also check /proc/net/tcp6
+    try:
+        with open("/proc/net/tcp6") as f:
+            for line in f:
+                line = line.strip()
+                if not line or line.startswith("sl"):
+                    continue
+                parts = line.split()
+                if len(parts) >= 4 and parts[3] == "01":
+                    active_connections += 1
+    except OSError:
+        pass
+
+    # ── IP addresses via `ip addr` ──
+    rc, ip_out, _ = run_cmd(["ip", "-brief", "addr", "show"], timeout=5)
+    ip_map = {}
+    if rc == 0:
+        # lo               UNKNOWN        127.0.0.1/8
+        # eth0             UP             192.168.0.122/24
+        for line in ip_out.split("\n"):
+            parts = line.split()
+            if len(parts) >= 3:
+                iface = parts[0]
+                state = parts[1]
+                ips = [p for p in parts[2:] if "/" in p]
+                ip_map[iface] = {
+                    "state": state,
+                    "ips": [ip.split("/")[0] for ip in ips],
+                }
+
+    # Merge IP data into interfaces
+    for iface_info in interfaces:
+        name = iface_info["name"]
+        meta = ip_map.get(name, {})
+        iface_info["state"] = meta.get("state", "unknown")
+        iface_info["ip"] = meta.get("ips", [None])[0] or ""
+        # Mark loopback (just in case it got through)
+        if name == "lo":
+            iface_info["state"] = "unknown"
+
+    # ── Delta-based throughput rate ──
+    state = read_json(NET_TRAFFIC_STATE_FILE, {})
+    prev = state.get("interfaces", {})
+    now_seconds = NOW.timestamp()
+    elapsed = now_seconds - state.get("timestamp", now_seconds)
+
+    for iface_info in interfaces:
+        name = iface_info["name"]
+        prev_iface = prev.get(name, {})
+        dt = max(elapsed, 1.0)
+        drx = iface_info["rx_bytes"] - prev_iface.get("rx_bytes", iface_info["rx_bytes"])
+        dtx = iface_info["tx_bytes"] - prev_iface.get("tx_bytes", iface_info["tx_bytes"])
+        iface_info["rx_rate"] = round(max(drx / dt, 0))
+        iface_info["tx_rate"] = round(max(dtx / dt, 0))
+        iface_info["total_in_human"] = bytes_fmt(iface_info["rx_bytes"])
+        iface_info["total_out_human"] = bytes_fmt(iface_info["tx_bytes"])
+
+    # Persist state for delta on next run
+    new_state = {
+        "timestamp": now_seconds,
+        "interfaces": {iface["name"]: iface for iface in interfaces},
+    }
+    write_json(NET_TRAFFIC_STATE_FILE, new_state)
+
+    # ── Aggregate totals ──
+    total_in = sum(iface["rx_bytes"] for iface in interfaces)
+    total_out = sum(iface["tx_bytes"] for iface in interfaces)
+
+    return {
+        "interfaces": interfaces,
+        "active_connections": active_connections,
+        "total_in_human": bytes_fmt(total_in),
+        "total_out_human": bytes_fmt(total_out),
+        "total_in_bytes": total_in,
+        "total_out_bytes": total_out,
+    }
+
+
 # ── Network Health State ────────────────────────────────────────────────
 NETWORK_HEALTH_STATE_FILE = WORKSPACE / "data" / "network-health-state.json"
 PING_COUNT = 3
@@ -580,6 +713,7 @@ def collect_system_stats():
         "power_thermal": collect_power_thermal(),
         "services": collect_services(),
         "processes": collect_processes(),
+        "network": collect_network_traffic(),
     }
 
 
@@ -813,10 +947,12 @@ def main():
     mem = health["memory"]
     disk = health["disk"]
     temp = health["temperature"]
+    net = health.get("network", {})
     print(f"   CPU: {cpu.get('load_1m', '?'):.2f} | "
           f"Mem: {mem.get('used_percent', '?')}% | "
           f"Disk: {disk.get('used_percent', '?')}% | "
-          f"Temp: {temp.get('display', '?')}")
+          f"Temp: {temp.get('display', '?')} | "
+          f"Net: {net.get('total_in_human', '?')} in / {net.get('total_out_human', '?')} out / {net.get('active_connections', '?')} conns")
 
     print("📊 Collecting token usage...")
     token_usage = collect_token_usage()

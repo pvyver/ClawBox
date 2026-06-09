@@ -151,6 +151,17 @@
       })
       .catch(function () {});
 
+    // Network traffic (from health.json network key)
+    fetch(basePath + 'health.json')
+      .then(function (r) { return r.ok ? r.json() : Promise.reject(); })
+      .then(function (h) {
+        var net = h.network || {};
+        setText('cc-nt-in', net.total_in_human || '\u2014');
+        setText('cc-nt-out', net.total_out_human || '\u2014');
+        setText('cc-nt-conns', net.active_connections || '\u2014');
+      })
+      .catch(function () {});
+
     // Cron jobs
     fetch(basePath + 'cron-jobs.json')
       .then(function (r) { return r.ok ? r.json() : Promise.reject(); })

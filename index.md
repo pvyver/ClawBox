@@ -116,6 +116,23 @@ permalink: /
     </div>
   </a>
 
+  {% comment %} ── Network Traffic card ── {% endcomment %}
+  {% assign nt = h.network | default: nil %}
+  {% assign nt_in = nt.total_in_human | default: "\u2014" %}
+  {% assign nt_out = nt.total_out_human | default: "\u2014" %}
+  {% assign nt_conns = nt.active_connections | default: "\u2014" %}
+  <a href="{{ '/health' | relative_url }}" class="compact-card" id="net-traffic-card">
+    <div class="compact-card-header">
+      <span class="compact-card-icon">📶</span>
+      <span class="compact-card-title">Network Traffic</span>
+    </div>
+    <div class="compact-card-stats">
+      <span><span class="cs-label">RX In</span> <span id="cc-nt-in" class="cs-value">{{ nt_in }}</span></span>
+      <span><span class="cs-label">TX Out</span> <span id="cc-nt-out" class="cs-value">{{ nt_out }}</span></span>
+      <span><span class="cs-label">Conns</span> <span id="cc-nt-conns" class="cs-value">{{ nt_conns }}</span></span>
+    </div>
+  </a>
+
   {% comment %} ── Network Health card ── {% endcomment %}
   {% assign nh = site.data.network-health | default: nil %}
   {% assign nh_ok = nh.services_ok | default: 0 %}
