@@ -28,6 +28,44 @@
 }
 
 /* ═══ Dark theme (default) ═══ */
+/* ── Pulse animation for stats bar auto-refresh ── */
+@keyframes pulseGlow {
+  0% { box-shadow: 0 0 0 0 rgba(249, 115, 22, 0.4); }
+  70% { box-shadow: 0 0 0 8px rgba(249, 115, 22, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(249, 115, 22, 0); }
+}
+.stats-bar.pulse {
+  animation: pulseGlow 0.6s ease-out;
+}
+@media (prefers-reduced-motion: reduce) {
+  .stats-bar.pulse { animation: none; }
+}
+
+/* ── Poll interval toggle ── */
+.poll-control {
+  display: inline-block;
+  margin-left: 8px;
+}
+.poll-toggle {
+  background: none;
+  border: 1px solid var(--accent-dim);
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 0.75em;
+  padding: 2px 8px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: var(--transition);
+}
+.poll-toggle:hover {
+  background: var(--accent-glow);
+}
+.poll-toggle.poll-off {
+  opacity: 0.5;
+  border-color: var(--danger);
+  color: var(--danger);
+}
+
 :root,
 [data-theme="dark"] {
   --bg-primary: #1a1a2e;
