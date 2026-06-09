@@ -52,15 +52,17 @@ def run(cmd, check=True, timeout=120):
 
 
 def gh_api(endpoint, method="GET", data=None):
-    cmd = f"gh api /repos/{GH_REPO}/{endpoint}"
+    args = ["gh", "api", f"/repos/{GH_REPO}/{endpoint}"]
     if method == "POST":
-        cmd += " --method POST"
-        if data:
-            cmd += " --input -"
+        args.extend(["--method", "POST"])
     try:
+        stdin_data = j.dumps(data) if data else None
+        if data:
+            args.append("--input")
+            args.append("-")
         result = subprocess.run(
-            cmd, shell=True, capture_output=True, text=True, timeout=30,
-            input=j.dumps(data) if data else None
+            args, shell=False, capture_output=True, text=True, timeout=30,
+            input=stdin_data
         )
         if result.returncode != 0:
             print(f"gh api error: {result.stderr}", file=sys.stderr)
