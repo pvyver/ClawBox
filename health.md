@@ -253,8 +253,7 @@ permalink: /health/
         <td>
           {% if svc.history.size > 1 %}
           <svg width="80" height="20" viewBox="0 0 {% if svc.history.size > 10 %}80{% else %}{{ svc.history.size | times: 8 }}{% endif %} 20" style="vertical-align: middle;">
-            {% assign max_h = svc.history | max | default: 1 %}
-            {% if max_h == 0 %}{% assign max_h = 1 %}{% endif %}
+            {% assign max_h = svc.max_h | default: 1 %}
             {% assign points = "" %}
             {% for val in svc.history %}
               {% assign px = forloop.index0 | times: 8 %}

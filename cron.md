@@ -40,7 +40,7 @@ permalink: /cron/
 {% else %}
 
 <div class="dashboard-grid">
-  {% for job in jobs | limit: 4 %}
+  {% for job in jobs limit: 4 %}
   <div class="dashboard-card">
     <div class="card-icon">
       {% if job.name contains 'token' or job.name contains 'watch' %}🔍

@@ -431,6 +431,9 @@ def collect_network_health():
         else:
             status = "ok"
 
+        max_h = max(svc_history) if svc_history else 1.0
+        max_h = max_h if max_h > 0 else 1.0
+
         services.append({
             "name": svc["name"],
             "host": svc["host"],
@@ -438,6 +441,7 @@ def collect_network_health():
             "packet_loss": round(loss, 1),
             "status": status,
             "history": svc_history,
+            "max_h": max_h,
         })
 
         history[key] = svc_history
