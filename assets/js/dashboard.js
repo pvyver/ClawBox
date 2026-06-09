@@ -33,11 +33,112 @@
 
   function round1(v) { return Math.round(v * 10) / 10; }
 
-  // ── Fetch all data ───────────────────────────────────────────────────
+  // ── Cache-busting ────────────────────────────────────────────────────
+  function bust(url) {
+    return url + '?t=' + Date.now();
+  }
+
+  // ── Poll control ─────────────────────────────────────────────────────
+  var pollIntervals = [10, 15, 30, 60, 300, 0];  // seconds; 0 = off
+  var pollInterval = 10; // default: 10s
+  var pollTimer = null;
+  var tabVisible = true;
+
+  // Persist preference
+  try {
+    var saved = localStorage.getItem('clawbox_poll_interval');
+    if (saved) {
+      var n = parseInt(saved, 10);
+      if (pollIntervals.indexOf(n) >= 0) pollInterval = n;
+    }
+  } catch (e) {}
+
+  function startPolling() {
+    if (pollTimer) clearInterval(pollTimer);
+    if (pollInterval === 0) return;
+    pollTimer = setInterval(function () {
+      if (tabVisible) fetchAll();
+    }, pollInterval * 1000);
+  }
+
+  function setPollInterval(secs) {
+    pollInterval = secs;
+    try { localStorage.setItem('clawbox_poll_interval', secs); } catch (e) {}
+    startPolling();
+    updatePollUI();
+  }
+
+  // Page Visibility API — pause when tab is hidden
+  document.addEventListener('visibilitychange', function () {
+    tabVisible = !document.hidden;
+  });
+
+  // ── Pulse animation ────────────────────────────────────────────────
+  function pulseStatsBar() {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var bar = document.getElementById('stats-bar');
+    if (bar) {
+      bar.classList.remove('pulse');
+      // Force reflow to restart animation
+      void bar.offsetWidth;
+      bar.classList.add('pulse');
+    }
+  }
+
+  // ── Live timestamp ticker ──────────────────────────────────────────
+  function startTimestampTicker() {
+    setInterval(function () {
+      var el = document.getElementById('live-updated');
+      if (!el) return;
+      var now = new Date();
+      var h = String(now.getHours()).padStart(2, '0');
+      var m = String(now.getMinutes()).padStart(2, '0');
+      el.textContent = 'live ' + h + ':' + m;
+    }, 10000);
+  }
+
+  // ── Poll settings UI ───────────────────────────────────────────────
+  function updatePollUI() {
+    var btn = document.getElementById('poll-toggle');
+    if (!btn) return;
+    if (pollInterval === 0) {
+      btn.textContent = 'Auto-refresh: \u274C off';
+      btn.className = 'poll-toggle poll-off';
+    } else {
+      btn.textContent = 'Auto-refresh: ' + pollInterval + 's';
+      btn.className = 'poll-toggle poll-on';
+    }
+  }
+
+  function buildPollUI() {
+    var ts = document.getElementById('live-updated');
+    if (!ts || document.getElementById('poll-toggle')) return;
+
+    var wrapper = document.createElement('div');
+    wrapper.className = 'poll-control';
+
+    var btn = document.createElement('button');
+    btn.id = 'poll-toggle';
+    btn.className = 'poll-toggle poll-on';
+    btn.setAttribute('aria-label', 'Toggle auto-refresh interval');
+    wrapper.appendChild(btn);
+    ts.parentNode.appendChild(wrapper);
+
+    // Cycle through intervals on click
+    btn.addEventListener('click', function () {
+      var idx = pollIntervals.indexOf(pollInterval);
+      var next = (idx + 1) % pollIntervals.length;
+      setPollInterval(pollIntervals[next]);
+    });
+
+    updatePollUI();
+  }
+
+  // ── Fetch all data (with cache busting) ──────────────────────────────
 
   function fetchAll() {
     // Site meta (timestamp)
-    fetch(basePath + 'site.json')
+    fetch(bust(basePath + 'site.json'))
       .then(function (r) { return r.ok ? r.json() : Promise.reject(); })
       .then(function (d) {
         var ts = d.update_timestamp || '';
@@ -46,7 +147,7 @@
       .catch(function () {});
 
     // Health data
-    fetch(basePath + 'health.json')
+    fetch(bust(basePath + 'health.json'))
       .then(function (r) { return r.ok ? r.json() : Promise.reject(); })
       .then(function (h) {
         var temp = h.temperature || {};
@@ -99,7 +200,7 @@
       .catch(function () {});
 
     // Token usage
-    fetch(basePath + 'token-usage.json')
+    fetch(bust(basePath + 'token-usage.json'))
       .then(function (r) { return r.ok ? r.json() : Promise.reject(); })
       .then(function (tu) {
         var t = tu.today || {};
