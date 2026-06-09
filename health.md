@@ -281,6 +281,47 @@ permalink: /health/
   </div>
 </div>
 
+{% comment %} ── Health Trends section ── {% endcomment %}
+{% assign hh = site.data.health-history | default: nil %}
+{% assign hh_history = hh.history | default: nil %}
+<div id="health-trends-section" style="background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 1.5rem; margin-top: 1rem;">
+  <h2 style="font-size: 1.1rem; margin-bottom: 0.75rem;">📈 Health Trends</h2>
+  <div id="health-time-range-bar" class="time-range-bar"></div>
+  <div id="health-chart-container">
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+      <div>
+        <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.25rem;">🧠 CPU Load</p>
+        <canvas id="chart-cpu" width="400" height="160"
+          style="display: block; width: 100%; height: auto; aspect-ratio: 400/160;"></canvas>
+      </div>
+      <div>
+        <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.25rem;">💾 Memory Usage</p>
+        <canvas id="chart-mem" width="400" height="160"
+          style="display: block; width: 100%; height: auto; aspect-ratio: 400/160;"></canvas>
+      </div>
+      <div>
+        <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.25rem;">💽 Disk Usage</p>
+        <canvas id="chart-disk" width="400" height="160"
+          style="display: block; width: 100%; height: auto; aspect-ratio: 400/160;"></canvas>
+      </div>
+      <div>
+        <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.25rem;">🌡️ Temperature</p>
+        <canvas id="chart-temp" width="400" height="160"
+          style="display: block; width: 100%; height: auto; aspect-ratio: 400/160;"></canvas>
+      </div>
+    </div>
+  </div>
+  {% if hh_history %}
+  <script id="health-history-data" type="application/json" data-health-history='{{ hh_history | jsonify | escape }}'></script>
+  {% endif %}
+  <p style="margin-top: 0.75rem; font-size: 0.8rem; color: var(--text-muted); text-align: center;">
+    <span style="display: inline-block; width: 10px; height: 10px; background: #f97316; border-radius: 2px; vertical-align: middle; margin: 0 4px;"></span> CPU Load
+    <span style="display: inline-block; width: 10px; height: 10px; background: #3b82f6; border-radius: 2px; vertical-align: middle; margin: 0 4px 0 16px;"></span> Memory
+    <span style="display: inline-block; width: 10px; height: 10px; background: #22c55e; border-radius: 2px; vertical-align: middle; margin: 0 4px 0 16px;"></span> Disk
+    <span style="display: inline-block; width: 10px; height: 10px; background: #ef4444; border-radius: 2px; vertical-align: middle; margin: 0 4px 0 16px;"></span> Temperature
+  </p>
+</div>
+
 {% comment %} ── Top Processes section ── {% endcomment %}
 {% assign procs = h.processes | default: nil %}
 <div id="processes-section" style="background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 1.5rem; margin-top: 1rem;">
@@ -352,3 +393,4 @@ permalink: /health/
 <script src="{{ '/assets/js/health.js' | relative_url }}"></script>
 <script src="{{ '/assets/js/chart-utils.js' | relative_url }}"></script>
 <script src="{{ '/assets/js/gpu-chart.js' | relative_url }}"></script>
+<script src="{{ '/assets/js/health-history.js' | relative_url }}"></script>

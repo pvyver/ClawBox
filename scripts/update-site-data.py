@@ -655,6 +655,7 @@ def collect_processes():
 
 # ── GPU History ─────────────────────────────────────────────────────────
 GPU_HISTORY_FILE = DATA_DIR / "gpu-history.json"
+HEALTH_HISTORY_FILE = DATA_DIR / "health-history.json"
 
 
 def collect_gpu_history():
@@ -698,6 +699,39 @@ def _ts_of(entry):
         return dt.timestamp()
     except (ValueError, TypeError, AttributeError):
         return 0
+
+
+def collect_health_history():
+    """Append system health snapshot to history, keep last 90 days.
+
+    Collects CPU load, memory %, disk %, and temperature on each run.
+    Prunes entries older than 90 days to keep file size manageable.
+    """
+    stats = collect_system_stats()
+
+    snapshot = {
+        "timestamp": NOW_ISO,
+        "cpu_load_1m": stats.get("cpu", {}).get("load_1m"),
+        "cpu_load_5m": stats.get("cpu", {}).get("load_5m"),
+        "cpu_load_15m": stats.get("cpu", {}).get("load_15m"),
+        "memory_percent": stats.get("memory", {}).get("used_percent"),
+        "disk_percent": stats.get("disk", {}).get("used_percent"),
+        "temperature_celsius": stats.get("temperature", {}).get("value_celsius"),
+    }
+
+    history_data = read_json(HEALTH_HISTORY_FILE, {"history": []})
+    history_data["history"].append(snapshot)
+
+    # Prune entries older than 90 days (~4320 entries at 30min intervals)
+    cutoff = NOW.timestamp() - (90 * 86400)
+    history_data["history"] = [
+        e for e in history_data["history"]
+        if _ts_of(e) >= cutoff
+    ]
+
+    history_data["last_updated"] = NOW_ISO
+    history_data["total_entries"] = len(history_data["history"])
+    return history_data
 
 
 def collect_system_stats():
@@ -930,7 +964,7 @@ def collect_cron_jobs():
 
 # ── 4. Write All Data ──────────────────────────────────────────────────
 
-def write_data_files(health, token_usage, cron_jobs, network_health, gpu_history):
+def write_data_files(health, token_usage, cron_jobs, network_health, gpu_history, health_history):
     """Write JSON to _data/ (Jekyll) and assets/data/ (static)."""
     site_meta = {
         "site_name": "ClawBox Dashboard",
@@ -944,12 +978,14 @@ def write_data_files(health, token_usage, cron_jobs, network_health, gpu_history
         (DATA_DIR / "cron-jobs.json", cron_jobs),
         (DATA_DIR / "network-health.json", network_health),
         (DATA_DIR / "gpu-history.json", gpu_history),
+        (DATA_DIR / "health-history.json", health_history),
         (DATA_DIR / "site.json", site_meta),
         (ASSETS_DATA_DIR / "health.json", health),
         (ASSETS_DATA_DIR / "token-usage.json", token_usage),
         (ASSETS_DATA_DIR / "cron-jobs.json", cron_jobs),
         (ASSETS_DATA_DIR / "network-health.json", network_health),
         (ASSETS_DATA_DIR / "gpu-history.json", gpu_history),
+        (ASSETS_DATA_DIR / "health-history.json", health_history),
         (ASSETS_DATA_DIR / "site.json", site_meta),
     ]
 
@@ -1046,9 +1082,13 @@ def main():
     gpu_history = collect_gpu_history()
     print(f"   {gpu_history.get('total_entries', 0)} entries recorded")
 
+    print("📈 Collecting health history...")
+    health_history = collect_health_history()
+    print(f"   {health_history.get('total_entries', 0)} entries recorded")
+
     print()
     print("💾 Writing data files...")
-    site_meta = write_data_files(health, token_usage, cron_jobs, network_health, gpu_history)
+    site_meta = write_data_files(health, token_usage, cron_jobs, network_health, gpu_history, health_history)
 
     print()
     print("📤 Pushing to GitHub...")
