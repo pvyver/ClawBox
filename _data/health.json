@@ -1,58 +1,58 @@
 {
-  "timestamp": "2026-06-09T08:31:47.864929+00:00",
+  "timestamp": "2026-06-09T08:35:52.089464+00:00",
   "cpu": {
     "cores": 6,
     "model": "Cortex-A78AE",
-    "load_1m": 0.06,
-    "load_5m": 0.11,
-    "load_15m": 0.05,
+    "load_1m": 0.25,
+    "load_5m": 0.22,
+    "load_15m": 0.11,
     "runnable": 1,
-    "total_processes": 744
+    "total_processes": 738
   },
   "memory": {
     "total_bytes": 7976779776,
-    "used_bytes": 6189142016,
-    "free_bytes": 87097344,
-    "available_bytes": 1639759872,
-    "used_percent": 77.6,
+    "used_bytes": 6216945664,
+    "free_bytes": 99921920,
+    "available_bytes": 1609383936,
+    "used_percent": 77.9,
     "total_human": "7.4 GB",
     "used_human": "5.8 GB"
   },
   "disk": {
     "total_bytes": 501386080256,
-    "used_bytes": 63345147904,
-    "free_bytes": 438040932352,
+    "used_bytes": 63357399040,
+    "free_bytes": 438028681216,
     "used_percent": 12.6,
     "total_human": "467.0 GB",
     "used_human": "59.0 GB",
-    "free_human": "408.0 GB"
+    "free_human": "407.9 GB"
   },
   "temperature": {
-    "value_celsius": 57.7,
-    "display": "57.7\u00b0C"
+    "value_celsius": 64.8,
+    "display": "64.8\u00b0C"
   },
   "gpu": {
-    "temperature_celsius": 56.218,
+    "temperature_celsius": 63.687,
     "usage_percent": 0,
-    "raw": "06-09-2026 08:31:48 RAM 5906/7607MB (lfb 14x2MB) SWAP 1360/3804MB (cached 2MB) CPU [6%@1728,1%@1728,1%@1728,10%@1728,0%@1728,1%@1728] GR3D_FREQ 0% cpu@56.062C soc2@54.531C soc0@55.406C gpu@56.218C tj@57.656C soc1@57.656C VDD_IN 6776mW/6776mW VDD_CPU_GPU_CV 1561mW/1561mW VDD_SOC 2268mW/2268mW"
+    "raw": "06-09-2026 08:35:53 RAM 5934/7607MB (lfb 23x1MB) SWAP 1463/3804MB (cached 1MB) CPU [40%@1728,8%@1728,1%@1728,38%@1728,12%@1728,0%@1728] GR3D_FREQ 0% cpu@63.687C soc2@62.125C soc0@62.593C gpu@63.687C tj@64.281C soc1@64.281C VDD_IN 8446mW/8446mW VDD_CPU_GPU_CV 2650mW/2650mW VDD_SOC 2502mW/2502mW"
   },
   "uptime": {
-    "seconds": 441952.17,
-    "display": "5d 2h 45m"
+    "seconds": 442196.39,
+    "display": "5d 2h 49m"
   },
   "power_thermal": {
     "power": {
-      "vdd_in_watts": 6.84,
-      "vdd_cpu_watts": 1.52,
-      "vdd_gpu_watts": 2.32,
-      "total_watts": 10.68,
+      "vdd_in_watts": 7.68,
+      "vdd_cpu_watts": 2.08,
+      "vdd_gpu_watts": 2.44,
+      "total_watts": 12.2,
       "throttled": false,
       "throttle_reason": ""
     },
     "thermal": {
-      "fan_speed_pct": 41,
-      "fan_rpm": 2244,
-      "junction_temp": 57.6,
+      "fan_speed_pct": 53,
+      "fan_rpm": 3014,
+      "junction_temp": 64.1,
       "throttle_temp": 85.0
     }
   },
@@ -97,51 +97,51 @@
   "processes": {
     "by_cpu": [
       {
+        "pid": 441147,
+        "name": "liquid*",
+        "cmd": "find /usr -path */liquid* -name *.rb",
+        "cpu_percent": 36.6,
+        "mem_percent": 0.0,
+        "user": "clawbox",
+        "is_claw": false,
+        "severity": "warning"
+      },
+      {
+        "pid": 441102,
+        "name": "ollama",
+        "cmd": "/usr/local/lib/ollama/llama-server --model /usr/share/ollama",
+        "cpu_percent": 8.7,
+        "mem_percent": 58.4,
+        "user": "ollama",
+        "is_claw": false,
+        "severity": "ok"
+      },
+      {
         "pid": 440469,
         "name": "openclaw",
         "cmd": "openclaw",
-        "cpu_percent": 4.8,
-        "mem_percent": 5.6,
+        "cpu_percent": 5.0,
+        "mem_percent": 5.0,
         "user": "clawbox",
         "is_claw": true,
         "severity": "ok"
       },
       {
-        "pid": 440722,
+        "pid": 441150,
         "name": "update-site-data.py",
         "cmd": "python3 scripts/update-site-data.py",
-        "cpu_percent": 3.0,
+        "cpu_percent": 3.5,
         "mem_percent": 0.1,
         "user": "clawbox",
         "is_claw": true,
         "severity": "ok"
       },
       {
-        "pid": 440588,
-        "name": "ollama",
-        "cmd": "/usr/local/lib/ollama/llama-server --model /usr/share/ollama",
-        "cpu_percent": 2.8,
-        "mem_percent": 57.4,
-        "user": "ollama",
-        "is_claw": false,
-        "severity": "ok"
-      },
-      {
-        "pid": 440677,
+        "pid": 441074,
         "name": "cla",
         "cmd": "/home/clawbox/.bun/bin/bun run /home/clawbox/clawbox/mcp/cla",
-        "cpu_percent": 2.7,
-        "mem_percent": 0.8,
-        "user": "clawbox",
-        "is_claw": false,
-        "severity": "ok"
-      },
-      {
-        "pid": 440598,
-        "name": "cla",
-        "cmd": "/home/clawbox/.bun/bin/bun run /home/clawbox/clawbox/mcp/cla",
-        "cpu_percent": 0.5,
-        "mem_percent": 0.8,
+        "cpu_percent": 1.1,
+        "mem_percent": 0.7,
         "user": "clawbox",
         "is_claw": false,
         "severity": "ok"
@@ -149,11 +149,11 @@
     ],
     "by_mem": [
       {
-        "pid": 440588,
+        "pid": 441102,
         "name": "ollama",
         "cmd": "/usr/local/lib/ollama/llama-server --model /usr/share/ollama",
-        "cpu_percent": 2.8,
-        "mem_percent": 57.4,
+        "cpu_percent": 8.7,
+        "mem_percent": 58.4,
         "user": "ollama",
         "is_claw": false,
         "severity": "ok"
@@ -162,8 +162,8 @@
         "pid": 440469,
         "name": "openclaw",
         "cmd": "openclaw",
-        "cpu_percent": 4.8,
-        "mem_percent": 5.6,
+        "cpu_percent": 5.0,
+        "mem_percent": 5.0,
         "user": "clawbox",
         "is_claw": true,
         "severity": "ok"
@@ -179,11 +179,11 @@
         "severity": "ok"
       },
       {
-        "pid": 440677,
+        "pid": 441074,
         "name": "cla",
         "cmd": "/home/clawbox/.bun/bin/bun run /home/clawbox/clawbox/mcp/cla",
-        "cpu_percent": 2.7,
-        "mem_percent": 0.8,
+        "cpu_percent": 1.1,
+        "mem_percent": 0.7,
         "user": "clawbox",
         "is_claw": false,
         "severity": "ok"
@@ -192,14 +192,14 @@
         "pid": 440598,
         "name": "cla",
         "cmd": "/home/clawbox/.bun/bin/bun run /home/clawbox/clawbox/mcp/cla",
-        "cpu_percent": 0.5,
-        "mem_percent": 0.8,
+        "cpu_percent": 0.2,
+        "mem_percent": 0.7,
         "user": "clawbox",
         "is_claw": false,
         "severity": "ok"
       }
     ],
-    "total_processes": 354,
-    "timestamp": "2026-06-09T08:31:47.864929+00:00"
+    "total_processes": 358,
+    "timestamp": "2026-06-09T08:35:52.089464+00:00"
   }
 }
