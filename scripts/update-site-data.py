@@ -884,6 +884,165 @@ def collect_token_usage():
     }
 
 
+# ── 2.5. LLM Latency Tracking ─────────────────────────────────────────
+
+LATENCY_HISTORY_FILE = DATA_DIR / "latency-history.json"
+LATENCY_CURSOR_FILE = WORKSPACE / "data" / "latency-cursor.json"
+
+# OpenClaw sessions directory for trajectory logs
+SESSION_DIR = STATE_DIR / "agents" / "main" / "sessions"
+
+
+def _parse_trajectory_timing(entry):
+    """Extract timing info from a model.completed trajectory entry.
+
+    Computes per-turn latency: time between adjacent assistant messages
+    (best proxy for actual model response time). Falls back to last
+    assistant minus last user timestamp for single-turn conversations.
+
+    Returns dict with model, timestamp, latency_ms, input_tokens, output_tokens
+    or None if it can't be parsed.
+    """
+    snap = entry.get("data", {}).get("messagesSnapshot", [])
+    if not snap:
+        return None
+
+    asst_idxs = [i for i, m in enumerate(snap) if m.get("role") == "assistant"]
+    if not asst_idxs:
+        return None
+
+    timestamps = [m.get("timestamp", 0) for m in snap]
+
+    # Per-turn latency: time between adjacent assistant messages
+    if len(asst_idxs) >= 2:
+        last_asst_idx = asst_idxs[-1]
+        prev_asst_idx = asst_idxs[-2]
+        latency = timestamps[last_asst_idx] - timestamps[prev_asst_idx]
+    else:
+        # Single assistant message: use last user message as start
+        user_idxs = [i for i, m in enumerate(snap) if m.get("role") == "user"]
+        if not user_idxs:
+            return None
+        last_user_idx = user_idxs[-1]
+        latency = timestamps[asst_idxs[-1]] - timestamps[last_user_idx]
+
+    if latency <= 0 or latency > 600000:  # cap at 10 min
+        return None
+
+    usage = entry.get("data", {}).get("usage", {})
+    return {
+        "model": entry.get("modelId", "unknown"),
+        "timestamp": entry.get("ts", ""),
+        "latency_ms": latency,
+        "input_tokens": usage.get("input", 0),
+        "output_tokens": usage.get("output", 0),
+    }
+
+
+def collect_latency_history():
+    """Scan trajectory files for model.completed entries and compute per-model
+    daily latency percentiles (p50, p95, p99). Uses cursor for incremental
+    processing. Keeps last 1000 recent requests.
+    """
+    cursor = read_json(LATENCY_CURSOR_FILE, {"files": {}})
+    history = read_json(LATENCY_HISTORY_FILE, {"daily": [], "recent": [], "total_processed": 0})
+    recent = history.get("recent", [])
+    total_processed = history.get("total_processed", 0)
+    new_count = 0
+
+    if not SESSION_DIR.is_dir():
+        return {"daily": [], "recent": [], "total_processed": 0, "error": "no_session_dir"}
+
+    # Get trajectory files, sorted by mtime (newest first for limit)
+    traj_files = sorted(
+        SESSION_DIR.glob("*.trajectory.jsonl"),
+        key=lambda f: f.stat().st_mtime, reverse=True
+    )
+
+    # Only scan the last 30 files per run (quick)
+    for tf in traj_files[:30]:
+        fname = tf.name
+        previous_lines = cursor.get("files", {}).get(fname, 0)
+
+        try:
+            with open(tf) as f:
+                lines = f.readlines()
+        except (OSError, IOError):
+            continue
+
+        total_lines = len(lines)
+        if total_lines <= previous_lines:
+            continue
+
+        # Process only new lines
+        for line in lines[previous_lines:]:
+            line = line.strip()
+            if not line:
+                continue
+            try:
+                entry = json.loads(line)
+            except json.JSONDecodeError:
+                continue
+            if entry.get("type") != "model.completed":
+                continue
+
+            timing = _parse_trajectory_timing(entry)
+            if timing:
+                # Normalize model name
+                mid = timing["model"].replace("deepseek/", "deepseek-").replace("ollama/", "")
+                timing["model_short"] = mid
+
+                recent.append(timing)
+                new_count += 1
+                total_processed += 1
+
+        cursor["files"][fname] = total_lines
+
+    # Keep only last 1000 recent entries
+    if len(recent) > 1000:
+        recent = recent[-1000:]
+
+    # Persist cursor
+    write_json(LATENCY_CURSOR_FILE, cursor)
+
+    # Compute daily percentiles per model
+    from collections import defaultdict
+
+    by_model_day = defaultdict(list)
+    for r in recent:
+        ts = r.get("timestamp", "")
+        day = ts[:10] if len(ts) >= 10 else ""
+        if day:
+            by_model_day[(r["model_short"], day)].append(r["latency_ms"])
+
+    daily = []
+    for (model, day), lats in sorted(by_model_day.items()):
+        lats_sorted = sorted(lats)
+        n = len(lats_sorted)
+        p50 = lats_sorted[n // 2] if n else 0
+        p95 = lats_sorted[int(n * 0.95)] if n > 1 else (lats_sorted[-1] if lats_sorted else 0)
+        p99 = lats_sorted[int(n * 0.99)] if n > 1 else (lats_sorted[-1] if lats_sorted else 0)
+        daily.append({
+            "date": day,
+            "model": model,
+            "requests": n,
+            "p50_ms": p50,
+            "p95_ms": p95,
+            "p99_ms": p99,
+        })
+
+    # Merge daily from previous history (keep old entries not in current scan)
+    existing_daily = { (d["date"], d["model"]): d for d in history.get("daily", []) }
+    for d in daily:
+        existing_daily[(d["date"], d["model"])] = d
+
+    return {
+        "daily": sorted(existing_daily.values(), key=lambda x: (x["date"], x["model"])),
+        "recent": recent,
+        "total_processed": total_processed,
+    }
+
+
 # ── 3. Cron Jobs ───────────────────────────────────────────────────────
 
 def schedule_to_display(sched):
@@ -964,7 +1123,7 @@ def collect_cron_jobs():
 
 # ── 4. Write All Data ──────────────────────────────────────────────────
 
-def write_data_files(health, token_usage, cron_jobs, network_health, gpu_history, health_history):
+def write_data_files(health, token_usage, cron_jobs, network_health, gpu_history, health_history, latency_history):
     """Write JSON to _data/ (Jekyll) and assets/data/ (static)."""
     site_meta = {
         "site_name": "ClawBox Dashboard",
@@ -979,6 +1138,7 @@ def write_data_files(health, token_usage, cron_jobs, network_health, gpu_history
         (DATA_DIR / "network-health.json", network_health),
         (DATA_DIR / "gpu-history.json", gpu_history),
         (DATA_DIR / "health-history.json", health_history),
+        (DATA_DIR / "latency-history.json", latency_history),
         (DATA_DIR / "site.json", site_meta),
         (ASSETS_DATA_DIR / "health.json", health),
         (ASSETS_DATA_DIR / "token-usage.json", token_usage),
@@ -986,6 +1146,7 @@ def write_data_files(health, token_usage, cron_jobs, network_health, gpu_history
         (ASSETS_DATA_DIR / "network-health.json", network_health),
         (ASSETS_DATA_DIR / "gpu-history.json", gpu_history),
         (ASSETS_DATA_DIR / "health-history.json", health_history),
+        (ASSETS_DATA_DIR / "latency-history.json", latency_history),
         (ASSETS_DATA_DIR / "site.json", site_meta),
     ]
 
@@ -1086,9 +1247,13 @@ def main():
     health_history = collect_health_history()
     print(f"   {health_history.get('total_entries', 0)} entries recorded")
 
+    print("⏱ Collecting LLM latency...")
+    latency_history = collect_latency_history()
+    print(f"   {latency_history.get('total_processed', 0)} total requests processed")
+
     print()
     print("💾 Writing data files...")
-    site_meta = write_data_files(health, token_usage, cron_jobs, network_health, gpu_history, health_history)
+    site_meta = write_data_files(health, token_usage, cron_jobs, network_health, gpu_history, health_history, latency_history)
 
     print()
     print("📤 Pushing to GitHub...")
