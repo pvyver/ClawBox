@@ -18,7 +18,7 @@
     {
       "id": "685c7ce0-58ad-4aef-9aee-2665249f1f4b",
       "name": "update-site-data",
-      "description": "Update site data every 30 min (resilient wrapper with retry)",
+      "description": "MONITOR: check system cron ran update-site-data in last 40 min. Alerts if stale.",
       "schedule": "Every 30 min",
       "model": "ollama/llama3.2:3b",
       "session_target": "isolated",
@@ -107,5 +107,5 @@
     }
   ],
   "total": 7,
-  "last_updated": "2026-06-10T20:33:08.980008+00:00"
+  "last_updated": "2026-06-10T20:36:04.980765+00:00"
 }
