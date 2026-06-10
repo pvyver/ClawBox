@@ -1325,9 +1325,124 @@ def collect_cron_jobs():
     return {"jobs": jobs, "total": raw.get("total", len(jobs)), "last_updated": NOW_ISO}
 
 
+# ── 3.5. System Events ────────────────────────────────────────────────
+
+EVENTS_FILE = DATA_DIR / "events.json"
+
+
+def collect_events(health, cron_jobs, health_history, latency_history):
+    """Collect significant system events: token alerts, health breaches, cron failures.
+
+    Returns a reverse-chronological event feed with filtering support.
+    Keeps last 500 events, oldest pruned.
+    """
+    events_data = read_json(EVENTS_FILE, {"events": []})
+    existing = events_data.get("events", [])
+    new_events = []
+
+    # 1. Check for token-watch alerts
+    tw_alert = WORKSPACE / "data" / "token-watch" / "alert.json"
+    if tw_alert.is_file():
+        try:
+            alert = json.loads(tw_alert.read_text())
+            level = alert.get("level", "")
+            ratio = alert.get("ratio", 0)
+            if level:
+                new_events.append({
+                    "timestamp": NOW_ISO,
+                    "type": "critical" if level == "critical" else "warning",
+                    "source": "token-watch",
+                    "message": f"Daily budget at {ratio:.0%} ({level})",
+                    "value": round(ratio * 100, 1),
+                })
+        except (json.JSONDecodeError, OSError):
+            pass
+
+    # 2. Health threshold breaches
+    if health:
+        temp = health.get("temperature", {}).get("value_celsius", 0)
+        if temp > 80:
+            new_events.append({"timestamp": NOW_ISO, "type": "critical", "source": "health",
+                              "message": f"Temperature reached {temp:.1f}°C", "value": temp})
+        elif temp > 70:
+            new_events.append({"timestamp": NOW_ISO, "type": "warning", "source": "health",
+                              "message": f"Temperature at {temp:.1f}°C", "value": temp})
+
+        mem = health.get("memory", {}).get("used_percent", 0)
+        if mem > 90:
+            new_events.append({"timestamp": NOW_ISO, "type": "critical", "source": "health",
+                              "message": f"Memory at {mem}%", "value": mem})
+        elif mem > 80:
+            new_events.append({"timestamp": NOW_ISO, "type": "warning", "source": "health",
+                              "message": f"Memory at {mem}%", "value": mem})
+
+        disk_pct = health.get("disk", {}).get("used_percent", 0)
+        if disk_pct > 95:
+            new_events.append({"timestamp": NOW_ISO, "type": "critical", "source": "health",
+                              "message": f"Disk at {disk_pct}%", "value": disk_pct})
+        elif disk_pct > 80:
+            new_events.append({"timestamp": NOW_ISO, "type": "warning", "source": "health",
+                              "message": f"Disk at {disk_pct}%", "value": disk_pct})
+
+    # 3. Cron job failures
+    if cron_jobs:
+        for j in cron_jobs.get("jobs", []):
+            errs = j.get("consecutive_errors", 0)
+            if errs > 0:
+                new_events.append({
+                    "timestamp": NOW_ISO,
+                    "type": "error",
+                    "source": "cron",
+                    "message": f"{j.get('name', 'unknown')} has {errs} consecutive errors",
+                    "value": errs,
+                })
+
+    # 4. LLM latency warnings
+    if latency_history:
+        for d in latency_history.get("daily", []):
+            p99 = d.get("p99_ms", 0)
+            if p99 > 60000:  # > 1 min p99 latency
+                new_events.append({
+                    "timestamp": NOW_ISO,
+                    "type": "warning",
+                    "source": "latency",
+                    "message": f"{d.get('model', '?')} p99 latency at {p99 / 1000:.0f}s",
+                    "value": round(p99 / 1000, 1),
+                })
+
+    # 5. Update success event
+    new_events.append({
+        "timestamp": NOW_ISO,
+        "type": "info",
+        "source": "system",
+        "message": f"Site data updated",
+        "value": None,
+    })
+
+    # Merge new events at the front
+    existing[:0] = new_events
+
+    # Prune to 500
+    if len(existing) > 500:
+        existing = existing[:500]
+
+    # Count active alerts (errors + warnings from last 24h)
+    from datetime import timedelta
+    day_ago = NOW - timedelta(hours=24)
+    active = [e for e in existing if e.get("type") in ("error", "warning", "critical")
+              and _ts_of(e) >= day_ago.timestamp() * 1000]
+
+    return {
+        "events": existing,
+        "total_events": len(existing),
+        "active_count": len(active),
+        "last_updated": NOW_ISO,
+    }
+
+
 # ── 4. Write All Data ──────────────────────────────────────────────────
 
-def write_data_files(health, token_usage, cron_jobs, network_health, gpu_history, health_history, latency_history, token_breakdown, disk_projection):
+def write_data_files(health, token_usage, cron_jobs, network_health, gpu_history, health_history, latency_history, token_breakdown, disk_projection, events):
     """Write JSON to _data/ (Jekyll) and assets/data/ (static)."""
     site_meta = {
         "site_name": "ClawBox Dashboard",
@@ -1345,6 +1460,7 @@ def write_data_files(health, token_usage, cron_jobs, network_health, gpu_history
         (DATA_DIR / "latency-history.json", latency_history),
         (DATA_DIR / "token-breakdown.json", token_breakdown),
         (DATA_DIR / "disk-history.json", disk_projection),
+        (DATA_DIR / "events.json", events),
         (DATA_DIR / "site.json", site_meta),
         (ASSETS_DATA_DIR / "health.json", health),
         (ASSETS_DATA_DIR / "token-usage.json", token_usage),
@@ -1355,6 +1471,7 @@ def write_data_files(health, token_usage, cron_jobs, network_health, gpu_history
         (ASSETS_DATA_DIR / "latency-history.json", latency_history),
         (ASSETS_DATA_DIR / "token-breakdown.json", token_breakdown),
         (ASSETS_DATA_DIR / "disk-history.json", disk_projection),
+        (ASSETS_DATA_DIR / "events.json", events),
         (ASSETS_DATA_DIR / "site.json", site_meta),
     ]
 
@@ -1469,9 +1586,13 @@ def main():
     gr = disk_projection.get("growth_rate", {})
     print(f"   {gr.get('per_day_mb', 0)} MB/day growth, {disk_projection.get('projection', {}).get('days_until_full', 0)} days until full")
 
+    print("📋 Collecting system events...")
+    events = collect_events(health, cron_jobs, health_history, latency_history)
+    print(f"   {len(events.get('events', []))} events recorded")
+
     print()
     print("💾 Writing data files...")
-    site_meta = write_data_files(health, token_usage, cron_jobs, network_health, gpu_history, health_history, latency_history, token_breakdown, disk_projection)
+    site_meta = write_data_files(health, token_usage, cron_jobs, network_health, gpu_history, health_history, latency_history, token_breakdown, disk_projection, events)
 
     print()
     print("📤 Pushing to GitHub...")
