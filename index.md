@@ -35,41 +35,42 @@ permalink: /
   <span class="tagline-icon">🦞</span>
   <span>Your AI lobster companion's control center &mdash; real-time system overview.</span>
   <span class="tagline-time" id="live-updated">{{ s.update_timestamp | default: "" }}</span>
+  <button id="layout-reset-btn" class="layout-reset-btn" title="Reset dashboard layout">↺ Reset</button>
 </div>
 
 <!-- Compact live stats bar -->
 <div class="stats-bar" id="stats-bar">
-  <div class="stat-chip">
+  <div class="stat-chip" id="chip-temp">
     <span class="chip-icon">🌡️</span>
     <span class="chip-label">Temp</span>
     <span class="chip-value" id="stat-temp">{{ temp.display | default: "\u2014" }}</span>
     <span class="chip-badge"><span class="badge {{ temp_badge }}" id="stat-temp-badge">{{ temp_val }}°</span></span>
   </div>
-  <div class="stat-chip">
+  <div class="stat-chip" id="chip-ram">
     <span class="chip-icon">💾</span>
     <span class="chip-label">RAM</span>
     <span class="chip-value" id="stat-ram">{{ mem.used_human | default: "\u2014" }}</span>
     <span class="chip-bar"><span class="mini-bar"><span class="mini-fill {{ mem_badge }}" id="stat-ram-bar" style="width: {{ mem_pct | round: 0 }}%"></span></span></span>
   </div>
-  <div class="stat-chip">
+  <div class="stat-chip" id="chip-disk">
     <span class="chip-icon">💽</span>
     <span class="chip-label">Disk</span>
     <span class="chip-value" id="stat-disk">{{ disk.used_human | default: "\u2014" }}</span>
     <span class="chip-bar"><span class="mini-bar"><span class="mini-fill {{ disk_badge }}" id="stat-disk-bar" style="width: {{ disk_pct | round: 0 }}%"></span></span></span>
   </div>
-  <div class="stat-chip">
+  <div class="stat-chip" id="chip-tokens">
     <span class="chip-icon">📊</span>
     <span class="chip-label">Tokens</span>
     <span class="chip-value" id="stat-tokens">{{ token_today }}</span>
     <span class="chip-badge"><span class="badge {{ token_badge }}" id="stat-token-badge">{{ token_pct | round: 0 }}%</span></span>
   </div>
-  <div class="stat-chip">
+  <div class="stat-chip" id="chip-crons">
     <span class="chip-icon">⏰</span>
     <span class="chip-label">Crons</span>
     <span class="chip-value" id="stat-crons">{{ cron_count }}</span>
     <span class="chip-badge">active{% if failing_count > 0 %} <span class="badge badge-err" id="stat-cron-fail">{{ failing_count }} failing</span>{% endif %}</span>
   </div>
-  <div class="stat-chip">
+  <div class="stat-chip" id="chip-uptime">
     <span class="chip-icon">🕐</span>
     <span class="chip-label">Uptime</span>
     <span class="chip-value" id="stat-uptime">{{ up.display | default: "\u2014" }}</span>
@@ -79,7 +80,7 @@ permalink: /
 
 <!-- Compact dashboard cards -->
 <div class="compact-grid">
-  <a href="{{ '/health' | relative_url }}" class="compact-card">
+  <a href="{{ '/health' | relative_url }}" class="compact-card" id="health-card">
     <div class="compact-card-header">
       <span class="compact-card-icon">❤️</span>
       <span class="compact-card-title">System Health</span>
@@ -104,7 +105,7 @@ permalink: /
     </div>
   </a>
 
-  <a href="{{ '/token-usage' | relative_url }}" class="compact-card">
+  <a href="{{ '/token-usage' | relative_url }}" class="compact-card" id="token-card">
     <div class="compact-card-header">
       <span class="compact-card-icon">📊</span>
       <span class="compact-card-title">Token Usage</span>
@@ -187,7 +188,7 @@ permalink: /
   {% if procs.by_cpu.size > 0 %}{% assign p = procs.by_cpu[0] %}{% assign top_cpu_name = p.name %}{% assign top_cpu_pct = p.cpu_percent %}{% endif %}
   {% if procs.by_mem.size > 0 %}{% assign p = procs.by_mem[0] %}{% assign top_mem_name = p.name %}{% assign top_mem_pct = p.mem_percent %}{% endif %}
   {% assign proc_count = procs.total_processes | default: 0 %}
-  <a href="{{ '/health' | relative_url }}" class="compact-card">
+  <a href="{{ '/health' | relative_url }}" class="compact-card" id="processes-card">
     <div class="compact-card-header">
       <span class="compact-card-icon">🔧</span>
       <span class="compact-card-title">Top Processes</span>
@@ -200,4 +201,6 @@ permalink: /
   </a>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.6/Sortable.min.js"></script>
 <script src="{{ '/assets/js/dashboard.js' | relative_url }}"></script>
+<script src="{{ '/assets/js/drag-layout.js' | relative_url }}"></script>
