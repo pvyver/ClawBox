@@ -27,10 +27,10 @@
     {
       "date": "2026-06-10",
       "model": "llama3.2:3b",
-      "requests": 2,
+      "requests": 3,
       "p50_ms": 4626,
-      "p95_ms": 4626,
-      "p99_ms": 4626
+      "p95_ms": 13850,
+      "p99_ms": 13850
     }
   ],
   "recent": [
@@ -313,7 +313,15 @@
       "input_tokens": 66712,
       "output_tokens": 150,
       "model_short": "llama3.2:3b"
+    },
+    {
+      "model": "llama3.2:3b",
+      "timestamp": "2026-06-10T00:36:44.897Z",
+      "latency_ms": 13850,
+      "input_tokens": 29322,
+      "output_tokens": 44,
+      "model_short": "llama3.2:3b"
     }
   ],
-  "total_processed": 35
+  "total_processed": 36
 }
