@@ -2,13 +2,13 @@
   "by_channel": [
     {
       "channel": "cron",
-      "tokens": 329262,
-      "percentage": 55.5
+      "tokens": 297619,
+      "percentage": 53.0
     },
     {
       "channel": "webchat",
       "tokens": 264310,
-      "percentage": 44.5
+      "percentage": 47.0
     },
     {
       "channel": "conversation",
@@ -19,18 +19,18 @@
   "by_model": [
     {
       "model": "deepseek-v4-flash",
-      "tokens": 411278,
-      "percentage": 69.3
+      "tokens": 379635,
+      "percentage": 67.6
     },
     {
       "model": "deepseek-chat",
       "tokens": 141045,
-      "percentage": 23.8
+      "percentage": 25.1
     },
     {
       "model": "llama3.2:3b",
       "tokens": 41249,
-      "percentage": 6.9
+      "percentage": 7.3
     },
     {
       "model": "gemma4-e2b-it-q4_0",
@@ -41,7 +41,7 @@
   "by_cron_job": [
     {
       "job": "update-site-data",
-      "tokens": 292302
+      "tokens": 260659
     },
     {
       "job": "issue-crafter",
@@ -131,18 +131,6 @@
       "age_seconds": 0,
       "estimated_tokens": 32422,
       "tokens_human": "32K",
-      "status": ""
-    },
-    {
-      "id": "b9c6f206-97d2-431f-b397-c84ddba31f25",
-      "key": "agent:main:cron:685c7ce0-58ad-4aef-9aee-2665249f1f4b:run:e8a89430-f52a-4f38-931b-db0cf2255db6",
-      "model": "deepseek-v4-flash",
-      "channel": "unknown",
-      "started_ago": "0s ago",
-      "started_ms": 0,
-      "age_seconds": 0,
-      "estimated_tokens": 31643,
-      "tokens_human": "31K",
       "status": ""
     },
     {
@@ -290,7 +278,7 @@
       "status": ""
     },
     {
-      "id": "6a8959ca-a0bf-4234-a8d0-01a15d8ca309",
+      "id": "62250784-18c8-44bc-b6c4-fcc7a41338bf",
       "key": "agent:main:cron:528620d6-e3e1-42da-bd49-ce9599ec3d88",
       "model": "llama3.2:3b",
       "channel": "unknown",
@@ -312,8 +300,20 @@
       "estimated_tokens": 0,
       "tokens_human": "0",
       "status": ""
+    },
+    {
+      "id": "a6d31d93-195e-44fd-8032-3cd245da513a",
+      "key": "agent:main:cron:685c7ce0-58ad-4aef-9aee-2665249f1f4b:run:111e782e-7052-4f33-aad9-ab4edc600750",
+      "model": "llama3.2:3b",
+      "channel": "unknown",
+      "started_ago": "0s ago",
+      "started_ms": 0,
+      "age_seconds": 0,
+      "estimated_tokens": 0,
+      "tokens_human": "0",
+      "status": ""
     }
   ],
-  "total_tokens": 593572,
-  "last_updated": "2026-06-10T03:35:58.808449+00:00"
+  "total_tokens": 561929,
+  "last_updated": "2026-06-10T03:57:00.293755+00:00"
 }
