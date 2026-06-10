@@ -288,7 +288,7 @@ permalink: /health/
   <h2 style="font-size: 1.1rem; margin-bottom: 0.75rem;">📈 Health Trends</h2>
   <div id="health-time-range-bar" class="time-range-bar"></div>
   <div id="health-chart-container">
-    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+    <div class="grid-2col" style="gap: 1rem;">
       <div>
         <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.25rem;">🧠 CPU Load</p>
         <canvas id="chart-cpu" width="400" height="160"
@@ -328,7 +328,7 @@ permalink: /health/
   <h2 style="font-size: 1.1rem; margin-bottom: 0.75rem;">🔧 Top Processes</h2>
   <div id="processes-table">
     {% if procs and procs.by_cpu.size > 0 %}
-    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+    <div class="grid-2col" style="gap: 1.5rem;">
       <div>
         <h3 style="font-size: 0.9rem; margin-bottom: 0.5rem; color: var(--text-secondary);">Top 5 by CPU</h3>
         <table class="services-table" style="width: 100%;">

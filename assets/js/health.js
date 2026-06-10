@@ -199,7 +199,7 @@
 
       var html = '';
       if (byCpu.length > 0) {
-        html += '<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">';
+        html += '<div class="grid-2col" style="gap: 1.5rem;">';
         html += '<div><h3 style="font-size: 0.9rem; margin-bottom: 0.5rem; color: var(--text-secondary);">Top 5 by CPU</h3>';
         html += '<table class="services-table" style="width: 100%;"><thead><tr><th>PID</th><th>Name</th><th>CPU%</th><th>MEM%</th><th>User</th></tr></thead><tbody>';
         for (var pi = 0; pi < byCpu.length; pi++) html += procRowHtml(byCpu[pi]);
