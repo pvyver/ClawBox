@@ -8,15 +8,17 @@ permalink: /alarms/
 {% assign all_events = ev.events | default: site.empty %}
 {% assign total_alerts = all_events | size %}
 
-{% assign critical_count = all_events | where_exp: "e", "e.type == 'critical'" | size %}
-{% assign error_count = all_events | where_exp: "e", "e.type == 'error'" | size %}
-{% assign warning_count = all_events | where_exp: "e", "e.type == 'warning'" | size %}
-{% assign info_count = all_events | where_exp: "e", "e.type == 'info'" | size %}
+{% assign critical_count = all_events | where: "type", "critical" | size %}
+{% assign error_count = all_events | where: "type", "error" | size %}
+{% assign warning_count = all_events | where: "type", "warning" | size %}
+{% assign info_count = all_events | where: "type", "info" | size %}
 
 {% comment %} Active = critical + error in last 24h {% endcomment %}
 {% assign now_s = site.time | date: "%s" | minus: 0 %}
 {% assign day_secs = 86400 %}
-{% assign active_alerts = all_events | where_exp: "e", "e.type == 'critical' or e.type == 'error'" %}
+{% assign crit_events = all_events | where: "type", "critical" %}
+{% assign err_events = all_events | where: "type", "error" %}
+{% assign active_alerts = crit_events | concat: err_events %}
 {% assign recent_active = 0 %}
 {% for e in active_alerts %}
   {% assign ts = e.timestamp | date: "%s" | minus: 0 %}
