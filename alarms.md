@@ -14,12 +14,12 @@ permalink: /alarms/
 {% assign info_count = all_events | where_exp: "e", "e.type == 'info'" | size %}
 
 {% comment %} Active = critical + error in last 24h {% endcomment %}
-{% assign now_s = "now" | date: "%s" | plus: 0 %}
+{% assign now_s = site.time | date: "%s" | minus: 0 %}
 {% assign day_secs = 86400 %}
 {% assign active_alerts = all_events | where_exp: "e", "e.type == 'critical' or e.type == 'error'" %}
 {% assign recent_active = 0 %}
 {% for e in active_alerts %}
-  {% assign ts = e.timestamp | date: "%s" | plus: 0 %}
+  {% assign ts = e.timestamp | date: "%s" | minus: 0 %}
   {% assign diff = now_s | minus: ts %}
   {% if diff < day_secs %}
     {% assign recent_active = recent_active | plus: 1 %}
