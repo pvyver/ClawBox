@@ -390,6 +390,7 @@ permalink: /health/
   </div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
 <script src="{{ '/assets/js/health.js' | relative_url }}"></script>
 <script src="{{ '/assets/js/chart-utils.js' | relative_url }}"></script>
 <script src="{{ '/assets/js/gpu-chart.js' | relative_url }}"></script>
