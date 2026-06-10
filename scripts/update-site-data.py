@@ -716,6 +716,8 @@ def collect_health_history():
         "cpu_load_15m": stats.get("cpu", {}).get("load_15m"),
         "memory_percent": stats.get("memory", {}).get("used_percent"),
         "disk_percent": stats.get("disk", {}).get("used_percent"),
+        "disk_used_bytes": stats.get("disk", {}).get("used_bytes"),
+        "disk_total_bytes": stats.get("disk", {}).get("total_bytes"),
         "temperature_celsius": stats.get("temperature", {}).get("value_celsius"),
     }
 
@@ -732,6 +734,112 @@ def collect_health_history():
     history_data["last_updated"] = NOW_ISO
     history_data["total_entries"] = len(history_data["history"])
     return history_data
+
+
+
+def collect_disk_projection(health_history=None):
+    """Compute disk usage trends, growth rate, and big directories.
+
+    Reads health history to calculate growth rate (MB/day) and
+    linear regression projection for when disk will be full.
+    Also scans key directories for big consumers.
+    """
+    if health_history is None:
+        history = read_json(HEALTH_HISTORY_FILE, {"history": []})
+    else:
+        history = health_history
+    history_entries = history.get("history", [])
+    
+    # Filter entries with disk data
+    disk_entries = [(e.get("timestamp", ""), e.get("disk_used_bytes"))
+                    for e in history_entries
+                    if e.get("disk_used_bytes") and e.get("disk_total_bytes")]
+
+    result = {"history": [], "growth_rate": {}, "projection": {}, "big_dirs": []}
+
+    if len(disk_entries) < 2:
+        return result
+
+    # Build history for output
+    latest_disk = disk_entries[-1]
+    total_bytes = history_entries[-1].get("disk_total_bytes", 1)
+    
+    result["history"] = sorted([
+        {"date": ts[:10], "used_bytes": b, "used_percent": round(b / total_bytes * 100, 1)}
+        for ts, b in disk_entries if ts
+    ], key=lambda x: x["date"])
+
+    # Linear regression for growth rate
+    x_vals = list(range(len(disk_entries)))
+    y_vals = [d[1] for d in disk_entries]
+    n = len(x_vals)
+    
+    if n >= 2:
+        sum_x = sum(x_vals)
+        sum_y = sum(y_vals)
+        sum_xy = sum(x * y for x, y in zip(x_vals, y_vals))
+        sum_xx = sum(x * x for x in x_vals)
+        
+        slope = (n * sum_xy - sum_x * sum_y) / (n * sum_xx - sum_x * sum_x) if (n * sum_xx - sum_x * sum_x) else 0
+
+        # Convert slope: 30 min intervals -> bytes/day
+        bytes_per_day = slope * 48  # 48 intervals per day
+        mb_per_day = bytes_per_day / (1024 * 1024)
+
+        result["growth_rate"] = {
+            "per_day_mb": round(mb_per_day, 1),
+            "per_week_gb": round(mb_per_day * 7 / 1024, 2),
+            "per_month_gb": round(mb_per_day * 30 / 1024, 1),
+        }
+
+        # Projection: days until full
+        latest_bytes = y_vals[-1]
+        remaining = total_bytes - latest_bytes
+        if slope > 0:
+            days_until_full = int(remaining / (slope * 48)) if (slope * 48) > 0 else 99999
+            import datetime
+            est_date = (NOW + datetime.timedelta(days=days_until_full)).strftime("%Y-%m-%d")
+            result["projection"] = {
+                "days_until_full": min(days_until_full, 9999),
+                "estimated_date": est_date,
+                "current_used_human": bytes_fmt(latest_bytes),
+                "total_human": bytes_fmt(total_bytes),
+            }
+
+    # Scan big directories
+    big_dirs = []
+    for path in [STATE_DIR, REPO_DIR, "/var/log"]:
+        try:
+            rc, out, _ = run_cmd(["du", "-sb", str(path)], timeout=10)
+            if rc == 0:
+                size_bytes = int(out.split()[0])
+                big_dirs.append({
+                    "path": str(path),
+                    "size_human": bytes_fmt(size_bytes),
+                    "size_bytes": size_bytes,
+                })
+        except (ValueError, IndexError, OSError):
+            pass
+
+    # Also scan .openclaw/ data directory
+    for sub in ["sessions", "cache"]:
+        p = STATE_DIR / sub
+        if p.is_dir():
+            try:
+                rc, out, _ = run_cmd(["du", "-sb", str(p)], timeout=10)
+                if rc == 0:
+                    size_bytes = int(out.split()[0])
+                    big_dirs.append({
+                        "path": str(p),
+                        "size_human": bytes_fmt(size_bytes),
+                        "size_bytes": size_bytes,
+                    })
+            except (ValueError, IndexError, OSError):
+                pass
+
+    result["big_dirs"] = sorted(big_dirs, key=lambda x: -x["size_bytes"])
+    result["last_updated"] = NOW_ISO
+    return result
 
 
 def collect_system_stats():
@@ -1219,7 +1327,7 @@ def collect_cron_jobs():
 
 # ── 4. Write All Data ──────────────────────────────────────────────────
 
-def write_data_files(health, token_usage, cron_jobs, network_health, gpu_history, health_history, latency_history, token_breakdown):
+def write_data_files(health, token_usage, cron_jobs, network_health, gpu_history, health_history, latency_history, token_breakdown, disk_projection):
     """Write JSON to _data/ (Jekyll) and assets/data/ (static)."""
     site_meta = {
         "site_name": "ClawBox Dashboard",
@@ -1236,6 +1344,7 @@ def write_data_files(health, token_usage, cron_jobs, network_health, gpu_history
         (DATA_DIR / "health-history.json", health_history),
         (DATA_DIR / "latency-history.json", latency_history),
         (DATA_DIR / "token-breakdown.json", token_breakdown),
+        (DATA_DIR / "disk-history.json", disk_projection),
         (DATA_DIR / "site.json", site_meta),
         (ASSETS_DATA_DIR / "health.json", health),
         (ASSETS_DATA_DIR / "token-usage.json", token_usage),
@@ -1245,6 +1354,7 @@ def write_data_files(health, token_usage, cron_jobs, network_health, gpu_history
         (ASSETS_DATA_DIR / "health-history.json", health_history),
         (ASSETS_DATA_DIR / "latency-history.json", latency_history),
         (ASSETS_DATA_DIR / "token-breakdown.json", token_breakdown),
+        (ASSETS_DATA_DIR / "disk-history.json", disk_projection),
         (ASSETS_DATA_DIR / "site.json", site_meta),
     ]
 
@@ -1354,9 +1464,14 @@ def main():
     channels = len(token_breakdown.get('by_channel', []))
     print(f"   {channels} channels, {token_breakdown.get('total_tokens', 0)} tokens tracked")
 
+    print("💾 Scanning disk growth trends...")
+    disk_projection = collect_disk_projection(health_history=health_history)
+    gr = disk_projection.get("growth_rate", {})
+    print(f"   {gr.get('per_day_mb', 0)} MB/day growth, {disk_projection.get('projection', {}).get('days_until_full', 0)} days until full")
+
     print()
     print("💾 Writing data files...")
-    site_meta = write_data_files(health, token_usage, cron_jobs, network_health, gpu_history, health_history, latency_history, token_breakdown)
+    site_meta = write_data_files(health, token_usage, cron_jobs, network_health, gpu_history, health_history, latency_history, token_breakdown, disk_projection)
 
     print()
     print("📤 Pushing to GitHub...")
