@@ -1,21 +1,6 @@
 {
   "jobs": [
     {
-      "id": "076c2650-df05-45ad-8103-595152e2fb07",
-      "name": "issue-crafter",
-      "description": "Auto-handle one Phase 2 GitHub issue every 6h with parallel specialist lanes. Picks issues by label (frontend/backend), uses sub-agent for implementation, reports via Telegram.",
-      "schedule": "Cron: 0 */6 * * * (Brussels)",
-      "model": "ollama/llama3.2:3b",
-      "session_target": "isolated",
-      "status": "ok",
-      "badge": "badge-ok",
-      "enabled": true,
-      "next_run": 1781193655704,
-      "last_run": 1781172055719,
-      "last_duration_ms": 332110,
-      "consecutive_errors": 0
-    },
-    {
       "id": "685c7ce0-58ad-4aef-9aee-2665249f1f4b",
       "name": "update-site-data",
       "description": "MONITOR: check system cron ran update-site-data in last 40 min. Alerts if stale.",
@@ -25,24 +10,9 @@
       "status": "ok",
       "badge": "badge-ok",
       "enabled": true,
-      "next_run": 1781193900126,
-      "last_run": 1781192100126,
-      "last_duration_ms": 68329,
-      "consecutive_errors": 0
-    },
-    {
-      "id": "2a73d80d-85f0-41c3-b964-f3414b6f94d8",
-      "name": "issue-monitor",
-      "description": "Monitor issue-crafter health, stale branches, and open issues. Reports via Telegram every 6h.",
-      "schedule": "Cron: 30 */6 * * * (Brussels)",
-      "model": "ollama/llama3.2:3b",
-      "session_target": "isolated",
-      "status": "ok",
-      "badge": "badge-ok",
-      "enabled": true,
-      "next_run": 1781195400000,
-      "last_run": 1781173800015,
-      "last_duration_ms": 66183,
+      "next_run": 1781195859311,
+      "last_run": 1781194059311,
+      "last_duration_ms": 89342,
       "consecutive_errors": 0
     },
     {
@@ -59,6 +29,36 @@
       "last_run": 1781192400030,
       "last_duration_ms": 69180,
       "consecutive_errors": 5
+    },
+    {
+      "id": "076c2650-df05-45ad-8103-595152e2fb07",
+      "name": "issue-crafter",
+      "description": "Auto-handle one Phase 2 GitHub issue every 6h with parallel specialist lanes. Picks issues by label (frontend/backend), uses sub-agent for implementation, reports via Telegram.",
+      "schedule": "Cron: 0 */6 * * * (Brussels)",
+      "model": "ollama/llama3.2:3b",
+      "session_target": "isolated",
+      "status": "error",
+      "badge": "badge-err",
+      "enabled": true,
+      "next_run": 1781215255704,
+      "last_run": 1781193655707,
+      "last_duration_ms": 283533,
+      "consecutive_errors": 1
+    },
+    {
+      "id": "2a73d80d-85f0-41c3-b964-f3414b6f94d8",
+      "name": "issue-monitor",
+      "description": "Monitor issue-crafter health, stale branches, and open issues. Reports via Telegram every 6h.",
+      "schedule": "Cron: 30 */6 * * * (Brussels)",
+      "model": "ollama/llama3.2:3b",
+      "session_target": "isolated",
+      "status": "error",
+      "badge": "badge-err",
+      "enabled": true,
+      "next_run": 1781217000000,
+      "last_run": 1781195400013,
+      "last_duration_ms": 76538,
+      "consecutive_errors": 1
     },
     {
       "id": "dea2f6dd-2dbf-425d-b6d9-c6752d962a87",
@@ -107,5 +107,5 @@
     }
   ],
   "total": 7,
-  "last_updated": "2026-06-11T16:05:01.458545+00:00"
+  "last_updated": "2026-06-11T16:35:01.590453+00:00"
 }
