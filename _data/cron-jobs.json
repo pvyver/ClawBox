@@ -10,9 +10,9 @@
       "status": "ok",
       "badge": "badge-ok",
       "enabled": true,
-      "next_run": 1781156100000,
-      "last_run": 1781154300019,
-      "last_duration_ms": 61780,
+      "next_run": 1781157900015,
+      "last_run": 1781156100015,
+      "last_duration_ms": 68827,
       "consecutive_errors": 0
     },
     {
@@ -25,25 +25,10 @@
       "status": "error",
       "badge": "badge-err",
       "enabled": true,
-      "next_run": 1781156400004,
-      "last_run": 1781154600004,
-      "last_duration_ms": 67520,
-      "consecutive_errors": 1
-    },
-    {
-      "id": "a05c1a5d-c105-4f46-a226-ef15b87e5a06",
-      "name": "daily-summary",
-      "description": "Daily summary sent to Telegram at 8AM CEST, includes token budget status bar",
-      "schedule": "Cron: 0 8 * * * (Berlin)",
-      "model": "ollama/llama3.2:3b",
-      "session_target": "isolated",
-      "status": "ok",
-      "badge": "badge-ok",
-      "enabled": true,
-      "next_run": 1781157600000,
-      "last_run": 1781071200015,
-      "last_duration_ms": 80544,
-      "consecutive_errors": 0
+      "next_run": 1781158200008,
+      "last_run": 1781156400008,
+      "last_duration_ms": 68165,
+      "consecutive_errors": 2
     },
     {
       "id": "076c2650-df05-45ad-8103-595152e2fb07",
@@ -104,8 +89,23 @@
       "last_run": 1781152200014,
       "last_duration_ms": 76439,
       "consecutive_errors": 0
+    },
+    {
+      "id": "a05c1a5d-c105-4f46-a226-ef15b87e5a06",
+      "name": "daily-summary",
+      "description": "Daily summary sent to Telegram at 8AM CEST, includes token budget status bar",
+      "schedule": "Cron: 0 8 * * * (Berlin)",
+      "model": "ollama/llama3.2:3b",
+      "session_target": "isolated",
+      "status": "ok",
+      "badge": "badge-ok",
+      "enabled": true,
+      "next_run": 1781244000000,
+      "last_run": 1781157600014,
+      "last_duration_ms": 111898,
+      "consecutive_errors": 0
     }
   ],
   "total": 7,
-  "last_updated": "2026-06-11T05:35:01.257840+00:00"
+  "last_updated": "2026-06-11T06:05:01.707387+00:00"
 }
