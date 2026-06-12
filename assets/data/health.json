@@ -1,44 +1,44 @@
 {
-  "timestamp": "2026-06-12T05:05:01.623874+00:00",
+  "timestamp": "2026-06-12T05:35:01.553805+00:00",
   "cpu": {
     "cores": 6,
     "model": "Cortex-A78AE",
-    "load_1m": 0.01,
-    "load_5m": 0.02,
-    "load_15m": 0.04,
+    "load_1m": 0.48,
+    "load_5m": 0.11,
+    "load_15m": 0.07,
     "runnable": 2,
-    "total_processes": 723
+    "total_processes": 726
   },
   "memory": {
     "total_bytes": 7976906752,
-    "used_bytes": 1447034880,
-    "free_bytes": 5992980480,
-    "available_bytes": 6369103872,
-    "used_percent": 18.1,
+    "used_bytes": 1370624000,
+    "free_bytes": 4958363648,
+    "available_bytes": 6452731904,
+    "used_percent": 17.2,
     "total_human": "7.4 GB",
     "used_human": "1.3 GB"
   },
   "disk": {
     "total_bytes": 501386080256,
-    "used_bytes": 58761457664,
-    "free_bytes": 442624622592,
+    "used_bytes": 58762227712,
+    "free_bytes": 442623852544,
     "used_percent": 11.7,
     "total_human": "467.0 GB",
     "used_human": "54.7 GB",
     "free_human": "412.2 GB"
   },
   "temperature": {
-    "value_celsius": 56.1,
-    "display": "56.1\u00b0C"
+    "value_celsius": 56.5,
+    "display": "56.5\u00b0C"
   },
   "gpu": {
-    "temperature_celsius": 54.843,
+    "temperature_celsius": 54.656,
     "usage_percent": 0,
-    "raw": "06-12-2026 05:05:02 RAM 1381/7607MB (lfb 46x4MB) SWAP 1111/3804MB (cached 1MB) CPU [0%@1728,0%@1728,2%@1728,0%@1728,0%@1728,98%@1728] GR3D_FREQ 0% cpu@54.843C soc2@52.875C soc0@53.875C gpu@54.843C tj@56.218C soc1@56.218C VDD_IN 7559mW/7559mW VDD_CPU_GPU_CV 2150mW/2150mW VDD_SOC 2310mW/2310mW"
+    "raw": "06-12-2026 05:35:02 RAM 1307/7607MB (lfb 25x4MB) SWAP 1112/3804MB (cached 2MB) CPU [0%@1728,0%@1728,0%@1728,2%@1728,0%@1728,99%@1728] GR3D_FREQ 0% cpu@55.156C soc2@53.062C soc0@54.156C gpu@54.656C tj@56.312C soc1@56.312C VDD_IN 7559mW/7559mW VDD_CPU_GPU_CV 2150mW/2150mW VDD_SOC 2310mW/2310mW"
   },
   "uptime": {
-    "seconds": 134901.42,
-    "display": "1d 13h 28m"
+    "seconds": 136701.35,
+    "display": "1d 13h 58m"
   },
   "power_thermal": {
     "power": {
@@ -51,8 +51,8 @@
     },
     "thermal": {
       "fan_speed_pct": 37,
-      "fan_rpm": 2057,
-      "junction_temp": 56.2,
+      "fan_rpm": 2063,
+      "junction_temp": 56.4,
       "throttle_temp": 85.0
     }
   },
@@ -97,7 +97,7 @@
   "processes": {
     "by_cpu": [
       {
-        "pid": 62977,
+        "pid": 63739,
         "name": "update-site-data.py",
         "cmd": "python3 scripts/update-site-data.py",
         "cpu_percent": 3.5,
@@ -107,7 +107,7 @@
         "severity": "ok"
       },
       {
-        "pid": 62644,
+        "pid": 63389,
         "name": "openclaw",
         "cmd": "openclaw",
         "cpu_percent": 2.7,
@@ -131,7 +131,7 @@
         "name": "snapd",
         "cmd": "/snap/snapd/current/usr/lib/snapd/snapd",
         "cpu_percent": 0.3,
-        "mem_percent": 0.3,
+        "mem_percent": 0.2,
         "user": "root",
         "is_claw": false,
         "severity": "ok"
@@ -149,7 +149,7 @@
     ],
     "by_mem": [
       {
-        "pid": 62644,
+        "pid": 63389,
         "name": "openclaw",
         "cmd": "openclaw",
         "cpu_percent": 2.7,
@@ -159,7 +159,7 @@
         "severity": "ok"
       },
       {
-        "pid": 62796,
+        "pid": 63546,
         "name": "cla",
         "cmd": "/home/clawbox/.bun/bin/bun run /home/clawbox/clawbox/mcp/cla",
         "cpu_percent": 0.1,
@@ -173,7 +173,7 @@
         "name": "gnome-shell",
         "cmd": "/usr/bin/gnome-shell",
         "cpu_percent": 0.1,
-        "mem_percent": 0.5,
+        "mem_percent": 0.6,
         "user": "clawbox",
         "is_claw": false,
         "severity": "ok"
@@ -189,18 +189,18 @@
         "severity": "ok"
       },
       {
-        "pid": 62570,
-        "name": "ollama",
-        "cmd": "/usr/local/bin/ollama serve",
+        "pid": 1478,
+        "name": "gdm",
+        "cmd": "/usr/lib/xorg/Xorg vt2 -displayfd 3 -auth /run/user/1000/gdm",
         "cpu_percent": 0.0,
-        "mem_percent": 0.4,
-        "user": "ollama",
+        "mem_percent": 0.3,
+        "user": "root",
         "is_claw": false,
         "severity": "ok"
       }
     ],
-    "total_processes": 356,
-    "timestamp": "2026-06-12T05:05:01.623874+00:00"
+    "total_processes": 358,
+    "timestamp": "2026-06-12T05:35:01.553805+00:00"
   },
   "network": {
     "interfaces": [
@@ -228,14 +228,14 @@
       },
       {
         "name": "enP8p1s0",
-        "rx_bytes": 255406687,
-        "tx_bytes": 273376727,
+        "rx_bytes": 256812484,
+        "tx_bytes": 274251767,
         "state": "UP",
         "ip": "192.168.0.122",
-        "rx_rate": 748,
-        "tx_rate": 397,
-        "total_in_human": "243.6 MB",
-        "total_out_human": "260.7 MB"
+        "rx_rate": 775,
+        "tx_rate": 485,
+        "total_in_human": "244.9 MB",
+        "total_out_human": "261.5 MB"
       },
       {
         "name": "l4tbr0",
@@ -273,20 +273,20 @@
       {
         "name": "tailscale0",
         "rx_bytes": 3790,
-        "tx_bytes": 144638,
+        "tx_bytes": 146438,
         "state": "UNKNOWN",
         "ip": "100.68.32.105",
         "rx_rate": 0,
         "tx_rate": 1,
         "total_in_human": "3.7 KB",
-        "total_out_human": "141.2 KB"
+        "total_out_human": "143.0 KB"
       }
     ],
-    "active_connections": 6,
-    "total_in_human": "243.6 MB",
-    "total_out_human": "260.9 MB",
-    "total_in_bytes": 255410477,
-    "total_out_bytes": 273521365
+    "active_connections": 7,
+    "total_in_human": "244.9 MB",
+    "total_out_human": "261.7 MB",
+    "total_in_bytes": 256816274,
+    "total_out_bytes": 274398205
   },
   "sessions": {
     "active_count": 0,
@@ -312,7 +312,7 @@
         "started_ago": "0s ago",
         "started_ms": 0,
         "age_seconds": 0,
-        "estimated_tokens": 47083,
+        "estimated_tokens": 47589,
         "tokens_human": "47K",
         "status": ""
       },
@@ -509,6 +509,6 @@
         "status": ""
       }
     ],
-    "last_updated": "2026-06-12T05:05:01.623874+00:00"
+    "last_updated": "2026-06-12T05:35:01.553805+00:00"
   }
 }
