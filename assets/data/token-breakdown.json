@@ -7,30 +7,30 @@
     },
     {
       "channel": "cron",
-      "tokens": 64087,
+      "tokens": 64073,
       "percentage": 17.3
     },
     {
       "channel": "conversation",
-      "tokens": 41673,
+      "tokens": 41943,
       "percentage": 11.3
     }
   ],
   "by_model": [
+    {
+      "model": "deepseek-v4-flash",
+      "tokens": 165208,
+      "percentage": 44.6
+    },
     {
       "model": "deepseek-chat",
       "tokens": 141045,
       "percentage": 38.1
     },
     {
-      "model": "deepseek-v4-flash",
-      "tokens": 123265,
-      "percentage": 33.3
-    },
-    {
       "model": "llama3.2:3b",
-      "tokens": 105760,
-      "percentage": 28.6
+      "tokens": 64073,
+      "percentage": 17.3
     },
     {
       "model": "gemma4-e2b-it-q4_0",
@@ -57,7 +57,7 @@
     },
     {
       "job": "issue-monitor",
-      "tokens": 4706
+      "tokens": 4692
     },
     {
       "job": "token-watch-check",
@@ -112,12 +112,12 @@
     {
       "id": "6462591f-aaa9-454e-9f1c-48c80e0fdca2",
       "key": "agent:main:main",
-      "model": "llama3.2:3b",
+      "model": "deepseek-v4-flash",
       "channel": "unknown",
       "started_ago": "0s ago",
       "started_ms": 0,
       "age_seconds": 0,
-      "estimated_tokens": 41673,
+      "estimated_tokens": 41943,
       "tokens_human": "41K",
       "status": ""
     },
@@ -170,19 +170,19 @@
       "status": ""
     },
     {
-      "id": "fb10d960-7126-4ed9-90fc-a154e2fc9e4a",
+      "id": "a80c9995-a46e-4d28-910e-12384ddd35a0",
       "key": "agent:main:cron:2a73d80d-85f0-41c3-b964-f3414b6f94d8",
       "model": "llama3.2:3b",
       "channel": "unknown",
       "started_ago": "0s ago",
       "started_ms": 0,
       "age_seconds": 0,
-      "estimated_tokens": 4706,
+      "estimated_tokens": 4692,
       "tokens_human": "4K",
       "status": ""
     },
     {
-      "id": "53144092-534e-40b0-ac53-706fa2a37526",
+      "id": "98d4e00d-4951-4884-b7f7-fa25954d1e90",
       "key": "agent:main:cron:528620d6-e3e1-42da-bd49-ce9599ec3d88",
       "model": "llama3.2:3b",
       "channel": "unknown",
@@ -290,6 +290,6 @@
       "status": ""
     }
   ],
-  "total_tokens": 370070,
-  "last_updated": "2026-06-12T22:05:01.838535+00:00"
+  "total_tokens": 370326,
+  "last_updated": "2026-06-12T22:35:01.867063+00:00"
 }
