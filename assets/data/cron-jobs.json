@@ -7,13 +7,13 @@
       "schedule": "Every 30 min",
       "model": "ollama/llama3.2:3b",
       "session_target": "isolated",
-      "status": "error",
-      "badge": "badge-err",
+      "status": "ok",
+      "badge": "badge-ok",
       "enabled": true,
-      "next_run": 1781300100000,
-      "last_run": 1781298300028,
-      "last_duration_ms": 71557,
-      "consecutive_errors": 2
+      "next_run": 1781301900000,
+      "last_run": 1781300100015,
+      "last_duration_ms": 64063,
+      "consecutive_errors": 0
     },
     {
       "id": "528620d6-e3e1-42da-bd49-ce9599ec3d88",
@@ -22,27 +22,12 @@
       "schedule": "Every 30 min",
       "model": "ollama/llama3.2:3b",
       "session_target": "isolated",
-      "status": "error",
-      "badge": "badge-err",
-      "enabled": true,
-      "next_run": 1781300538411,
-      "last_run": 1781296868452,
-      "last_duration_ms": 69959,
-      "consecutive_errors": 6
-    },
-    {
-      "id": "076c2650-df05-45ad-8103-595152e2fb07",
-      "name": "issue-crafter",
-      "description": "Auto-handle one Phase 2 GitHub issue every 6h with parallel specialist lanes. Picks issues by label (frontend/backend), uses sub-agent for implementation, reports via Telegram.",
-      "schedule": "Cron: 0 */6 * * * (Brussels)",
-      "model": "ollama/llama3.2:3b",
-      "session_target": "isolated",
       "status": "ok",
       "badge": "badge-ok",
       "enabled": true,
-      "next_run": 1781301655704,
-      "last_run": 1781280055720,
-      "last_duration_ms": 71275,
+      "next_run": 1781302200000,
+      "last_run": 1781300538478,
+      "last_duration_ms": 54897,
       "consecutive_errors": 0
     },
     {
@@ -73,6 +58,21 @@
       "next_run": 1781323200000,
       "last_run": 1781236800016,
       "last_duration_ms": 93136,
+      "consecutive_errors": 0
+    },
+    {
+      "id": "076c2650-df05-45ad-8103-595152e2fb07",
+      "name": "issue-crafter",
+      "description": "Auto-handle one Phase 2 GitHub issue every 6h with parallel specialist lanes. Picks issues by label (frontend/backend), uses sub-agent for implementation, reports via Telegram.",
+      "schedule": "Cron: 0 */6 * * * (Brussels)",
+      "model": "ollama/llama3.2:3b",
+      "session_target": "isolated",
+      "status": "ok",
+      "badge": "badge-ok",
+      "enabled": true,
+      "next_run": 1781323255704,
+      "last_run": 1781301655725,
+      "last_duration_ms": 76980,
       "consecutive_errors": 0
     },
     {
@@ -107,5 +107,5 @@
     }
   ],
   "total": 7,
-  "last_updated": "2026-06-12T21:35:01.960803+00:00"
+  "last_updated": "2026-06-12T22:05:01.838535+00:00"
 }
