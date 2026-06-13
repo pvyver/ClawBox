@@ -1,6 +1,111 @@
 {
   "events": [
     {
+      "timestamp": "2026-06-13T04:35:01.793652+00:00",
+      "type": "warning",
+      "source": "health",
+      "message": "Temperature at 75.6\u00b0C",
+      "value": 75.6
+    },
+    {
+      "timestamp": "2026-06-13T04:35:01.793652+00:00",
+      "type": "critical",
+      "source": "health",
+      "message": "Memory at 91.2%",
+      "value": 91.2
+    },
+    {
+      "timestamp": "2026-06-13T04:35:01.793652+00:00",
+      "type": "error",
+      "source": "cron",
+      "message": "issue-monitor has 3 consecutive errors",
+      "value": 3
+    },
+    {
+      "timestamp": "2026-06-13T04:35:01.793652+00:00",
+      "type": "error",
+      "source": "cron",
+      "message": "update-site-data has 1 consecutive errors",
+      "value": 1
+    },
+    {
+      "timestamp": "2026-06-13T04:35:01.793652+00:00",
+      "type": "error",
+      "source": "cron",
+      "message": "issue-crafter has 1 consecutive errors",
+      "value": 1
+    },
+    {
+      "timestamp": "2026-06-13T04:35:01.793652+00:00",
+      "type": "warning",
+      "source": "latency",
+      "message": "deepseek-chat p99 latency at 289s",
+      "value": 289.2
+    },
+    {
+      "timestamp": "2026-06-13T04:35:01.793652+00:00",
+      "type": "warning",
+      "source": "latency",
+      "message": "deepseek-v4-flash p99 latency at 306s",
+      "value": 305.5
+    },
+    {
+      "timestamp": "2026-06-13T04:35:01.793652+00:00",
+      "type": "warning",
+      "source": "latency",
+      "message": "llama3.2:3b p99 latency at 242s",
+      "value": 242.2
+    },
+    {
+      "timestamp": "2026-06-13T04:35:01.793652+00:00",
+      "type": "warning",
+      "source": "latency",
+      "message": "deepseek-v4-flash p99 latency at 580s",
+      "value": 580.2
+    },
+    {
+      "timestamp": "2026-06-13T04:35:01.793652+00:00",
+      "type": "warning",
+      "source": "latency",
+      "message": "llama3.2:3b p99 latency at 580s",
+      "value": 580.2
+    },
+    {
+      "timestamp": "2026-06-13T04:35:01.793652+00:00",
+      "type": "warning",
+      "source": "latency",
+      "message": "deepseek-v4-flash p99 latency at 253s",
+      "value": 252.9
+    },
+    {
+      "timestamp": "2026-06-13T04:35:01.793652+00:00",
+      "type": "warning",
+      "source": "latency",
+      "message": "llama3.2:3b p99 latency at 172s",
+      "value": 171.9
+    },
+    {
+      "timestamp": "2026-06-13T04:35:01.793652+00:00",
+      "type": "warning",
+      "source": "latency",
+      "message": "deepseek-v4-flash p99 latency at 144s",
+      "value": 144.3
+    },
+    {
+      "timestamp": "2026-06-13T04:35:01.793652+00:00",
+      "type": "warning",
+      "source": "latency",
+      "message": "llama3.2:3b p99 latency at 128s",
+      "value": 127.5
+    },
+    {
+      "timestamp": "2026-06-13T04:35:01.793652+00:00",
+      "type": "info",
+      "source": "system",
+      "message": "Site data updated",
+      "value": null
+    },
+    {
       "timestamp": "2026-06-13T04:05:01.904091+00:00",
       "type": "critical",
       "source": "health",
@@ -3394,114 +3499,9 @@
       "source": "latency",
       "message": "llama3.2:3b p99 latency at 580s",
       "value": 580.2
-    },
-    {
-      "timestamp": "2026-06-12T08:05:01.427635+00:00",
-      "type": "warning",
-      "source": "latency",
-      "message": "deepseek-v4-flash p99 latency at 253s",
-      "value": 252.9
-    },
-    {
-      "timestamp": "2026-06-12T08:05:01.427635+00:00",
-      "type": "warning",
-      "source": "latency",
-      "message": "llama3.2:3b p99 latency at 172s",
-      "value": 171.9
-    },
-    {
-      "timestamp": "2026-06-12T08:05:01.427635+00:00",
-      "type": "warning",
-      "source": "latency",
-      "message": "llama3.2:3b p99 latency at 66s",
-      "value": 66.0
-    },
-    {
-      "timestamp": "2026-06-12T08:05:01.427635+00:00",
-      "type": "info",
-      "source": "system",
-      "message": "Site data updated",
-      "value": null
-    },
-    {
-      "timestamp": "2026-06-12T07:35:01.855265+00:00",
-      "type": "error",
-      "source": "cron",
-      "message": "update-site-data has 1 consecutive errors",
-      "value": 1
-    },
-    {
-      "timestamp": "2026-06-12T07:35:01.855265+00:00",
-      "type": "error",
-      "source": "cron",
-      "message": "token-watch-check has 1 consecutive errors",
-      "value": 1
-    },
-    {
-      "timestamp": "2026-06-12T07:35:01.855265+00:00",
-      "type": "error",
-      "source": "cron",
-      "message": "issue-crafter has 1 consecutive errors",
-      "value": 1
-    },
-    {
-      "timestamp": "2026-06-12T07:35:01.855265+00:00",
-      "type": "warning",
-      "source": "latency",
-      "message": "deepseek-chat p99 latency at 289s",
-      "value": 289.2
-    },
-    {
-      "timestamp": "2026-06-12T07:35:01.855265+00:00",
-      "type": "warning",
-      "source": "latency",
-      "message": "deepseek-v4-flash p99 latency at 306s",
-      "value": 305.5
-    },
-    {
-      "timestamp": "2026-06-12T07:35:01.855265+00:00",
-      "type": "warning",
-      "source": "latency",
-      "message": "llama3.2:3b p99 latency at 242s",
-      "value": 242.2
-    },
-    {
-      "timestamp": "2026-06-12T07:35:01.855265+00:00",
-      "type": "warning",
-      "source": "latency",
-      "message": "deepseek-v4-flash p99 latency at 580s",
-      "value": 580.2
-    },
-    {
-      "timestamp": "2026-06-12T07:35:01.855265+00:00",
-      "type": "warning",
-      "source": "latency",
-      "message": "llama3.2:3b p99 latency at 580s",
-      "value": 580.2
-    },
-    {
-      "timestamp": "2026-06-12T07:35:01.855265+00:00",
-      "type": "warning",
-      "source": "latency",
-      "message": "deepseek-v4-flash p99 latency at 253s",
-      "value": 252.9
-    },
-    {
-      "timestamp": "2026-06-12T07:35:01.855265+00:00",
-      "type": "warning",
-      "source": "latency",
-      "message": "llama3.2:3b p99 latency at 172s",
-      "value": 171.9
-    },
-    {
-      "timestamp": "2026-06-12T07:35:01.855265+00:00",
-      "type": "warning",
-      "source": "latency",
-      "message": "llama3.2:3b p99 latency at 66s",
-      "value": 66.0
     }
   ],
   "total_events": 500,
   "active_count": 0,
-  "last_updated": "2026-06-13T04:05:01.904091+00:00"
+  "last_updated": "2026-06-13T04:35:01.793652+00:00"
 }

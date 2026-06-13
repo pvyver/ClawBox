@@ -1,36 +1,6 @@
 {
   "jobs": [
     {
-      "id": "685c7ce0-58ad-4aef-9aee-2665249f1f4b",
-      "name": "update-site-data",
-      "description": "MONITOR: check system cron ran update-site-data in last 40 min. Alerts if stale.",
-      "schedule": "Every 30 min",
-      "model": "ollama/llama3.2:3b",
-      "session_target": "isolated",
-      "status": "ok",
-      "badge": "badge-ok",
-      "enabled": true,
-      "next_run": 1781323500141,
-      "last_run": 1781321700141,
-      "last_duration_ms": 70064,
-      "consecutive_errors": 0
-    },
-    {
-      "id": "528620d6-e3e1-42da-bd49-ce9599ec3d88",
-      "name": "token-watch-check",
-      "description": "Check daily token budget every 30 min (silent). Outputs alert message when thresholds hit, nothing otherwise.",
-      "schedule": "Every 30 min",
-      "model": "ollama/llama3.2:3b",
-      "session_target": "isolated",
-      "status": "ok",
-      "badge": "badge-ok",
-      "enabled": true,
-      "next_run": 1781323800000,
-      "last_run": 1781322071261,
-      "last_duration_ms": 55194,
-      "consecutive_errors": 0
-    },
-    {
       "id": "065d0da8-cecc-45b9-83f1-7138c0b66cb7",
       "name": "Azure Blog Digest",
       "description": "Daily Azure blog digest: fetches recent articles from Tech Community RSS feeds, displays top 20 most recent. Delivered at 6:30AM CEST.",
@@ -59,6 +29,36 @@
       "last_run": 1781303400015,
       "last_duration_ms": 73594,
       "consecutive_errors": 3
+    },
+    {
+      "id": "685c7ce0-58ad-4aef-9aee-2665249f1f4b",
+      "name": "update-site-data",
+      "description": "MONITOR: check system cron ran update-site-data in last 40 min. Alerts if stale.",
+      "schedule": "Every 30 min",
+      "model": "ollama/llama3.2:3b",
+      "session_target": "isolated",
+      "status": "error",
+      "badge": "badge-err",
+      "enabled": true,
+      "next_run": 1781325300146,
+      "last_run": 1781323500146,
+      "last_duration_ms": 66572,
+      "consecutive_errors": 1
+    },
+    {
+      "id": "528620d6-e3e1-42da-bd49-ce9599ec3d88",
+      "name": "token-watch-check",
+      "description": "Check daily token budget every 30 min (silent). Outputs alert message when thresholds hit, nothing otherwise.",
+      "schedule": "Every 30 min",
+      "model": "ollama/llama3.2:3b",
+      "session_target": "isolated",
+      "status": "ok",
+      "badge": "badge-ok",
+      "enabled": true,
+      "next_run": 1781325600015,
+      "last_run": 1781323800015,
+      "last_duration_ms": 58219,
+      "consecutive_errors": 0
     },
     {
       "id": "a05c1a5d-c105-4f46-a226-ef15b87e5a06",
@@ -107,5 +107,5 @@
     }
   ],
   "total": 7,
-  "last_updated": "2026-06-13T04:05:01.904091+00:00"
+  "last_updated": "2026-06-13T04:35:01.793652+00:00"
 }
