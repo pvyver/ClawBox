@@ -10,9 +10,9 @@
       "status": "ok",
       "badge": "badge-ok",
       "enabled": true,
-      "next_run": 1781345100097,
-      "last_run": 1781343300097,
-      "last_duration_ms": 58010,
+      "next_run": 1781346900111,
+      "last_run": 1781345100111,
+      "last_duration_ms": 24117,
       "consecutive_errors": 0
     },
     {
@@ -25,25 +25,10 @@
       "status": "ok",
       "badge": "badge-ok",
       "enabled": true,
-      "next_run": 1781345400000,
-      "last_run": 1781343669577,
-      "last_duration_ms": 55131,
+      "next_run": 1781347200014,
+      "last_run": 1781345400014,
+      "last_duration_ms": 9504,
       "consecutive_errors": 0
-    },
-    {
-      "id": "2a73d80d-85f0-41c3-b964-f3414b6f94d8",
-      "name": "issue-monitor",
-      "description": "Monitor issue-crafter health, stale branches, and open issues. Reports via Telegram every 6h.",
-      "schedule": "Cron: 30 */6 * * * (Brussels)",
-      "model": "ollama/llama3.2:3b",
-      "session_target": "isolated",
-      "status": "error",
-      "badge": "badge-err",
-      "enabled": true,
-      "next_run": 1781346600000,
-      "last_run": 1781325000033,
-      "last_duration_ms": 70744,
-      "consecutive_errors": 4
     },
     {
       "id": "076c2650-df05-45ad-8103-595152e2fb07",
@@ -58,6 +43,21 @@
       "next_run": 1781366455704,
       "last_run": 1781344855726,
       "last_duration_ms": 75033,
+      "consecutive_errors": 0
+    },
+    {
+      "id": "2a73d80d-85f0-41c3-b964-f3414b6f94d8",
+      "name": "issue-monitor",
+      "description": "Monitor issue-crafter health, stale branches, and open issues. Reports via Telegram every 6h.",
+      "schedule": "Cron: 30 */6 * * * (Brussels)",
+      "model": "ollama/llama3.2:3b",
+      "session_target": "isolated",
+      "status": "ok",
+      "badge": "badge-ok",
+      "enabled": true,
+      "next_run": 1781368200000,
+      "last_run": 1781346600013,
+      "last_duration_ms": 104289,
       "consecutive_errors": 0
     },
     {
@@ -107,5 +107,5 @@
     }
   ],
   "total": 7,
-  "last_updated": "2026-06-13T10:05:01.764679+00:00"
+  "last_updated": "2026-06-13T10:35:02.057431+00:00"
 }
