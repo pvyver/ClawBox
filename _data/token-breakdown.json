@@ -3,34 +3,34 @@
     {
       "channel": "webchat",
       "tokens": 264310,
-      "percentage": 61.5
+      "percentage": 60.8
     },
     {
       "channel": "cron",
-      "tokens": 107235,
-      "percentage": 25.0
+      "tokens": 111982,
+      "percentage": 25.8
     },
     {
       "channel": "conversation",
-      "tokens": 58103,
-      "percentage": 13.5
+      "tokens": 58406,
+      "percentage": 13.4
     }
   ],
   "by_model": [
     {
       "model": "deepseek-v4-flash",
-      "tokens": 181368,
-      "percentage": 42.2
+      "tokens": 181671,
+      "percentage": 41.8
     },
     {
       "model": "deepseek-chat",
       "tokens": 141045,
-      "percentage": 32.8
+      "percentage": 32.4
     },
     {
       "model": "llama3.2:3b",
-      "tokens": 107235,
-      "percentage": 25.0
+      "tokens": 111982,
+      "percentage": 25.8
     },
     {
       "model": "gemma4-e2b-it-q4_0",
@@ -54,6 +54,10 @@
     {
       "job": "issue-crafter",
       "tokens": 4914
+    },
+    {
+      "job": "token-watch-daily-report",
+      "tokens": 4747
     },
     {
       "job": "update-site-data",
@@ -117,7 +121,7 @@
       "started_ago": "0s ago",
       "started_ms": 0,
       "age_seconds": 0,
-      "estimated_tokens": 58103,
+      "estimated_tokens": 58406,
       "tokens_human": "58K",
       "status": ""
     },
@@ -166,6 +170,18 @@
       "started_ms": 0,
       "age_seconds": 0,
       "estimated_tokens": 4914,
+      "tokens_human": "4K",
+      "status": ""
+    },
+    {
+      "id": "92734d36-3c53-4dc2-a4aa-adf0aed601b2",
+      "key": "agent:main:cron:ca3e504d-bd93-4e61-9e57-1e6dc22fd817",
+      "model": "llama3.2:3b",
+      "channel": "unknown",
+      "started_ago": "0s ago",
+      "started_ms": 0,
+      "age_seconds": 0,
+      "estimated_tokens": 4747,
       "tokens_human": "4K",
       "status": ""
     },
@@ -290,6 +306,6 @@
       "status": ""
     }
   ],
-  "total_tokens": 429648,
-  "last_updated": "2026-06-13T19:35:01.150887+00:00"
+  "total_tokens": 434698,
+  "last_updated": "2026-06-13T20:05:01.247569+00:00"
 }
