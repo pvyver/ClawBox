@@ -10,39 +10,9 @@
       "status": "ok",
       "badge": "badge-ok",
       "enabled": true,
-      "next_run": 1781364900050,
-      "last_run": 1781363100050,
-      "last_duration_ms": 67095,
-      "consecutive_errors": 0
-    },
-    {
-      "id": "528620d6-e3e1-42da-bd49-ce9599ec3d88",
-      "name": "token-watch-check",
-      "description": "Check daily token budget every 30 min (silent). Outputs alert message when thresholds hit, nothing otherwise.",
-      "schedule": "Every 30 min",
-      "model": "ollama/llama3.2:3b",
-      "session_target": "isolated",
-      "status": "error",
-      "badge": "badge-err",
-      "enabled": true,
-      "next_run": 1781365200032,
-      "last_run": 1781363400032,
-      "last_duration_ms": 66788,
-      "consecutive_errors": 4
-    },
-    {
-      "id": "076c2650-df05-45ad-8103-595152e2fb07",
-      "name": "issue-crafter",
-      "description": "Auto-handle one Phase 2 GitHub issue every 6h with parallel specialist lanes. Picks issues by label (frontend/backend), uses sub-agent for implementation, reports via Telegram.",
-      "schedule": "Cron: 0 */6 * * * (Brussels)",
-      "model": "ollama/llama3.2:3b",
-      "session_target": "isolated",
-      "status": "ok",
-      "badge": "badge-ok",
-      "enabled": true,
-      "next_run": 1781366455704,
-      "last_run": 1781344855726,
-      "last_duration_ms": 75033,
+      "next_run": 1781366700065,
+      "last_run": 1781364900065,
+      "last_duration_ms": 99705,
       "consecutive_errors": 0
     },
     {
@@ -61,6 +31,21 @@
       "consecutive_errors": 0
     },
     {
+      "id": "528620d6-e3e1-42da-bd49-ce9599ec3d88",
+      "name": "token-watch-check",
+      "description": "Check daily token budget every 30 min (silent). Outputs alert message when thresholds hit, nothing otherwise.",
+      "schedule": "Every 30 min",
+      "model": "ollama/llama3.2:3b",
+      "session_target": "isolated",
+      "status": "error",
+      "badge": "badge-err",
+      "enabled": true,
+      "next_run": 1781368874231,
+      "last_run": 1781365200036,
+      "last_duration_ms": 74195,
+      "consecutive_errors": 5
+    },
+    {
       "id": "ca3e504d-bd93-4e61-9e57-1e6dc22fd817",
       "name": "token-watch-daily-report",
       "description": "Daily token usage report for last 7 days with status bars",
@@ -73,6 +58,21 @@
       "next_run": 1781380800000,
       "last_run": 0,
       "last_duration_ms": 0,
+      "consecutive_errors": 0
+    },
+    {
+      "id": "076c2650-df05-45ad-8103-595152e2fb07",
+      "name": "issue-crafter",
+      "description": "Auto-handle one Phase 2 GitHub issue every 6h with parallel specialist lanes. Picks issues by label (frontend/backend), uses sub-agent for implementation, reports via Telegram.",
+      "schedule": "Cron: 0 */6 * * * (Brussels)",
+      "model": "ollama/llama3.2:3b",
+      "session_target": "isolated",
+      "status": "ok",
+      "badge": "badge-ok",
+      "enabled": true,
+      "next_run": 1781388055704,
+      "last_run": 1781366455720,
+      "last_duration_ms": 71911,
       "consecutive_errors": 0
     },
     {
@@ -122,5 +122,5 @@
     }
   ],
   "total": 8,
-  "last_updated": "2026-06-13T15:35:02.009942+00:00"
+  "last_updated": "2026-06-13T16:05:01.460046+00:00"
 }
