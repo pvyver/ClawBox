@@ -16,6 +16,19 @@ import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
+# MCP-based stats collection (fallback to direct /proc reads if unavailable)
+_HAVE_MCP = None
+def _check_mcp():
+    global _HAVE_MCP
+    if _HAVE_MCP is not None:
+        return _HAVE_MCP
+    try:
+        from mcp_client import get_cpu_stats
+        _HAVE_MCP = bool(get_cpu_stats())
+    except (ImportError, FileNotFoundError, OSError):
+        _HAVE_MCP = False
+    return _HAVE_MCP
+
 # ── Paths ──────────────────────────────────────────────────────────────
 REPO_DIR = Path(__file__).resolve().parent.parent
 WORKSPACE = Path(os.environ.get("HOME", "/home/clawbox")) / ".openclaw" / "workspace"
@@ -79,7 +92,23 @@ def bytes_fmt(n):
 # ── 1. System Stats ────────────────────────────────────────────────────
 
 def collect_cpu_stats():
-    """Read CPU load from /proc/loadavg and CPU info."""
+    """Read CPU load from /proc/loadavg and CPU info.
+    Uses MCP server if available, falls back to direct /proc read."""
+    if _check_mcp():
+        from mcp_client import get_cpu_stats
+        m = get_cpu_stats()
+        if m:
+            return {
+                "cores": m.get("cores", 6),
+                "model": "Cortex-A78AE",
+                "load_1m": m.get("load_1m", 0),
+                "load_5m": m.get("load_5m", 0),
+                "load_15m": m.get("load_15m", 0),
+                "usage_percent": m.get("usage_percent", 0),
+                "runnable": 0,
+                "total_processes": 0,
+            }
+
     info = {"cores": 6, "model": "Cortex-A78AE"}
     try:
         with open("/proc/loadavg") as f:
@@ -95,7 +124,26 @@ def collect_cpu_stats():
 
 
 def collect_memory_stats():
-    """Read memory from /proc/meminfo."""
+    """Read memory from /proc/meminfo.
+    Uses MCP server if available, falls back to direct /proc read."""
+    if _check_mcp():
+        from mcp_client import get_memory_stats
+        m = get_memory_stats()
+        if m and m.get("total_gb"):
+            total = int(m["total_gb"] * 1024**3)
+            used = int(m["used_gb"] * 1024**3)
+            free = int(m["free_gb"] * 1024**3)
+            avail = int(m["available_gb"] * 1024**3)
+            return {
+                "total_bytes": total,
+                "used_bytes": used,
+                "free_bytes": free,
+                "available_bytes": avail,
+                "used_percent": m.get("used_percent", 0),
+                "total_human": bytes_fmt(total),
+                "used_human": bytes_fmt(used),
+            }
+
     try:
         meminfo = {}
         with open("/proc/meminfo") as f:
@@ -124,8 +172,49 @@ def collect_memory_stats():
         return {"error": "could not read /proc/meminfo"}
 
 
+def _human_to_bytes(s):
+    """Parse a human size like '467G' or '56.2G' to bytes."""
+    s = s.strip()
+    if not s:
+        return 0
+    units = {"B": 1, "KB": 1024, "MB": 1024**2, "GB": 1024**3, "TB": 1024**4,
+             "K": 1024, "M": 1024**2, "G": 1024**3, "T": 1024**4}
+    for suffix, mult in units.items():
+        if s.endswith(suffix):
+            try:
+                return int(float(s[:-len(suffix)]) * mult)
+            except ValueError:
+                return 0
+    # No suffix - assume bytes or try as-is
+    try:
+        return int(float(s))
+    except ValueError:
+        return 0
+
+
 def collect_disk_stats():
-    """Read disk usage via statvfs on /."""
+    """Read disk usage via statvfs on /.
+    Uses MCP server if available, falls back to direct statvfs."""
+    if _check_mcp():
+        from mcp_client import get_disk_stats
+        m = get_disk_stats()
+        if m and m.get("mounts"):
+            root = m["mounts"][0]
+            pct = root.get("percent", 0)
+            total_raw = root.get("total", "0GB")
+            used_raw = root.get("used", "0GB")
+            total_bytes = _human_to_bytes(total_raw)
+            used_bytes = _human_to_bytes(used_raw)
+            return {
+                "total_bytes": total_bytes,
+                "used_bytes": used_bytes,
+                "free_bytes": total_bytes - used_bytes,
+                "used_percent": pct,
+                "total_human": total_raw,
+                "used_human": used_raw,
+                "free_human": bytes_fmt(total_bytes - used_bytes),
+            }
+
     try:
         s = os.statvfs("/")
         total = s.f_frsize * s.f_blocks
@@ -145,7 +234,19 @@ def collect_disk_stats():
 
 
 def collect_temperature():
-    """Read max temperature from thermal zones."""
+    """Read max temperature from thermal zones.
+    Uses MCP server if available, falls back to direct sysfs read."""
+    if _check_mcp():
+        from mcp_client import get_cpu_stats
+        m = get_cpu_stats()
+        if m:
+            temps = [v for v in m.get("temperatures", {}).values() if v > 0]
+            if temps:
+                return {
+                    "value_celsius": round(max(temps), 1),
+                    "display": f"{max(temps):.1f}°C",
+                }
+
     temps = []
     tz_dir = Path("/sys/devices/virtual/thermal")
     for tz in sorted(tz_dir.glob("thermal_zone*")):
@@ -165,7 +266,22 @@ def collect_temperature():
 
 
 def collect_gpu_stats():
-    """Parse tegrastats output for GPU temp and frequency."""
+    """Parse tegrastats output for GPU temp and frequency.
+    Uses MCP server if available, falls back to direct tegrastats call."""
+    if _check_mcp():
+        from mcp_client import get_gpu_stats
+        m = get_gpu_stats()
+        if m:
+            result = {}
+            if m.get("temperature_celsius") is not None:
+                result["temperature_celsius"] = m["temperature_celsius"]
+            if m.get("usage_percent") is not None:
+                result["usage_percent"] = m["usage_percent"]
+            if m.get("raw"):
+                result["raw"] = m["raw"][:300]
+            if result:
+                return result
+
     try:
         r = subprocess.run(
             ["timeout", "2", "tegrastats"],
