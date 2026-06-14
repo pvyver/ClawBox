@@ -1,21 +1,6 @@
 {
   "jobs": [
     {
-      "id": "076c2650-df05-45ad-8103-595152e2fb07",
-      "name": "issue-crafter",
-      "description": "Auto-handle one Phase 2 GitHub issue every 6h with parallel specialist lanes. Picks issues by label (frontend/backend), uses sub-agent for implementation, reports via Telegram.",
-      "schedule": "Cron: 0 */6 * * * (Brussels)",
-      "model": "ollama/llama3.2:3b",
-      "session_target": "isolated",
-      "status": "ok",
-      "badge": "badge-ok",
-      "enabled": true,
-      "next_run": 1781474455704,
-      "last_run": 1781452855721,
-      "last_duration_ms": 66493,
-      "consecutive_errors": 0
-    },
-    {
       "id": "685c7ce0-58ad-4aef-9aee-2665249f1f4b",
       "name": "update-site-data",
       "description": "MONITOR: check system cron ran update-site-data in last 40 min. Alerts if stale.",
@@ -76,6 +61,21 @@
       "consecutive_errors": 0
     },
     {
+      "id": "076c2650-df05-45ad-8103-595152e2fb07",
+      "name": "issue-crafter",
+      "description": "Auto-handle one Phase 2 GitHub issue every 6h with parallel specialist lanes. Picks issues by label (frontend/backend), uses sub-agent for implementation, reports via Telegram.",
+      "schedule": "Cron: 0 */6 * * * (Brussels)",
+      "model": "ollama/llama3.2:3b",
+      "session_target": "isolated",
+      "status": "error",
+      "badge": "badge-err",
+      "enabled": true,
+      "next_run": 1781496055704,
+      "last_run": 1781474455721,
+      "last_duration_ms": 72197,
+      "consecutive_errors": 1
+    },
+    {
       "id": "065d0da8-cecc-45b9-83f1-7138c0b66cb7",
       "name": "Azure Blog Digest",
       "description": "Daily Azure blog digest: fetches recent articles from Tech Community RSS feeds, displays top 10 newest. Delivered at 6:30AM CEST.",
@@ -122,5 +122,5 @@
     }
   ],
   "total": 8,
-  "last_updated": "2026-06-14T21:57:38.836861+00:00"
+  "last_updated": "2026-06-14T22:05:01.351605+00:00"
 }
