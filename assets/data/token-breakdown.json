@@ -3,34 +3,34 @@
     {
       "channel": "cron",
       "tokens": 326584,
-      "percentage": 50.4
+      "percentage": 50.9
     },
     {
       "channel": "webchat",
       "tokens": 264310,
-      "percentage": 40.8
+      "percentage": 41.2
     },
     {
       "channel": "conversation",
-      "tokens": 57297,
-      "percentage": 8.8
+      "tokens": 50766,
+      "percentage": 7.9
     }
   ],
   "by_model": [
     {
       "model": "llama3.2:3b",
-      "tokens": 383881,
-      "percentage": 59.2
+      "tokens": 326584,
+      "percentage": 50.9
+    },
+    {
+      "model": "deepseek-v4-flash",
+      "tokens": 174031,
+      "percentage": 27.1
     },
     {
       "model": "deepseek-chat",
       "tokens": 141045,
-      "percentage": 21.8
-    },
-    {
-      "model": "deepseek-v4-flash",
-      "tokens": 123265,
-      "percentage": 19.0
+      "percentage": 22.0
     },
     {
       "model": "gemma4-e2b-it-q4_0",
@@ -114,18 +114,6 @@
       "status": ""
     },
     {
-      "id": "d9736499-144b-4f6a-8e05-e43f5d444806",
-      "key": "agent:main:main",
-      "model": "llama3.2:3b",
-      "channel": "unknown",
-      "started_ago": "0s ago",
-      "started_ms": 0,
-      "age_seconds": 0,
-      "estimated_tokens": 57297,
-      "tokens_human": "57K",
-      "status": ""
-    },
-    {
       "id": "ea9cd061-2840-4d00-9ad1-57e8bd6af3f6",
       "key": "agent:main:dashboard:f423d09a-a6d7-4347-b017-c0d981a76cd3",
       "model": "deepseek-chat",
@@ -135,6 +123,18 @@
       "age_seconds": 0,
       "estimated_tokens": 55271,
       "tokens_human": "55K",
+      "status": ""
+    },
+    {
+      "id": "d9736499-144b-4f6a-8e05-e43f5d444806",
+      "key": "agent:main:main",
+      "model": "deepseek-v4-flash",
+      "channel": "unknown",
+      "started_ago": "0s ago",
+      "started_ms": 0,
+      "age_seconds": 0,
+      "estimated_tokens": 50766,
+      "tokens_human": "50K",
       "status": ""
     },
     {
@@ -306,6 +306,6 @@
       "status": ""
     }
   ],
-  "total_tokens": 648191,
-  "last_updated": "2026-06-14T17:05:01.248579+00:00"
+  "total_tokens": 641660,
+  "last_updated": "2026-06-14T17:35:02.070569+00:00"
 }
