@@ -91,7 +91,7 @@
     {
       "date": "2026-06-14",
       "model": "deepseek-v4-flash",
-      "requests": 18,
+      "requests": 19,
       "p50_ms": 3408,
       "p95_ms": 7314,
       "p99_ms": 7314
@@ -99,10 +99,10 @@
     {
       "date": "2026-06-14",
       "model": "llama3.2:3b",
-      "requests": 69,
-      "p50_ms": 10141,
-      "p95_ms": 52178,
-      "p99_ms": 56311
+      "requests": 70,
+      "p50_ms": 10826,
+      "p95_ms": 52436,
+      "p99_ms": 56748
     }
   ],
   "recent": [
@@ -4425,7 +4425,23 @@
       "input_tokens": 26401,
       "output_tokens": 110,
       "model_short": "llama3.2:3b"
+    },
+    {
+      "model": "deepseek-v4-flash",
+      "timestamp": "2026-06-14T22:56:51.361Z",
+      "latency_ms": 3408,
+      "input_tokens": 267,
+      "output_tokens": 188,
+      "model_short": "deepseek-v4-flash"
+    },
+    {
+      "model": "llama3.2:3b",
+      "timestamp": "2026-06-14T22:38:47.116Z",
+      "latency_ms": 56748,
+      "input_tokens": 21933,
+      "output_tokens": 90,
+      "model_short": "llama3.2:3b"
     }
   ],
-  "total_processed": 540
+  "total_processed": 542
 }
