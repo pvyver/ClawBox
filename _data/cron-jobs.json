@@ -10,9 +10,9 @@
       "status": "ok",
       "badge": "badge-ok",
       "enabled": true,
-      "next_run": 1781409900030,
-      "last_run": 1781408100030,
-      "last_duration_ms": 58143,
+      "next_run": 1781411700045,
+      "last_run": 1781409900045,
+      "last_duration_ms": 75033,
       "consecutive_errors": 0
     },
     {
@@ -25,39 +25,9 @@
       "status": "error",
       "badge": "badge-err",
       "enabled": true,
-      "next_run": 1781410200006,
-      "last_run": 1781408400006,
-      "last_duration_ms": 68339,
-      "consecutive_errors": 1
-    },
-    {
-      "id": "065d0da8-cecc-45b9-83f1-7138c0b66cb7",
-      "name": "Azure Blog Digest",
-      "description": "Daily Azure blog digest: fetches recent articles from Tech Community RSS feeds, displays top 10 newest. Delivered at 6:30AM CEST.",
-      "schedule": "Cron: 30 6 * * * (Brussels)",
-      "model": "ollama/llama3.2:3b",
-      "session_target": "isolated",
-      "status": "ok",
-      "badge": "badge-ok",
-      "enabled": true,
-      "next_run": 1781411400000,
-      "last_run": 1781325000016,
-      "last_duration_ms": 439045,
-      "consecutive_errors": 0
-    },
-    {
-      "id": "2a73d80d-85f0-41c3-b964-f3414b6f94d8",
-      "name": "issue-monitor",
-      "description": "Monitor issue-crafter health, stale branches, and open issues. Reports via Telegram every 6h.",
-      "schedule": "Cron: 30 */6 * * * (Brussels)",
-      "model": "ollama/llama3.2:3b",
-      "session_target": "isolated",
-      "status": "error",
-      "badge": "badge-err",
-      "enabled": true,
-      "next_run": 1781411400000,
-      "last_run": 1781389800023,
-      "last_duration_ms": 63302,
+      "next_run": 1781412000011,
+      "last_run": 1781410200011,
+      "last_duration_ms": 68649,
       "consecutive_errors": 2
     },
     {
@@ -91,6 +61,21 @@
       "consecutive_errors": 1
     },
     {
+      "id": "2a73d80d-85f0-41c3-b964-f3414b6f94d8",
+      "name": "issue-monitor",
+      "description": "Monitor issue-crafter health, stale branches, and open issues. Reports via Telegram every 6h.",
+      "schedule": "Cron: 30 */6 * * * (Brussels)",
+      "model": "ollama/llama3.2:3b",
+      "session_target": "isolated",
+      "status": "error",
+      "badge": "badge-err",
+      "enabled": true,
+      "next_run": 1781433000000,
+      "last_run": 1781411400004,
+      "last_duration_ms": 163160,
+      "consecutive_errors": 3
+    },
+    {
       "id": "ca3e504d-bd93-4e61-9e57-1e6dc22fd817",
       "name": "token-watch-daily-report",
       "description": "Daily token usage report for last 7 days with status bars",
@@ -119,8 +104,23 @@
       "last_run": 1781409600016,
       "last_duration_ms": 79563,
       "consecutive_errors": 0
+    },
+    {
+      "id": "065d0da8-cecc-45b9-83f1-7138c0b66cb7",
+      "name": "Azure Blog Digest",
+      "description": "Daily Azure blog digest: fetches recent articles from Tech Community RSS feeds, displays top 10 newest. Delivered at 6:30AM CEST.",
+      "schedule": "Cron: 30 6 * * * (Brussels)",
+      "model": "ollama/llama3.2:3b",
+      "session_target": "isolated",
+      "status": "error",
+      "badge": "badge-err",
+      "enabled": true,
+      "next_run": 1781497800000,
+      "last_run": 1781411400004,
+      "last_duration_ms": 163157,
+      "consecutive_errors": 1
     }
   ],
   "total": 8,
-  "last_updated": "2026-06-14T04:05:01.987433+00:00"
+  "last_updated": "2026-06-14T04:35:01.564637+00:00"
 }
