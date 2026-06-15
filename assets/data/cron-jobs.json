@@ -1,21 +1,6 @@
 {
   "jobs": [
     {
-      "id": "685c7ce0-58ad-4aef-9aee-2665249f1f4b",
-      "name": "update-site-data",
-      "description": "MONITOR: check system cron ran update-site-data in last 40 min. Alerts if stale.",
-      "schedule": "Every 30 min",
-      "model": "ollama/llama3.2:3b",
-      "session_target": "isolated",
-      "status": "error",
-      "badge": "badge-err",
-      "enabled": true,
-      "next_run": 1781548707683,
-      "last_run": 1781546907683,
-      "last_duration_ms": 69318,
-      "consecutive_errors": 1
-    },
-    {
       "id": "528620d6-e3e1-42da-bd49-ce9599ec3d88",
       "name": "token-watch-check",
       "description": "Check daily token budget every 30 min (silent). Outputs alert message when thresholds hit, nothing otherwise.",
@@ -25,10 +10,25 @@
       "status": "error",
       "badge": "badge-err",
       "enabled": true,
-      "next_run": 1781548800008,
-      "last_run": 1781547000008,
-      "last_duration_ms": 76246,
-      "consecutive_errors": 2
+      "next_run": 1781550600012,
+      "last_run": 1781548800012,
+      "last_duration_ms": 73088,
+      "consecutive_errors": 3
+    },
+    {
+      "id": "685c7ce0-58ad-4aef-9aee-2665249f1f4b",
+      "name": "update-site-data",
+      "description": "MONITOR: check system cron ran update-site-data in last 40 min. Alerts if stale.",
+      "schedule": "Every 30 min",
+      "model": "ollama/llama3.2:3b",
+      "session_target": "isolated",
+      "status": "error",
+      "badge": "badge-err",
+      "enabled": true,
+      "next_run": 1781552100004,
+      "last_run": 1781550300004,
+      "last_duration_ms": 38815,
+      "consecutive_errors": 1
     },
     {
       "id": "ca3e504d-bd93-4e61-9e57-1e6dc22fd817",
@@ -122,5 +122,5 @@
     }
   ],
   "total": 8,
-  "last_updated": "2026-06-15T18:35:01.914741+00:00"
+  "last_updated": "2026-06-15T19:05:58.508191+00:00"
 }
