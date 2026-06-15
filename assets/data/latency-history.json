@@ -107,7 +107,7 @@
     {
       "date": "2026-06-15",
       "model": "deepseek-v4-flash",
-      "requests": 12,
+      "requests": 13,
       "p50_ms": 3408,
       "p95_ms": 3773,
       "p99_ms": 3773
@@ -115,8 +115,8 @@
     {
       "date": "2026-06-15",
       "model": "llama3.2:3b",
-      "requests": 21,
-      "p50_ms": 8325,
+      "requests": 22,
+      "p50_ms": 9483,
       "p95_ms": 34319,
       "p99_ms": 40172
     }
@@ -4761,7 +4761,23 @@
       "input_tokens": 31076,
       "output_tokens": 196,
       "model_short": "llama3.2:3b"
+    },
+    {
+      "model": "deepseek-v4-flash",
+      "timestamp": "2026-06-15T06:56:56.521Z",
+      "latency_ms": 3161,
+      "input_tokens": 28685,
+      "output_tokens": 627,
+      "model_short": "deepseek-v4-flash"
+    },
+    {
+      "model": "llama3.2:3b",
+      "timestamp": "2026-06-15T06:36:01.606Z",
+      "latency_ms": 10937,
+      "input_tokens": 27027,
+      "output_tokens": 150,
+      "model_short": "llama3.2:3b"
     }
   ],
-  "total_processed": 580
+  "total_processed": 582
 }
