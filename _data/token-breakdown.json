@@ -7,20 +7,20 @@
     },
     {
       "channel": "conversation",
-      "tokens": 44299,
-      "percentage": 13.2
+      "tokens": 44658,
+      "percentage": 13.3
     },
     {
       "channel": "cron",
-      "tokens": 26588,
-      "percentage": 7.9
+      "tokens": 25922,
+      "percentage": 7.7
     }
   ],
   "by_model": [
     {
       "model": "deepseek-v4-flash",
-      "tokens": 167564,
-      "percentage": 50.0
+      "tokens": 167923,
+      "percentage": 50.1
     },
     {
       "model": "deepseek-chat",
@@ -29,8 +29,8 @@
     },
     {
       "model": "llama3.2:3b",
-      "tokens": 26588,
-      "percentage": 7.9
+      "tokens": 25922,
+      "percentage": 7.7
     },
     {
       "model": "gemma4-e2b-it-q4_0",
@@ -44,12 +44,12 @@
       "tokens": 6391
     },
     {
-      "job": "update-site-data",
-      "tokens": 5768
-    },
-    {
       "job": "daily-summary",
       "tokens": 5258
+    },
+    {
+      "job": "update-site-data",
+      "tokens": 5102
     },
     {
       "job": "issue-monitor",
@@ -121,7 +121,7 @@
       "started_ago": "0s ago",
       "started_ms": 0,
       "age_seconds": 0,
-      "estimated_tokens": 44299,
+      "estimated_tokens": 44658,
       "tokens_human": "44K",
       "status": ""
     },
@@ -138,18 +138,6 @@
       "status": ""
     },
     {
-      "id": "88de27c4-5a32-4cee-be4b-52d89f8c010b",
-      "key": "agent:main:cron:685c7ce0-58ad-4aef-9aee-2665249f1f4b",
-      "model": "llama3.2:3b",
-      "channel": "unknown",
-      "started_ago": "0s ago",
-      "started_ms": 0,
-      "age_seconds": 0,
-      "estimated_tokens": 5768,
-      "tokens_human": "5K",
-      "status": ""
-    },
-    {
       "id": "c8bd19fd-b02e-4495-9178-9f6cf98acf63",
       "key": "agent:main:cron:a05c1a5d-c105-4f46-a226-ef15b87e5a06",
       "model": "llama3.2:3b",
@@ -158,6 +146,18 @@
       "started_ms": 0,
       "age_seconds": 0,
       "estimated_tokens": 5258,
+      "tokens_human": "5K",
+      "status": ""
+    },
+    {
+      "id": "8255197a-ecac-4430-beb9-66fe43a8539a",
+      "key": "agent:main:cron:685c7ce0-58ad-4aef-9aee-2665249f1f4b",
+      "model": "llama3.2:3b",
+      "channel": "unknown",
+      "started_ago": "0s ago",
+      "started_ms": 0,
+      "age_seconds": 0,
+      "estimated_tokens": 5102,
       "tokens_human": "5K",
       "status": ""
     },
@@ -306,6 +306,6 @@
       "status": ""
     }
   ],
-  "total_tokens": 335197,
-  "last_updated": "2026-06-15T12:05:02.013831+00:00"
+  "total_tokens": 334890,
+  "last_updated": "2026-06-15T12:35:01.234269+00:00"
 }
