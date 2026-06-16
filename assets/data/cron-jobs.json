@@ -1,21 +1,6 @@
 {
   "jobs": [
     {
-      "id": "2a73d80d-85f0-41c3-b964-f3414b6f94d8",
-      "name": "issue-monitor",
-      "description": "Monitor issue-crafter health, stale branches, and open issues. Reports via Telegram every 6h.",
-      "schedule": "Cron: 30 */6 * * * (Brussels)",
-      "model": "ollama/llama3.2:3b",
-      "session_target": "isolated",
-      "status": "ok",
-      "badge": "badge-ok",
-      "enabled": true,
-      "next_run": 1781605800000,
-      "last_run": 1781584200029,
-      "last_duration_ms": 83224,
-      "consecutive_errors": 0
-    },
-    {
       "id": "685c7ce0-58ad-4aef-9aee-2665249f1f4b",
       "name": "update-site-data",
       "description": "MONITOR: check system cron ran update-site-data in last 40 min. Alerts if stale.",
@@ -61,6 +46,21 @@
       "consecutive_errors": 0
     },
     {
+      "id": "2a73d80d-85f0-41c3-b964-f3414b6f94d8",
+      "name": "issue-monitor",
+      "description": "Monitor issue-crafter health, stale branches, and open issues. Reports via Telegram every 6h.",
+      "schedule": "Cron: 30 */6 * * * (Brussels)",
+      "model": "ollama/llama3.2:3b",
+      "session_target": "isolated",
+      "status": "error",
+      "badge": "badge-err",
+      "enabled": true,
+      "next_run": 1781627400000,
+      "last_run": 1781605800016,
+      "last_duration_ms": 75382,
+      "consecutive_errors": 1
+    },
+    {
       "id": "dea2f6dd-2dbf-425d-b6d9-c6752d962a87",
       "name": "Daily news",
       "description": "Daily news briefing: 5 items/location (Antwerp, Belgium, World) from RSS feeds. Delivered to Telegram at 6AM CEST.",
@@ -92,5 +92,5 @@
     }
   ],
   "total": 6,
-  "last_updated": "2026-06-16T10:05:58.361239+00:00"
+  "last_updated": "2026-06-16T10:35:01.368970+00:00"
 }
