@@ -10,9 +10,9 @@
       "status": "ok",
       "badge": "badge-ok",
       "enabled": true,
-      "next_run": 1781640300089,
-      "last_run": 1781638500089,
-      "last_duration_ms": 68567,
+      "next_run": 1781642100104,
+      "last_run": 1781640300104,
+      "last_duration_ms": 75367,
       "consecutive_errors": 0
     },
     {
@@ -25,10 +25,10 @@
       "status": "error",
       "badge": "badge-err",
       "enabled": true,
-      "next_run": 1781640671085,
-      "last_run": 1781637000017,
-      "last_duration_ms": 71068,
-      "consecutive_errors": 5
+      "next_run": 1781644343093,
+      "last_run": 1781640671154,
+      "last_duration_ms": 71939,
+      "consecutive_errors": 6
     },
     {
       "id": "076c2650-df05-45ad-8103-595152e2fb07",
@@ -89,8 +89,23 @@
       "last_run": 1781584200016,
       "last_duration_ms": 135241,
       "consecutive_errors": 0
+    },
+    {
+      "id": "ca3e504d-bd93-4e61-9e57-1e6dc22fd817",
+      "name": "token-watch-daily-report",
+      "description": "Daily token usage report at 22h: 7-day history with bars, trend arrows, model breakdown, and budget projection",
+      "schedule": "Cron: 0 22 * * * (Brussels)",
+      "model": "ollama/llama3.2:3b",
+      "session_target": "isolated",
+      "status": "ok",
+      "badge": "badge-ok",
+      "enabled": true,
+      "next_run": 1781726400000,
+      "last_run": 1781641637212,
+      "last_duration_ms": 118187,
+      "consecutive_errors": 0
     }
   ],
-  "total": 6,
-  "last_updated": "2026-06-16T20:05:01.943958+00:00"
+  "total": 7,
+  "last_updated": "2026-06-16T20:35:01.394219+00:00"
 }
