@@ -1,12 +1,12 @@
 {
-  "timestamp": "2026-06-16T22:05:01.203577+00:00",
+  "timestamp": "2026-06-16T22:35:01.509690+00:00",
   "cpu": {
     "cores": 6,
     "model": "Cortex-A78AE",
     "load_1m": 0.09,
-    "load_5m": 0.07,
-    "load_15m": 0.05,
-    "usage_percent": 18.0,
+    "load_5m": 0.08,
+    "load_15m": 0.08,
+    "usage_percent": 20.2,
     "runnable": 0,
     "total_processes": 0
   },
@@ -29,30 +29,30 @@
     "free_human": "411.0 GB"
   },
   "temperature": {
-    "value_celsius": 62.8,
-    "display": "62.8\u00b0C"
+    "value_celsius": 62.1,
+    "display": "62.1\u00b0C"
   },
   "gpu": {
-    "temperature_celsius": 63.031,
+    "temperature_celsius": 62.218,
     "usage_percent": 99,
-    "raw": "GPU Status:\n06-16-2026 22:05:09 RAM 7098/7607MB (lfb 10x2MB) SWAP 1552/3804MB (cached 2MB) CPU [1%@1728,0%@1728,1%@1728,0%@1728,3%@1728,0%@1728] GR3D_FREQ 99% cpu@60.531C soc2@58.937C soc0@58.906C gpu@63.031C tj@63.031C soc1@60.437C VDD_IN 19050mW/19050mW VDD_CPU_GPU_CV 10000mW/10000mW VDD_SOC 4026m"
+    "raw": "GPU Status:\n06-16-2026 22:35:09 RAM 7065/7607MB (lfb 13x2MB) SWAP 1439/3804MB (cached 2MB) CPU [3%@1728,4%@1728,2%@1728,0%@1728,3%@1728,3%@1728] GR3D_FREQ 99% cpu@59.875C soc2@58.437C soc0@58.343C gpu@62.218C tj@62.218C soc1@59.875C VDD_IN 19042mW/19042mW VDD_CPU_GPU_CV 9962mW/9962mW VDD_SOC 3988mW/"
   },
   "uptime": {
-    "seconds": 129552.84,
-    "display": "1d 11h 59m"
+    "seconds": 131353.15,
+    "display": "1d 12h 29m"
   },
   "power_thermal": {
     "power": {
-      "vdd_in_watts": 19.64,
-      "vdd_cpu_watts": 10.36,
+      "vdd_in_watts": 19.76,
+      "vdd_cpu_watts": 10.4,
       "vdd_gpu_watts": 4.12,
-      "total_watts": 34.12,
+      "total_watts": 34.28,
       "throttled": false,
       "throttle_reason": ""
     },
     "thermal": {
-      "fan_speed_pct": 45,
-      "fan_rpm": 2636,
+      "fan_speed_pct": 42,
+      "fan_rpm": 2471,
       "junction_temp": 62.8,
       "throttle_temp": 85.0
     }
@@ -98,47 +98,47 @@
   "processes": {
     "by_cpu": [
       {
-        "pid": 75360,
+        "pid": 76273,
         "name": "index.j",
         "cmd": "node /home/clawbox/documents/mcp/jetson-monitor/dist/index.j",
-        "cpu_percent": 6.2,
+        "cpu_percent": 5.3,
         "mem_percent": 0.7,
         "user": "clawbox",
         "is_claw": true,
         "severity": "ok"
       },
       {
-        "pid": 75330,
+        "pid": 76262,
         "name": "cla",
         "cmd": "/home/clawbox/.bun/bin/bun run /home/clawbox/clawbox/mcp/cla",
-        "cpu_percent": 5.5,
-        "mem_percent": 0.7,
+        "cpu_percent": 4.9,
+        "mem_percent": 0.8,
         "user": "clawbox",
         "is_claw": false,
         "severity": "ok"
       },
       {
-        "pid": 73228,
+        "pid": 75715,
         "name": "openclaw",
         "cmd": "openclaw",
-        "cpu_percent": 2.9,
-        "mem_percent": 4.2,
+        "cpu_percent": 3.5,
+        "mem_percent": 4.3,
         "user": "clawbox",
         "is_claw": true,
         "severity": "ok"
       },
       {
-        "pid": 75250,
+        "pid": 76132,
         "name": "ollama",
         "cmd": "/usr/local/lib/ollama/llama-server --model /usr/share/ollama",
-        "cpu_percent": 2.5,
-        "mem_percent": 74.7,
+        "cpu_percent": 2.0,
+        "mem_percent": 74.8,
         "user": "ollama",
         "is_claw": false,
         "severity": "ok"
       },
       {
-        "pid": 75359,
+        "pid": 76298,
         "name": "update-site-data.py",
         "cmd": "python3 scripts/update-site-data.py",
         "cpu_percent": 1.0,
@@ -150,49 +150,49 @@
     ],
     "by_mem": [
       {
-        "pid": 75250,
+        "pid": 76132,
         "name": "ollama",
         "cmd": "/usr/local/lib/ollama/llama-server --model /usr/share/ollama",
-        "cpu_percent": 2.5,
-        "mem_percent": 74.7,
+        "cpu_percent": 2.0,
+        "mem_percent": 74.8,
         "user": "ollama",
         "is_claw": false,
         "severity": "ok"
       },
       {
-        "pid": 73228,
+        "pid": 75715,
         "name": "openclaw",
         "cmd": "openclaw",
-        "cpu_percent": 2.9,
-        "mem_percent": 4.2,
+        "cpu_percent": 3.5,
+        "mem_percent": 4.3,
         "user": "clawbox",
         "is_claw": true,
         "severity": "ok"
       },
       {
-        "pid": 75360,
-        "name": "index.j",
-        "cmd": "node /home/clawbox/documents/mcp/jetson-monitor/dist/index.j",
-        "cpu_percent": 6.2,
-        "mem_percent": 0.7,
-        "user": "clawbox",
-        "is_claw": true,
-        "severity": "ok"
-      },
-      {
-        "pid": 75330,
+        "pid": 76262,
         "name": "cla",
         "cmd": "/home/clawbox/.bun/bin/bun run /home/clawbox/clawbox/mcp/cla",
-        "cpu_percent": 5.5,
-        "mem_percent": 0.7,
+        "cpu_percent": 4.9,
+        "mem_percent": 0.8,
         "user": "clawbox",
         "is_claw": false,
         "severity": "ok"
       },
       {
-        "pid": 1040,
-        "name": "next-server",
-        "cmd": "next-server (v16.1.6)",
+        "pid": 76273,
+        "name": "index.j",
+        "cmd": "node /home/clawbox/documents/mcp/jetson-monitor/dist/index.j",
+        "cpu_percent": 5.3,
+        "mem_percent": 0.7,
+        "user": "clawbox",
+        "is_claw": true,
+        "severity": "ok"
+      },
+      {
+        "pid": 1937,
+        "name": "gnome-shell",
+        "cmd": "/usr/bin/gnome-shell",
         "cpu_percent": 0.1,
         "mem_percent": 0.6,
         "user": "clawbox",
@@ -201,7 +201,7 @@
       }
     ],
     "total_processes": 363,
-    "timestamp": "2026-06-16T22:05:01.203577+00:00"
+    "timestamp": "2026-06-16T22:35:01.509690+00:00"
   },
   "network": {
     "interfaces": [
@@ -229,14 +229,14 @@
       },
       {
         "name": "enP8p1s0",
-        "rx_bytes": 293335901,
-        "tx_bytes": 360242324,
+        "rx_bytes": 295816900,
+        "tx_bytes": 361188404,
         "state": "UP",
         "ip": "192.168.0.122",
-        "rx_rate": 898,
-        "tx_rate": 947,
-        "total_in_human": "279.7 MB",
-        "total_out_human": "343.6 MB"
+        "rx_rate": 1363,
+        "tx_rate": 522,
+        "total_in_human": "282.1 MB",
+        "total_out_human": "344.5 MB"
       },
       {
         "name": "l4tbr0",
@@ -274,27 +274,27 @@
       {
         "name": "tailscale0",
         "rx_bytes": 4089,
-        "tx_bytes": 139777,
+        "tx_bytes": 141577,
         "state": "UNKNOWN",
         "ip": "100.68.32.105",
         "rx_rate": 0,
         "tx_rate": 1,
         "total_in_human": "4.0 KB",
-        "total_out_human": "136.5 KB"
+        "total_out_human": "138.3 KB"
       }
     ],
     "active_connections": 13,
-    "total_in_human": "279.8 MB",
-    "total_out_human": "343.7 MB",
-    "total_in_bytes": 293339990,
-    "total_out_bytes": 360382101
+    "total_in_human": "282.1 MB",
+    "total_out_human": "344.6 MB",
+    "total_in_bytes": 295820989,
+    "total_out_bytes": 361329981
   },
   "sessions": {
     "active_count": 0,
-    "total_visible": 29,
+    "total_visible": 28,
     "sessions": [
       {
-        "id": "7eea0994-4448-45b1-aad9-d00af20e669c",
+        "id": "3fee159b-4f10-4b50-b086-44e57c00d5cf",
         "key": "agent:main:cron:685c7ce0-58ad-4aef-9aee-2665249f1f4b",
         "model": "llama3.2:3b",
         "channel": "unknown",
@@ -303,6 +303,42 @@
         "age_seconds": 0,
         "estimated_tokens": 0,
         "tokens_human": "0",
+        "status": ""
+      },
+      {
+        "id": "ba08adf3-2de0-4f37-b95d-d68101186afb",
+        "key": "agent:main:main",
+        "model": "deepseek-v4-flash",
+        "channel": "unknown",
+        "started_ago": "0s ago",
+        "started_ms": 0,
+        "age_seconds": 0,
+        "estimated_tokens": 17320,
+        "tokens_human": "17K",
+        "status": ""
+      },
+      {
+        "id": "58dc0017-cd3b-41e9-8fe2-68fcfcb272e9",
+        "key": "agent:main:cron:2a73d80d-85f0-41c3-b964-f3414b6f94d8",
+        "model": "llama3.2:3b",
+        "channel": "unknown",
+        "started_ago": "0s ago",
+        "started_ms": 0,
+        "age_seconds": 0,
+        "estimated_tokens": 4952,
+        "tokens_human": "4K",
+        "status": ""
+      },
+      {
+        "id": "8f77ecef-f406-48d2-9d86-abc4917dde7d",
+        "key": "agent:main:cron:528620d6-e3e1-42da-bd49-ce9599ec3d88",
+        "model": "llama3.2:3b",
+        "channel": "unknown",
+        "started_ago": "0s ago",
+        "started_ms": 0,
+        "age_seconds": 0,
+        "estimated_tokens": 4952,
+        "tokens_human": "4K",
         "status": ""
       },
       {
@@ -315,30 +351,6 @@
         "age_seconds": 0,
         "estimated_tokens": 5326,
         "tokens_human": "5K",
-        "status": ""
-      },
-      {
-        "id": "ba08adf3-2de0-4f37-b95d-d68101186afb",
-        "key": "agent:main:main",
-        "model": "deepseek-v4-flash",
-        "channel": "unknown",
-        "started_ago": "0s ago",
-        "started_ms": 0,
-        "age_seconds": 0,
-        "estimated_tokens": 170412,
-        "tokens_human": "170K",
-        "status": ""
-      },
-      {
-        "id": "6f712e37-c514-478d-860d-a29a1d8cee73",
-        "key": "agent:main:cron:528620d6-e3e1-42da-bd49-ce9599ec3d88",
-        "model": "llama3.2:3b",
-        "channel": "unknown",
-        "started_ago": "0s ago",
-        "started_ms": 0,
-        "age_seconds": 0,
-        "estimated_tokens": 4952,
-        "tokens_human": "4K",
         "status": ""
       },
       {
@@ -363,18 +375,6 @@
         "age_seconds": 0,
         "estimated_tokens": 1393,
         "tokens_human": "1K",
-        "status": ""
-      },
-      {
-        "id": "3ff60429-ad72-4175-89e9-e75725bf003c",
-        "key": "agent:main:cron:2a73d80d-85f0-41c3-b964-f3414b6f94d8",
-        "model": "llama3.2:3b",
-        "channel": "unknown",
-        "started_ago": "0s ago",
-        "started_ms": 0,
-        "age_seconds": 0,
-        "estimated_tokens": 4917,
-        "tokens_human": "4K",
         "status": ""
       },
       {
@@ -471,18 +471,6 @@
         "age_seconds": 0,
         "estimated_tokens": 67856,
         "tokens_human": "67K",
-        "status": ""
-      },
-      {
-        "id": "44c75caf-9439-476a-8526-436ca43c105b",
-        "key": "agent:main:cron:2a73d80d-85f0-41c3-b964-f3414b6f94d8:run:6a0ca843-f146-4756-ae4c-2e1a96a3884b",
-        "model": "deepseek-v4-flash",
-        "channel": "unknown",
-        "started_ago": "0s ago",
-        "started_ms": 0,
-        "age_seconds": 0,
-        "estimated_tokens": 39993,
-        "tokens_human": "39K",
         "status": ""
       },
       {
@@ -642,6 +630,6 @@
         "status": ""
       }
     ],
-    "last_updated": "2026-06-16T22:05:01.203577+00:00"
+    "last_updated": "2026-06-16T22:35:01.509690+00:00"
   }
 }
