@@ -3,34 +3,34 @@
     {
       "channel": "webchat",
       "tokens": 454159,
-      "percentage": 65.8
+      "percentage": 62.8
     },
     {
       "channel": "cron",
-      "tokens": 147282,
-      "percentage": 21.3
+      "tokens": 179898,
+      "percentage": 24.9
     },
     {
       "channel": "conversation",
-      "tokens": 88758,
-      "percentage": 12.9
+      "tokens": 88789,
+      "percentage": 12.3
     }
   ],
   "by_model": [
     {
       "model": "deepseek-v4-flash",
-      "tokens": 434183,
-      "percentage": 62.9
+      "tokens": 467486,
+      "percentage": 64.7
     },
     {
       "model": "deepseek-chat",
       "tokens": 141045,
-      "percentage": 20.4
+      "percentage": 19.5
     },
     {
       "model": "llama3.2:3b",
-      "tokens": 114971,
-      "percentage": 16.7
+      "tokens": 114315,
+      "percentage": 15.8
     },
     {
       "model": "gemma4-e2b-it-q4_0",
@@ -45,7 +45,11 @@
     },
     {
       "job": "token-watch-check",
-      "tokens": 37919
+      "tokens": 37263
+    },
+    {
+      "job": "update-site-data",
+      "tokens": 33272
     },
     {
       "job": "Daily news",
@@ -66,10 +70,6 @@
     {
       "job": "daily-summary",
       "tokens": 1393
-    },
-    {
-      "job": "update-site-data",
-      "tokens": 0
     },
     {
       "job": "Memory Dreaming Promotion",
@@ -137,7 +137,7 @@
       "started_ago": "0s ago",
       "started_ms": 0,
       "age_seconds": 0,
-      "estimated_tokens": 65429,
+      "estimated_tokens": 65460,
       "tokens_human": "65K",
       "status": ""
     },
@@ -175,6 +175,18 @@
       "age_seconds": 0,
       "estimated_tokens": 39053,
       "tokens_human": "39K",
+      "status": ""
+    },
+    {
+      "id": "7f5039f3-280b-4f86-ab87-1d107a2d179a",
+      "key": "agent:main:cron:685c7ce0-58ad-4aef-9aee-2665249f1f4b:run:f49e1401-3eee-4935-b2a2-9fa7478a637c",
+      "model": "deepseek-v4-flash",
+      "channel": "unknown",
+      "started_ago": "0s ago",
+      "started_ms": 0,
+      "age_seconds": 0,
+      "estimated_tokens": 33272,
+      "tokens_human": "33K",
       "status": ""
     },
     {
@@ -226,18 +238,6 @@
       "status": ""
     },
     {
-      "id": "14d6e9fe-7d2c-468e-abac-cdc462ab52bf",
-      "key": "agent:main:cron:528620d6-e3e1-42da-bd49-ce9599ec3d88",
-      "model": "llama3.2:3b",
-      "channel": "unknown",
-      "started_ago": "0s ago",
-      "started_ms": 0,
-      "age_seconds": 0,
-      "estimated_tokens": 5608,
-      "tokens_human": "5K",
-      "status": ""
-    },
-    {
       "id": "81f41eea-864c-4d16-aa98-67987d8bae90",
       "key": "agent:main:cron:076c2650-df05-45ad-8103-595152e2fb07",
       "model": "llama3.2:3b",
@@ -247,6 +247,18 @@
       "age_seconds": 0,
       "estimated_tokens": 5326,
       "tokens_human": "5K",
+      "status": ""
+    },
+    {
+      "id": "e10b381a-3a1e-435b-bf7b-ef452a5a1960",
+      "key": "agent:main:cron:528620d6-e3e1-42da-bd49-ce9599ec3d88",
+      "model": "llama3.2:3b",
+      "channel": "unknown",
+      "started_ago": "0s ago",
+      "started_ms": 0,
+      "age_seconds": 0,
+      "estimated_tokens": 4952,
+      "tokens_human": "4K",
       "status": ""
     },
     {
@@ -274,7 +286,7 @@
       "status": ""
     },
     {
-      "id": "f49e1401-3eee-4935-b2a2-9fa7478a637c",
+      "id": "339cd5b0-4bc2-48e0-b54e-04bfa85b922a",
       "key": "agent:main:cron:685c7ce0-58ad-4aef-9aee-2665249f1f4b",
       "model": "llama3.2:3b",
       "channel": "unknown",
@@ -308,20 +320,8 @@
       "estimated_tokens": 0,
       "tokens_human": "0",
       "status": ""
-    },
-    {
-      "id": "f5e6d78d-1133-4952-9244-7552db752fd9",
-      "key": "agent:main:dashboard:65bb5362-436f-4c3f-aec2-2b416bfb9640",
-      "model": "deepseek-chat",
-      "channel": "unknown",
-      "started_ago": "0s ago",
-      "started_ms": 0,
-      "age_seconds": 0,
-      "estimated_tokens": 0,
-      "tokens_human": "0",
-      "status": ""
     }
   ],
-  "total_tokens": 690199,
-  "last_updated": "2026-06-17T03:05:01.147482+00:00"
+  "total_tokens": 722846,
+  "last_updated": "2026-06-17T03:35:01.410991+00:00"
 }
