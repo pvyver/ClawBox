@@ -10,9 +10,9 @@
       "status": "ok",
       "badge": "badge-ok",
       "enabled": true,
-      "next_run": 1781728500445,
-      "last_run": 1781726700445,
-      "last_duration_ms": 7465,
+      "next_run": 1781730300000,
+      "last_run": 1781728568167,
+      "last_duration_ms": 6977,
       "consecutive_errors": 0
     },
     {
@@ -25,9 +25,9 @@
       "status": "ok",
       "badge": "badge-ok",
       "enabled": true,
-      "next_run": 1781728800399,
-      "last_run": 1781727000399,
-      "last_duration_ms": 5353,
+      "next_run": 1781730600414,
+      "last_run": 1781728800414,
+      "last_duration_ms": 5252,
       "consecutive_errors": 0
     },
     {
@@ -58,6 +58,21 @@
       "next_run": 1781735400000,
       "last_run": 1781713800016,
       "last_duration_ms": 60872,
+      "consecutive_errors": 0
+    },
+    {
+      "id": "598fc384-f79c-42e4-a7c5-5d7503c16032",
+      "name": "strava-token-refresh",
+      "description": "Refresh Strava access token every 5 hours before 6hr expiry",
+      "schedule": "Cron: 0 */5 * * * (UTC)",
+      "model": "ollama/llama3.2:3b",
+      "session_target": "isolated",
+      "status": "idle",
+      "badge": "badge-unknown",
+      "enabled": true,
+      "next_run": 1781740909970,
+      "last_run": 0,
+      "last_duration_ms": 0,
       "consecutive_errors": 0
     },
     {
@@ -136,6 +151,21 @@
       "consecutive_errors": 0
     },
     {
+      "id": "7dd6e186-fb3a-44e1-a171-ffd77f43eeae",
+      "name": "evening-news",
+      "description": "Daily evening news with Strava weekly overview at 19:00 CEST",
+      "schedule": "Cron: 0 19 * * * (Brussels)",
+      "model": "ollama/llama3.2:3b",
+      "session_target": "isolated",
+      "status": "ok",
+      "badge": "badge-ok",
+      "enabled": true,
+      "next_run": 1781802000000,
+      "last_run": 1781729387881,
+      "last_duration_ms": 93602,
+      "consecutive_errors": 0
+    },
+    {
       "id": "ca3e504d-bd93-4e61-9e57-1e6dc22fd817",
       "name": "token-watch-daily-report",
       "description": "Daily token usage report at 22h: 7-day history with bars, trend arrows, model breakdown, and budget projection",
@@ -151,6 +181,6 @@
       "consecutive_errors": 0
     }
   ],
-  "total": 10,
-  "last_updated": "2026-06-17T20:35:01.929012+00:00"
+  "total": 12,
+  "last_updated": "2026-06-17T21:05:01.623864+00:00"
 }
