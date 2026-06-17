@@ -1,21 +1,6 @@
 {
   "jobs": [
     {
-      "id": "685c7ce0-58ad-4aef-9aee-2665249f1f4b",
-      "name": "update-site-data",
-      "description": "Monitor site data updates every 30 min. Checks log freshness. Alerts if stale or failed.",
-      "schedule": "Every 30 min",
-      "model": "ollama/llama3.2:3b",
-      "session_target": "isolated",
-      "status": "ok",
-      "badge": "badge-ok",
-      "enabled": true,
-      "next_run": 1781712300221,
-      "last_run": 1781710500221,
-      "last_duration_ms": 18894,
-      "consecutive_errors": 0
-    },
-    {
       "id": "528620d6-e3e1-42da-bd49-ce9599ec3d88",
       "name": "token-watch-check",
       "description": "Check daily token budget every 30 min via Ollama. Silent unless alert file has content.",
@@ -25,25 +10,25 @@
       "status": "ok",
       "badge": "badge-ok",
       "enabled": true,
-      "next_run": 1781712600261,
-      "last_run": 1781710800261,
-      "last_duration_ms": 5512,
+      "next_run": 1781714400276,
+      "last_run": 1781712600276,
+      "last_duration_ms": 5419,
       "consecutive_errors": 0
     },
     {
-      "id": "2a73d80d-85f0-41c3-b964-f3414b6f94d8",
-      "name": "issue-monitor",
-      "description": "Monitor issue-crafter health, stale branches, and open issues. Reports via Telegram every 6h.",
-      "schedule": "Cron: 30 */6 * * * (Brussels)",
+      "id": "685c7ce0-58ad-4aef-9aee-2665249f1f4b",
+      "name": "update-site-data",
+      "description": "Monitor site data updates every 30 min. Checks log freshness. Alerts if stale or failed.",
+      "schedule": "Every 30 min",
       "model": "ollama/llama3.2:3b",
       "session_target": "isolated",
-      "status": "error",
-      "badge": "badge-err",
+      "status": "ok",
+      "badge": "badge-ok",
       "enabled": true,
-      "next_run": 1781713800000,
-      "last_run": 1781692200014,
-      "last_duration_ms": 66771,
-      "consecutive_errors": 1
+      "next_run": 1781715900267,
+      "last_run": 1781714100267,
+      "last_duration_ms": 9005,
+      "consecutive_errors": 0
     },
     {
       "id": "ca3e504d-bd93-4e61-9e57-1e6dc22fd817",
@@ -74,6 +59,21 @@
       "last_run": 1781712075680,
       "last_duration_ms": 77006,
       "consecutive_errors": 2
+    },
+    {
+      "id": "2a73d80d-85f0-41c3-b964-f3414b6f94d8",
+      "name": "issue-monitor",
+      "description": "Monitor issue-crafter health, stale branches, and open issues. Reports via Telegram every 6h.",
+      "schedule": "Cron: 30 */6 * * * (Brussels)",
+      "model": "ollama/llama3.2:3b",
+      "session_target": "isolated",
+      "status": "ok",
+      "badge": "badge-ok",
+      "enabled": true,
+      "next_run": 1781735400000,
+      "last_run": 1781713800016,
+      "last_duration_ms": 60872,
+      "consecutive_errors": 0
     },
     {
       "id": "b3d0cce7-a55f-4c15-8124-93054bf7b955",
@@ -152,5 +152,5 @@
     }
   ],
   "total": 10,
-  "last_updated": "2026-06-17T16:05:01.957090+00:00"
+  "last_updated": "2026-06-17T16:35:01.869183+00:00"
 }
