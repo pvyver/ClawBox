@@ -3,34 +3,34 @@
     {
       "channel": "webchat",
       "tokens": 454159,
-      "percentage": 66.7
+      "percentage": 69.8
     },
     {
       "channel": "cron",
-      "tokens": 135433,
-      "percentage": 19.9
+      "tokens": 103306,
+      "percentage": 15.9
     },
     {
       "channel": "conversation",
-      "tokens": 91665,
-      "percentage": 13.5
+      "tokens": 93223,
+      "percentage": 14.3
     }
   ],
   "by_model": [
     {
       "model": "deepseek-v4-flash",
-      "tokens": 470362,
-      "percentage": 69.0
+      "tokens": 439609,
+      "percentage": 67.6
     },
     {
       "model": "deepseek-chat",
       "tokens": 141045,
-      "percentage": 20.7
+      "percentage": 21.7
     },
     {
       "model": "llama3.2:3b",
-      "tokens": 69850,
-      "percentage": 10.3
+      "tokens": 70034,
+      "percentage": 10.8
     },
     {
       "model": "gemma4-e2b-it-q4_0",
@@ -41,11 +41,7 @@
   "by_cron_job": [
     {
       "job": "update-site-data",
-      "tokens": 38424
-    },
-    {
-      "job": "token-watch-check",
-      "tokens": 32311
+      "tokens": 38568
     },
     {
       "job": "issue-crafter",
@@ -69,7 +65,11 @@
     },
     {
       "job": "daily-summary",
-      "tokens": 1393
+      "tokens": 1433
+    },
+    {
+      "job": "token-watch-check",
+      "tokens": 0
     },
     {
       "job": "Memory Dreaming Promotion",
@@ -125,8 +125,8 @@
       "started_ago": "0s ago",
       "started_ms": 0,
       "age_seconds": 0,
-      "estimated_tokens": 68336,
-      "tokens_human": "68K",
+      "estimated_tokens": 69894,
+      "tokens_human": "69K",
       "status": ""
     },
     {
@@ -175,18 +175,6 @@
       "age_seconds": 0,
       "estimated_tokens": 33272,
       "tokens_human": "33K",
-      "status": ""
-    },
-    {
-      "id": "eb8ae4e5-bf39-4824-bdd2-916a1af80452",
-      "key": "agent:main:cron:528620d6-e3e1-42da-bd49-ce9599ec3d88:run:c56e22e4-91b7-4467-89db-7ec92b3074c9",
-      "model": "deepseek-v4-flash",
-      "channel": "unknown",
-      "started_ago": "0s ago",
-      "started_ms": 0,
-      "age_seconds": 0,
-      "estimated_tokens": 32311,
-      "tokens_human": "32K",
       "status": ""
     },
     {
@@ -250,14 +238,14 @@
       "status": ""
     },
     {
-      "id": "e25dfc50-e1e4-4121-bf0b-0657ebd2ba5b",
+      "id": "79495b9f-2382-4e35-9079-12a52236210b",
       "key": "agent:main:cron:685c7ce0-58ad-4aef-9aee-2665249f1f4b",
       "model": "llama3.2:3b",
       "channel": "unknown",
       "started_ago": "0s ago",
       "started_ms": 0,
       "age_seconds": 0,
-      "estimated_tokens": 5152,
+      "estimated_tokens": 5296,
       "tokens_human": "5K",
       "status": ""
     },
@@ -274,19 +262,19 @@
       "status": ""
     },
     {
-      "id": "967dcb89-e73c-4c12-9697-268d28b0320e",
+      "id": "448137e2-e413-493e-8d0e-9b2b2cd05a8e",
       "key": "agent:main:cron:a05c1a5d-c105-4f46-a226-ef15b87e5a06",
       "model": "llama3.2:3b",
       "channel": "unknown",
       "started_ago": "0s ago",
       "started_ms": 0,
       "age_seconds": 0,
-      "estimated_tokens": 1393,
+      "estimated_tokens": 1433,
       "tokens_human": "1K",
       "status": ""
     },
     {
-      "id": "dc6fb002-0ae3-4500-a886-a0db41122c25",
+      "id": "57e8cdc0-a34b-4aa0-8ced-e3303aa8a8fe",
       "key": "agent:main:cron:528620d6-e3e1-42da-bd49-ce9599ec3d88",
       "model": "llama3.2:3b",
       "channel": "unknown",
@@ -320,8 +308,20 @@
       "estimated_tokens": 0,
       "tokens_human": "0",
       "status": ""
+    },
+    {
+      "id": "f5e6d78d-1133-4952-9244-7552db752fd9",
+      "key": "agent:main:dashboard:65bb5362-436f-4c3f-aec2-2b416bfb9640",
+      "model": "deepseek-chat",
+      "channel": "unknown",
+      "started_ago": "0s ago",
+      "started_ms": 0,
+      "age_seconds": 0,
+      "estimated_tokens": 0,
+      "tokens_human": "0",
+      "status": ""
     }
   ],
-  "total_tokens": 681257,
-  "last_updated": "2026-06-17T05:35:01.700065+00:00"
+  "total_tokens": 650688,
+  "last_updated": "2026-06-17T06:05:01.287335+00:00"
 }
