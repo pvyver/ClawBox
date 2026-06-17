@@ -139,7 +139,7 @@
     {
       "date": "2026-06-17",
       "model": "deepseek-reasoner",
-      "requests": 11,
+      "requests": 15,
       "p50_ms": 3698,
       "p95_ms": 81370,
       "p99_ms": 81370
@@ -147,7 +147,7 @@
     {
       "date": "2026-06-17",
       "model": "deepseek-v4-flash",
-      "requests": 44,
+      "requests": 45,
       "p50_ms": 3240,
       "p95_ms": 10800,
       "p99_ms": 344663
@@ -155,9 +155,9 @@
     {
       "date": "2026-06-17",
       "model": "llama3.2:3b",
-      "requests": 80,
-      "p50_ms": 3018,
-      "p95_ms": 23303,
+      "requests": 81,
+      "p50_ms": 2998,
+      "p95_ms": 10631,
       "p99_ms": 64237
     }
   ],
@@ -7361,7 +7361,55 @@
       "input_tokens": 2711,
       "output_tokens": 51,
       "model_short": "llama3.2:3b"
+    },
+    {
+      "model": "deepseek-reasoner",
+      "timestamp": "2026-06-17T20:33:07.196Z",
+      "latency_ms": 2710,
+      "input_tokens": 27054,
+      "output_tokens": 1654,
+      "model_short": "deepseek-reasoner"
+    },
+    {
+      "model": "deepseek-reasoner",
+      "timestamp": "2026-06-17T20:28:34.684Z",
+      "latency_ms": 34474,
+      "input_tokens": 687396,
+      "output_tokens": 22986,
+      "model_short": "deepseek-reasoner"
+    },
+    {
+      "model": "deepseek-reasoner",
+      "timestamp": "2026-06-17T20:30:21.583Z",
+      "latency_ms": 4312,
+      "input_tokens": 35662,
+      "output_tokens": 4838,
+      "model_short": "deepseek-reasoner"
+    },
+    {
+      "model": "deepseek-reasoner",
+      "timestamp": "2026-06-17T20:31:49.792Z",
+      "latency_ms": 3407,
+      "input_tokens": 8931,
+      "output_tokens": 310,
+      "model_short": "deepseek-reasoner"
+    },
+    {
+      "model": "deepseek-v4-flash",
+      "timestamp": "2026-06-17T20:30:40.172Z",
+      "latency_ms": 3240,
+      "input_tokens": 473,
+      "output_tokens": 711,
+      "model_short": "deepseek-v4-flash"
+    },
+    {
+      "model": "llama3.2:3b",
+      "timestamp": "2026-06-17T20:10:05.685Z",
+      "latency_ms": 1699,
+      "input_tokens": 2696,
+      "output_tokens": 55,
+      "model_short": "llama3.2:3b"
     }
   ],
-  "total_processed": 900
+  "total_processed": 906
 }
