@@ -10,9 +10,9 @@
       "status": "ok",
       "badge": "badge-ok",
       "enabled": true,
-      "next_run": 1781714400276,
-      "last_run": 1781712600276,
-      "last_duration_ms": 5419,
+      "next_run": 1781716200298,
+      "last_run": 1781714400298,
+      "last_duration_ms": 7554,
       "consecutive_errors": 0
     },
     {
@@ -25,9 +25,9 @@
       "status": "ok",
       "badge": "badge-ok",
       "enabled": true,
-      "next_run": 1781715900267,
-      "last_run": 1781714100267,
-      "last_duration_ms": 9005,
+      "next_run": 1781717700292,
+      "last_run": 1781715900292,
+      "last_duration_ms": 14454,
       "consecutive_errors": 0
     },
     {
@@ -43,36 +43,6 @@
       "next_run": 1781726400000,
       "last_run": 1781641637212,
       "last_duration_ms": 118187,
-      "consecutive_errors": 0
-    },
-    {
-      "id": "076c2650-df05-45ad-8103-595152e2fb07",
-      "name": "issue-crafter",
-      "description": "Auto-handle one Phase 2 GitHub issue every 6h with parallel specialist lanes. Picks issues by label (frontend/backend), uses sub-agent for implementation, reports via Telegram.",
-      "schedule": "Cron: 0 */6 * * * (Brussels)",
-      "model": "ollama/llama3.2:3b",
-      "session_target": "isolated",
-      "status": "error",
-      "badge": "badge-err",
-      "enabled": true,
-      "next_run": 1781733655704,
-      "last_run": 1781712075680,
-      "last_duration_ms": 77006,
-      "consecutive_errors": 2
-    },
-    {
-      "id": "2a73d80d-85f0-41c3-b964-f3414b6f94d8",
-      "name": "issue-monitor",
-      "description": "Monitor issue-crafter health, stale branches, and open issues. Reports via Telegram every 6h.",
-      "schedule": "Cron: 30 */6 * * * (Brussels)",
-      "model": "ollama/llama3.2:3b",
-      "session_target": "isolated",
-      "status": "ok",
-      "badge": "badge-ok",
-      "enabled": true,
-      "next_run": 1781735400000,
-      "last_run": 1781713800016,
-      "last_duration_ms": 60872,
       "consecutive_errors": 0
     },
     {
@@ -151,6 +121,6 @@
       "consecutive_errors": 0
     }
   ],
-  "total": 10,
-  "last_updated": "2026-06-17T16:35:01.869183+00:00"
+  "total": 8,
+  "last_updated": "2026-06-17T17:05:01.189850+00:00"
 }
