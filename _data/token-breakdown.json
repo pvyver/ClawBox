@@ -7,19 +7,19 @@
     },
     {
       "channel": "conversation",
-      "tokens": 131381,
+      "tokens": 131420,
       "percentage": 15.2
     },
     {
       "channel": "cron",
-      "tokens": 27907,
+      "tokens": 27956,
       "percentage": 3.2
     }
   ],
   "by_model": [
     {
       "model": "deepseek-v4-flash",
-      "tokens": 633509,
+      "tokens": 633548,
       "percentage": 73.2
     },
     {
@@ -34,8 +34,8 @@
     },
     {
       "model": "llama3.2:3b",
-      "tokens": 22027,
-      "percentage": 2.5
+      "tokens": 22076,
+      "percentage": 2.6
     },
     {
       "model": "gemma4-e2b-it-q4_0",
@@ -61,6 +61,10 @@
       "tokens": 1208
     },
     {
+      "job": "token-watch-check",
+      "tokens": 1205
+    },
+    {
       "job": "daily-summary",
       "tokens": 1201
     },
@@ -74,15 +78,11 @@
     },
     {
       "job": "update-site-data",
-      "tokens": 1168
+      "tokens": 1166
     },
     {
       "job": "Evening news",
       "tokens": 1161
-    },
-    {
-      "job": "token-watch-check",
-      "tokens": 1154
     },
     {
       "job": "strava-token-refresh",
@@ -150,7 +150,7 @@
       "started_ago": "0s ago",
       "started_ms": 0,
       "age_seconds": 0,
-      "estimated_tokens": 78517,
+      "estimated_tokens": 78556,
       "tokens_human": "78K",
       "status": ""
     },
@@ -311,6 +311,18 @@
       "status": ""
     },
     {
+      "id": "22b06a4b-609e-4699-9b28-94f8a8d43f8c",
+      "key": "agent:main:cron:528620d6-e3e1-42da-bd49-ce9599ec3d88",
+      "model": "llama3.2:3b",
+      "channel": "unknown",
+      "started_ago": "0s ago",
+      "started_ms": 0,
+      "age_seconds": 0,
+      "estimated_tokens": 1205,
+      "tokens_human": "1K",
+      "status": ""
+    },
+    {
       "id": "84c7c12c-0396-4a99-ace1-b9240be378fb",
       "key": "agent:main:cron:a05c1a5d-c105-4f46-a226-ef15b87e5a06",
       "model": "llama3.2:3b",
@@ -333,20 +345,8 @@
       "estimated_tokens": 1198,
       "tokens_human": "1K",
       "status": ""
-    },
-    {
-      "id": "7eb7cf1d-11aa-4ed5-9831-93c44cb28e92",
-      "key": "agent:main:cron:ca3e504d-bd93-4e61-9e57-1e6dc22fd817",
-      "model": "llama3.2:3b",
-      "channel": "unknown",
-      "started_ago": "0s ago",
-      "started_ms": 0,
-      "age_seconds": 0,
-      "estimated_tokens": 1180,
-      "tokens_human": "1K",
-      "status": ""
     }
   ],
-  "total_tokens": 865608,
-  "last_updated": "2026-06-18T21:05:01.937218+00:00"
+  "total_tokens": 865696,
+  "last_updated": "2026-06-18T21:35:01.172712+00:00"
 }
