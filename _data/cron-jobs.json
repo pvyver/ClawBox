@@ -10,9 +10,9 @@
       "status": "ok",
       "badge": "badge-ok",
       "enabled": true,
-      "next_run": 1781820379446,
-      "last_run": 1781818579446,
-      "last_duration_ms": 20788,
+      "next_run": 1781822179471,
+      "last_run": 1781820379471,
+      "last_duration_ms": 11160,
       "consecutive_errors": 0
     },
     {
@@ -25,25 +25,10 @@
       "status": "ok",
       "badge": "badge-ok",
       "enabled": true,
-      "next_run": 1781820601338,
-      "last_run": 1781818801338,
-      "last_duration_ms": 5207,
+      "next_run": 1781822401362,
+      "last_run": 1781820601362,
+      "last_duration_ms": 8406,
       "consecutive_errors": 0
-    },
-    {
-      "id": "2a73d80d-85f0-41c3-b964-f3414b6f94d8",
-      "name": "issue-monitor",
-      "description": "Monitor issue-crafter health, stale branches, and open issues. Reports via Telegram every 6h.",
-      "schedule": "Cron: 30 */6 * * * (Brussels)",
-      "model": "ollama/llama3.2:3b",
-      "session_target": "isolated",
-      "status": "error",
-      "badge": "badge-err",
-      "enabled": true,
-      "next_run": 1781821800000,
-      "last_run": 1781800200017,
-      "last_duration_ms": 63286,
-      "consecutive_errors": 1
     },
     {
       "id": "598fc384-f79c-42e4-a7c5-5d7503c16032",
@@ -121,6 +106,21 @@
       "consecutive_errors": 0
     },
     {
+      "id": "2a73d80d-85f0-41c3-b964-f3414b6f94d8",
+      "name": "issue-monitor",
+      "description": "Monitor issue-crafter health, stale branches, and open issues. Reports via Telegram every 6h.",
+      "schedule": "Cron: 30 */6 * * * (Brussels)",
+      "model": "ollama/llama3.2:3b",
+      "session_target": "isolated",
+      "status": "ok",
+      "badge": "badge-ok",
+      "enabled": true,
+      "next_run": 1781843400000,
+      "last_run": 1781821800019,
+      "last_duration_ms": 60733,
+      "consecutive_errors": 0
+    },
+    {
       "id": "a05c1a5d-c105-4f46-a226-ef15b87e5a06",
       "name": "daily-summary",
       "description": "Daily morning summary at 8AM: Antwerp weather, yesterday's token budget bar, system health snapshot.",
@@ -182,5 +182,5 @@
     }
   ],
   "total": 12,
-  "last_updated": "2026-06-18T22:05:02.104010+00:00"
+  "last_updated": "2026-06-18T22:35:01.183026+00:00"
 }
