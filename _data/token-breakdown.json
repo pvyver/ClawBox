@@ -3,23 +3,23 @@
     {
       "channel": "webchat",
       "tokens": 601482,
-      "percentage": 80.5
+      "percentage": 80.4
     },
     {
       "channel": "conversation",
-      "tokens": 120164,
-      "percentage": 16.1
+      "tokens": 121446,
+      "percentage": 16.2
     },
     {
       "channel": "cron",
-      "tokens": 25607,
+      "tokens": 25247,
       "percentage": 3.4
     }
   ],
   "by_model": [
     {
       "model": "deepseek-v4-flash",
-      "tokens": 511574,
+      "tokens": 512856,
       "percentage": 68.5
     },
     {
@@ -34,7 +34,7 @@
     },
     {
       "model": "llama3.2:3b",
-      "tokens": 25607,
+      "tokens": 25247,
       "percentage": 3.4
     },
     {
@@ -49,12 +49,12 @@
       "tokens": 6467
     },
     {
-      "job": "issue-monitor",
-      "tokens": 6127
-    },
-    {
       "job": "issue-crafter",
       "tokens": 5928
+    },
+    {
+      "job": "issue-monitor",
+      "tokens": 5742
     },
     {
       "job": "Azure Blog Digest",
@@ -69,12 +69,12 @@
       "tokens": 1198
     },
     {
-      "job": "update-site-data",
-      "tokens": 1172
+      "job": "token-watch-check",
+      "tokens": 1189
     },
     {
-      "job": "token-watch-check",
-      "tokens": 1158
+      "job": "update-site-data",
+      "tokens": 1166
     },
     {
       "job": "strava-token-refresh",
@@ -154,8 +154,8 @@
       "started_ago": "0s ago",
       "started_ms": 0,
       "age_seconds": 0,
-      "estimated_tokens": 67300,
-      "tokens_human": "67K",
+      "estimated_tokens": 68582,
+      "tokens_human": "68K",
       "status": ""
     },
     {
@@ -255,18 +255,6 @@
       "status": ""
     },
     {
-      "id": "4a92c76c-980c-488e-99e4-f1f4ff1df2ab",
-      "key": "agent:main:cron:2a73d80d-85f0-41c3-b964-f3414b6f94d8",
-      "model": "llama3.2:3b",
-      "channel": "unknown",
-      "started_ago": "0s ago",
-      "started_ms": 0,
-      "age_seconds": 0,
-      "estimated_tokens": 6127,
-      "tokens_human": "6K",
-      "status": ""
-    },
-    {
       "id": "05d3cd18-20a3-4b3d-ad1e-dc0f746f4002",
       "key": "agent:main:cron:076c2650-df05-45ad-8103-595152e2fb07",
       "model": "llama3.2:3b",
@@ -275,6 +263,18 @@
       "started_ms": 0,
       "age_seconds": 0,
       "estimated_tokens": 5928,
+      "tokens_human": "5K",
+      "status": ""
+    },
+    {
+      "id": "816ebb7d-2e2b-40ce-8e65-2ad4defb5517",
+      "key": "agent:main:cron:2a73d80d-85f0-41c3-b964-f3414b6f94d8",
+      "model": "llama3.2:3b",
+      "channel": "unknown",
+      "started_ago": "0s ago",
+      "started_ms": 0,
+      "age_seconds": 0,
+      "estimated_tokens": 5742,
       "tokens_human": "5K",
       "status": ""
     },
@@ -315,30 +315,30 @@
       "status": ""
     },
     {
-      "id": "1e47bdd2-4679-4829-8a47-0276c533f02a",
-      "key": "agent:main:cron:685c7ce0-58ad-4aef-9aee-2665249f1f4b",
-      "model": "llama3.2:3b",
-      "channel": "unknown",
-      "started_ago": "0s ago",
-      "started_ms": 0,
-      "age_seconds": 0,
-      "estimated_tokens": 1172,
-      "tokens_human": "1K",
-      "status": ""
-    },
-    {
-      "id": "d0ba3ea2-d790-4fb8-80ad-d433e4a5dfc5",
+      "id": "c7521046-f210-4166-b6e8-cdc057cec9d3",
       "key": "agent:main:cron:528620d6-e3e1-42da-bd49-ce9599ec3d88",
       "model": "llama3.2:3b",
       "channel": "unknown",
       "started_ago": "0s ago",
       "started_ms": 0,
       "age_seconds": 0,
-      "estimated_tokens": 1158,
+      "estimated_tokens": 1189,
+      "tokens_human": "1K",
+      "status": ""
+    },
+    {
+      "id": "333ef377-a532-4711-9666-575094dd013f",
+      "key": "agent:main:cron:685c7ce0-58ad-4aef-9aee-2665249f1f4b",
+      "model": "llama3.2:3b",
+      "channel": "unknown",
+      "started_ago": "0s ago",
+      "started_ms": 0,
+      "age_seconds": 0,
+      "estimated_tokens": 1166,
       "tokens_human": "1K",
       "status": ""
     }
   ],
-  "total_tokens": 747253,
-  "last_updated": "2026-06-18T10:05:01.893990+00:00"
+  "total_tokens": 748175,
+  "last_updated": "2026-06-18T10:35:01.884004+00:00"
 }
