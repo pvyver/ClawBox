@@ -10,9 +10,9 @@
       "status": "ok",
       "badge": "badge-ok",
       "enabled": true,
-      "next_run": 1781796979217,
-      "last_run": 1781795179217,
-      "last_duration_ms": 8921,
+      "next_run": 1781798779235,
+      "last_run": 1781796979235,
+      "last_duration_ms": 17533,
       "consecutive_errors": 0
     },
     {
@@ -25,39 +25,9 @@
       "status": "ok",
       "badge": "badge-ok",
       "enabled": true,
-      "next_run": 1781797201105,
-      "last_run": 1781795401105,
-      "last_duration_ms": 24003,
-      "consecutive_errors": 0
-    },
-    {
-      "id": "2335e480-c2ec-4be1-baff-fdb5ebc13d91",
-      "name": "Evening news",
-      "description": "Evening news digest: same RSS feeds as morning, 7-day dedup via Google. Delivered at 18:00 Brussels.",
-      "schedule": "Cron: 0 18 * * * (Brussels)",
-      "model": "ollama/llama3.2:3b",
-      "session_target": "isolated",
-      "status": "ok",
-      "badge": "badge-ok",
-      "enabled": true,
-      "next_run": 1781798400000,
-      "last_run": 1781712000014,
-      "last_duration_ms": 73598,
-      "consecutive_errors": 0
-    },
-    {
-      "id": "076c2650-df05-45ad-8103-595152e2fb07",
-      "name": "issue-crafter",
-      "description": "Auto-handle one Phase 2 GitHub issue every 6h with parallel specialist lanes. Picks issues by label (frontend/backend), uses sub-agent for implementation, reports via Telegram.",
-      "schedule": "Cron: 0 */6 * * * (Brussels)",
-      "model": "ollama/llama3.2:3b",
-      "session_target": "isolated",
-      "status": "ok",
-      "badge": "badge-ok",
-      "enabled": true,
-      "next_run": 1781798455704,
-      "last_run": 1781776855721,
-      "last_duration_ms": 77527,
+      "next_run": 1781799001120,
+      "last_run": 1781797201120,
+      "last_duration_ms": 8433,
       "consecutive_errors": 0
     },
     {
@@ -121,6 +91,21 @@
       "consecutive_errors": 0
     },
     {
+      "id": "076c2650-df05-45ad-8103-595152e2fb07",
+      "name": "issue-crafter",
+      "description": "Auto-handle one Phase 2 GitHub issue every 6h with parallel specialist lanes. Picks issues by label (frontend/backend), uses sub-agent for implementation, reports via Telegram.",
+      "schedule": "Cron: 0 */6 * * * (Brussels)",
+      "model": "ollama/llama3.2:3b",
+      "session_target": "isolated",
+      "status": "ok",
+      "badge": "badge-ok",
+      "enabled": true,
+      "next_run": 1781820055704,
+      "last_run": 1781798455718,
+      "last_duration_ms": 235599,
+      "consecutive_errors": 0
+    },
+    {
       "id": "b3d0cce7-a55f-4c15-8124-93054bf7b955",
       "name": "Memory Dreaming Promotion",
       "description": "[managed-by=memory-core.short-term-promotion] Promote weighted short-term recalls into MEMORY.md (limit=10, minScore=0.800, minRecallCount=3, minUniqueQueries=3, recencyHalfLifeDays=14, maxAgeDays=30).",
@@ -179,8 +164,23 @@
       "last_run": 1781762400027,
       "last_duration_ms": 10538,
       "consecutive_errors": 0
+    },
+    {
+      "id": "2335e480-c2ec-4be1-baff-fdb5ebc13d91",
+      "name": "Evening news",
+      "description": "Evening news digest: same RSS feeds as morning, 7-day dedup via Google. Delivered at 18:00 Brussels.",
+      "schedule": "Cron: 0 18 * * * (Brussels)",
+      "model": "ollama/llama3.2:3b",
+      "session_target": "isolated",
+      "status": "ok",
+      "badge": "badge-ok",
+      "enabled": true,
+      "next_run": 1781884800000,
+      "last_run": 1781798400016,
+      "last_duration_ms": 14347,
+      "consecutive_errors": 0
     }
   ],
   "total": 12,
-  "last_updated": "2026-06-18T15:35:01.910207+00:00"
+  "last_updated": "2026-06-18T16:05:01.523389+00:00"
 }
