@@ -1,10 +1,10 @@
 {
-  "timestamp": "2026-06-18T07:05:02.074948+00:00",
+  "timestamp": "2026-06-18T07:35:01.172562+00:00",
   "cpu": {
     "cores": 6,
     "model": "Cortex-A78AE",
-    "load_1m": 0.02,
-    "load_5m": 0.01,
+    "load_1m": 0.0,
+    "load_5m": 0.0,
     "load_15m": 0.0,
     "usage_percent": 16.7,
     "runnable": 0,
@@ -29,31 +29,31 @@
     "free_human": "411.0 GB"
   },
   "temperature": {
-    "value_celsius": 57.1,
-    "display": "57.1\u00b0C"
+    "value_celsius": 57.3,
+    "display": "57.3\u00b0C"
   },
   "gpu": {
-    "temperature_celsius": 56.125,
+    "temperature_celsius": 55.593,
     "usage_percent": 0,
-    "raw": "GPU Status:\n06-18-2026 07:05:10 RAM 1422/7607MB (lfb 25x4MB) SWAP 1136/3804MB (cached 3MB) CPU [1%@1728,0%@1728,0%@1728,0%@1728,0%@1728,0%@1728] GR3D_FREQ 0% cpu@55.718C soc2@53.968C soc0@55.062C gpu@56.125C tj@57.156C soc1@57.156C VDD_IN 6697mW/6697mW VDD_CPU_GPU_CV 1522mW/1522mW VDD_SOC 2268mW/226"
+    "raw": "GPU Status:\n06-18-2026 07:35:09 RAM 1432/7607MB (lfb 30x4MB) SWAP 1131/3804MB (cached 3MB) CPU [2%@1728,0%@1728,0%@1728,1%@1728,0%@1728,0%@1728] GR3D_FREQ 0% cpu@55.718C soc2@54.031C soc0@55.125C gpu@55.593C tj@57.156C soc1@57.156C VDD_IN 6697mW/6697mW VDD_CPU_GPU_CV 1525mW/1525mW VDD_SOC 2271mW/227"
   },
   "uptime": {
-    "seconds": 97173.19,
-    "display": "1d 2h 59m"
+    "seconds": 98972.29,
+    "display": "1d 3h 29m"
   },
   "power_thermal": {
     "power": {
-      "vdd_in_watts": 6.88,
+      "vdd_in_watts": 6.84,
       "vdd_cpu_watts": 1.56,
       "vdd_gpu_watts": 2.32,
-      "total_watts": 10.76,
+      "total_watts": 10.72,
       "throttled": false,
       "throttle_reason": ""
     },
     "thermal": {
       "fan_speed_pct": 39,
-      "fan_rpm": 2243,
-      "junction_temp": 57.2,
+      "fan_rpm": 2238,
+      "junction_temp": 57.1,
       "throttle_temp": 85.0
     }
   },
@@ -101,14 +101,14 @@
         "pid": 52016,
         "name": "openclaw",
         "cmd": "openclaw",
-        "cpu_percent": 2.4,
-        "mem_percent": 4.8,
+        "cpu_percent": 2.1,
+        "mem_percent": 4.9,
         "user": "clawbox",
         "is_claw": true,
         "severity": "ok"
       },
       {
-        "pid": 54833,
+        "pid": 55601,
         "name": "update-site-data.py",
         "cmd": "python3 scripts/update-site-data.py",
         "cpu_percent": 0.8,
@@ -128,21 +128,21 @@
         "severity": "ok"
       },
       {
-        "pid": 51940,
-        "name": "ollama",
-        "cmd": "/usr/local/bin/ollama serve",
-        "cpu_percent": 0.2,
-        "mem_percent": 0.3,
-        "user": "ollama",
-        "is_claw": false,
-        "severity": "ok"
-      },
-      {
         "pid": 318,
         "name": "systemd-udevd",
         "cmd": "/lib/systemd/systemd-udevd",
         "cpu_percent": 0.1,
         "mem_percent": 0.0,
+        "user": "root",
+        "is_claw": false,
+        "severity": "ok"
+      },
+      {
+        "pid": 733,
+        "name": "snapd",
+        "cmd": "/snap/snapd/current/usr/lib/snapd/snapd",
+        "cpu_percent": 0.1,
+        "mem_percent": 0.2,
         "user": "root",
         "is_claw": false,
         "severity": "ok"
@@ -153,8 +153,8 @@
         "pid": 52016,
         "name": "openclaw",
         "cmd": "openclaw",
-        "cpu_percent": 2.4,
-        "mem_percent": 4.8,
+        "cpu_percent": 2.1,
+        "mem_percent": 4.9,
         "user": "clawbox",
         "is_claw": true,
         "severity": "ok"
@@ -170,7 +170,7 @@
         "severity": "ok"
       },
       {
-        "pid": 54662,
+        "pid": 55427,
         "name": "cla",
         "cmd": "/home/clawbox/.bun/bin/bun run /home/clawbox/clawbox/mcp/cla",
         "cpu_percent": 0.1,
@@ -180,7 +180,7 @@
         "severity": "ok"
       },
       {
-        "pid": 54673,
+        "pid": 55438,
         "name": "index.j",
         "cmd": "node /home/clawbox/documents/mcp/jetson-monitor/dist/index.j",
         "cpu_percent": 0.0,
@@ -201,7 +201,7 @@
       }
     ],
     "total_processes": 359,
-    "timestamp": "2026-06-18T07:05:02.074948+00:00"
+    "timestamp": "2026-06-18T07:35:01.172562+00:00"
   },
   "network": {
     "interfaces": [
@@ -229,14 +229,14 @@
       },
       {
         "name": "enP8p1s0",
-        "rx_bytes": 365035737,
-        "tx_bytes": 534508381,
+        "rx_bytes": 366896617,
+        "tx_bytes": 535216543,
         "state": "UP",
         "ip": "192.168.0.122",
-        "rx_rate": 1260,
-        "tx_rate": 853,
-        "total_in_human": "348.1 MB",
-        "total_out_human": "509.7 MB"
+        "rx_rate": 1019,
+        "tx_rate": 389,
+        "total_in_human": "349.9 MB",
+        "total_out_human": "510.4 MB"
       },
       {
         "name": "l4tbr0",
@@ -274,7 +274,7 @@
       {
         "name": "tailscale0",
         "rx_bytes": 3776814,
-        "tx_bytes": 84187540,
+        "tx_bytes": 84189340,
         "state": "UNKNOWN",
         "ip": "100.68.32.105",
         "rx_rate": 0,
@@ -284,10 +284,10 @@
       }
     ],
     "active_connections": 10,
-    "total_in_human": "351.7 MB",
-    "total_out_human": "590.0 MB",
-    "total_in_bytes": 368812551,
-    "total_out_bytes": 618695921
+    "total_in_human": "353.5 MB",
+    "total_out_human": "590.7 MB",
+    "total_in_bytes": 370673431,
+    "total_out_bytes": 619405883
   },
   "sessions": {
     "active_count": 0,
@@ -301,31 +301,31 @@
         "started_ago": "0s ago",
         "started_ms": 0,
         "age_seconds": 0,
-        "estimated_tokens": 63001,
+        "estimated_tokens": 63234,
         "tokens_human": "63K",
         "status": ""
       },
       {
-        "id": "2485720c-075f-443d-9110-8d7a97330e42",
+        "id": "4fd8d2cf-065c-4f0c-9057-ff8018177b17",
         "key": "agent:main:cron:528620d6-e3e1-42da-bd49-ce9599ec3d88",
         "model": "llama3.2:3b",
         "channel": "unknown",
         "started_ago": "0s ago",
         "started_ms": 0,
         "age_seconds": 0,
-        "estimated_tokens": 1630,
+        "estimated_tokens": 1200,
         "tokens_human": "1K",
         "status": ""
       },
       {
-        "id": "306fce13-e1a1-4a1f-a8e4-74554c83e495",
+        "id": "cb0d5b27-94d3-46f8-9632-d1092e39fb22",
         "key": "agent:main:cron:685c7ce0-58ad-4aef-9aee-2665249f1f4b",
         "model": "llama3.2:3b",
         "channel": "unknown",
         "started_ago": "0s ago",
         "started_ms": 0,
         "age_seconds": 0,
-        "estimated_tokens": 1207,
+        "estimated_tokens": 1215,
         "tokens_human": "1K",
         "status": ""
       },
@@ -726,6 +726,6 @@
         "status": ""
       }
     ],
-    "last_updated": "2026-06-18T07:05:02.074948+00:00"
+    "last_updated": "2026-06-18T07:35:01.172562+00:00"
   }
 }
