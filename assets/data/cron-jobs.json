@@ -10,9 +10,9 @@
       "status": "ok",
       "badge": "badge-ok",
       "enabled": true,
-      "next_run": 1781798779235,
-      "last_run": 1781796979235,
-      "last_duration_ms": 17533,
+      "next_run": 1781800579255,
+      "last_run": 1781798779255,
+      "last_duration_ms": 11967,
       "consecutive_errors": 0
     },
     {
@@ -25,24 +25,9 @@
       "status": "ok",
       "badge": "badge-ok",
       "enabled": true,
-      "next_run": 1781799001120,
-      "last_run": 1781797201120,
-      "last_duration_ms": 8433,
-      "consecutive_errors": 0
-    },
-    {
-      "id": "2a73d80d-85f0-41c3-b964-f3414b6f94d8",
-      "name": "issue-monitor",
-      "description": "Monitor issue-crafter health, stale branches, and open issues. Reports via Telegram every 6h.",
-      "schedule": "Cron: 30 */6 * * * (Brussels)",
-      "model": "ollama/llama3.2:3b",
-      "session_target": "isolated",
-      "status": "ok",
-      "badge": "badge-ok",
-      "enabled": true,
-      "next_run": 1781800200000,
-      "last_run": 1781778600017,
-      "last_duration_ms": 70756,
+      "next_run": 1781800801145,
+      "last_run": 1781799001145,
+      "last_duration_ms": 5688,
       "consecutive_errors": 0
     },
     {
@@ -104,6 +89,21 @@
       "last_run": 1781798455718,
       "last_duration_ms": 235599,
       "consecutive_errors": 0
+    },
+    {
+      "id": "2a73d80d-85f0-41c3-b964-f3414b6f94d8",
+      "name": "issue-monitor",
+      "description": "Monitor issue-crafter health, stale branches, and open issues. Reports via Telegram every 6h.",
+      "schedule": "Cron: 30 */6 * * * (Brussels)",
+      "model": "ollama/llama3.2:3b",
+      "session_target": "isolated",
+      "status": "error",
+      "badge": "badge-err",
+      "enabled": true,
+      "next_run": 1781821800000,
+      "last_run": 1781800200017,
+      "last_duration_ms": 63286,
+      "consecutive_errors": 1
     },
     {
       "id": "b3d0cce7-a55f-4c15-8124-93054bf7b955",
@@ -182,5 +182,5 @@
     }
   ],
   "total": 12,
-  "last_updated": "2026-06-18T16:05:01.523389+00:00"
+  "last_updated": "2026-06-18T16:35:01.593756+00:00"
 }
