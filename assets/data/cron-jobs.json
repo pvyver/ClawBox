@@ -10,9 +10,9 @@
       "status": "ok",
       "badge": "badge-ok",
       "enabled": true,
-      "next_run": 1781882970604,
-      "last_run": 1781881170604,
-      "last_duration_ms": 11689,
+      "next_run": 1781884770618,
+      "last_run": 1781882970618,
+      "last_duration_ms": 21397,
       "consecutive_errors": 0
     },
     {
@@ -25,9 +25,9 @@
       "status": "ok",
       "badge": "badge-ok",
       "enabled": true,
-      "next_run": 1781882995845,
-      "last_run": 1781881195845,
-      "last_duration_ms": 7350,
+      "next_run": 1781884795858,
+      "last_run": 1781882995858,
+      "last_duration_ms": 5989,
       "consecutive_errors": 0
     },
     {
@@ -58,6 +58,21 @@
       "next_run": 1781884855704,
       "last_run": 1781863255719,
       "last_duration_ms": 81265,
+      "consecutive_errors": 0
+    },
+    {
+      "id": "2a73d80d-85f0-41c3-b964-f3414b6f94d8",
+      "name": "issue-monitor",
+      "description": "Monitor issue-crafter health, stale branches, and open issues. Reports via Telegram every 6h.",
+      "schedule": "Cron: 30 */6 * * * (Brussels)",
+      "model": "ollama/llama3.2:3b",
+      "session_target": "isolated",
+      "status": "ok",
+      "badge": "badge-ok",
+      "enabled": true,
+      "next_run": 1781886600000,
+      "last_run": 1781865339626,
+      "last_duration_ms": 78435,
       "consecutive_errors": 0
     },
     {
@@ -166,6 +181,6 @@
       "consecutive_errors": 0
     }
   ],
-  "total": 11,
-  "last_updated": "2026-06-19T15:05:01.936970+00:00"
+  "total": 12,
+  "last_updated": "2026-06-19T15:35:01.276449+00:00"
 }
