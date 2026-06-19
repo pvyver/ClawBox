@@ -3,29 +3,29 @@
     {
       "channel": "webchat",
       "tokens": 706320,
-      "percentage": 80.6
+      "percentage": 81.1
     },
     {
       "channel": "conversation",
-      "tokens": 95775,
-      "percentage": 10.9
+      "tokens": 95915,
+      "percentage": 11.0
     },
     {
       "channel": "cron",
-      "tokens": 74101,
-      "percentage": 8.5
+      "tokens": 68190,
+      "percentage": 7.8
     }
   ],
   "by_model": [
     {
       "model": "deepseek-v4-flash",
-      "tokens": 631575,
-      "percentage": 72.1
+      "tokens": 625835,
+      "percentage": 71.9
     },
     {
       "model": "deepseek-chat",
       "tokens": 141045,
-      "percentage": 16.1
+      "percentage": 16.2
     },
     {
       "model": "deepseek-reasoner",
@@ -34,8 +34,8 @@
     },
     {
       "model": "llama3.2:3b",
-      "tokens": 34549,
-      "percentage": 3.9
+      "tokens": 34518,
+      "percentage": 4.0
     },
     {
       "model": "gemma4-e2b-it-q4_0",
@@ -53,16 +53,8 @@
       "tokens": 23462
     },
     {
-      "job": "evening-news",
-      "tokens": 5880
-    },
-    {
       "job": "Daily news",
       "tokens": 1569
-    },
-    {
-      "job": "update-site-data",
-      "tokens": 1218
     },
     {
       "job": "Azure Blog Digest",
@@ -77,6 +69,10 @@
       "tokens": 1198
     },
     {
+      "job": "update-site-data",
+      "tokens": 1183
+    },
+    {
       "job": "token-watch-daily-report",
       "tokens": 1180
     },
@@ -85,12 +81,16 @@
       "tokens": 1176
     },
     {
+      "job": "token-watch-check",
+      "tokens": 1164
+    },
+    {
       "job": "Evening news",
       "tokens": 1163
     },
     {
-      "job": "token-watch-check",
-      "tokens": 1160
+      "job": "evening-news",
+      "tokens": 0
     },
     {
       "job": "Memory Dreaming Promotion",
@@ -178,7 +178,7 @@
       "started_ago": "0s ago",
       "started_ms": 0,
       "age_seconds": 0,
-      "estimated_tokens": 72446,
+      "estimated_tokens": 72586,
       "tokens_human": "72K",
       "status": ""
     },
@@ -279,18 +279,6 @@
       "status": ""
     },
     {
-      "id": "aa7ea69e-ab46-4c1b-b069-c64d22740647",
-      "key": "agent:main:cron:7dd6e186-fb3a-44e1-a171-ffd77f43eeae",
-      "model": "deepseek-v4-flash",
-      "channel": "unknown",
-      "started_ago": "0s ago",
-      "started_ms": 0,
-      "age_seconds": 0,
-      "estimated_tokens": 5880,
-      "tokens_human": "5K",
-      "status": ""
-    },
-    {
       "id": "10a61994-3343-4493-8aa9-104dee67c3af",
       "key": "agent:main:cron:dea2f6dd-2dbf-425d-b6d9-c6752d962a87",
       "model": "llama3.2:3b",
@@ -299,18 +287,6 @@
       "started_ms": 0,
       "age_seconds": 0,
       "estimated_tokens": 1569,
-      "tokens_human": "1K",
-      "status": ""
-    },
-    {
-      "id": "4a6f0809-b3b6-4baa-96ca-5a7d5810d27c",
-      "key": "agent:main:cron:685c7ce0-58ad-4aef-9aee-2665249f1f4b",
-      "model": "llama3.2:3b",
-      "channel": "unknown",
-      "started_ago": "0s ago",
-      "started_ms": 0,
-      "age_seconds": 0,
-      "estimated_tokens": 1218,
       "tokens_human": "1K",
       "status": ""
     },
@@ -349,8 +325,32 @@
       "estimated_tokens": 1198,
       "tokens_human": "1K",
       "status": ""
+    },
+    {
+      "id": "5730488b-3aca-4f8b-a566-a43618ddfdda",
+      "key": "agent:main:cron:685c7ce0-58ad-4aef-9aee-2665249f1f4b",
+      "model": "llama3.2:3b",
+      "channel": "unknown",
+      "started_ago": "0s ago",
+      "started_ms": 0,
+      "age_seconds": 0,
+      "estimated_tokens": 1183,
+      "tokens_human": "1K",
+      "status": ""
+    },
+    {
+      "id": "7eb7cf1d-11aa-4ed5-9831-93c44cb28e92",
+      "key": "agent:main:cron:ca3e504d-bd93-4e61-9e57-1e6dc22fd817",
+      "model": "llama3.2:3b",
+      "channel": "unknown",
+      "started_ago": "0s ago",
+      "started_ms": 0,
+      "age_seconds": 0,
+      "estimated_tokens": 1180,
+      "tokens_human": "1K",
+      "status": ""
     }
   ],
-  "total_tokens": 876196,
-  "last_updated": "2026-06-19T16:35:01.759162+00:00"
+  "total_tokens": 870425,
+  "last_updated": "2026-06-19T17:05:01.737535+00:00"
 }

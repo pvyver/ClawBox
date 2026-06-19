@@ -1,6 +1,21 @@
 {
   "jobs": [
     {
+      "id": "7dd6e186-fb3a-44e1-a171-ffd77f43eeae",
+      "name": "evening-news",
+      "description": "Daily evening news with Strava weekly overview at 19:00 CEST",
+      "schedule": "Cron: 0 19 * * * (Brussels)",
+      "model": "deepseek/deepseek-v4-flash",
+      "session_target": "isolated",
+      "status": "error",
+      "badge": "badge-err",
+      "enabled": true,
+      "next_run": 1781888614108,
+      "last_run": 1781888403810,
+      "last_duration_ms": 180298,
+      "consecutive_errors": 1
+    },
+    {
       "id": "685c7ce0-58ad-4aef-9aee-2665249f1f4b",
       "name": "update-site-data",
       "description": "Monitor site data updates every 30 min. Checks log freshness. Alerts if stale or failed.",
@@ -10,9 +25,9 @@
       "status": "ok",
       "badge": "badge-ok",
       "enabled": true,
-      "next_run": 1781888370650,
-      "last_run": 1781886570650,
-      "last_duration_ms": 12717,
+      "next_run": 1781890170664,
+      "last_run": 1781888370664,
+      "last_duration_ms": 13477,
       "consecutive_errors": 0
     },
     {
@@ -25,24 +40,9 @@
       "status": "ok",
       "badge": "badge-ok",
       "enabled": true,
-      "next_run": 1781888395885,
-      "last_run": 1781886595885,
-      "last_duration_ms": 6316,
-      "consecutive_errors": 0
-    },
-    {
-      "id": "7dd6e186-fb3a-44e1-a171-ffd77f43eeae",
-      "name": "evening-news",
-      "description": "Daily evening news with Strava weekly overview at 19:00 CEST",
-      "schedule": "Cron: 0 19 * * * (Brussels)",
-      "model": "deepseek/deepseek-v4-flash",
-      "session_target": "isolated",
-      "status": "ok",
-      "badge": "badge-ok",
-      "enabled": true,
-      "next_run": 1781888400000,
-      "last_run": 1781802210381,
-      "last_duration_ms": 75892,
+      "next_run": 1781890195899,
+      "last_run": 1781888395899,
+      "last_duration_ms": 5863,
       "consecutive_errors": 0
     },
     {
@@ -182,5 +182,5 @@
     }
   ],
   "total": 12,
-  "last_updated": "2026-06-19T16:35:01.759162+00:00"
+  "last_updated": "2026-06-19T17:05:01.737535+00:00"
 }
