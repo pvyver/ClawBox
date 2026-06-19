@@ -10,9 +10,9 @@
       "status": "ok",
       "badge": "badge-ok",
       "enabled": true,
-      "next_run": 1781863170400,
-      "last_run": 1781861370400,
-      "last_duration_ms": 11807,
+      "next_run": 1781864970428,
+      "last_run": 1781863170428,
+      "last_duration_ms": 11876,
       "consecutive_errors": 0
     },
     {
@@ -25,39 +25,9 @@
       "status": "ok",
       "badge": "badge-ok",
       "enabled": true,
-      "next_run": 1781863195665,
-      "last_run": 1781861395665,
-      "last_duration_ms": 5268,
-      "consecutive_errors": 0
-    },
-    {
-      "id": "076c2650-df05-45ad-8103-595152e2fb07",
-      "name": "issue-crafter",
-      "description": "Auto-handle one Phase 2 GitHub issue every 6h with parallel specialist lanes. Picks issues by label (frontend/backend), uses sub-agent for implementation, reports via Telegram.",
-      "schedule": "Cron: 0 */6 * * * (Brussels)",
-      "model": "ollama/llama3.2:3b",
-      "session_target": "isolated",
-      "status": "error",
-      "badge": "badge-err",
-      "enabled": true,
-      "next_run": 1781863255704,
-      "last_run": 1781841655709,
-      "last_duration_ms": 1594353,
-      "consecutive_errors": 1
-    },
-    {
-      "id": "598fc384-f79c-42e4-a7c5-5d7503c16032",
-      "name": "strava-token-refresh",
-      "description": "Refresh Strava access token every 5 hours before 6hr expiry",
-      "schedule": "Cron: 0 */5 * * * (UTC)",
-      "model": "ollama/llama3.2:3b",
-      "session_target": "isolated",
-      "status": "ok",
-      "badge": "badge-ok",
-      "enabled": true,
-      "next_run": 1781863309970,
-      "last_run": 1781845309987,
-      "last_duration_ms": 13962,
+      "next_run": 1781864995680,
+      "last_run": 1781863195680,
+      "last_duration_ms": 6553,
       "consecutive_errors": 0
     },
     {
@@ -76,6 +46,21 @@
       "consecutive_errors": 0
     },
     {
+      "id": "598fc384-f79c-42e4-a7c5-5d7503c16032",
+      "name": "strava-token-refresh",
+      "description": "Refresh Strava access token every 5 hours before 6hr expiry",
+      "schedule": "Cron: 0 */5 * * * (UTC)",
+      "model": "ollama/llama3.2:3b",
+      "session_target": "isolated",
+      "status": "ok",
+      "badge": "badge-ok",
+      "enabled": true,
+      "next_run": 1781881309970,
+      "last_run": 1781863339043,
+      "last_duration_ms": 11667,
+      "consecutive_errors": 0
+    },
+    {
       "id": "2335e480-c2ec-4be1-baff-fdb5ebc13d91",
       "name": "Evening news",
       "description": "Evening news digest: same RSS feeds as morning, 7-day dedup via Google. Delivered at 18:00 Brussels.",
@@ -88,6 +73,21 @@
       "next_run": 1781884800000,
       "last_run": 1781798400016,
       "last_duration_ms": 14347,
+      "consecutive_errors": 0
+    },
+    {
+      "id": "076c2650-df05-45ad-8103-595152e2fb07",
+      "name": "issue-crafter",
+      "description": "Auto-handle one Phase 2 GitHub issue every 6h with parallel specialist lanes. Picks issues by label (frontend/backend), uses sub-agent for implementation, reports via Telegram.",
+      "schedule": "Cron: 0 */6 * * * (Brussels)",
+      "model": "ollama/llama3.2:3b",
+      "session_target": "isolated",
+      "status": "ok",
+      "badge": "badge-ok",
+      "enabled": true,
+      "next_run": 1781884855704,
+      "last_run": 1781863255719,
+      "last_duration_ms": 81265,
       "consecutive_errors": 0
     },
     {
@@ -182,5 +182,5 @@
     }
   ],
   "total": 12,
-  "last_updated": "2026-06-19T09:35:01.527164+00:00"
+  "last_updated": "2026-06-19T10:05:01.585864+00:00"
 }
