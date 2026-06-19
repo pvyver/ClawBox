@@ -27,10 +27,10 @@
     {
       "date": "2026-06-10",
       "model": "deepseek-v4-flash",
-      "requests": 15,
+      "requests": 12,
       "p50_ms": 4203,
-      "p95_ms": 6225,
-      "p99_ms": 6225
+      "p95_ms": 5125,
+      "p99_ms": 5125
     },
     {
       "date": "2026-06-10",
@@ -195,37 +195,13 @@
     {
       "date": "2026-06-19",
       "model": "llama3.2:3b",
-      "requests": 29,
+      "requests": 32,
       "p50_ms": 2921,
       "p95_ms": 11779,
       "p99_ms": 29725
     }
   ],
   "recent": [
-    {
-      "model": "deepseek-v4-flash",
-      "timestamp": "2026-06-10T18:09:32.020Z",
-      "latency_ms": 3337,
-      "input_tokens": 30817,
-      "output_tokens": 11591,
-      "model_short": "deepseek-v4-flash"
-    },
-    {
-      "model": "deepseek-v4-flash",
-      "timestamp": "2026-06-10T18:38:52.451Z",
-      "latency_ms": 3174,
-      "input_tokens": 5822070,
-      "output_tokens": 34042,
-      "model_short": "deepseek-v4-flash"
-    },
-    {
-      "model": "deepseek-v4-flash",
-      "timestamp": "2026-06-10T19:07:49.772Z",
-      "latency_ms": 6225,
-      "input_tokens": 24106,
-      "output_tokens": 10634,
-      "model_short": "deepseek-v4-flash"
-    },
     {
       "model": "deepseek-v4-flash",
       "timestamp": "2026-06-10T18:40:31.330Z",
@@ -8201,7 +8177,31 @@
       "input_tokens": 2703,
       "output_tokens": 81,
       "model_short": "llama3.2:3b"
+    },
+    {
+      "model": "llama3.2:3b",
+      "timestamp": "2026-06-19T06:00:08.594Z",
+      "latency_ms": 1563,
+      "input_tokens": 2728,
+      "output_tokens": 53,
+      "model_short": "llama3.2:3b"
+    },
+    {
+      "model": "llama3.2:3b",
+      "timestamp": "2026-06-19T06:00:01.270Z",
+      "latency_ms": 1817,
+      "input_tokens": 2735,
+      "output_tokens": 64,
+      "model_short": "llama3.2:3b"
+    },
+    {
+      "model": "llama3.2:3b",
+      "timestamp": "2026-06-19T05:59:42.900Z",
+      "latency_ms": 3199,
+      "input_tokens": 2711,
+      "output_tokens": 91,
+      "model_short": "llama3.2:3b"
     }
   ],
-  "total_processed": 1118
+  "total_processed": 1121
 }
