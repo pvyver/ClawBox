@@ -10,9 +10,9 @@
       "status": "ok",
       "badge": "badge-ok",
       "enabled": true,
-      "next_run": 1781906370794,
-      "last_run": 1781904570794,
-      "last_duration_ms": 11941,
+      "next_run": 1781908170809,
+      "last_run": 1781906370809,
+      "last_duration_ms": 12700,
       "consecutive_errors": 0
     },
     {
@@ -25,24 +25,9 @@
       "status": "ok",
       "badge": "badge-ok",
       "enabled": true,
-      "next_run": 1781906396022,
-      "last_run": 1781904596022,
-      "last_duration_ms": 12207,
-      "consecutive_errors": 0
-    },
-    {
-      "id": "076c2650-df05-45ad-8103-595152e2fb07",
-      "name": "issue-crafter",
-      "description": "Auto-handle one Phase 2 GitHub issue every 6h with parallel specialist lanes. Picks issues by label (frontend/backend), uses sub-agent for implementation, reports via Telegram.",
-      "schedule": "Cron: 0 */6 * * * (Brussels)",
-      "model": "ollama/llama3.2:3b",
-      "session_target": "isolated",
-      "status": "ok",
-      "badge": "badge-ok",
-      "enabled": true,
-      "next_run": 1781906455704,
-      "last_run": 1781884855718,
-      "last_duration_ms": 72709,
+      "next_run": 1781908196035,
+      "last_run": 1781906396035,
+      "last_duration_ms": 4736,
       "consecutive_errors": 0
     },
     {
@@ -103,6 +88,21 @@
       "next_run": 1781928000000,
       "last_run": 1781841600019,
       "last_duration_ms": 27029,
+      "consecutive_errors": 0
+    },
+    {
+      "id": "076c2650-df05-45ad-8103-595152e2fb07",
+      "name": "issue-crafter",
+      "description": "Auto-handle one Phase 2 GitHub issue every 6h with parallel specialist lanes. Picks issues by label (frontend/backend), uses sub-agent for implementation, reports via Telegram.",
+      "schedule": "Cron: 0 */6 * * * (Brussels)",
+      "model": "ollama/llama3.2:3b",
+      "session_target": "isolated",
+      "status": "ok",
+      "badge": "badge-ok",
+      "enabled": true,
+      "next_run": 1781928055704,
+      "last_run": 1781906455721,
+      "last_duration_ms": 79551,
       "consecutive_errors": 0
     },
     {
@@ -182,5 +182,5 @@
     }
   ],
   "total": 12,
-  "last_updated": "2026-06-19T21:35:01.800506+00:00"
+  "last_updated": "2026-06-19T22:05:01.750184+00:00"
 }
