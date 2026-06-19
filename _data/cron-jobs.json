@@ -1,21 +1,6 @@
 {
   "jobs": [
     {
-      "id": "2a73d80d-85f0-41c3-b964-f3414b6f94d8",
-      "name": "issue-monitor",
-      "description": "Monitor issue-crafter health, stale branches, and open issues. Reports via Telegram every 6h.",
-      "schedule": "Cron: 30 */6 * * * (Brussels)",
-      "model": "ollama/llama3.2:3b",
-      "session_target": "isolated",
-      "status": "error",
-      "badge": "badge-err",
-      "enabled": true,
-      "next_run": 1781865339384,
-      "last_run": 1781865002489,
-      "last_duration_ms": 306895,
-      "consecutive_errors": 1
-    },
-    {
       "id": "685c7ce0-58ad-4aef-9aee-2665249f1f4b",
       "name": "update-site-data",
       "description": "Monitor site data updates every 30 min. Checks log freshness. Alerts if stale or failed.",
@@ -25,9 +10,9 @@
       "status": "ok",
       "badge": "badge-ok",
       "enabled": true,
-      "next_run": 1781866770449,
-      "last_run": 1781864970449,
-      "last_duration_ms": 13833,
+      "next_run": 1781868570469,
+      "last_run": 1781866770469,
+      "last_duration_ms": 12119,
       "consecutive_errors": 0
     },
     {
@@ -40,9 +25,24 @@
       "status": "ok",
       "badge": "badge-ok",
       "enabled": true,
-      "next_run": 1781866795697,
-      "last_run": 1781864995697,
-      "last_duration_ms": 4740,
+      "next_run": 1781868595716,
+      "last_run": 1781866795716,
+      "last_duration_ms": 5154,
+      "consecutive_errors": 0
+    },
+    {
+      "id": "bb2a11dc-b34d-4234-adae-f3a62bfb6c42",
+      "name": "re-evaluate-issue-monitor",
+      "description": "",
+      "schedule": "At: 2026-06-19T14:39:00.000Z",
+      "model": "default",
+      "session_target": "main",
+      "status": "idle",
+      "badge": "badge-unknown",
+      "enabled": true,
+      "next_run": 1781879940000,
+      "last_run": 0,
+      "last_duration_ms": 0,
       "consecutive_errors": 0
     },
     {
@@ -182,5 +182,5 @@
     }
   ],
   "total": 12,
-  "last_updated": "2026-06-19T10:35:06.823091+00:00"
+  "last_updated": "2026-06-19T11:05:01.188836+00:00"
 }
