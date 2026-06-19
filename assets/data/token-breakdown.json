@@ -3,39 +3,39 @@
     {
       "channel": "webchat",
       "tokens": 706320,
-      "percentage": 84.3
+      "percentage": 84.9
     },
     {
       "channel": "conversation",
-      "tokens": 103974,
-      "percentage": 12.4
+      "tokens": 104114,
+      "percentage": 12.5
     },
     {
       "channel": "cron",
-      "tokens": 27298,
-      "percentage": 3.3
+      "tokens": 21210,
+      "percentage": 2.6
     }
   ],
   "by_model": [
     {
       "model": "deepseek-v4-flash",
-      "tokens": 606102,
-      "percentage": 72.4
+      "tokens": 606242,
+      "percentage": 72.9
     },
     {
       "model": "deepseek-chat",
       "tokens": 141045,
-      "percentage": 16.8
+      "percentage": 17.0
     },
     {
       "model": "deepseek-reasoner",
       "tokens": 69027,
-      "percentage": 8.2
+      "percentage": 8.3
     },
     {
       "model": "llama3.2:3b",
-      "tokens": 21418,
-      "percentage": 2.6
+      "tokens": 15330,
+      "percentage": 1.8
     },
     {
       "model": "gemma4-e2b-it-q4_0",
@@ -45,10 +45,6 @@
   ],
   "by_cron_job": [
     {
-      "job": "issue-crafter",
-      "tokens": 6501
-    },
-    {
       "job": "evening-news",
       "tokens": 5880
     },
@@ -57,8 +53,16 @@
       "tokens": 5330
     },
     {
+      "job": "Daily news",
+      "tokens": 1569
+    },
+    {
       "job": "update-site-data",
       "tokens": 1353
+    },
+    {
+      "job": "token-watch-check",
+      "tokens": 1208
     },
     {
       "job": "Azure Blog Digest",
@@ -69,16 +73,8 @@
       "tokens": 1201
     },
     {
-      "job": "Daily news",
-      "tokens": 1198
-    },
-    {
       "job": "token-watch-daily-report",
       "tokens": 1180
-    },
-    {
-      "job": "token-watch-check",
-      "tokens": 1166
     },
     {
       "job": "Evening news",
@@ -87,6 +83,10 @@
     {
       "job": "strava-token-refresh",
       "tokens": 1120
+    },
+    {
+      "job": "issue-crafter",
+      "tokens": 0
     },
     {
       "job": "Memory Dreaming Promotion",
@@ -150,7 +150,7 @@
       "started_ago": "0s ago",
       "started_ms": 0,
       "age_seconds": 0,
-      "estimated_tokens": 80645,
+      "estimated_tokens": 80785,
       "tokens_human": "80K",
       "status": ""
     },
@@ -251,18 +251,6 @@
       "status": ""
     },
     {
-      "id": "eacaf838-268b-495d-b26a-50f905e09f66",
-      "key": "agent:main:cron:076c2650-df05-45ad-8103-595152e2fb07",
-      "model": "llama3.2:3b",
-      "channel": "unknown",
-      "started_ago": "0s ago",
-      "started_ms": 0,
-      "age_seconds": 0,
-      "estimated_tokens": 6501,
-      "tokens_human": "6K",
-      "status": ""
-    },
-    {
       "id": "aa7ea69e-ab46-4c1b-b069-c64d22740647",
       "key": "agent:main:cron:7dd6e186-fb3a-44e1-a171-ffd77f43eeae",
       "model": "deepseek-v4-flash",
@@ -287,6 +275,18 @@
       "status": ""
     },
     {
+      "id": "10a61994-3343-4493-8aa9-104dee67c3af",
+      "key": "agent:main:cron:dea2f6dd-2dbf-425d-b6d9-c6752d962a87",
+      "model": "llama3.2:3b",
+      "channel": "unknown",
+      "started_ago": "0s ago",
+      "started_ms": 0,
+      "age_seconds": 0,
+      "estimated_tokens": 1569,
+      "tokens_human": "1K",
+      "status": ""
+    },
+    {
       "id": "ad25e6f4-6b00-4ecc-851d-7c37d78ac678",
       "key": "agent:main:cron:685c7ce0-58ad-4aef-9aee-2665249f1f4b",
       "model": "llama3.2:3b",
@@ -295,6 +295,18 @@
       "started_ms": 0,
       "age_seconds": 0,
       "estimated_tokens": 1353,
+      "tokens_human": "1K",
+      "status": ""
+    },
+    {
+      "id": "869f57ad-ead6-4065-a874-755f7833378c",
+      "key": "agent:main:cron:528620d6-e3e1-42da-bd49-ce9599ec3d88",
+      "model": "llama3.2:3b",
+      "channel": "unknown",
+      "started_ago": "0s ago",
+      "started_ms": 0,
+      "age_seconds": 0,
+      "estimated_tokens": 1208,
       "tokens_human": "1K",
       "status": ""
     },
@@ -323,18 +335,6 @@
       "status": ""
     },
     {
-      "id": "e2ff5054-e093-47e2-968c-e21c34eec32b",
-      "key": "agent:main:cron:dea2f6dd-2dbf-425d-b6d9-c6752d962a87",
-      "model": "llama3.2:3b",
-      "channel": "unknown",
-      "started_ago": "0s ago",
-      "started_ms": 0,
-      "age_seconds": 0,
-      "estimated_tokens": 1198,
-      "tokens_human": "1K",
-      "status": ""
-    },
-    {
       "id": "7eb7cf1d-11aa-4ed5-9831-93c44cb28e92",
       "key": "agent:main:cron:ca3e504d-bd93-4e61-9e57-1e6dc22fd817",
       "model": "llama3.2:3b",
@@ -347,6 +347,6 @@
       "status": ""
     }
   ],
-  "total_tokens": 837592,
-  "last_updated": "2026-06-19T03:35:01.881702+00:00"
+  "total_tokens": 831644,
+  "last_updated": "2026-06-19T04:05:01.771418+00:00"
 }
