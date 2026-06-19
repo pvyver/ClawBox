@@ -10,9 +10,9 @@
       "status": "ok",
       "badge": "badge-ok",
       "enabled": true,
-      "next_run": 1781886570636,
-      "last_run": 1781884770636,
-      "last_duration_ms": 14836,
+      "next_run": 1781888370650,
+      "last_run": 1781886570650,
+      "last_duration_ms": 12717,
       "consecutive_errors": 0
     },
     {
@@ -25,24 +25,9 @@
       "status": "ok",
       "badge": "badge-ok",
       "enabled": true,
-      "next_run": 1781886595872,
-      "last_run": 1781884795872,
-      "last_duration_ms": 5979,
-      "consecutive_errors": 0
-    },
-    {
-      "id": "2a73d80d-85f0-41c3-b964-f3414b6f94d8",
-      "name": "issue-monitor",
-      "description": "Monitor issue-crafter health, stale branches, and open issues. Reports via Telegram every 6h.",
-      "schedule": "Cron: 30 */6 * * * (Brussels)",
-      "model": "ollama/llama3.2:3b",
-      "session_target": "isolated",
-      "status": "ok",
-      "badge": "badge-ok",
-      "enabled": true,
-      "next_run": 1781886600000,
-      "last_run": 1781865339626,
-      "last_duration_ms": 78435,
+      "next_run": 1781888395885,
+      "last_run": 1781886595885,
+      "last_duration_ms": 6316,
       "consecutive_errors": 0
     },
     {
@@ -103,6 +88,21 @@
       "next_run": 1781906455704,
       "last_run": 1781884855718,
       "last_duration_ms": 72709,
+      "consecutive_errors": 0
+    },
+    {
+      "id": "2a73d80d-85f0-41c3-b964-f3414b6f94d8",
+      "name": "issue-monitor",
+      "description": "Monitor issue-crafter health, stale branches, and open issues. Reports via Telegram every 6h.",
+      "schedule": "Cron: 30 */6 * * * (Brussels)",
+      "model": "ollama/llama3.2:3b",
+      "session_target": "isolated",
+      "status": "ok",
+      "badge": "badge-ok",
+      "enabled": true,
+      "next_run": 1781908200000,
+      "last_run": 1781886604251,
+      "last_duration_ms": 6543,
       "consecutive_errors": 0
     },
     {
@@ -182,5 +182,5 @@
     }
   ],
   "total": 12,
-  "last_updated": "2026-06-19T16:05:01.851885+00:00"
+  "last_updated": "2026-06-19T16:35:01.759162+00:00"
 }
