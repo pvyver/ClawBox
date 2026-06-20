@@ -10,9 +10,9 @@
       "status": "ok",
       "badge": "badge-ok",
       "enabled": true,
-      "next_run": 1781929771011,
-      "last_run": 1781927971011,
-      "last_duration_ms": 12157,
+      "next_run": 1781931571028,
+      "last_run": 1781929771028,
+      "last_duration_ms": 14040,
       "consecutive_errors": 0
     },
     {
@@ -25,39 +25,9 @@
       "status": "ok",
       "badge": "badge-ok",
       "enabled": true,
-      "next_run": 1781929796210,
-      "last_run": 1781927996210,
-      "last_duration_ms": 9061,
-      "consecutive_errors": 0
-    },
-    {
-      "id": "065d0da8-cecc-45b9-83f1-7138c0b66cb7",
-      "name": "Azure Blog Digest",
-      "description": "Daily Azure blog digest: fetches recent articles from Tech Community RSS feeds, displays top 10 newest. Delivered at 6:30AM CEST.",
-      "schedule": "Cron: 30 6 * * * (Brussels)",
-      "model": "ollama/llama3.2:3b",
-      "session_target": "isolated",
-      "status": "ok",
-      "badge": "badge-ok",
-      "enabled": true,
-      "next_run": 1781929800000,
-      "last_run": 1781843402487,
-      "last_duration_ms": 16344,
-      "consecutive_errors": 0
-    },
-    {
-      "id": "2a73d80d-85f0-41c3-b964-f3414b6f94d8",
-      "name": "issue-monitor",
-      "description": "Monitor issue-crafter health, stale branches, and open issues. Reports via Telegram every 6h.",
-      "schedule": "Cron: 30 */6 * * * (Brussels)",
-      "model": "ollama/llama3.2:3b",
-      "session_target": "isolated",
-      "status": "ok",
-      "badge": "badge-ok",
-      "enabled": true,
-      "next_run": 1781929800000,
-      "last_run": 1781908204550,
-      "last_duration_ms": 5717,
+      "next_run": 1781931596224,
+      "last_run": 1781929796224,
+      "last_duration_ms": 6966,
       "consecutive_errors": 0
     },
     {
@@ -103,6 +73,21 @@
       "next_run": 1781949655704,
       "last_run": 1781928055720,
       "last_duration_ms": 64823,
+      "consecutive_errors": 0
+    },
+    {
+      "id": "2a73d80d-85f0-41c3-b964-f3414b6f94d8",
+      "name": "issue-monitor",
+      "description": "Monitor issue-crafter health, stale branches, and open issues. Reports via Telegram every 6h.",
+      "schedule": "Cron: 30 */6 * * * (Brussels)",
+      "model": "ollama/llama3.2:3b",
+      "session_target": "isolated",
+      "status": "ok",
+      "badge": "badge-ok",
+      "enabled": true,
+      "next_run": 1781951400000,
+      "last_run": 1781929810940,
+      "last_duration_ms": 6643,
       "consecutive_errors": 0
     },
     {
@@ -179,8 +164,23 @@
       "last_run": 1781928007322,
       "last_duration_ms": 8407,
       "consecutive_errors": 0
+    },
+    {
+      "id": "065d0da8-cecc-45b9-83f1-7138c0b66cb7",
+      "name": "Azure Blog Digest",
+      "description": "Daily Azure blog digest: fetches recent articles from Tech Community RSS feeds, displays top 10 newest. Delivered at 6:30AM CEST.",
+      "schedule": "Cron: 30 6 * * * (Brussels)",
+      "model": "ollama/llama3.2:3b",
+      "session_target": "isolated",
+      "status": "ok",
+      "badge": "badge-ok",
+      "enabled": true,
+      "next_run": 1782016200000,
+      "last_run": 1781929805238,
+      "last_duration_ms": 5702,
+      "consecutive_errors": 0
     }
   ],
   "total": 12,
-  "last_updated": "2026-06-20T04:05:01.826975+00:00"
+  "last_updated": "2026-06-20T04:35:01.439250+00:00"
 }
