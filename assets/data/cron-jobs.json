@@ -10,9 +10,9 @@
       "status": "ok",
       "badge": "badge-ok",
       "enabled": true,
-      "next_run": 1781913570863,
-      "last_run": 1781911770863,
-      "last_duration_ms": 11051,
+      "next_run": 1781915370878,
+      "last_run": 1781913570878,
+      "last_duration_ms": 10765,
       "consecutive_errors": 0
     },
     {
@@ -25,24 +25,9 @@
       "status": "ok",
       "badge": "badge-ok",
       "enabled": true,
-      "next_run": 1781913596078,
-      "last_run": 1781911796078,
-      "last_duration_ms": 7995,
-      "consecutive_errors": 0
-    },
-    {
-      "id": "598fc384-f79c-42e4-a7c5-5d7503c16032",
-      "name": "strava-token-refresh",
-      "description": "Refresh Strava access token every 5 hours before 6hr expiry",
-      "schedule": "Cron: 0 */5 * * * (UTC)",
-      "model": "ollama/llama3.2:3b",
-      "session_target": "isolated",
-      "status": "ok",
-      "badge": "badge-ok",
-      "enabled": true,
-      "next_run": 1781913709970,
-      "last_run": 1781899309986,
-      "last_duration_ms": 8152,
+      "next_run": 1781915396092,
+      "last_run": 1781913596092,
+      "last_duration_ms": 7549,
       "consecutive_errors": 0
     },
     {
@@ -121,6 +106,21 @@
       "consecutive_errors": 0
     },
     {
+      "id": "598fc384-f79c-42e4-a7c5-5d7503c16032",
+      "name": "strava-token-refresh",
+      "description": "Refresh Strava access token every 5 hours before 6hr expiry",
+      "schedule": "Cron: 0 */5 * * * (UTC)",
+      "model": "ollama/llama3.2:3b",
+      "session_target": "isolated",
+      "status": "ok",
+      "badge": "badge-ok",
+      "enabled": true,
+      "next_run": 1781931709970,
+      "last_run": 1781913709986,
+      "last_duration_ms": 15040,
+      "consecutive_errors": 0
+    },
+    {
       "id": "a05c1a5d-c105-4f46-a226-ef15b87e5a06",
       "name": "daily-summary",
       "description": "Daily morning summary at 8AM: Antwerp weather, yesterday's token budget bar, system health snapshot.",
@@ -182,5 +182,5 @@
     }
   ],
   "total": 12,
-  "last_updated": "2026-06-19T23:35:01.727183+00:00"
+  "last_updated": "2026-06-20T00:05:01.671604+00:00"
 }
