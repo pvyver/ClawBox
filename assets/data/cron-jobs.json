@@ -10,9 +10,9 @@
       "status": "ok",
       "badge": "badge-ok",
       "enabled": true,
-      "next_run": 1781994571634,
-      "last_run": 1781992771634,
-      "last_duration_ms": 19940,
+      "next_run": 1781996371653,
+      "last_run": 1781994571653,
+      "last_duration_ms": 13782,
       "consecutive_errors": 0
     },
     {
@@ -25,24 +25,9 @@
       "status": "ok",
       "badge": "badge-ok",
       "enabled": true,
-      "next_run": 1781994596778,
-      "last_run": 1781992796778,
-      "last_duration_ms": 6345,
-      "consecutive_errors": 0
-    },
-    {
-      "id": "2a73d80d-85f0-41c3-b964-f3414b6f94d8",
-      "name": "issue-monitor",
-      "description": "Monitor issue-crafter health, stale branches, and open issues. Reports via Telegram every 6h.",
-      "schedule": "Cron: 30 */6 * * * (Brussels)",
-      "model": "ollama/llama3.2:3b",
-      "session_target": "isolated",
-      "status": "ok",
-      "badge": "badge-ok",
-      "enabled": true,
-      "next_run": 1781994600000,
-      "last_run": 1781973007127,
-      "last_duration_ms": 6393,
+      "next_run": 1781996396796,
+      "last_run": 1781994596796,
+      "last_duration_ms": 6264,
       "consecutive_errors": 0
     },
     {
@@ -121,6 +106,21 @@
       "consecutive_errors": 0
     },
     {
+      "id": "2a73d80d-85f0-41c3-b964-f3414b6f94d8",
+      "name": "issue-monitor",
+      "description": "Monitor issue-crafter health, stale branches, and open issues. Reports via Telegram every 6h.",
+      "schedule": "Cron: 30 */6 * * * (Brussels)",
+      "model": "ollama/llama3.2:3b",
+      "session_target": "isolated",
+      "status": "ok",
+      "badge": "badge-ok",
+      "enabled": true,
+      "next_run": 1782016200000,
+      "last_run": 1781994605118,
+      "last_duration_ms": 6846,
+      "consecutive_errors": 0
+    },
+    {
       "id": "a05c1a5d-c105-4f46-a226-ef15b87e5a06",
       "name": "daily-summary",
       "description": "Daily morning summary at 8AM: Antwerp weather, yesterday's token budget bar, system health snapshot.",
@@ -182,5 +182,5 @@
     }
   ],
   "total": 12,
-  "last_updated": "2026-06-20T22:05:01.371363+00:00"
+  "last_updated": "2026-06-20T22:35:01.593353+00:00"
 }
