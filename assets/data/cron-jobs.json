@@ -1,51 +1,6 @@
 {
   "jobs": [
     {
-      "id": "2a73d80d-85f0-41c3-b964-f3414b6f94d8",
-      "name": "issue-monitor",
-      "description": "Monitor issue-crafter health, stale branches, and open issues. Reports via Telegram every 6h.",
-      "schedule": "Cron: 30 */6 * * * (Brussels)",
-      "model": "ollama/llama3.2:3b",
-      "session_target": "isolated",
-      "status": "ok",
-      "badge": "badge-ok",
-      "enabled": true,
-      "next_run": 1782059400000,
-      "last_run": 1782037800024,
-      "last_duration_ms": 15434,
-      "consecutive_errors": 0
-    },
-    {
-      "id": "528620d6-e3e1-42da-bd49-ce9599ec3d88",
-      "name": "token-watch-check",
-      "description": "Check daily token budget every 30 min via Ollama. Silent unless alert file has content.",
-      "schedule": "Every 30 min",
-      "model": "ollama/llama3.2:3b",
-      "session_target": "isolated",
-      "status": "ok",
-      "badge": "badge-ok",
-      "enabled": true,
-      "next_run": 1782059417724,
-      "last_run": 1782057617724,
-      "last_duration_ms": 12540,
-      "consecutive_errors": 0
-    },
-    {
-      "id": "685c7ce0-58ad-4aef-9aee-2665249f1f4b",
-      "name": "update-site-data",
-      "description": "Monitor site data updates every 30 min. Checks log freshness. Alerts if stale or failed.",
-      "schedule": "Every 30 min",
-      "model": "ollama/llama3.2:3b",
-      "session_target": "isolated",
-      "status": "ok",
-      "badge": "badge-ok",
-      "enabled": true,
-      "next_run": 1782059700273,
-      "last_run": 1782057900273,
-      "last_duration_ms": 18261,
-      "consecutive_errors": 0
-    },
-    {
       "id": "7dd6e186-fb3a-44e1-a171-ffd77f43eeae",
       "name": "evening-news",
       "description": "Daily evening news with Strava weekly overview at 19:00 CEST",
@@ -58,6 +13,36 @@
       "next_run": 1782061200000,
       "last_run": 1781975015050,
       "last_duration_ms": 40616,
+      "consecutive_errors": 0
+    },
+    {
+      "id": "528620d6-e3e1-42da-bd49-ce9599ec3d88",
+      "name": "token-watch-check",
+      "description": "Check daily token budget every 30 min via Ollama. Silent unless alert file has content.",
+      "schedule": "Every 30 min",
+      "model": "ollama/llama3.2:3b",
+      "session_target": "isolated",
+      "status": "ok",
+      "badge": "badge-ok",
+      "enabled": true,
+      "next_run": 1782061219896,
+      "last_run": 1782059419896,
+      "last_duration_ms": 6462,
+      "consecutive_errors": 0
+    },
+    {
+      "id": "685c7ce0-58ad-4aef-9aee-2665249f1f4b",
+      "name": "update-site-data",
+      "description": "Monitor site data updates every 30 min. Checks log freshness. Alerts if stale or failed.",
+      "schedule": "Every 30 min",
+      "model": "ollama/llama3.2:3b",
+      "session_target": "isolated",
+      "status": "ok",
+      "badge": "badge-ok",
+      "enabled": true,
+      "next_run": 1782061500290,
+      "last_run": 1782059700290,
+      "last_duration_ms": 8117,
       "consecutive_errors": 0
     },
     {
@@ -106,21 +91,6 @@
       "consecutive_errors": 0
     },
     {
-      "id": "076c2650-df05-45ad-8103-595152e2fb07",
-      "name": "issue-crafter",
-      "description": "Auto-handle one Phase 2 GitHub issue every 6h with parallel specialist lanes. Picks issues by label (frontend/backend), uses sub-agent for implementation, reports via Telegram.",
-      "schedule": "Cron: 0 */6 * * * (Brussels)",
-      "model": "ollama/llama3.2:3b",
-      "session_target": "isolated",
-      "status": "ok",
-      "badge": "badge-ok",
-      "enabled": true,
-      "next_run": 1782079255704,
-      "last_run": 1782057655719,
-      "last_duration_ms": 60529,
-      "consecutive_errors": 0
-    },
-    {
       "id": "b3d0cce7-a55f-4c15-8124-93054bf7b955",
       "name": "Memory Dreaming Promotion",
       "description": "[managed-by=memory-core.short-term-promotion] Promote weighted short-term recalls into MEMORY.md (limit=10, minScore=0.800, minRecallCount=3, minUniqueQueries=3, recencyHalfLifeDays=14, maxAgeDays=30).",
@@ -166,6 +136,6 @@
       "consecutive_errors": 0
     }
   ],
-  "total": 11,
-  "last_updated": "2026-06-21T16:05:01.404322+00:00"
+  "total": 9,
+  "last_updated": "2026-06-21T16:35:01.862848+00:00"
 }
