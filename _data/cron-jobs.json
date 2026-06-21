@@ -10,24 +10,9 @@
       "status": "ok",
       "badge": "badge-ok",
       "enabled": true,
-      "next_run": 1782054017670,
-      "last_run": 1782052217670,
-      "last_duration_ms": 12387,
-      "consecutive_errors": 0
-    },
-    {
-      "id": "598fc384-f79c-42e4-a7c5-5d7503c16032",
-      "name": "strava-token-refresh",
-      "description": "Refresh Strava access token every 5 hours before 6hr expiry",
-      "schedule": "Cron: 0 */5 * * * (UTC)",
-      "model": "ollama/llama3.2:3b",
-      "session_target": "isolated",
-      "status": "ok",
-      "badge": "badge-ok",
-      "enabled": true,
-      "next_run": 1782054109970,
-      "last_run": 1782036121559,
-      "last_duration_ms": 8253,
+      "next_run": 1782055817694,
+      "last_run": 1782054017694,
+      "last_duration_ms": 13080,
       "consecutive_errors": 0
     },
     {
@@ -40,9 +25,9 @@
       "status": "ok",
       "badge": "badge-ok",
       "enabled": true,
-      "next_run": 1782054300227,
-      "last_run": 1782052500227,
-      "last_duration_ms": 8039,
+      "next_run": 1782056100242,
+      "last_run": 1782054300242,
+      "last_duration_ms": 10287,
       "consecutive_errors": 0
     },
     {
@@ -121,6 +106,21 @@
       "consecutive_errors": 0
     },
     {
+      "id": "598fc384-f79c-42e4-a7c5-5d7503c16032",
+      "name": "strava-token-refresh",
+      "description": "Refresh Strava access token every 5 hours before 6hr expiry",
+      "schedule": "Cron: 0 */5 * * * (UTC)",
+      "model": "ollama/llama3.2:3b",
+      "session_target": "isolated",
+      "status": "ok",
+      "badge": "badge-ok",
+      "enabled": true,
+      "next_run": 1782072109970,
+      "last_run": 1782054109985,
+      "last_duration_ms": 8663,
+      "consecutive_errors": 0
+    },
+    {
       "id": "b3d0cce7-a55f-4c15-8124-93054bf7b955",
       "name": "Memory Dreaming Promotion",
       "description": "[managed-by=memory-core.short-term-promotion] Promote weighted short-term recalls into MEMORY.md (limit=10, minScore=0.800, minRecallCount=3, minUniqueQueries=3, recencyHalfLifeDays=14, maxAgeDays=30).",
@@ -167,5 +167,5 @@
     }
   ],
   "total": 11,
-  "last_updated": "2026-06-21T14:35:01.999601+00:00"
+  "last_updated": "2026-06-21T15:05:01.585686+00:00"
 }
