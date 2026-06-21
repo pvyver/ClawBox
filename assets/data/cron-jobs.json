@@ -1,36 +1,6 @@
 {
   "jobs": [
     {
-      "id": "ca3e504d-bd93-4e61-9e57-1e6dc22fd817",
-      "name": "token-watch-daily-report",
-      "description": "Daily token usage report at 22h: 7-day history with bars, trend arrows, model breakdown, and budget projection",
-      "schedule": "Cron: 0 22 * * * (Brussels)",
-      "model": "ollama/llama3.2:3b",
-      "session_target": "isolated",
-      "status": "ok",
-      "badge": "badge-ok",
-      "enabled": true,
-      "next_run": 1782072000000,
-      "last_run": 1781985604878,
-      "last_duration_ms": 6808,
-      "consecutive_errors": 0
-    },
-    {
-      "id": "598fc384-f79c-42e4-a7c5-5d7503c16032",
-      "name": "strava-token-refresh",
-      "description": "Refresh Strava access token every 5 hours before 6hr expiry",
-      "schedule": "Cron: 0 */5 * * * (UTC)",
-      "model": "ollama/llama3.2:3b",
-      "session_target": "isolated",
-      "status": "ok",
-      "badge": "badge-ok",
-      "enabled": true,
-      "next_run": 1782072109970,
-      "last_run": 1782054109985,
-      "last_duration_ms": 8663,
-      "consecutive_errors": 0
-    },
-    {
       "id": "528620d6-e3e1-42da-bd49-ce9599ec3d88",
       "name": "token-watch-check",
       "description": "Check daily token budget every 30 min via Ollama. Silent unless alert file has content.",
@@ -40,9 +10,9 @@
       "status": "ok",
       "badge": "badge-ok",
       "enabled": true,
-      "next_run": 1782072182984,
-      "last_run": 1782070382984,
-      "last_duration_ms": 13491,
+      "next_run": 1782073982999,
+      "last_run": 1782072182999,
+      "last_duration_ms": 14661,
       "consecutive_errors": 0
     },
     {
@@ -55,9 +25,24 @@
       "status": "ok",
       "badge": "badge-ok",
       "enabled": true,
-      "next_run": 1782072300384,
-      "last_run": 1782070500384,
-      "last_duration_ms": 6865,
+      "next_run": 1782074100400,
+      "last_run": 1782072300400,
+      "last_duration_ms": 7797,
+      "consecutive_errors": 0
+    },
+    {
+      "id": "598fc384-f79c-42e4-a7c5-5d7503c16032",
+      "name": "strava-token-refresh",
+      "description": "Refresh Strava access token every 5 hours before 6hr expiry",
+      "schedule": "Cron: 0 */5 * * * (UTC)",
+      "model": "ollama/llama3.2:3b",
+      "session_target": "isolated",
+      "status": "ok",
+      "badge": "badge-ok",
+      "enabled": true,
+      "next_run": 1782086509970,
+      "last_run": 1782072109993,
+      "last_duration_ms": 13992,
       "consecutive_errors": 0
     },
     {
@@ -134,8 +119,23 @@
       "last_run": 1782070017349,
       "last_duration_ms": 13795,
       "consecutive_errors": 0
+    },
+    {
+      "id": "ca3e504d-bd93-4e61-9e57-1e6dc22fd817",
+      "name": "token-watch-daily-report",
+      "description": "Daily token usage report at 22h: 7-day history with bars, trend arrows, model breakdown, and budget projection",
+      "schedule": "Cron: 0 22 * * * (Brussels)",
+      "model": "ollama/llama3.2:3b",
+      "session_target": "isolated",
+      "status": "ok",
+      "badge": "badge-ok",
+      "enabled": true,
+      "next_run": 1782158400000,
+      "last_run": 1782072000016,
+      "last_duration_ms": 16842,
+      "consecutive_errors": 0
     }
   ],
   "total": 9,
-  "last_updated": "2026-06-21T19:35:01.509065+00:00"
+  "last_updated": "2026-06-21T20:05:01.601014+00:00"
 }
