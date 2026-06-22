@@ -3,38 +3,38 @@
     {
       "channel": "webchat",
       "tokens": 777762,
-      "percentage": 77.5
+      "percentage": 76.7
     },
     {
       "channel": "conversation",
-      "tokens": 206615,
-      "percentage": 20.6
+      "tokens": 216496,
+      "percentage": 21.4
     },
     {
       "channel": "cron",
-      "tokens": 19562,
+      "tokens": 19599,
       "percentage": 1.9
     }
   ],
   "by_model": [
     {
       "model": "deepseek-v4-flash",
-      "tokens": 706312,
-      "percentage": 70.4
+      "tokens": 716193,
+      "percentage": 70.6
     },
     {
       "model": "deepseek-chat",
       "tokens": 212487,
-      "percentage": 21.2
+      "percentage": 21.0
     },
     {
       "model": "deepseek-reasoner",
       "tokens": 69027,
-      "percentage": 6.9
+      "percentage": 6.8
     },
     {
       "model": "llama3.2:3b",
-      "tokens": 16113,
+      "tokens": 16150,
       "percentage": 1.6
     },
     {
@@ -69,6 +69,10 @@
       "tokens": 1200
     },
     {
+      "job": "token-watch-check",
+      "tokens": 1194
+    },
+    {
       "job": "2335e480",
       "tokens": 1186
     },
@@ -79,10 +83,6 @@
     {
       "job": "daily-summary",
       "tokens": 1160
-    },
-    {
-      "job": "token-watch-check",
-      "tokens": 1157
     },
     {
       "job": "strava-token-refresh",
@@ -119,6 +119,18 @@
       "status": ""
     },
     {
+      "id": "f7361315-757c-4536-8c31-0ed979488f35",
+      "key": "agent:main:main",
+      "model": "deepseek-v4-flash",
+      "channel": "unknown",
+      "started_ago": "0s ago",
+      "started_ms": 0,
+      "age_seconds": 0,
+      "estimated_tokens": 104908,
+      "tokens_human": "104K",
+      "status": ""
+    },
+    {
       "id": "fd319d84-1253-4019-bd42-063e0aec23ec",
       "key": "agent:main:dashboard:c5b4329a-7b6d-4437-a41a-959852328432",
       "model": "deepseek-v4-flash",
@@ -128,18 +140,6 @@
       "age_seconds": 0,
       "estimated_tokens": 104838,
       "tokens_human": "104K",
-      "status": ""
-    },
-    {
-      "id": "f7361315-757c-4536-8c31-0ed979488f35",
-      "key": "agent:main:main",
-      "model": "deepseek-v4-flash",
-      "channel": "unknown",
-      "started_ago": "0s ago",
-      "started_ms": 0,
-      "age_seconds": 0,
-      "estimated_tokens": 95027,
-      "tokens_human": "95K",
       "status": ""
     },
     {
@@ -347,6 +347,6 @@
       "status": ""
     }
   ],
-  "total_tokens": 1003939,
-  "last_updated": "2026-06-22T19:05:01.915140+00:00"
+  "total_tokens": 1013857,
+  "last_updated": "2026-06-22T19:35:01.285544+00:00"
 }
