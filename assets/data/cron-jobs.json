@@ -10,39 +10,9 @@
       "status": "ok",
       "badge": "badge-ok",
       "enabled": true,
-      "next_run": 1782157200940,
-      "last_run": 1782155400940,
-      "last_duration_ms": 6483,
-      "consecutive_errors": 0
-    },
-    {
-      "id": "ca3e504d-bd93-4e61-9e57-1e6dc22fd817",
-      "name": "token-watch-daily-report",
-      "description": "Daily token usage report at 22h: 7-day history with bars, trend arrows, model breakdown, and budget projection",
-      "schedule": "Cron: 0 22 * * * (Brussels)",
-      "model": "ollama/llama3.2:3b",
-      "session_target": "isolated",
-      "status": "ok",
-      "badge": "badge-ok",
-      "enabled": true,
-      "next_run": 1782158400000,
-      "last_run": 1782072000016,
-      "last_duration_ms": 16842,
-      "consecutive_errors": 0
-    },
-    {
-      "id": "598fc384-f79c-42e4-a7c5-5d7503c16032",
-      "name": "strava-token-refresh",
-      "description": "Refresh Strava access token every 5 hours before 6hr expiry",
-      "schedule": "Cron: 0 */5 * * * (UTC)",
-      "model": "ollama/llama3.2:3b",
-      "session_target": "isolated",
-      "status": "ok",
-      "badge": "badge-ok",
-      "enabled": true,
-      "next_run": 1782158509970,
-      "last_run": 1782140509986,
-      "last_duration_ms": 13599,
+      "next_run": 1782159000965,
+      "last_run": 1782157200965,
+      "last_duration_ms": 5473,
       "consecutive_errors": 0
     },
     {
@@ -55,9 +25,24 @@
       "status": "ok",
       "badge": "badge-ok",
       "enabled": true,
-      "next_run": 1782158700542,
-      "last_run": 1782156900542,
-      "last_duration_ms": 13631,
+      "next_run": 1782160500568,
+      "last_run": 1782158700568,
+      "last_duration_ms": 10677,
+      "consecutive_errors": 0
+    },
+    {
+      "id": "598fc384-f79c-42e4-a7c5-5d7503c16032",
+      "name": "strava-token-refresh",
+      "description": "Refresh Strava access token every 5 hours before 6hr expiry",
+      "schedule": "Cron: 0 */5 * * * (UTC)",
+      "model": "ollama/llama3.2:3b",
+      "session_target": "isolated",
+      "status": "ok",
+      "badge": "badge-ok",
+      "enabled": true,
+      "next_run": 1782172909970,
+      "last_run": 1782158509994,
+      "last_duration_ms": 10308,
       "consecutive_errors": 0
     },
     {
@@ -149,8 +134,23 @@
       "last_run": 1782151200018,
       "last_duration_ms": 16994,
       "consecutive_errors": 0
+    },
+    {
+      "id": "ca3e504d-bd93-4e61-9e57-1e6dc22fd817",
+      "name": "token-watch-daily-report",
+      "description": "Daily token usage report at 22h: 7-day history with bars, trend arrows, model breakdown, and budget projection",
+      "schedule": "Cron: 0 22 * * * (Brussels)",
+      "model": "ollama/llama3.2:3b",
+      "session_target": "isolated",
+      "status": "ok",
+      "badge": "badge-ok",
+      "enabled": true,
+      "next_run": 1782244800000,
+      "last_run": 1782158400016,
+      "last_duration_ms": 14951,
+      "consecutive_errors": 0
     }
   ],
   "total": 10,
-  "last_updated": "2026-06-22T19:35:01.285544+00:00"
+  "last_updated": "2026-06-22T20:05:02.083417+00:00"
 }
