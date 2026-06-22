@@ -10,24 +10,9 @@
       "status": "ok",
       "badge": "badge-ok",
       "enabled": true,
-      "next_run": 1782148200814,
-      "last_run": 1782146400814,
-      "last_duration_ms": 5262,
-      "consecutive_errors": 0
-    },
-    {
-      "id": "685c7ce0-58ad-4aef-9aee-2665249f1f4b",
-      "name": "update-site-data",
-      "description": "Monitor site data updates every 30 min. Checks log freshness. Alerts if stale or failed.",
-      "schedule": "Every 30 min",
-      "model": "ollama/llama3.2:3b",
-      "session_target": "isolated",
-      "status": "ok",
-      "badge": "badge-ok",
-      "enabled": true,
-      "next_run": 1782149700427,
-      "last_run": 1782147900427,
-      "last_duration_ms": 14761,
+      "next_run": 1782150000841,
+      "last_run": 1782148200841,
+      "last_duration_ms": 10808,
       "consecutive_errors": 0
     },
     {
@@ -43,6 +28,21 @@
       "next_run": 1782151200000,
       "last_run": 1782070017349,
       "last_duration_ms": 13795,
+      "consecutive_errors": 0
+    },
+    {
+      "id": "685c7ce0-58ad-4aef-9aee-2665249f1f4b",
+      "name": "update-site-data",
+      "description": "Monitor site data updates every 30 min. Checks log freshness. Alerts if stale or failed.",
+      "schedule": "Every 30 min",
+      "model": "ollama/llama3.2:3b",
+      "session_target": "isolated",
+      "status": "ok",
+      "badge": "badge-ok",
+      "enabled": true,
+      "next_run": 1782151500454,
+      "last_run": 1782149700454,
+      "last_duration_ms": 16081,
       "consecutive_errors": 0
     },
     {
@@ -121,6 +121,21 @@
       "consecutive_errors": 0
     },
     {
+      "id": "9b10ead4-06b1-4434-923a-3394b425e897",
+      "name": "deepseek-warmup",
+      "description": "Warms up DeepSeek Flash model endpoint before evening-news at 19:00",
+      "schedule": "Cron: 50 18 * * * (Brussels)",
+      "model": "ollama/llama3.2:3b",
+      "session_target": "isolated",
+      "status": "idle",
+      "badge": "badge-unknown",
+      "enabled": true,
+      "next_run": 1782233400000,
+      "last_run": 0,
+      "last_duration_ms": 0,
+      "consecutive_errors": 0
+    },
+    {
       "id": "7dd6e186-fb3a-44e1-a171-ffd77f43eeae",
       "name": "evening-news",
       "description": "Daily evening news with Strava weekly overview at 19:00 CEST",
@@ -136,6 +151,6 @@
       "consecutive_errors": 0
     }
   ],
-  "total": 9,
-  "last_updated": "2026-06-22T17:05:01.824717+00:00"
+  "total": 10,
+  "last_updated": "2026-06-22T17:35:01.502214+00:00"
 }
