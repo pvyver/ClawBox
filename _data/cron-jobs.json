@@ -1,21 +1,6 @@
 {
   "jobs": [
     {
-      "id": "685c7ce0-58ad-4aef-9aee-2665249f1f4b",
-      "name": "update-site-data",
-      "description": "Monitor site data updates every 30 min. Checks log freshness. Alerts if stale or failed.",
-      "schedule": "Every 30 min",
-      "model": "ollama/llama3.2:3b",
-      "session_target": "isolated",
-      "status": "ok",
-      "badge": "badge-ok",
-      "enabled": true,
-      "next_run": 1782236101457,
-      "last_run": 1782234301457,
-      "last_duration_ms": 12387,
-      "consecutive_errors": 0
-    },
-    {
       "id": "528620d6-e3e1-42da-bd49-ce9599ec3d88",
       "name": "token-watch-check",
       "description": "Check daily token budget every 30 min via Ollama. Silent unless alert file has content.",
@@ -25,24 +10,24 @@
       "status": "ok",
       "badge": "badge-ok",
       "enabled": true,
-      "next_run": 1782236433340,
-      "last_run": 1782234633340,
-      "last_duration_ms": 11930,
+      "next_run": 1782238233364,
+      "last_run": 1782236433364,
+      "last_duration_ms": 14564,
       "consecutive_errors": 0
     },
     {
-      "id": "a05c1a5d-c105-4f46-a226-ef15b87e5a06",
-      "name": "daily-summary",
-      "description": "Daily evening summary at 20:00: Antwerp weather, yesterday's token budget bar, system health snapshot.",
-      "schedule": "Cron: 0 20 * * * (Brussels)",
+      "id": "685c7ce0-58ad-4aef-9aee-2665249f1f4b",
+      "name": "update-site-data",
+      "description": "Monitor site data updates every 30 min. Checks log freshness. Alerts if stale or failed.",
+      "schedule": "Every 30 min",
       "model": "ollama/llama3.2:3b",
       "session_target": "isolated",
       "status": "ok",
       "badge": "badge-ok",
       "enabled": true,
-      "next_run": 1782237600000,
-      "last_run": 1782151200018,
-      "last_duration_ms": 16994,
+      "next_run": 1782239701499,
+      "last_run": 1782237901499,
+      "last_duration_ms": 8170,
       "consecutive_errors": 0
     },
     {
@@ -149,8 +134,23 @@
       "last_run": 1782234691283,
       "last_duration_ms": 43613,
       "consecutive_errors": 0
+    },
+    {
+      "id": "a05c1a5d-c105-4f46-a226-ef15b87e5a06",
+      "name": "daily-summary",
+      "description": "Daily evening summary at 20:00: Antwerp weather, yesterday's token budget bar, system health snapshot.",
+      "schedule": "Cron: 0 20 * * * (Brussels)",
+      "model": "ollama/llama3.2:3b",
+      "session_target": "isolated",
+      "status": "ok",
+      "badge": "badge-ok",
+      "enabled": true,
+      "next_run": 1782324000000,
+      "last_run": 1782237600026,
+      "last_duration_ms": 20361,
+      "consecutive_errors": 0
     }
   ],
   "total": 10,
-  "last_updated": "2026-06-23T17:35:01.403084+00:00"
+  "last_updated": "2026-06-23T18:05:01.209706+00:00"
 }
