@@ -1,36 +1,6 @@
 {
   "jobs": [
     {
-      "id": "7dd6e186-fb3a-44e1-a171-ffd77f43eeae",
-      "name": "evening-news",
-      "description": "Daily evening news with Strava weekly overview at 19:00 CEST",
-      "schedule": "Cron: 0 19 * * * (Brussels)",
-      "model": "deepseek/deepseek-v4-flash",
-      "session_target": "isolated",
-      "status": "error",
-      "badge": "badge-err",
-      "enabled": true,
-      "next_run": 1782234330672,
-      "last_run": 1782234000018,
-      "last_duration_ms": 300654,
-      "consecutive_errors": 1
-    },
-    {
-      "id": "528620d6-e3e1-42da-bd49-ce9599ec3d88",
-      "name": "token-watch-check",
-      "description": "Check daily token budget every 30 min via Ollama. Silent unless alert file has content.",
-      "schedule": "Every 30 min",
-      "model": "ollama/llama3.2:3b",
-      "session_target": "isolated",
-      "status": "ok",
-      "badge": "badge-ok",
-      "enabled": true,
-      "next_run": 1782234601965,
-      "last_run": 1782232801965,
-      "last_duration_ms": 6350,
-      "consecutive_errors": 0
-    },
-    {
       "id": "685c7ce0-58ad-4aef-9aee-2665249f1f4b",
       "name": "update-site-data",
       "description": "Monitor site data updates every 30 min. Checks log freshness. Alerts if stale or failed.",
@@ -43,6 +13,21 @@
       "next_run": 1782236101457,
       "last_run": 1782234301457,
       "last_duration_ms": 12387,
+      "consecutive_errors": 0
+    },
+    {
+      "id": "528620d6-e3e1-42da-bd49-ce9599ec3d88",
+      "name": "token-watch-check",
+      "description": "Check daily token budget every 30 min via Ollama. Silent unless alert file has content.",
+      "schedule": "Every 30 min",
+      "model": "ollama/llama3.2:3b",
+      "session_target": "isolated",
+      "status": "ok",
+      "badge": "badge-ok",
+      "enabled": true,
+      "next_run": 1782236433340,
+      "last_run": 1782234633340,
+      "last_duration_ms": 11930,
       "consecutive_errors": 0
     },
     {
@@ -149,8 +134,23 @@
       "last_run": 1782233400026,
       "last_duration_ms": 17014,
       "consecutive_errors": 0
+    },
+    {
+      "id": "7dd6e186-fb3a-44e1-a171-ffd77f43eeae",
+      "name": "evening-news",
+      "description": "Daily evening news with Strava weekly overview at 19:00 CEST",
+      "schedule": "Cron: 0 19 * * * (Brussels)",
+      "model": "deepseek/deepseek-v4-flash",
+      "session_target": "isolated",
+      "status": "ok",
+      "badge": "badge-ok",
+      "enabled": true,
+      "next_run": 1782320400000,
+      "last_run": 1782234691283,
+      "last_duration_ms": 43613,
+      "consecutive_errors": 0
     }
   ],
   "total": 10,
-  "last_updated": "2026-06-23T17:05:01.747666+00:00"
+  "last_updated": "2026-06-23T17:35:01.403084+00:00"
 }
