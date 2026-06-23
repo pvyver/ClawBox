@@ -10,39 +10,9 @@
       "status": "ok",
       "badge": "badge-ok",
       "enabled": true,
-      "next_run": 1782187801355,
-      "last_run": 1782186001355,
-      "last_duration_ms": 5529,
-      "consecutive_errors": 0
-    },
-    {
-      "id": "065d0da8-cecc-45b9-83f1-7138c0b66cb7",
-      "name": "Azure Blog Digest",
-      "description": "Daily Azure blog digest: fetches recent articles from Tech Community RSS feeds, displays top 10 newest. Delivered at 6:30AM CEST.",
-      "schedule": "Cron: 30 6 * * * (Brussels)",
-      "model": "ollama/llama3.2:3b",
-      "session_target": "isolated",
-      "status": "ok",
-      "badge": "badge-ok",
-      "enabled": true,
-      "next_run": 1782189000000,
-      "last_run": 1782102600016,
-      "last_duration_ms": 23432,
-      "consecutive_errors": 0
-    },
-    {
-      "id": "685c7ce0-58ad-4aef-9aee-2665249f1f4b",
-      "name": "update-site-data",
-      "description": "Monitor site data updates every 30 min. Checks log freshness. Alerts if stale or failed.",
-      "schedule": "Every 30 min",
-      "model": "ollama/llama3.2:3b",
-      "session_target": "isolated",
-      "status": "ok",
-      "badge": "badge-ok",
-      "enabled": true,
-      "next_run": 1782189300908,
-      "last_run": 1782187500908,
-      "last_duration_ms": 9808,
+      "next_run": 1782189601381,
+      "last_run": 1782187801381,
+      "last_duration_ms": 8611,
       "consecutive_errors": 0
     },
     {
@@ -58,6 +28,21 @@
       "next_run": 1782190909970,
       "last_run": 1782172909986,
       "last_duration_ms": 14515,
+      "consecutive_errors": 0
+    },
+    {
+      "id": "685c7ce0-58ad-4aef-9aee-2665249f1f4b",
+      "name": "update-site-data",
+      "description": "Monitor site data updates every 30 min. Checks log freshness. Alerts if stale or failed.",
+      "schedule": "Every 30 min",
+      "model": "ollama/llama3.2:3b",
+      "session_target": "isolated",
+      "status": "ok",
+      "badge": "badge-ok",
+      "enabled": true,
+      "next_run": 1782191100935,
+      "last_run": 1782189300935,
+      "last_duration_ms": 8109,
       "consecutive_errors": 0
     },
     {
@@ -149,8 +134,23 @@
       "last_run": 1782187200018,
       "last_duration_ms": 14628,
       "consecutive_errors": 0
+    },
+    {
+      "id": "065d0da8-cecc-45b9-83f1-7138c0b66cb7",
+      "name": "Azure Blog Digest",
+      "description": "Daily Azure blog digest: fetches recent articles from Tech Community RSS feeds, displays top 10 newest. Delivered at 6:30AM CEST.",
+      "schedule": "Cron: 30 6 * * * (Brussels)",
+      "model": "ollama/llama3.2:3b",
+      "session_target": "isolated",
+      "status": "ok",
+      "badge": "badge-ok",
+      "enabled": true,
+      "next_run": 1782275400000,
+      "last_run": 1782189000023,
+      "last_duration_ms": 24118,
+      "consecutive_errors": 0
     }
   ],
   "total": 10,
-  "last_updated": "2026-06-23T04:05:02.049668+00:00"
+  "last_updated": "2026-06-23T04:35:01.700676+00:00"
 }
