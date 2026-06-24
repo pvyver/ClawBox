@@ -12,7 +12,7 @@
     },
     {
       "channel": "cron",
-      "tokens": 19857,
+      "tokens": 20020,
       "percentage": 2.0
     }
   ],
@@ -34,7 +34,7 @@
     },
     {
       "model": "llama3.2:3b",
-      "tokens": 17682,
+      "tokens": 17845,
       "percentage": 1.8
     },
     {
@@ -57,6 +57,10 @@
       "tokens": 1397
     },
     {
+      "job": "update-site-data",
+      "tokens": 1328
+    },
+    {
       "job": "deepseek-warmup",
       "tokens": 1250
     },
@@ -73,8 +77,8 @@
       "tokens": 1200
     },
     {
-      "job": "update-site-data",
-      "tokens": 1198
+      "job": "token-watch-check",
+      "tokens": 1190
     },
     {
       "job": "2335e480",
@@ -87,10 +91,6 @@
     {
       "job": "daily-summary",
       "tokens": 1162
-    },
-    {
-      "job": "token-watch-check",
-      "tokens": 1157
     },
     {
       "job": "Memory Dreaming Promotion",
@@ -315,6 +315,18 @@
       "status": ""
     },
     {
+      "id": "0245588c-6a4e-4a53-8ec9-f52497ffdc97",
+      "key": "agent:main:cron:685c7ce0-58ad-4aef-9aee-2665249f1f4b",
+      "model": "llama3.2:3b",
+      "channel": "unknown",
+      "started_ago": "0s ago",
+      "started_ms": 0,
+      "age_seconds": 0,
+      "estimated_tokens": 1328,
+      "tokens_human": "1K",
+      "status": ""
+    },
+    {
       "id": "246af760-b8d5-4c57-aa94-e8911b2af0ff",
       "key": "agent:main:cron:9b10ead4-06b1-4434-923a-3394b425e897",
       "model": "llama3.2:3b",
@@ -337,20 +349,8 @@
       "estimated_tokens": 1220,
       "tokens_human": "1K",
       "status": ""
-    },
-    {
-      "id": "1b12eef6-2901-4a5a-848a-539a7d6b1c41",
-      "key": "agent:main:cron:ca3e504d-bd93-4e61-9e57-1e6dc22fd817",
-      "model": "llama3.2:3b",
-      "channel": "unknown",
-      "started_ago": "0s ago",
-      "started_ms": 0,
-      "age_seconds": 0,
-      "estimated_tokens": 1216,
-      "tokens_human": "1K",
-      "status": ""
     }
   ],
-  "total_tokens": 1009873,
-  "last_updated": "2026-06-24T00:05:01.588854+00:00"
+  "total_tokens": 1010036,
+  "last_updated": "2026-06-24T00:35:01.946797+00:00"
 }
