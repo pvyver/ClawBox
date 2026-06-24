@@ -163,10 +163,10 @@
     {
       "date": "2026-06-17",
       "model": "llama3.2:3b",
-      "requests": 12,
-      "p50_ms": 1955,
-      "p95_ms": 7353,
-      "p99_ms": 7353
+      "requests": 9,
+      "p50_ms": 1664,
+      "p95_ms": 4384,
+      "p99_ms": 4384
     },
     {
       "date": "2026-06-18",
@@ -283,7 +283,7 @@
     {
       "date": "2026-06-24",
       "model": "deepseek-chat",
-      "requests": 36,
+      "requests": 37,
       "p50_ms": 5469,
       "p95_ms": 5469,
       "p99_ms": 5469
@@ -299,37 +299,13 @@
     {
       "date": "2026-06-24",
       "model": "llama3.2:3b",
-      "requests": 83,
-      "p50_ms": 2803,
+      "requests": 85,
+      "p50_ms": 2824,
       "p95_ms": 5725,
       "p99_ms": 10109
     }
   ],
   "recent": [
-    {
-      "model": "llama3.2:3b",
-      "timestamp": "2026-06-17T21:06:31.104Z",
-      "latency_ms": 7353,
-      "input_tokens": 1543,
-      "output_tokens": 42,
-      "model_short": "llama3.2:3b"
-    },
-    {
-      "model": "llama3.2:3b",
-      "timestamp": "2026-06-17T22:05:12.153Z",
-      "latency_ms": 4289,
-      "input_tokens": 2711,
-      "output_tokens": 103,
-      "model_short": "llama3.2:3b"
-    },
-    {
-      "model": "llama3.2:3b",
-      "timestamp": "2026-06-17T22:02:18.089Z",
-      "latency_ms": 5685,
-      "input_tokens": 35110,
-      "output_tokens": 236,
-      "model_short": "llama3.2:3b"
-    },
     {
       "model": "deepseek-v4-flash",
       "timestamp": "2026-06-17T21:37:32.996Z",
@@ -8305,7 +8281,31 @@
       "input_tokens": 2718,
       "output_tokens": 189,
       "model_short": "llama3.2:3b"
+    },
+    {
+      "model": "llama3.2:3b",
+      "timestamp": "2026-06-24T19:05:18.881Z",
+      "latency_ms": 4325,
+      "input_tokens": 2726,
+      "output_tokens": 130,
+      "model_short": "llama3.2:3b"
+    },
+    {
+      "model": "deepseek-chat",
+      "timestamp": "2026-06-24T18:56:48.939Z",
+      "latency_ms": 5469,
+      "input_tokens": 5430,
+      "output_tokens": 34,
+      "model_short": "deepseek-chat"
+    },
+    {
+      "model": "llama3.2:3b",
+      "timestamp": "2026-06-24T18:40:48.092Z",
+      "latency_ms": 3691,
+      "input_tokens": 2697,
+      "output_tokens": 62,
+      "model_short": "llama3.2:3b"
     }
   ],
-  "total_processed": 1934
+  "total_processed": 1937
 }
