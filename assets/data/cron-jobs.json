@@ -1,21 +1,6 @@
 {
   "jobs": [
     {
-      "id": "685c7ce0-58ad-4aef-9aee-2665249f1f4b",
-      "name": "update-site-data",
-      "description": "Monitor site data updates every 30 min. Checks log freshness. Alerts if stale or failed.",
-      "schedule": "Every 30 min",
-      "model": "ollama/llama3.2:3b",
-      "session_target": "isolated",
-      "status": "ok",
-      "badge": "badge-ok",
-      "enabled": true,
-      "next_run": 1782354900019,
-      "last_run": 1782353100019,
-      "last_duration_ms": 12039,
-      "consecutive_errors": 0
-    },
-    {
       "id": "528620d6-e3e1-42da-bd49-ce9599ec3d88",
       "name": "token-watch-check",
       "description": "Check daily token budget every 30 min via Ollama. Silent unless alert file has content.",
@@ -25,24 +10,24 @@
       "status": "ok",
       "badge": "badge-ok",
       "enabled": true,
-      "next_run": 1782355200327,
-      "last_run": 1782353400327,
-      "last_duration_ms": 7007,
+      "next_run": 1782357000354,
+      "last_run": 1782355200354,
+      "last_duration_ms": 5642,
       "consecutive_errors": 0
     },
     {
-      "id": "b3d0cce7-a55f-4c15-8124-93054bf7b955",
-      "name": "Memory Dreaming Promotion",
-      "description": "[managed-by=memory-core.short-term-promotion] Promote weighted short-term recalls into MEMORY.md (limit=10, minScore=0.800, minRecallCount=3, minUniqueQueries=3, recencyHalfLifeDays=14, maxAgeDays=30).",
-      "schedule": "Cron: 0 3 * * *",
-      "model": "default",
+      "id": "685c7ce0-58ad-4aef-9aee-2665249f1f4b",
+      "name": "update-site-data",
+      "description": "Monitor site data updates every 30 min. Checks log freshness. Alerts if stale or failed.",
+      "schedule": "Every 30 min",
+      "model": "ollama/llama3.2:3b",
       "session_target": "isolated",
       "status": "ok",
       "badge": "badge-ok",
       "enabled": true,
-      "next_run": 1782356400000,
-      "last_run": 1782270000024,
-      "last_duration_ms": 41861,
+      "next_run": 1782358500058,
+      "last_run": 1782356700058,
+      "last_duration_ms": 12695,
       "consecutive_errors": 0
     },
     {
@@ -149,8 +134,23 @@
       "last_run": 1782331200017,
       "last_duration_ms": 13096,
       "consecutive_errors": 0
+    },
+    {
+      "id": "b3d0cce7-a55f-4c15-8124-93054bf7b955",
+      "name": "Memory Dreaming Promotion",
+      "description": "[managed-by=memory-core.short-term-promotion] Promote weighted short-term recalls into MEMORY.md (limit=10, minScore=0.800, minRecallCount=3, minUniqueQueries=3, recencyHalfLifeDays=14, maxAgeDays=30).",
+      "schedule": "Cron: 0 3 * * *",
+      "model": "default",
+      "session_target": "isolated",
+      "status": "ok",
+      "badge": "badge-ok",
+      "enabled": true,
+      "next_run": 1782442800000,
+      "last_run": 1782356400016,
+      "last_duration_ms": 39874,
+      "consecutive_errors": 0
     }
   ],
   "total": 10,
-  "last_updated": "2026-06-25T02:35:01.944971+00:00"
+  "last_updated": "2026-06-25T03:05:01.356085+00:00"
 }
