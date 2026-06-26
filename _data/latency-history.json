@@ -187,7 +187,7 @@
     {
       "date": "2026-06-19",
       "model": "deepseek-v4-flash",
-      "requests": 21,
+      "requests": 19,
       "p50_ms": 76997,
       "p95_ms": 76997,
       "p99_ms": 76997
@@ -195,10 +195,10 @@
     {
       "date": "2026-06-19",
       "model": "llama3.2:3b",
-      "requests": 40,
-      "p50_ms": 2484,
-      "p95_ms": 6215,
-      "p99_ms": 58975
+      "requests": 39,
+      "p50_ms": 2362,
+      "p95_ms": 5941,
+      "p99_ms": 6215
     },
     {
       "date": "2026-06-20",
@@ -339,7 +339,7 @@
     {
       "date": "2026-06-26",
       "model": "deepseek-reasoner",
-      "requests": 7,
+      "requests": 8,
       "p50_ms": 3904,
       "p95_ms": 5651,
       "p99_ms": 5651
@@ -355,37 +355,13 @@
     {
       "date": "2026-06-26",
       "model": "llama3.2:3b",
-      "requests": 65,
+      "requests": 67,
       "p50_ms": 4139,
       "p95_ms": 29636,
       "p99_ms": 29704
     }
   ],
   "recent": [
-    {
-      "model": "deepseek-v4-flash",
-      "timestamp": "2026-06-19T15:26:44.833Z",
-      "latency_ms": 76997,
-      "input_tokens": 0,
-      "output_tokens": 0,
-      "model_short": "deepseek-v4-flash"
-    },
-    {
-      "model": "deepseek-v4-flash",
-      "timestamp": "2026-06-19T15:26:52.111Z",
-      "latency_ms": 76997,
-      "input_tokens": 35661,
-      "output_tokens": 122,
-      "model_short": "deepseek-v4-flash"
-    },
-    {
-      "model": "llama3.2:3b",
-      "timestamp": "2026-06-19T16:02:07.882Z",
-      "latency_ms": 58975,
-      "input_tokens": 23462,
-      "output_tokens": 117,
-      "model_short": "llama3.2:3b"
-    },
     {
       "model": "llama3.2:3b",
       "timestamp": "2026-06-19T16:00:10.459Z",
@@ -8361,7 +8337,31 @@
       "input_tokens": 2495,
       "output_tokens": 86,
       "model_short": "llama3.2:3b"
+    },
+    {
+      "model": "llama3.2:3b",
+      "timestamp": "2026-06-26T14:05:15.047Z",
+      "latency_ms": 4269,
+      "input_tokens": 2493,
+      "output_tokens": 106,
+      "model_short": "llama3.2:3b"
+    },
+    {
+      "model": "deepseek-reasoner",
+      "timestamp": "2026-06-26T13:56:56.127Z",
+      "latency_ms": 3368,
+      "input_tokens": 685,
+      "output_tokens": 517,
+      "model_short": "deepseek-reasoner"
+    },
+    {
+      "model": "llama3.2:3b",
+      "timestamp": "2026-06-26T13:40:08.554Z",
+      "latency_ms": 3545,
+      "input_tokens": 2498,
+      "output_tokens": 45,
+      "model_short": "llama3.2:3b"
     }
   ],
-  "total_processed": 2178
+  "total_processed": 2181
 }
