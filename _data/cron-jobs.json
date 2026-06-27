@@ -10,39 +10,9 @@
       "status": "ok",
       "badge": "badge-ok",
       "enabled": true,
-      "next_run": 1782531601719,
-      "last_run": 1782529801719,
-      "last_duration_ms": 12018,
-      "consecutive_errors": 0
-    },
-    {
-      "id": "e1fded11-60ef-4fee-bac0-2279d07cfbe0",
-      "name": "Daily news",
-      "description": "Daily news briefing: 5 items each for Antwerp, Belgium, World from RSS feeds. Delivered to Telegram at 6AM CEST.",
-      "schedule": "Cron: 0 6 * * * (Brussels)",
-      "model": "ollama/llama3.2:3b",
-      "session_target": "isolated",
-      "status": "ok",
-      "badge": "badge-ok",
-      "enabled": true,
-      "next_run": 1782532800000,
-      "last_run": 1782446460576,
-      "last_duration_ms": 6178,
-      "consecutive_errors": 0
-    },
-    {
-      "id": "ac6bf568-7e26-45a1-af89-4aeee4c48376",
-      "name": "update-site-data",
-      "description": "Monitor site data updates every 30 min. Checks log freshness. Alerts if stale or failed.",
-      "schedule": "Every 30 min",
-      "model": "ollama/llama3.2:3b",
-      "session_target": "isolated",
-      "status": "ok",
-      "badge": "badge-ok",
-      "enabled": true,
-      "next_run": 1782533100183,
-      "last_run": 1782531300183,
-      "last_duration_ms": 16433,
+      "next_run": 1782533401748,
+      "last_run": 1782531601748,
+      "last_duration_ms": 9700,
       "consecutive_errors": 0
     },
     {
@@ -58,6 +28,21 @@
       "next_run": 1782534600000,
       "last_run": 1782448200018,
       "last_duration_ms": 14151,
+      "consecutive_errors": 0
+    },
+    {
+      "id": "ac6bf568-7e26-45a1-af89-4aeee4c48376",
+      "name": "update-site-data",
+      "description": "Monitor site data updates every 30 min. Checks log freshness. Alerts if stale or failed.",
+      "schedule": "Every 30 min",
+      "model": "ollama/llama3.2:3b",
+      "session_target": "isolated",
+      "status": "ok",
+      "badge": "badge-ok",
+      "enabled": true,
+      "next_run": 1782534900204,
+      "last_run": 1782533100204,
+      "last_duration_ms": 12501,
       "consecutive_errors": 0
     },
     {
@@ -149,8 +134,23 @@
       "last_run": 1782529200019,
       "last_duration_ms": 52802,
       "consecutive_errors": 0
+    },
+    {
+      "id": "e1fded11-60ef-4fee-bac0-2279d07cfbe0",
+      "name": "Daily news",
+      "description": "Daily news briefing: 5 items each for Antwerp, Belgium, World from RSS feeds. Delivered to Telegram at 6AM CEST.",
+      "schedule": "Cron: 0 6 * * * (Brussels)",
+      "model": "ollama/llama3.2:3b",
+      "session_target": "isolated",
+      "status": "ok",
+      "badge": "badge-ok",
+      "enabled": true,
+      "next_run": 1782619200000,
+      "last_run": 1782532860810,
+      "last_duration_ms": 7342,
+      "consecutive_errors": 0
     }
   ],
   "total": 10,
-  "last_updated": "2026-06-27T03:35:01.194298+00:00"
+  "last_updated": "2026-06-27T04:05:01.461237+00:00"
 }
