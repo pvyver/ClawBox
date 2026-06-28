@@ -1,21 +1,6 @@
 {
   "jobs": [
     {
-      "id": "ac6bf568-7e26-45a1-af89-4aeee4c48376",
-      "name": "update-site-data",
-      "description": "Monitor site data updates every 30 min. Checks log freshness. Alerts if stale or failed.",
-      "schedule": "Every 30 min",
-      "model": "ollama/llama3.2:3b",
-      "session_target": "isolated",
-      "status": "ok",
-      "badge": "badge-ok",
-      "enabled": true,
-      "next_run": 1782684303576,
-      "last_run": 1782682503576,
-      "last_duration_ms": 16791,
-      "consecutive_errors": 0
-    },
-    {
       "id": "95b45320-331a-4c95-8f27-8b160c8d5252",
       "name": "token-watch-check",
       "description": "Check daily token budget every 30 min via Ollama. Silent unless alert file has content.",
@@ -25,9 +10,24 @@
       "status": "ok",
       "badge": "badge-ok",
       "enabled": true,
-      "next_run": 1782684600132,
-      "last_run": 1782682800132,
-      "last_duration_ms": 9504,
+      "next_run": 1782686400149,
+      "last_run": 1782684600149,
+      "last_duration_ms": 8293,
+      "consecutive_errors": 0
+    },
+    {
+      "id": "ac6bf568-7e26-45a1-af89-4aeee4c48376",
+      "name": "update-site-data",
+      "description": "Monitor site data updates every 30 min. Checks log freshness. Alerts if stale or failed.",
+      "schedule": "Every 30 min",
+      "model": "ollama/llama3.2:3b",
+      "session_target": "isolated",
+      "status": "ok",
+      "badge": "badge-ok",
+      "enabled": true,
+      "next_run": 1782687900018,
+      "last_run": 1782686100018,
+      "last_duration_ms": 14739,
       "consecutive_errors": 0
     },
     {
@@ -152,5 +152,5 @@
     }
   ],
   "total": 10,
-  "last_updated": "2026-06-28T22:05:01.184884+00:00"
+  "last_updated": "2026-06-28T22:35:01.424464+00:00"
 }
