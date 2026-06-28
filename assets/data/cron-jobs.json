@@ -1,21 +1,6 @@
 {
   "jobs": [
     {
-      "id": "ac6bf568-7e26-45a1-af89-4aeee4c48376",
-      "name": "update-site-data",
-      "description": "Monitor site data updates every 30 min. Checks log freshness. Alerts if stale or failed.",
-      "schedule": "Every 30 min",
-      "model": "ollama/llama3.2:3b",
-      "session_target": "isolated",
-      "status": "ok",
-      "badge": "badge-ok",
-      "enabled": true,
-      "next_run": 1782675303471,
-      "last_run": 1782673503471,
-      "last_duration_ms": 14604,
-      "consecutive_errors": 0
-    },
-    {
       "id": "95b45320-331a-4c95-8f27-8b160c8d5252",
       "name": "token-watch-check",
       "description": "Check daily token budget every 30 min via Ollama. Silent unless alert file has content.",
@@ -25,24 +10,24 @@
       "status": "ok",
       "badge": "badge-ok",
       "enabled": true,
-      "next_run": 1782675600040,
-      "last_run": 1782673800040,
-      "last_duration_ms": 7029,
+      "next_run": 1782677400057,
+      "last_run": 1782675600057,
+      "last_duration_ms": 12662,
       "consecutive_errors": 0
     },
     {
-      "id": "09fd2402-3f76-4efa-b60a-4889c1bd1ac7",
-      "name": "token-watch-daily-report",
-      "description": "Daily token usage report at 22h: 7-day history with bars, trend arrows, model breakdown, and budget projection",
-      "schedule": "Cron: 0 22 * * * (Brussels)",
+      "id": "ac6bf568-7e26-45a1-af89-4aeee4c48376",
+      "name": "update-site-data",
+      "description": "Monitor site data updates every 30 min. Checks log freshness. Alerts if stale or failed.",
+      "schedule": "Every 30 min",
       "model": "ollama/llama3.2:3b",
       "session_target": "isolated",
       "status": "ok",
       "badge": "badge-ok",
       "enabled": true,
-      "next_run": 1782676800000,
-      "last_run": 1782590400021,
-      "last_duration_ms": 23593,
+      "next_run": 1782678903510,
+      "last_run": 1782677103510,
+      "last_duration_ms": 8928,
       "consecutive_errors": 0
     },
     {
@@ -55,9 +40,9 @@
       "status": "ok",
       "badge": "badge-ok",
       "enabled": true,
-      "next_run": 1782676909970,
-      "last_run": 1782658971172,
-      "last_duration_ms": 23305,
+      "next_run": 1782691309970,
+      "last_run": 1782676909985,
+      "last_duration_ms": 5544,
       "consecutive_errors": 0
     },
     {
@@ -149,8 +134,23 @@
       "last_run": 1782669600020,
       "last_duration_ms": 15392,
       "consecutive_errors": 0
+    },
+    {
+      "id": "09fd2402-3f76-4efa-b60a-4889c1bd1ac7",
+      "name": "token-watch-daily-report",
+      "description": "Daily token usage report at 22h: 7-day history with bars, trend arrows, model breakdown, and budget projection",
+      "schedule": "Cron: 0 22 * * * (Brussels)",
+      "model": "ollama/llama3.2:3b",
+      "session_target": "isolated",
+      "status": "ok",
+      "badge": "badge-ok",
+      "enabled": true,
+      "next_run": 1782763200000,
+      "last_run": 1782676800022,
+      "last_duration_ms": 23567,
+      "consecutive_errors": 0
     }
   ],
   "total": 10,
-  "last_updated": "2026-06-28T19:35:02.090513+00:00"
+  "last_updated": "2026-06-28T20:05:02.019304+00:00"
 }
