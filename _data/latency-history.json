@@ -219,7 +219,7 @@
     {
       "date": "2026-06-21",
       "model": "deepseek-v4-flash",
-      "requests": 19,
+      "requests": 18,
       "p50_ms": 3366,
       "p95_ms": 12811,
       "p99_ms": 12811
@@ -227,9 +227,9 @@
     {
       "date": "2026-06-21",
       "model": "llama3.2:3b",
-      "requests": 63,
+      "requests": 60,
       "p50_ms": 3235,
-      "p95_ms": 9410,
+      "p95_ms": 10523,
       "p99_ms": 12627
     },
     {
@@ -395,45 +395,13 @@
     {
       "date": "2026-06-28",
       "model": "llama3.2:3b",
-      "requests": 69,
-      "p50_ms": 4412,
+      "requests": 73,
+      "p50_ms": 4219,
       "p95_ms": 29627,
       "p99_ms": 29648
     }
   ],
   "recent": [
-    {
-      "model": "llama3.2:3b",
-      "timestamp": "2026-06-21T10:30:14.719Z",
-      "latency_ms": 4077,
-      "input_tokens": 2795,
-      "output_tokens": 79,
-      "model_short": "llama3.2:3b"
-    },
-    {
-      "model": "llama3.2:3b",
-      "timestamp": "2026-06-21T11:05:05.922Z",
-      "latency_ms": 1735,
-      "input_tokens": 2719,
-      "output_tokens": 48,
-      "model_short": "llama3.2:3b"
-    },
-    {
-      "model": "llama3.2:3b",
-      "timestamp": "2026-06-21T11:00:32.114Z",
-      "latency_ms": 4035,
-      "input_tokens": 2692,
-      "output_tokens": 99,
-      "model_short": "llama3.2:3b"
-    },
-    {
-      "model": "deepseek-v4-flash",
-      "timestamp": "2026-06-21T10:40:38.168Z",
-      "latency_ms": 3366,
-      "input_tokens": 12016,
-      "output_tokens": 7819,
-      "model_short": "deepseek-v4-flash"
-    },
     {
       "model": "deepseek-v4-flash",
       "timestamp": "2026-06-21T10:57:07.048Z",
@@ -8401,7 +8369,39 @@
       "input_tokens": 2533,
       "output_tokens": 66,
       "model_short": "llama3.2:3b"
+    },
+    {
+      "model": "llama3.2:3b",
+      "timestamp": "2026-06-28T15:05:06.870Z",
+      "latency_ms": 2092,
+      "input_tokens": 2525,
+      "output_tokens": 52,
+      "model_short": "llama3.2:3b"
+    },
+    {
+      "model": "llama3.2:3b",
+      "timestamp": "2026-06-28T15:03:14.155Z",
+      "latency_ms": 3171,
+      "input_tokens": 7727,
+      "output_tokens": 278,
+      "model_short": "llama3.2:3b"
+    },
+    {
+      "model": "llama3.2:3b",
+      "timestamp": "2026-06-28T15:02:21.123Z",
+      "latency_ms": 4017,
+      "input_tokens": 6570,
+      "output_tokens": 252,
+      "model_short": "llama3.2:3b"
+    },
+    {
+      "model": "llama3.2:3b",
+      "timestamp": "2026-06-28T14:40:12.737Z",
+      "latency_ms": 4258,
+      "input_tokens": 2502,
+      "output_tokens": 62,
+      "model_short": "llama3.2:3b"
     }
   ],
-  "total_processed": 2445
+  "total_processed": 2449
 }
