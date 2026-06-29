@@ -7,8 +7,8 @@
     },
     {
       "channel": "conversation",
-      "tokens": 187091,
-      "percentage": 16.0
+      "tokens": 186882,
+      "percentage": 15.9
     },
     {
       "channel": "telegram",
@@ -17,7 +17,7 @@
     },
     {
       "channel": "cron",
-      "tokens": 37015,
+      "tokens": 37209,
       "percentage": 3.2
     }
   ],
@@ -34,12 +34,12 @@
     },
     {
       "model": "deepseek-reasoner",
-      "tokens": 174067,
+      "tokens": 173858,
       "percentage": 14.8
     },
     {
       "model": "llama3.2:3b",
-      "tokens": 24194,
+      "tokens": 24388,
       "percentage": 2.1
     },
     {
@@ -64,6 +64,10 @@
     {
       "job": "a05c1a5d",
       "tokens": 1335
+    },
+    {
+      "job": "strava-token-refresh",
+      "tokens": 1267
     },
     {
       "job": "daily-summary",
@@ -98,12 +102,8 @@
       "tokens": 1182
     },
     {
-      "job": "strava-token-refresh",
+      "job": "token-watch-check",
       "tokens": 1106
-    },
-    {
-      "job": "update-site-data",
-      "tokens": 1103
     },
     {
       "job": "token-watch-daily-report",
@@ -114,16 +114,16 @@
       "tokens": 1103
     },
     {
+      "job": "update-site-data",
+      "tokens": 1099
+    },
+    {
       "job": "Daily news",
       "tokens": 1098
     },
     {
       "job": "deepseek-warmup",
       "tokens": 1090
-    },
-    {
-      "job": "token-watch-check",
-      "tokens": 1069
     },
     {
       "job": "Memory Dreaming Promotion",
@@ -156,18 +156,6 @@
       "status": ""
     },
     {
-      "id": "7516c835-0359-4a32-b0c1-9e464d221c86",
-      "key": "agent:main:main",
-      "model": "deepseek-reasoner",
-      "channel": "unknown",
-      "started_ago": "0s ago",
-      "started_ms": 0,
-      "age_seconds": 0,
-      "estimated_tokens": 105040,
-      "tokens_human": "105K",
-      "status": ""
-    },
-    {
       "id": "fd319d84-1253-4019-bd42-063e0aec23ec",
       "key": "agent:main:dashboard:c5b4329a-7b6d-4437-a41a-959852328432",
       "model": "deepseek-v4-flash",
@@ -176,6 +164,18 @@
       "started_ms": 0,
       "age_seconds": 0,
       "estimated_tokens": 104838,
+      "tokens_human": "104K",
+      "status": ""
+    },
+    {
+      "id": "7516c835-0359-4a32-b0c1-9e464d221c86",
+      "key": "agent:main:main",
+      "model": "deepseek-reasoner",
+      "channel": "unknown",
+      "started_ago": "0s ago",
+      "started_ms": 0,
+      "age_seconds": 0,
+      "estimated_tokens": 104831,
       "tokens_human": "104K",
       "status": ""
     },
@@ -384,6 +384,6 @@
       "status": ""
     }
   ],
-  "total_tokens": 1172790,
-  "last_updated": "2026-06-28T23:35:01.457521+00:00"
+  "total_tokens": 1172775,
+  "last_updated": "2026-06-29T00:05:01.901810+00:00"
 }
