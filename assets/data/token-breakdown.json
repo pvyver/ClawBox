@@ -7,7 +7,7 @@
     },
     {
       "channel": "conversation",
-      "tokens": 116989,
+      "tokens": 116857,
       "percentage": 10.6
     },
     {
@@ -17,14 +17,14 @@
     },
     {
       "channel": "cron",
-      "tokens": 37207,
+      "tokens": 37051,
       "percentage": 3.4
     }
   ],
   "by_model": [
     {
       "model": "deepseek-v4-flash",
-      "tokens": 663806,
+      "tokens": 663674,
       "percentage": 60.2
     },
     {
@@ -39,7 +39,7 @@
     },
     {
       "model": "llama3.2:3b",
-      "tokens": 24386,
+      "tokens": 24230,
       "percentage": 2.2
     },
     {
@@ -68,10 +68,6 @@
     {
       "job": "daily-summary",
       "tokens": 1265
-    },
-    {
-      "job": "token-watch-check",
-      "tokens": 1240
     },
     {
       "job": "ca3e504d",
@@ -118,12 +114,16 @@
       "tokens": 1103
     },
     {
+      "job": "token-watch-check",
+      "tokens": 1097
+    },
+    {
       "job": "deepseek-warmup",
       "tokens": 1090
     },
     {
       "job": "update-site-data",
-      "tokens": 1078
+      "tokens": 1065
     },
     {
       "job": "Memory Dreaming Promotion",
@@ -216,18 +216,6 @@
       "status": ""
     },
     {
-      "id": "1a61b79d-e1f7-4ee7-b6be-7dc5b289193e",
-      "key": "agent:main:main",
-      "model": "deepseek-v4-flash",
-      "channel": "unknown",
-      "started_ago": "0s ago",
-      "started_ms": 0,
-      "age_seconds": 0,
-      "estimated_tokens": 71475,
-      "tokens_human": "71K",
-      "status": ""
-    },
-    {
       "id": "e1241b3f-2ff7-4347-ad8a-6839d6fa3980",
       "key": "agent:main:dashboard:bc09777b-78ab-433a-a6cf-c5041ff5f0ed",
       "model": "deepseek-chat",
@@ -236,6 +224,18 @@
       "started_ms": 0,
       "age_seconds": 0,
       "estimated_tokens": 71442,
+      "tokens_human": "71K",
+      "status": ""
+    },
+    {
+      "id": "1a61b79d-e1f7-4ee7-b6be-7dc5b289193e",
+      "key": "agent:main:main",
+      "model": "deepseek-v4-flash",
+      "channel": "unknown",
+      "started_ago": "0s ago",
+      "started_ms": 0,
+      "age_seconds": 0,
+      "estimated_tokens": 71343,
       "tokens_human": "71K",
       "status": ""
     },
@@ -384,6 +384,6 @@
       "status": ""
     }
   ],
-  "total_tokens": 1102880,
-  "last_updated": "2026-06-29T12:05:01.225073+00:00"
+  "total_tokens": 1102592,
+  "last_updated": "2026-06-29T12:35:01.117084+00:00"
 }
