@@ -251,10 +251,10 @@
     {
       "date": "2026-06-22",
       "model": "llama3.2:3b",
-      "requests": 80,
-      "p50_ms": 2722,
-      "p95_ms": 6806,
-      "p99_ms": 10671
+      "requests": 77,
+      "p50_ms": 2669,
+      "p95_ms": 6673,
+      "p99_ms": 7105
     },
     {
       "date": "2026-06-23",
@@ -419,7 +419,7 @@
     {
       "date": "2026-06-29",
       "model": "deepseek-v4-flash",
-      "requests": 10,
+      "requests": 11,
       "p50_ms": 4060,
       "p95_ms": 4060,
       "p99_ms": 4060
@@ -427,37 +427,13 @@
     {
       "date": "2026-06-29",
       "model": "llama3.2:3b",
-      "requests": 53,
-      "p50_ms": 4293,
+      "requests": 55,
+      "p50_ms": 4200,
       "p95_ms": 29697,
       "p99_ms": 29734
     }
   ],
   "recent": [
-    {
-      "model": "llama3.2:3b",
-      "timestamp": "2026-06-22T06:05:31.675Z",
-      "latency_ms": 10671,
-      "input_tokens": 3893,
-      "output_tokens": 92,
-      "model_short": "llama3.2:3b"
-    },
-    {
-      "model": "llama3.2:3b",
-      "timestamp": "2026-06-22T05:40:07.075Z",
-      "latency_ms": 2022,
-      "input_tokens": 2690,
-      "output_tokens": 64,
-      "model_short": "llama3.2:3b"
-    },
-    {
-      "model": "llama3.2:3b",
-      "timestamp": "2026-06-22T06:35:18.772Z",
-      "latency_ms": 2952,
-      "input_tokens": 2713,
-      "output_tokens": 80,
-      "model_short": "llama3.2:3b"
-    },
     {
       "model": "llama3.2:3b",
       "timestamp": "2026-06-22T06:35:25.970Z",
@@ -8433,7 +8409,31 @@
       "input_tokens": 2490,
       "output_tokens": 52,
       "model_short": "llama3.2:3b"
+    },
+    {
+      "model": "llama3.2:3b",
+      "timestamp": "2026-06-29T11:05:21.889Z",
+      "latency_ms": 1244,
+      "input_tokens": 2497,
+      "output_tokens": 43,
+      "model_short": "llama3.2:3b"
+    },
+    {
+      "model": "deepseek-v4-flash",
+      "timestamp": "2026-06-29T10:56:51.467Z",
+      "latency_ms": 4060,
+      "input_tokens": 175,
+      "output_tokens": 144,
+      "model_short": "deepseek-v4-flash"
+    },
+    {
+      "model": "llama3.2:3b",
+      "timestamp": "2026-06-29T10:40:08.277Z",
+      "latency_ms": 3498,
+      "input_tokens": 2486,
+      "output_tokens": 48,
+      "model_short": "llama3.2:3b"
     }
   ],
-  "total_processed": 2564
+  "total_processed": 2567
 }
