@@ -1,23 +1,23 @@
 {
-  "timestamp": "2026-07-01T09:35:01.375095+00:00",
+  "timestamp": "2026-07-01T10:05:01.236108+00:00",
   "cpu": {
     "cores": 6,
     "model": "Cortex-A78AE",
-    "load_1m": 0.08,
-    "load_5m": 0.04,
-    "load_15m": 0.06,
-    "usage_percent": 44.6,
+    "load_1m": 0.0,
+    "load_5m": 0.02,
+    "load_15m": 0.0,
+    "usage_percent": 24.6,
     "runnable": 0,
     "total_processes": 0
   },
   "memory": {
     "total_bytes": 7945689497,
-    "used_bytes": 4187593113,
-    "free_bytes": 1610612736,
-    "available_bytes": 3758096384,
-    "used_percent": 53,
+    "used_bytes": 6335076761,
+    "free_bytes": 107374182,
+    "available_bytes": 1610612736,
+    "used_percent": 80,
     "total_human": "7.4 GB",
-    "used_human": "3.9 GB"
+    "used_human": "5.9 GB"
   },
   "disk": {
     "total_bytes": 501437431808,
@@ -29,31 +29,31 @@
     "free_human": "410.0 GB"
   },
   "temperature": {
-    "value_celsius": 60.0,
-    "display": "60.0\u00b0C"
+    "value_celsius": 59.8,
+    "display": "59.8\u00b0C"
   },
   "gpu": {
-    "temperature_celsius": 60.781,
-    "usage_percent": 98,
-    "raw": "GPU Status:\n07-01-2026 09:35:09 RAM 5962/7607MB (lfb 6x2MB) SWAP 1357/3804MB (cached 2MB) CPU [0%@1728,1%@1728,1%@1728,0%@1728,0%@1728,2%@1728] GR3D_FREQ 98% cpu@58.843C soc2@57.218C soc0@57.281C gpu@60.781C tj@60.781C soc1@58.937C VDD_IN 16732mW/16732mW VDD_CPU_GPU_CV 8774mW/8774mW VDD_SOC 3535mW/3"
+    "temperature_celsius": 58.437,
+    "usage_percent": 0,
+    "raw": "GPU Status:\n07-01-2026 10:05:09 RAM 5942/7607MB (lfb 2x2MB) SWAP 1389/3804MB (cached 2MB) CPU [1%@1728,0%@1728,1%@1728,0%@1728,0%@1728,0%@1728] GR3D_FREQ 0% cpu@58.593C soc2@57.062C soc0@57.906C gpu@58.437C tj@59.718C soc1@59.718C VDD_IN 6736mW/6736mW VDD_CPU_GPU_CV 1561mW/1561mW VDD_SOC 2268mW/2268"
   },
   "uptime": {
-    "seconds": 608237.97,
-    "display": "7d 0h 57m"
+    "seconds": 610037.8,
+    "display": "7d 1h 27m"
   },
   "power_thermal": {
     "power": {
-      "vdd_in_watts": 18.96,
-      "vdd_cpu_watts": 9.2,
-      "vdd_gpu_watts": 4.4,
-      "total_watts": 32.56,
+      "vdd_in_watts": 6.88,
+      "vdd_cpu_watts": 1.6,
+      "vdd_gpu_watts": 2.32,
+      "total_watts": 10.8,
       "throttled": false,
       "throttle_reason": ""
     },
     "thermal": {
-      "fan_speed_pct": 40,
-      "fan_rpm": 2369,
-      "junction_temp": 61.5,
+      "fan_speed_pct": 44,
+      "fan_rpm": 2550,
+      "junction_temp": 59.6,
       "throttle_temp": 85.0
     }
   },
@@ -98,27 +98,27 @@
   "processes": {
     "by_cpu": [
       {
-        "pid": 272405,
+        "pid": 273086,
         "name": "ollama",
         "cmd": "/usr/local/lib/ollama/llama-server --model /usr/share/ollama",
-        "cpu_percent": 54.0,
-        "mem_percent": 59.0,
+        "cpu_percent": 2.4,
+        "mem_percent": 60.5,
         "user": "ollama",
         "is_claw": false,
-        "severity": "critical"
+        "severity": "ok"
       },
       {
         "pid": 176811,
         "name": "openclaw",
         "cmd": "openclaw",
         "cpu_percent": 2.2,
-        "mem_percent": 6.0,
+        "mem_percent": 5.8,
         "user": "clawbox",
         "is_claw": true,
         "severity": "ok"
       },
       {
-        "pid": 272381,
+        "pid": 273198,
         "name": "update-site-data.py",
         "cmd": "python3 scripts/update-site-data.py",
         "cpu_percent": 0.8,
@@ -150,21 +150,21 @@
     ],
     "by_mem": [
       {
-        "pid": 272405,
+        "pid": 273086,
         "name": "ollama",
         "cmd": "/usr/local/lib/ollama/llama-server --model /usr/share/ollama",
-        "cpu_percent": 54.0,
-        "mem_percent": 59.0,
+        "cpu_percent": 2.4,
+        "mem_percent": 60.5,
         "user": "ollama",
         "is_claw": false,
-        "severity": "critical"
+        "severity": "ok"
       },
       {
         "pid": 176811,
         "name": "openclaw",
         "cmd": "openclaw",
         "cpu_percent": 2.2,
-        "mem_percent": 6.0,
+        "mem_percent": 5.8,
         "user": "clawbox",
         "is_claw": true,
         "severity": "ok"
@@ -174,13 +174,13 @@
         "name": "next-server",
         "cmd": "next-server (v16.1.6)",
         "cpu_percent": 0.0,
-        "mem_percent": 1.2,
+        "mem_percent": 1.1,
         "user": "clawbox",
         "is_claw": false,
         "severity": "ok"
       },
       {
-        "pid": 272204,
+        "pid": 272969,
         "name": "cla",
         "cmd": "/home/clawbox/.bun/bin/bun run /home/clawbox/clawbox/mcp/cla",
         "cpu_percent": 0.1,
@@ -201,7 +201,7 @@
       }
     ],
     "total_processes": 360,
-    "timestamp": "2026-07-01T09:35:01.375095+00:00"
+    "timestamp": "2026-07-01T10:05:01.236108+00:00"
   },
   "network": {
     "interfaces": [
@@ -229,14 +229,14 @@
       },
       {
         "name": "enP8p1s0",
-        "rx_bytes": 880100266,
-        "tx_bytes": 608388747,
+        "rx_bytes": 881915485,
+        "tx_bytes": 609983477,
         "state": "UP",
         "ip": "192.168.0.122",
-        "rx_rate": 2462,
-        "tx_rate": 1538,
-        "total_in_human": "839.3 MB",
-        "total_out_human": "580.2 MB"
+        "rx_rate": 954,
+        "tx_rate": 830,
+        "total_in_human": "841.1 MB",
+        "total_out_human": "581.7 MB"
       },
       {
         "name": "l4tbr0",
@@ -273,675 +273,25 @@
       },
       {
         "name": "tailscale0",
-        "rx_bytes": 5546041,
-        "tx_bytes": 44607284,
+        "rx_bytes": 5563460,
+        "tx_bytes": 44929226,
         "state": "UNKNOWN",
         "ip": "100.68.32.105",
-        "rx_rate": 133,
-        "tx_rate": 706,
+        "rx_rate": 8,
+        "tx_rate": 146,
         "total_in_human": "5.3 MB",
-        "total_out_human": "42.5 MB"
+        "total_out_human": "42.8 MB"
       }
     ],
-    "active_connections": 16,
-    "total_in_human": "844.6 MB",
-    "total_out_human": "622.7 MB",
-    "total_in_bytes": 885646307,
-    "total_out_bytes": 652996031
+    "active_connections": 10,
+    "total_in_human": "846.4 MB",
+    "total_out_human": "624.6 MB",
+    "total_in_bytes": 887478945,
+    "total_out_bytes": 654912703
   },
   "sessions": {
     "active_count": 0,
-    "total_visible": 54,
-    "sessions": [
-      {
-        "id": "024ccdf7-b7a0-48bf-a9ba-aeeb31c78b90",
-        "key": "agent:main:cron:ac6bf568-7e26-45a1-af89-4aeee4c48376",
-        "model": "llama3.2:3b",
-        "channel": "unknown",
-        "started_ago": "0s ago",
-        "started_ms": 0,
-        "age_seconds": 0,
-        "estimated_tokens": 0,
-        "tokens_human": "0",
-        "status": ""
-      },
-      {
-        "id": "1a61b79d-e1f7-4ee7-b6be-7dc5b289193e",
-        "key": "agent:main:main",
-        "model": "deepseek-v4-flash",
-        "channel": "unknown",
-        "started_ago": "0s ago",
-        "started_ms": 0,
-        "age_seconds": 0,
-        "estimated_tokens": 100410,
-        "tokens_human": "100K",
-        "status": ""
-      },
-      {
-        "id": "d0f43b90-c506-4a6a-9b9b-396da8c152aa",
-        "key": "agent:main:cron:95b45320-331a-4c95-8f27-8b160c8d5252",
-        "model": "llama3.2:3b",
-        "channel": "unknown",
-        "started_ago": "0s ago",
-        "started_ms": 0,
-        "age_seconds": 0,
-        "estimated_tokens": 1069,
-        "tokens_human": "1K",
-        "status": ""
-      },
-      {
-        "id": "1b1380fe-71f1-4f7b-adc2-de52e80ed481",
-        "key": "agent:main:cron:598fc384-f79c-42e4-a7c5-5d7503c16032",
-        "model": "llama3.2:3b",
-        "channel": "unknown",
-        "started_ago": "0s ago",
-        "started_ms": 0,
-        "age_seconds": 0,
-        "estimated_tokens": 1186,
-        "tokens_human": "1K",
-        "status": ""
-      },
-      {
-        "id": "7f9e7108-05fe-4fac-b3e7-e046e949625c",
-        "key": "agent:main:dreaming-narrative-light-3fe21e5050f7",
-        "model": "deepseek-v4-flash",
-        "channel": "unknown",
-        "started_ago": "0s ago",
-        "started_ms": 0,
-        "age_seconds": 0,
-        "estimated_tokens": 29501,
-        "tokens_human": "29K",
-        "status": ""
-      },
-      {
-        "id": "",
-        "key": "agent:main:cron:b3d0cce7-a55f-4c15-8124-93054bf7b955",
-        "model": "deepseek-v4-flash",
-        "channel": "unknown",
-        "started_ago": "0s ago",
-        "started_ms": 0,
-        "age_seconds": 0,
-        "estimated_tokens": 0,
-        "tokens_human": "0",
-        "status": ""
-      },
-      {
-        "id": "74d101d5-4217-4694-8f95-22fa9e1efb06",
-        "key": "agent:main:cron:09fd2402-3f76-4efa-b60a-4889c1bd1ac7",
-        "model": "llama3.2:3b",
-        "channel": "unknown",
-        "started_ago": "0s ago",
-        "started_ms": 0,
-        "age_seconds": 0,
-        "estimated_tokens": 1079,
-        "tokens_human": "1K",
-        "status": ""
-      },
-      {
-        "id": "d34e2841-1c3e-41b9-89aa-3d21868fc02c",
-        "key": "agent:main:cron:c70d3c52-375a-4553-ba2a-1f92517bbbc1",
-        "model": "llama3.2:3b",
-        "channel": "unknown",
-        "started_ago": "0s ago",
-        "started_ms": 0,
-        "age_seconds": 0,
-        "estimated_tokens": 1079,
-        "tokens_human": "1K",
-        "status": ""
-      },
-      {
-        "id": "5a319fc8-0ff1-41d6-849a-4d77711e4ee5",
-        "key": "agent:main:cron:54748850-cd6b-4bb2-8b6f-770deb4accea",
-        "model": "deepseek-v4-flash",
-        "channel": "unknown",
-        "started_ago": "0s ago",
-        "started_ms": 0,
-        "age_seconds": 0,
-        "estimated_tokens": 8730,
-        "tokens_human": "8K",
-        "status": ""
-      },
-      {
-        "id": "b8395136-4c24-4d7b-8502-90387c8ef328",
-        "key": "agent:main:cron:9b10ead4-06b1-4434-923a-3394b425e897",
-        "model": "llama3.2:3b",
-        "channel": "unknown",
-        "started_ago": "0s ago",
-        "started_ms": 0,
-        "age_seconds": 0,
-        "estimated_tokens": 1181,
-        "tokens_human": "1K",
-        "status": ""
-      },
-      {
-        "id": "f40bde9a-331f-4ab2-803d-99610b6632d8",
-        "key": "agent:main:cron:ff022261-94de-4a1c-82a8-e4145d2bbc33",
-        "model": "llama3.2:3b",
-        "channel": "unknown",
-        "started_ago": "0s ago",
-        "started_ms": 0,
-        "age_seconds": 0,
-        "estimated_tokens": 1140,
-        "tokens_human": "1K",
-        "status": ""
-      },
-      {
-        "id": "95cdb931-1d7a-4394-a148-25c445faa7a3",
-        "key": "agent:main:cron:e1fded11-60ef-4fee-bac0-2279d07cfbe0",
-        "model": "llama3.2:3b",
-        "channel": "unknown",
-        "started_ago": "0s ago",
-        "started_ms": 0,
-        "age_seconds": 0,
-        "estimated_tokens": 1107,
-        "tokens_human": "1K",
-        "status": ""
-      },
-      {
-        "id": "c090b5fb-6b7c-400c-8259-bd639a75fff5",
-        "key": "agent:main:cron:528620d6-e3e1-42da-bd49-ce9599ec3d88",
-        "model": "llama3.2:3b",
-        "channel": "unknown",
-        "started_ago": "0s ago",
-        "started_ms": 0,
-        "age_seconds": 0,
-        "estimated_tokens": 1195,
-        "tokens_human": "1K",
-        "status": ""
-      },
-      {
-        "id": "d1c2bd93-8f16-46e1-8d17-cc4d693542fe",
-        "key": "agent:main:cron:685c7ce0-58ad-4aef-9aee-2665249f1f4b",
-        "model": "llama3.2:3b",
-        "channel": "unknown",
-        "started_ago": "0s ago",
-        "started_ms": 0,
-        "age_seconds": 0,
-        "estimated_tokens": 1205,
-        "tokens_human": "1K",
-        "status": ""
-      },
-      {
-        "id": "ec8d2c22-6dad-4f25-b2b0-5282c0c68de6",
-        "key": "agent:main:cron:ca3e504d-bd93-4e61-9e57-1e6dc22fd817",
-        "model": "llama3.2:3b",
-        "channel": "unknown",
-        "started_ago": "0s ago",
-        "started_ms": 0,
-        "age_seconds": 0,
-        "estimated_tokens": 1221,
-        "tokens_human": "1K",
-        "status": ""
-      },
-      {
-        "id": "68435f4d-4c0b-4e07-abdc-c703d76135da",
-        "key": "agent:main:cron:a05c1a5d-c105-4f46-a226-ef15b87e5a06",
-        "model": "llama3.2:3b",
-        "channel": "unknown",
-        "started_ago": "0s ago",
-        "started_ms": 0,
-        "age_seconds": 0,
-        "estimated_tokens": 1335,
-        "tokens_human": "1K",
-        "status": ""
-      },
-      {
-        "id": "a0b6f6a1-9da6-463d-90a4-18997b6ca5f9",
-        "key": "agent:main:cron:7dd6e186-fb3a-44e1-a171-ffd77f43eeae",
-        "model": "deepseek-v4-flash",
-        "channel": "unknown",
-        "started_ago": "0s ago",
-        "started_ms": 0,
-        "age_seconds": 0,
-        "estimated_tokens": 1923,
-        "tokens_human": "1K",
-        "status": ""
-      },
-      {
-        "id": "d6ec7492-633c-43d0-a309-e5316a382a1d",
-        "key": "agent:main:cron:065d0da8-cecc-45b9-83f1-7138c0b66cb7",
-        "model": "llama3.2:3b",
-        "channel": "unknown",
-        "started_ago": "0s ago",
-        "started_ms": 0,
-        "age_seconds": 0,
-        "estimated_tokens": 1207,
-        "tokens_human": "1K",
-        "status": ""
-      },
-      {
-        "id": "03ecdf3c-aac0-4170-9000-a3ff6a322eb3",
-        "key": "agent:main:cron:dea2f6dd-2dbf-425d-b6d9-c6752d962a87",
-        "model": "llama3.2:3b",
-        "channel": "unknown",
-        "started_ago": "0s ago",
-        "started_ms": 0,
-        "age_seconds": 0,
-        "estimated_tokens": 1182,
-        "tokens_human": "1K",
-        "status": ""
-      },
-      {
-        "id": "6c3fa510-65d2-473d-a714-df0ca0584203",
-        "key": "agent:main:telegram:default:direct:8255442970",
-        "model": "deepseek-v4-flash",
-        "channel": "unknown",
-        "started_ago": "0s ago",
-        "started_ms": 0,
-        "age_seconds": 0,
-        "estimated_tokens": 37748,
-        "tokens_human": "37K",
-        "status": ""
-      },
-      {
-        "id": "9021a9df-1707-4cca-8c1f-8e0af49213c5",
-        "key": "agent:main:dashboard:38ee63b2-cb9f-4684-9592-871ea25910cc",
-        "model": "deepseek-chat",
-        "channel": "unknown",
-        "started_ago": "0s ago",
-        "started_ms": 0,
-        "age_seconds": 0,
-        "estimated_tokens": 0,
-        "tokens_human": "0",
-        "status": ""
-      },
-      {
-        "id": "762fd0ac-f37b-4427-855f-8f20fe9b54f5",
-        "key": "agent:main:dashboard:cfe1862c-848d-4398-8d11-71e6442e71bc",
-        "model": "deepseek-chat",
-        "channel": "unknown",
-        "started_ago": "0s ago",
-        "started_ms": 0,
-        "age_seconds": 0,
-        "estimated_tokens": 36473,
-        "tokens_human": "36K",
-        "status": ""
-      },
-      {
-        "id": "6841b546-3b8a-47e1-95dd-69abe352751b",
-        "key": "agent:main:dashboard:15589ca1-d188-4653-8414-99af54319429",
-        "model": "deepseek-chat",
-        "channel": "unknown",
-        "started_ago": "0s ago",
-        "started_ms": 0,
-        "age_seconds": 0,
-        "estimated_tokens": 96701,
-        "tokens_human": "96K",
-        "status": ""
-      },
-      {
-        "id": "6927f939-1c49-44ea-b932-b96b49b95785",
-        "key": "agent:main:dashboard:d2700914-b2f6-4e22-bbd3-52600658890a",
-        "model": "deepseek-chat",
-        "channel": "unknown",
-        "started_ago": "0s ago",
-        "started_ms": 0,
-        "age_seconds": 0,
-        "estimated_tokens": 0,
-        "tokens_human": "0",
-        "status": ""
-      },
-      {
-        "id": "e1241b3f-2ff7-4347-ad8a-6839d6fa3980",
-        "key": "agent:main:dashboard:bc09777b-78ab-433a-a6cf-c5041ff5f0ed",
-        "model": "deepseek-chat",
-        "channel": "unknown",
-        "started_ago": "0s ago",
-        "started_ms": 0,
-        "age_seconds": 0,
-        "estimated_tokens": 71442,
-        "tokens_human": "71K",
-        "status": ""
-      },
-      {
-        "id": "bd6cd011-1f09-4ae9-a870-a4803765c478",
-        "key": "agent:main:cron:2a73d80d-85f0-41c3-b964-f3414b6f94d8",
-        "model": "llama3.2:3b",
-        "channel": "unknown",
-        "started_ago": "0s ago",
-        "started_ms": 0,
-        "age_seconds": 0,
-        "estimated_tokens": 1200,
-        "tokens_human": "1K",
-        "status": ""
-      },
-      {
-        "id": "6d41b17a-6ca1-4cda-aeb3-f5215ad08e6a",
-        "key": "agent:main:cron:076c2650-df05-45ad-8103-595152e2fb07",
-        "model": "llama3.2:3b",
-        "channel": "unknown",
-        "started_ago": "0s ago",
-        "started_ms": 0,
-        "age_seconds": 0,
-        "estimated_tokens": 5526,
-        "tokens_human": "5K",
-        "status": ""
-      },
-      {
-        "id": "b405240e-fa93-488d-991d-da620709d87d",
-        "key": "agent:main:cron:2335e480-c2ec-4be1-baff-fdb5ebc13d91",
-        "model": "llama3.2:3b",
-        "channel": "unknown",
-        "started_ago": "0s ago",
-        "started_ms": 0,
-        "age_seconds": 0,
-        "estimated_tokens": 1186,
-        "tokens_human": "1K",
-        "status": ""
-      },
-      {
-        "id": "fd319d84-1253-4019-bd42-063e0aec23ec",
-        "key": "agent:main:dashboard:c5b4329a-7b6d-4437-a41a-959852328432",
-        "model": "deepseek-v4-flash",
-        "channel": "unknown",
-        "started_ago": "0s ago",
-        "started_ms": 0,
-        "age_seconds": 0,
-        "estimated_tokens": 104838,
-        "tokens_human": "104K",
-        "status": ""
-      },
-      {
-        "id": "dd7ba0a3-f153-402a-b20f-460917b8da2a",
-        "key": "agent:main:dashboard:9ed636b5-6ce3-4af2-9b2a-34d503ff2559",
-        "model": "deepseek-v4-flash",
-        "channel": "unknown",
-        "started_ago": "0s ago",
-        "started_ms": 0,
-        "age_seconds": 0,
-        "estimated_tokens": 0,
-        "tokens_human": "0",
-        "status": ""
-      },
-      {
-        "id": "521a6eec-3f6d-4f67-ab2e-e28f63466e31",
-        "key": "agent:main:dashboard:317535b0-24ee-47a9-bdd8-fe0695183633",
-        "model": "deepseek-v4-flash",
-        "channel": "unknown",
-        "started_ago": "0s ago",
-        "started_ms": 0,
-        "age_seconds": 0,
-        "estimated_tokens": 0,
-        "tokens_human": "0",
-        "status": ""
-      },
-      {
-        "id": "be134d18-4f5d-43f3-a0e5-721923420f76",
-        "key": "agent:main:dashboard:6d08995c-13dc-45b0-95c8-e0354eb574e7",
-        "model": "deepseek-v4-flash",
-        "channel": "unknown",
-        "started_ago": "0s ago",
-        "started_ms": 0,
-        "age_seconds": 0,
-        "estimated_tokens": 78296,
-        "tokens_human": "78K",
-        "status": ""
-      },
-      {
-        "id": "e7cb4516-1c01-4eff-abfe-c5ac4517668b",
-        "key": "agent:main:cron:e1ab176c-6ccc-4553-8b34-fda0750060bf",
-        "model": "llama3.2:3b",
-        "channel": "unknown",
-        "started_ago": "0s ago",
-        "started_ms": 0,
-        "age_seconds": 0,
-        "estimated_tokens": 0,
-        "tokens_human": "0",
-        "status": ""
-      },
-      {
-        "id": "a2f54fee-2d2b-41ec-bea1-bba8a22ed704",
-        "key": "agent:main:cron:18e48670-22c0-4a5e-b8a1-db539caff6db",
-        "model": "llama3.2:3b",
-        "channel": "unknown",
-        "started_ago": "0s ago",
-        "started_ms": 0,
-        "age_seconds": 0,
-        "estimated_tokens": 0,
-        "tokens_human": "0",
-        "status": ""
-      },
-      {
-        "id": "e6048c11-28b1-4c1d-8707-effce67a5147",
-        "key": "agent:main:dashboard:dc86e28d-0fd4-4b93-b089-9711d17f4734",
-        "model": "deepseek-reasoner",
-        "channel": "unknown",
-        "started_ago": "0s ago",
-        "started_ms": 0,
-        "age_seconds": 0,
-        "estimated_tokens": 18528,
-        "tokens_human": "18K",
-        "status": ""
-      },
-      {
-        "id": "310e9e75-5b18-4ec8-ad63-2a086d4cbc9c",
-        "key": "agent:main:dashboard:58d5d0c0-03c8-4c68-886b-7b540da23600",
-        "model": "deepseek-reasoner",
-        "channel": "unknown",
-        "started_ago": "0s ago",
-        "started_ms": 0,
-        "age_seconds": 0,
-        "estimated_tokens": 50499,
-        "tokens_human": "50K",
-        "status": ""
-      },
-      {
-        "id": "fe81b8c8-7a3b-4a2c-89c8-32728ea66fa2",
-        "key": "agent:main:dashboard:ca4c11cc-3d7f-409d-b80d-6b571dfb4f09",
-        "model": "deepseek-v4-flash",
-        "channel": "unknown",
-        "started_ago": "0s ago",
-        "started_ms": 0,
-        "age_seconds": 0,
-        "estimated_tokens": 0,
-        "tokens_human": "0",
-        "status": ""
-      },
-      {
-        "id": "b468334e-84b0-4ca4-ae9f-cc3658ae9723",
-        "key": "agent:main:dashboard:b9ee1fb3-c183-474c-95ef-836da03535c8",
-        "model": "deepseek-v4-flash",
-        "channel": "unknown",
-        "started_ago": "0s ago",
-        "started_ms": 0,
-        "age_seconds": 0,
-        "estimated_tokens": 42546,
-        "tokens_human": "42K",
-        "status": ""
-      },
-      {
-        "id": "90afb90b-acbf-4c61-ab67-27c14dcbe9e0",
-        "key": "agent:main:dashboard:6910faa8-ce5b-460a-bd86-42a5961f136b",
-        "model": "deepseek-v4-flash",
-        "channel": "unknown",
-        "started_ago": "0s ago",
-        "started_ms": 0,
-        "age_seconds": 0,
-        "estimated_tokens": 39053,
-        "tokens_human": "39K",
-        "status": ""
-      },
-      {
-        "id": "f5e6d78d-1133-4952-9244-7552db752fd9",
-        "key": "agent:main:dashboard:65bb5362-436f-4c3f-aec2-2b416bfb9640",
-        "model": "deepseek-chat",
-        "channel": "unknown",
-        "started_ago": "0s ago",
-        "started_ms": 0,
-        "age_seconds": 0,
-        "estimated_tokens": 0,
-        "tokens_human": "0",
-        "status": ""
-      },
-      {
-        "id": "94d54cfa-900a-41c8-bba5-024a9b3871bc",
-        "key": "agent:main:dashboard:2a9a89c2-8b87-4526-b629-c95c36d04487",
-        "model": "deepseek-v4-flash",
-        "channel": "unknown",
-        "started_ago": "0s ago",
-        "started_ms": 0,
-        "age_seconds": 0,
-        "estimated_tokens": 158088,
-        "tokens_human": "158K",
-        "status": ""
-      },
-      {
-        "id": "47fb2544-153f-4fe5-bf51-648a0e2ce3a4",
-        "key": "agent:main:subagent:2d69f6d0-f2dc-406d-a017-0221e9e8b38d",
-        "model": "deepseek-v4-flash",
-        "channel": "unknown",
-        "started_ago": "0s ago",
-        "started_ms": 0,
-        "age_seconds": 0,
-        "estimated_tokens": 23329,
-        "tokens_human": "23K",
-        "status": ""
-      },
-      {
-        "id": "27d2ba47-488b-41e0-aba3-0540ac06e03e",
-        "key": "agent:main:dashboard:a2beae9c-37c7-47e8-99e4-c6deb7383e1c",
-        "model": "deepseek-v4-flash",
-        "channel": "unknown",
-        "started_ago": "0s ago",
-        "started_ms": 0,
-        "age_seconds": 0,
-        "estimated_tokens": 0,
-        "tokens_human": "0",
-        "status": ""
-      },
-      {
-        "id": "94a585b0-ad96-41f6-8ba3-49612dc84cff",
-        "key": "agent:main:dashboard:72773aa3-73b8-41d7-b2fa-91e25a67be83",
-        "model": "deepseek-v4-flash",
-        "channel": "unknown",
-        "started_ago": "0s ago",
-        "started_ms": 0,
-        "age_seconds": 0,
-        "estimated_tokens": 0,
-        "tokens_human": "0",
-        "status": ""
-      },
-      {
-        "id": "df6906fa-42e3-4a41-b14f-7087b8862a39",
-        "key": "agent:main:dashboard:6f94b35a-6246-4df9-85e1-feb4f87e5a54",
-        "model": "deepseek-v4-flash",
-        "channel": "unknown",
-        "started_ago": "0s ago",
-        "started_ms": 0,
-        "age_seconds": 0,
-        "estimated_tokens": 73427,
-        "tokens_human": "73K",
-        "status": ""
-      },
-      {
-        "id": "39ae2790-5970-4aea-a119-1585c221e243",
-        "key": "agent:main:dashboard:cc61e613-4c13-4b94-a1fb-7e678859156a",
-        "model": "deepseek-v4-flash",
-        "channel": "unknown",
-        "started_ago": "0s ago",
-        "started_ms": 0,
-        "age_seconds": 0,
-        "estimated_tokens": 0,
-        "tokens_human": "0",
-        "status": ""
-      },
-      {
-        "id": "576afe54-0ab1-4d1a-be01-ca8c325cb330",
-        "key": "agent:main:dashboard:8860b923-e63c-4644-8784-d60722ee8dbc",
-        "model": "deepseek-chat",
-        "channel": "unknown",
-        "started_ago": "0s ago",
-        "started_ms": 0,
-        "age_seconds": 0,
-        "estimated_tokens": 0,
-        "tokens_human": "0",
-        "status": ""
-      },
-      {
-        "id": "c987b1aa-fffa-4dca-846d-d7aff36086e4",
-        "key": "agent:main:dashboard:f4c6447e-65ba-4530-a648-028b21c0fd37",
-        "model": "deepseek-chat",
-        "channel": "unknown",
-        "started_ago": "0s ago",
-        "started_ms": 0,
-        "age_seconds": 0,
-        "estimated_tokens": 0,
-        "tokens_human": "0",
-        "status": ""
-      },
-      {
-        "id": "96647c5f-8902-4b47-a41c-8c48c9cd19be",
-        "key": "agent:main:dashboard:85e6ec4f-e15c-483f-b1f5-f00b8b8ef039",
-        "model": "llama3.2:3b",
-        "channel": "unknown",
-        "started_ago": "0s ago",
-        "started_ms": 0,
-        "age_seconds": 0,
-        "estimated_tokens": 0,
-        "tokens_human": "0",
-        "status": ""
-      },
-      {
-        "id": "4e269de9-dc73-4ae5-a4a4-e394f3b372a6",
-        "key": "agent:main:cron:ff6d63bf-2dbd-47f8-898e-f1cab1fee1c3",
-        "model": "gemma4-e2b-it-q4_0",
-        "channel": "unknown",
-        "started_ago": "0s ago",
-        "started_ms": 0,
-        "age_seconds": 0,
-        "estimated_tokens": 0,
-        "tokens_human": "0",
-        "status": ""
-      },
-      {
-        "id": "ebab4f0b-a3cc-4a54-a6de-f4ff8fe69a0b",
-        "key": "agent:main:subagent:3d2d0188-a00f-4156-8109-e0f18a67a58a",
-        "model": "llama3.2:3b",
-        "channel": "unknown",
-        "started_ago": "0s ago",
-        "started_ms": 0,
-        "age_seconds": 0,
-        "estimated_tokens": 0,
-        "tokens_human": "0",
-        "status": ""
-      },
-      {
-        "id": "8f1b9199-a967-4c1b-95b7-ef148e29b60b",
-        "key": "agent:main:dashboard:44ab8919-4ae6-49ec-9b61-354e95bd0a11",
-        "model": "deepseek-chat",
-        "channel": "unknown",
-        "started_ago": "0s ago",
-        "started_ms": 0,
-        "age_seconds": 0,
-        "estimated_tokens": 85774,
-        "tokens_human": "85K",
-        "status": ""
-      },
-      {
-        "id": "ea9cd061-2840-4d00-9ad1-57e8bd6af3f6",
-        "key": "agent:main:dashboard:f423d09a-a6d7-4347-b017-c0d981a76cd3",
-        "model": "deepseek-chat",
-        "channel": "unknown",
-        "started_ago": "0s ago",
-        "started_ms": 0,
-        "age_seconds": 0,
-        "estimated_tokens": 55271,
-        "tokens_human": "55K",
-        "status": ""
-      },
-      {
-        "id": "913122d6-686a-4bbf-b56a-6228927e5810",
-        "key": "agent:main:dashboard:66ab8194-1ffe-4faf-b1a7-a4a6ad902d20",
-        "model": "deepseek-chat",
-        "channel": "unknown",
-        "started_ago": "0s ago",
-        "started_ms": 0,
-        "age_seconds": 0,
-        "estimated_tokens": 0,
-        "tokens_human": "0",
-        "status": ""
-      }
-    ],
-    "last_updated": "2026-07-01T09:35:01.375095+00:00"
+    "sessions": [],
+    "error": "query_failed"
   }
 }
