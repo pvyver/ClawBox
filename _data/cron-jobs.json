@@ -1,51 +1,6 @@
 {
   "jobs": [
     {
-      "id": "95b45320-331a-4c95-8f27-8b160c8d5252",
-      "name": "token-watch-check",
-      "description": "Check daily token budget every 30 min via Ollama. Silent unless alert file has content.",
-      "schedule": "Every 30 min",
-      "model": "ollama/llama3.2:3b",
-      "session_target": "isolated",
-      "status": "ok",
-      "badge": "badge-ok",
-      "enabled": true,
-      "next_run": 1783095000661,
-      "last_run": 1783093200661,
-      "last_duration_ms": 10375,
-      "consecutive_errors": 0
-    },
-    {
-      "id": "ac6bf568-7e26-45a1-af89-4aeee4c48376",
-      "name": "update-site-data",
-      "description": "Monitor site data updates every 30 min. Checks log freshness. Alerts if stale or failed.",
-      "schedule": "Every 30 min",
-      "model": "ollama/llama3.2:3b",
-      "session_target": "isolated",
-      "status": "ok",
-      "badge": "badge-ok",
-      "enabled": true,
-      "next_run": 1783096500090,
-      "last_run": 1783094700090,
-      "last_duration_ms": 12234,
-      "consecutive_errors": 0
-    },
-    {
-      "id": "598fc384-f79c-42e4-a7c5-5d7503c16032",
-      "name": "strava-token-refresh",
-      "description": "Refresh Strava access token every 5 hours before 6hr expiry",
-      "schedule": "Cron: 0 */5 * * * (UTC)",
-      "model": "ollama/llama3.2:3b",
-      "session_target": "isolated",
-      "status": "ok",
-      "badge": "badge-ok",
-      "enabled": true,
-      "next_run": 1783108909970,
-      "last_run": 1783090909993,
-      "last_duration_ms": 12856,
-      "consecutive_errors": 0
-    },
-    {
       "id": "b3d0cce7-a55f-4c15-8124-93054bf7b955",
       "name": "Memory Dreaming Promotion",
       "description": "[managed-by=memory-core.short-term-promotion] Promote weighted short-term recalls into MEMORY.md (limit=10, minScore=0.800, minRecallCount=3, minUniqueQueries=3, recencyHalfLifeDays=14, maxAgeDays=30).",
@@ -61,21 +16,21 @@
       "consecutive_errors": 0
     },
     {
-      "id": "c494c034-c464-41c7-84d3-c99adf520866",
-      "name": "stop-looping",
-      "description": "",
-      "schedule": "At: 2026-07-10T23:59:00.000Z",
-      "model": "default",
-      "session_target": "session:agent:main:main",
+      "id": "368491d3-4b00-496e-925f-6f340e31ae82",
+      "name": "re-enable-crons-aug1",
+      "description": "Re-enable all paused crons on Aug 1 after holiday",
+      "schedule": "At: 2026-08-01T00:00:00.000Z",
+      "model": "ollama/llama3.2:3b",
+      "session_target": "isolated",
       "status": "idle",
       "badge": "badge-unknown",
       "enabled": true,
-      "next_run": 1783727940000,
+      "next_run": 1785542400000,
       "last_run": 0,
       "last_duration_ms": 0,
       "consecutive_errors": 0
     }
   ],
-  "total": 5,
-  "last_updated": "2026-07-03T16:05:01.876930+00:00"
+  "total": 2,
+  "last_updated": "2026-07-03T16:35:01.582911+00:00"
 }
