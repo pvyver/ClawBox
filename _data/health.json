@@ -1,12 +1,12 @@
 {
-  "timestamp": "2026-07-04T17:05:01.485424+00:00",
+  "timestamp": "2026-07-04T17:35:01.379524+00:00",
   "cpu": {
     "cores": 6,
     "model": "Cortex-A78AE",
     "load_1m": 0.0,
-    "load_5m": 0.03,
+    "load_5m": 0.01,
     "load_15m": 0.0,
-    "usage_percent": 17.7,
+    "usage_percent": 16.7,
     "runnable": 0,
     "total_processes": 0
   },
@@ -33,26 +33,26 @@
     "display": "59.2\u00b0C"
   },
   "gpu": {
-    "temperature_celsius": 57.656,
+    "temperature_celsius": 58.062,
     "usage_percent": 0,
-    "raw": "GPU Status:\n07-04-2026 17:05:09 RAM 1518/7607MB (lfb 22x4MB) SWAP 1093/3804MB (cached 2MB) CPU [1%@1728,0%@1728,0%@1728,0%@1728,0%@1728,0%@1728] GR3D_FREQ 0% cpu@58.031C soc2@56.187C soc0@56.968C gpu@57.656C tj@59C soc1@59C VDD_IN 6736mW/6736mW VDD_CPU_GPU_CV 1564mW/1564mW VDD_SOC 2271mW/2271mW"
+    "raw": "GPU Status:\n07-04-2026 17:35:09 RAM 1542/7607MB (lfb 22x4MB) SWAP 1085/3804MB (cached 2MB) CPU [0%@1728,0%@1728,0%@1728,0%@1728,0%@1728,0%@1728] GR3D_FREQ 0% cpu@58.093C soc2@56.25C soc0@57.125C gpu@58.062C tj@58.968C soc1@58.968C VDD_IN 6736mW/6736mW VDD_CPU_GPU_CV 1522mW/1522mW VDD_SOC 2268mW/2268"
   },
   "uptime": {
-    "seconds": 894438.04,
-    "display": "10d 8h 27m"
+    "seconds": 896237.93,
+    "display": "10d 8h 57m"
   },
   "power_thermal": {
     "power": {
-      "vdd_in_watts": 6.88,
-      "vdd_cpu_watts": 1.6,
+      "vdd_in_watts": 6.84,
+      "vdd_cpu_watts": 1.56,
       "vdd_gpu_watts": 2.32,
-      "total_watts": 10.8,
+      "total_watts": 10.72,
       "throttled": false,
       "throttle_reason": ""
     },
     "thermal": {
       "fan_speed_pct": 40,
-      "fan_rpm": 2368,
+      "fan_rpm": 2371,
       "junction_temp": 59.1,
       "throttle_temp": 85.0
     }
@@ -101,14 +101,14 @@
         "pid": 393041,
         "name": "openclaw",
         "cmd": "openclaw",
-        "cpu_percent": 1.3,
-        "mem_percent": 4.9,
+        "cpu_percent": 1.1,
+        "mem_percent": 5.0,
         "user": "clawbox",
         "is_claw": true,
         "severity": "ok"
       },
       {
-        "pid": 393928,
+        "pid": 394517,
         "name": "update-site-data.py",
         "cmd": "python3 scripts/update-site-data.py",
         "cpu_percent": 0.7,
@@ -153,8 +153,8 @@
         "pid": 393041,
         "name": "openclaw",
         "cmd": "openclaw",
-        "cpu_percent": 1.3,
-        "mem_percent": 4.9,
+        "cpu_percent": 1.1,
+        "mem_percent": 5.0,
         "user": "clawbox",
         "is_claw": true,
         "severity": "ok"
@@ -164,7 +164,7 @@
         "name": "next-server",
         "cmd": "next-server (v16.1.6)",
         "cpu_percent": 0.0,
-        "mem_percent": 1.0,
+        "mem_percent": 1.1,
         "user": "clawbox",
         "is_claw": false,
         "severity": "ok"
@@ -200,8 +200,8 @@
         "severity": "ok"
       }
     ],
-    "total_processes": 358,
-    "timestamp": "2026-07-04T17:05:01.485424+00:00"
+    "total_processes": 356,
+    "timestamp": "2026-07-04T17:35:01.379524+00:00"
   },
   "network": {
     "interfaces": [
@@ -229,14 +229,14 @@
       },
       {
         "name": "enP8p1s0",
-        "rx_bytes": 1289978517,
-        "tx_bytes": 1002938207,
+        "rx_bytes": 1290807000,
+        "tx_bytes": 1003164579,
         "state": "UP",
         "ip": "192.168.0.122",
-        "rx_rate": 445,
-        "tx_rate": 130,
+        "rx_rate": 452,
+        "tx_rate": 122,
         "total_in_human": "1.2 GB",
-        "total_out_human": "956.5 MB"
+        "total_out_human": "956.7 MB"
       },
       {
         "name": "l4tbr0",
@@ -274,7 +274,7 @@
       {
         "name": "tailscale0",
         "rx_bytes": 5579437,
-        "tx_bytes": 45450077,
+        "tx_bytes": 45451925,
         "state": "UNKNOWN",
         "ip": "100.68.32.105",
         "rx_rate": 0,
@@ -283,11 +283,11 @@
         "total_out_human": "43.3 MB"
       }
     ],
-    "active_connections": 5,
+    "active_connections": 6,
     "total_in_human": "1.2 GB",
-    "total_out_human": "999.8 MB",
-    "total_in_bytes": 1295557954,
-    "total_out_bytes": 1048388284
+    "total_out_human": "1000.0 MB",
+    "total_in_bytes": 1296386437,
+    "total_out_bytes": 1048616504
   },
   "sessions": {
     "active_count": 0,
@@ -942,6 +942,6 @@
         "status": ""
       }
     ],
-    "last_updated": "2026-07-04T17:05:01.485424+00:00"
+    "last_updated": "2026-07-04T17:35:01.379524+00:00"
   }
 }
