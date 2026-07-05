@@ -1,12 +1,12 @@
 {
-  "timestamp": "2026-07-05T03:35:01.420578+00:00",
+  "timestamp": "2026-07-05T04:05:01.860024+00:00",
   "cpu": {
     "cores": 6,
     "model": "Cortex-A78AE",
-    "load_1m": 0.0,
-    "load_5m": 0.04,
-    "load_15m": 0.01,
-    "usage_percent": 17.1,
+    "load_1m": 0.04,
+    "load_5m": 0.01,
+    "load_15m": 0.0,
+    "usage_percent": 16.8,
     "runnable": 0,
     "total_processes": 0
   },
@@ -33,26 +33,26 @@
     "display": "59.3\u00b0C"
   },
   "gpu": {
-    "temperature_celsius": 58.031,
+    "temperature_celsius": 58.375,
     "usage_percent": 0,
-    "raw": "GPU Status:\n07-05-2026 03:35:09 RAM 1584/7607MB (lfb 21x4MB) SWAP 1064/3804MB (cached 2MB) CPU [0%@1728,0%@1728,0%@1728,0%@1728,0%@1728,0%@1728] GR3D_FREQ 0% cpu@58.468C soc2@56.75C soc0@57.343C gpu@58.031C tj@59.375C soc1@59.375C VDD_IN 6736mW/6736mW VDD_CPU_GPU_CV 1561mW/1561mW VDD_SOC 2268mW/2268"
+    "raw": "GPU Status:\n07-05-2026 04:05:10 RAM 1585/7607MB (lfb 21x4MB) SWAP 1064/3804MB (cached 2MB) CPU [0%@1728,0%@1728,0%@1728,0%@1728,0%@1728,0%@1728] GR3D_FREQ 0% cpu@58.031C soc2@56.5C soc0@57.187C gpu@58.375C tj@59.312C soc1@59.312C VDD_IN 6736mW/6736mW VDD_CPU_GPU_CV 1564mW/1564mW VDD_SOC 2271mW/2271m"
   },
   "uptime": {
-    "seconds": 932237.97,
-    "display": "10d 18h 57m"
+    "seconds": 934038.41,
+    "display": "10d 19h 27m"
   },
   "power_thermal": {
     "power": {
-      "vdd_in_watts": 6.92,
+      "vdd_in_watts": 6.88,
       "vdd_cpu_watts": 1.6,
       "vdd_gpu_watts": 2.32,
-      "total_watts": 10.84,
+      "total_watts": 10.8,
       "throttled": false,
       "throttle_reason": ""
     },
     "thermal": {
-      "fan_speed_pct": 39,
-      "fan_rpm": 2266,
+      "fan_speed_pct": 40,
+      "fan_rpm": 2362,
       "junction_temp": 59.4,
       "throttle_temp": 85.0
     }
@@ -102,13 +102,13 @@
         "name": "openclaw",
         "cmd": "openclaw",
         "cpu_percent": 1.0,
-        "mem_percent": 5.4,
+        "mem_percent": 5.5,
         "user": "clawbox",
         "is_claw": true,
         "severity": "ok"
       },
       {
-        "pid": 406596,
+        "pid": 407187,
         "name": "update-site-data.py",
         "cmd": "python3 scripts/update-site-data.py",
         "cpu_percent": 0.7,
@@ -154,7 +154,7 @@
         "name": "openclaw",
         "cmd": "openclaw",
         "cpu_percent": 1.0,
-        "mem_percent": 5.4,
+        "mem_percent": 5.5,
         "user": "clawbox",
         "is_claw": true,
         "severity": "ok"
@@ -200,8 +200,8 @@
         "severity": "ok"
       }
     ],
-    "total_processes": 356,
-    "timestamp": "2026-07-05T03:35:01.420578+00:00"
+    "total_processes": 355,
+    "timestamp": "2026-07-05T04:05:01.860024+00:00"
   },
   "network": {
     "interfaces": [
@@ -229,14 +229,14 @@
       },
       {
         "name": "enP8p1s0",
-        "rx_bytes": 1311238068,
-        "tx_bytes": 1008334010,
+        "rx_bytes": 1317548446,
+        "tx_bytes": 1008722566,
         "state": "UP",
         "ip": "192.168.0.122",
-        "rx_rate": 2392,
-        "tx_rate": 292,
+        "rx_rate": 3497,
+        "tx_rate": 213,
         "total_in_human": "1.2 GB",
-        "total_out_human": "961.6 MB"
+        "total_out_human": "962.0 MB"
       },
       {
         "name": "l4tbr0",
@@ -274,7 +274,7 @@
       {
         "name": "tailscale0",
         "rx_bytes": 5579437,
-        "tx_bytes": 45488405,
+        "tx_bytes": 45490205,
         "state": "UNKNOWN",
         "ip": "100.68.32.105",
         "rx_rate": 0,
@@ -285,9 +285,9 @@
     ],
     "active_connections": 7,
     "total_in_human": "1.2 GB",
-    "total_out_human": "1005.0 MB",
-    "total_in_bytes": 1316817505,
-    "total_out_bytes": 1053822415
+    "total_out_human": "1005.4 MB",
+    "total_in_bytes": 1323127883,
+    "total_out_bytes": 1054212771
   },
   "sessions": {
     "active_count": 0,
@@ -942,6 +942,6 @@
         "status": ""
       }
     ],
-    "last_updated": "2026-07-05T03:35:01.420578+00:00"
+    "last_updated": "2026-07-05T04:05:01.860024+00:00"
   }
 }
