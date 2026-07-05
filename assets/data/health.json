@@ -1,23 +1,23 @@
 {
-  "timestamp": "2026-07-05T08:05:01.357992+00:00",
+  "timestamp": "2026-07-05T08:35:01.381874+00:00",
   "cpu": {
     "cores": 6,
     "model": "Cortex-A78AE",
-    "load_1m": 0.02,
+    "load_1m": 0.01,
     "load_5m": 0.03,
     "load_15m": 0.0,
-    "usage_percent": 16.7,
+    "usage_percent": 16.8,
     "runnable": 0,
     "total_processes": 0
   },
   "memory": {
     "total_bytes": 7945689497,
-    "used_bytes": 1825361100,
-    "free_bytes": 3972844748,
-    "available_bytes": 6120328396,
-    "used_percent": 23,
+    "used_bytes": 1932735283,
+    "free_bytes": 3758096384,
+    "available_bytes": 6012954214,
+    "used_percent": 24,
     "total_human": "7.4 GB",
-    "used_human": "1.7 GB"
+    "used_human": "1.8 GB"
   },
   "disk": {
     "total_bytes": 501437431808,
@@ -29,31 +29,31 @@
     "free_human": "410.0 GB"
   },
   "temperature": {
-    "value_celsius": 58.8,
-    "display": "58.8\u00b0C"
+    "value_celsius": 59.0,
+    "display": "59.0\u00b0C"
   },
   "gpu": {
-    "temperature_celsius": 57.531,
+    "temperature_celsius": 57.625,
     "usage_percent": 0,
-    "raw": "GPU Status:\n07-05-2026 08:05:09 RAM 1578/7607MB (lfb 21x4MB) SWAP 1062/3804MB (cached 2MB) CPU [0%@1728,0%@1728,0%@1728,0%@1728,0%@1728,0%@1728] GR3D_FREQ 0% cpu@57.343C soc2@55.812C soc0@56.781C gpu@57.531C tj@58.875C soc1@58.875C VDD_IN 6736mW/6736mW VDD_CPU_GPU_CV 1522mW/1522mW VDD_SOC 2268mW/226"
+    "raw": "GPU Status:\n07-05-2026 08:35:09 RAM 1749/7607MB (lfb 21x4MB) SWAP 1062/3804MB (cached 2MB) CPU [0%@1728,0%@1728,0%@1728,0%@1728,0%@1728,0%@1728] GR3D_FREQ 0% cpu@57.593C soc2@56.062C soc0@56.843C gpu@57.625C tj@58.968C soc1@58.968C VDD_IN 6736mW/6736mW VDD_CPU_GPU_CV 1561mW/1561mW VDD_SOC 2268mW/226"
   },
   "uptime": {
-    "seconds": 948437.91,
-    "display": "10d 23h 27m"
+    "seconds": 950237.93,
+    "display": "10d 23h 57m"
   },
   "power_thermal": {
     "power": {
-      "vdd_in_watts": 6.84,
+      "vdd_in_watts": 6.88,
       "vdd_cpu_watts": 1.56,
       "vdd_gpu_watts": 2.32,
-      "total_watts": 10.72,
+      "total_watts": 10.76,
       "throttled": false,
       "throttle_reason": ""
     },
     "thermal": {
       "fan_speed_pct": 40,
-      "fan_rpm": 2361,
-      "junction_temp": 58.9,
+      "fan_rpm": 2365,
+      "junction_temp": 59.0,
       "throttle_temp": 85.0
     }
   },
@@ -98,23 +98,33 @@
   "processes": {
     "by_cpu": [
       {
-        "pid": 411972,
+        "pid": 393041,
+        "name": "openclaw",
+        "cmd": "openclaw",
+        "cpu_percent": 0.9,
+        "mem_percent": 6.8,
+        "user": "clawbox",
+        "is_claw": true,
+        "severity": "ok"
+      },
+      {
+        "pid": 412609,
         "name": "update-site-data.py",
         "cmd": "python3 scripts/update-site-data.py",
-        "cpu_percent": 1.0,
+        "cpu_percent": 0.7,
         "mem_percent": 0.1,
         "user": "clawbox",
         "is_claw": true,
         "severity": "ok"
       },
       {
-        "pid": 393041,
-        "name": "openclaw",
-        "cmd": "openclaw",
-        "cpu_percent": 0.9,
-        "mem_percent": 5.5,
+        "pid": 412505,
+        "name": "cla",
+        "cmd": "/home/clawbox/.bun/bin/bun run /home/clawbox/clawbox/mcp/cla",
+        "cpu_percent": 0.2,
+        "mem_percent": 0.7,
         "user": "clawbox",
-        "is_claw": true,
+        "is_claw": false,
         "severity": "ok"
       },
       {
@@ -128,23 +138,13 @@
         "severity": "ok"
       },
       {
-        "pid": 1,
-        "name": "init",
-        "cmd": "/sbin/init 2",
-        "cpu_percent": 0.0,
-        "mem_percent": 0.1,
-        "user": "root",
-        "is_claw": false,
-        "severity": "ok"
-      },
-      {
-        "pid": 2,
-        "name": "[kthreadd]",
-        "cmd": "[kthreadd]",
-        "cpu_percent": 0.0,
-        "mem_percent": 0.0,
-        "user": "root",
-        "is_claw": false,
+        "pid": 412516,
+        "name": "index.j",
+        "cmd": "node /home/clawbox/documents/mcp/jetson-monitor/dist/index.j",
+        "cpu_percent": 0.1,
+        "mem_percent": 0.6,
+        "user": "clawbox",
+        "is_claw": true,
         "severity": "ok"
       }
     ],
@@ -154,7 +154,7 @@
         "name": "openclaw",
         "cmd": "openclaw",
         "cpu_percent": 0.9,
-        "mem_percent": 5.5,
+        "mem_percent": 6.8,
         "user": "clawbox",
         "is_claw": true,
         "severity": "ok"
@@ -180,28 +180,28 @@
         "severity": "ok"
       },
       {
-        "pid": 2022,
-        "name": "gnome-shell",
-        "cmd": "/usr/bin/gnome-shell",
-        "cpu_percent": 0.0,
-        "mem_percent": 0.6,
+        "pid": 412505,
+        "name": "cla",
+        "cmd": "/home/clawbox/.bun/bin/bun run /home/clawbox/clawbox/mcp/cla",
+        "cpu_percent": 0.2,
+        "mem_percent": 0.7,
         "user": "clawbox",
         "is_claw": false,
         "severity": "ok"
       },
       {
-        "pid": 331604,
-        "name": "ollama",
-        "cmd": "/usr/local/bin/ollama serve",
-        "cpu_percent": 0.0,
-        "mem_percent": 0.5,
-        "user": "ollama",
-        "is_claw": false,
+        "pid": 412516,
+        "name": "index.j",
+        "cmd": "node /home/clawbox/documents/mcp/jetson-monitor/dist/index.j",
+        "cpu_percent": 0.1,
+        "mem_percent": 0.6,
+        "user": "clawbox",
+        "is_claw": true,
         "severity": "ok"
       }
     ],
-    "total_processes": 355,
-    "timestamp": "2026-07-05T08:05:01.357992+00:00"
+    "total_processes": 357,
+    "timestamp": "2026-07-05T08:35:01.381874+00:00"
   },
   "network": {
     "interfaces": [
@@ -229,14 +229,14 @@
       },
       {
         "name": "enP8p1s0",
-        "rx_bytes": 1325185356,
-        "tx_bytes": 1010688211,
+        "rx_bytes": 1327966073,
+        "tx_bytes": 1013243132,
         "state": "UP",
         "ip": "192.168.0.122",
-        "rx_rate": 474,
-        "tx_rate": 137,
+        "rx_rate": 1540,
+        "tx_rate": 1416,
         "total_in_human": "1.2 GB",
-        "total_out_human": "963.9 MB"
+        "total_out_human": "966.3 MB"
       },
       {
         "name": "l4tbr0",
@@ -274,7 +274,7 @@
       {
         "name": "tailscale0",
         "rx_bytes": 5579437,
-        "tx_bytes": 45504797,
+        "tx_bytes": 45506645,
         "state": "UNKNOWN",
         "ip": "100.68.32.105",
         "rx_rate": 0,
@@ -285,14 +285,26 @@
     ],
     "active_connections": 7,
     "total_in_human": "1.2 GB",
-    "total_out_human": "1007.3 MB",
-    "total_in_bytes": 1330764793,
-    "total_out_bytes": 1056193008
+    "total_out_human": "1009.7 MB",
+    "total_in_bytes": 1333545510,
+    "total_out_bytes": 1058749777
   },
   "sessions": {
     "active_count": 0,
     "total_visible": 54,
     "sessions": [
+      {
+        "id": "28fc3dc5-ac90-40cf-bbc0-24dde87352af",
+        "key": "agent:main:main",
+        "model": "deepseek-v4-flash",
+        "channel": "unknown",
+        "started_ago": "0s ago",
+        "started_ms": 0,
+        "age_seconds": 0,
+        "estimated_tokens": 68398,
+        "tokens_human": "68K",
+        "status": ""
+      },
       {
         "id": "1ee515be-7343-4d20-b916-335cac9b2b04",
         "key": "agent:main:dreaming-narrative-light-3fe21e5050f7",
@@ -315,18 +327,6 @@
         "age_seconds": 0,
         "estimated_tokens": 0,
         "tokens_human": "0",
-        "status": ""
-      },
-      {
-        "id": "b495b747-0e93-4529-8b78-378b15900fb6",
-        "key": "agent:main:main",
-        "model": "deepseek-v4-flash",
-        "channel": "unknown",
-        "started_ago": "0s ago",
-        "started_ms": 0,
-        "age_seconds": 0,
-        "estimated_tokens": 79052,
-        "tokens_human": "79K",
         "status": ""
       },
       {
@@ -942,6 +942,6 @@
         "status": ""
       }
     ],
-    "last_updated": "2026-07-05T08:05:01.357992+00:00"
+    "last_updated": "2026-07-05T08:35:01.381874+00:00"
   }
 }
