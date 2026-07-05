@@ -1,19 +1,19 @@
 {
-  "timestamp": "2026-07-05T14:05:01.753066+00:00",
+  "timestamp": "2026-07-05T14:35:01.942052+00:00",
   "cpu": {
     "cores": 6,
     "model": "Cortex-A78AE",
     "load_1m": 0.0,
-    "load_5m": 0.01,
+    "load_5m": 0.0,
     "load_15m": 0.0,
-    "usage_percent": 17.0,
+    "usage_percent": 16.7,
     "runnable": 0,
     "total_processes": 0
   },
   "memory": {
     "total_bytes": 7945689497,
     "used_bytes": 1825361100,
-    "free_bytes": 3865470566,
+    "free_bytes": 3972844748,
     "available_bytes": 6120328396,
     "used_percent": 23,
     "total_human": "7.4 GB",
@@ -29,17 +29,17 @@
     "free_human": "410.0 GB"
   },
   "temperature": {
-    "value_celsius": 59.4,
-    "display": "59.4\u00b0C"
+    "value_celsius": 59.3,
+    "display": "59.3\u00b0C"
   },
   "gpu": {
-    "temperature_celsius": 58.062,
+    "temperature_celsius": 58.031,
     "usage_percent": 0,
-    "raw": "GPU Status:\n07-05-2026 14:05:09 RAM 1622/7607MB (lfb 22x4MB) SWAP 1062/3804MB (cached 2MB) CPU [0%@1728,0%@1728,0%@1728,1%@1728,0%@1728,0%@1728] GR3D_FREQ 0% cpu@57.968C soc2@56.531C soc0@57.218C gpu@58.062C tj@59.312C soc1@59.312C VDD_IN 6736mW/6736mW VDD_CPU_GPU_CV 1561mW/1561mW VDD_SOC 2268mW/226"
+    "raw": "GPU Status:\n07-05-2026 14:35:10 RAM 1622/7607MB (lfb 22x4MB) SWAP 1062/3804MB (cached 2MB) CPU [0%@1728,2%@1728,0%@1728,0%@1728,0%@1728,0%@1728] GR3D_FREQ 0% cpu@58.187C soc2@56.562C soc0@57.312C gpu@58.031C tj@59.343C soc1@59.343C VDD_IN 6776mW/6776mW VDD_CPU_GPU_CV 1561mW/1561mW VDD_SOC 2268mW/226"
   },
   "uptime": {
-    "seconds": 970038.3,
-    "display": "11d 5h 27m"
+    "seconds": 971838.49,
+    "display": "11d 5h 57m"
   },
   "power_thermal": {
     "power": {
@@ -52,7 +52,7 @@
     },
     "thermal": {
       "fan_speed_pct": 40,
-      "fan_rpm": 2376,
+      "fan_rpm": 2377,
       "junction_temp": 59.3,
       "throttle_temp": 85.0
     }
@@ -102,13 +102,13 @@
         "name": "openclaw",
         "cmd": "openclaw",
         "cpu_percent": 0.9,
-        "mem_percent": 5.9,
+        "mem_percent": 6.0,
         "user": "clawbox",
         "is_claw": true,
         "severity": "ok"
       },
       {
-        "pid": 419160,
+        "pid": 419749,
         "name": "update-site-data.py",
         "cmd": "python3 scripts/update-site-data.py",
         "cpu_percent": 0.7,
@@ -154,7 +154,7 @@
         "name": "openclaw",
         "cmd": "openclaw",
         "cpu_percent": 0.9,
-        "mem_percent": 5.9,
+        "mem_percent": 6.0,
         "user": "clawbox",
         "is_claw": true,
         "severity": "ok"
@@ -200,8 +200,8 @@
         "severity": "ok"
       }
     ],
-    "total_processes": 357,
-    "timestamp": "2026-07-05T14:05:01.753066+00:00"
+    "total_processes": 356,
+    "timestamp": "2026-07-05T14:35:01.942052+00:00"
   },
   "network": {
     "interfaces": [
@@ -229,14 +229,14 @@
       },
       {
         "name": "enP8p1s0",
-        "rx_bytes": 1337070530,
-        "tx_bytes": 1015795599,
+        "rx_bytes": 1337883245,
+        "tx_bytes": 1016016984,
         "state": "UP",
         "ip": "192.168.0.122",
-        "rx_rate": 447,
-        "tx_rate": 121,
+        "rx_rate": 448,
+        "tx_rate": 122,
         "total_in_human": "1.2 GB",
-        "total_out_human": "968.7 MB"
+        "total_out_human": "968.9 MB"
       },
       {
         "name": "l4tbr0",
@@ -274,7 +274,7 @@
       {
         "name": "tailscale0",
         "rx_bytes": 5579437,
-        "tx_bytes": 45526685,
+        "tx_bytes": 45528533,
         "state": "UNKNOWN",
         "ip": "100.68.32.105",
         "rx_rate": 0,
@@ -285,9 +285,9 @@
     ],
     "active_connections": 6,
     "total_in_human": "1.3 GB",
-    "total_out_human": "1012.2 MB",
-    "total_in_bytes": 1342649967,
-    "total_out_bytes": 1061322284
+    "total_out_human": "1012.4 MB",
+    "total_in_bytes": 1343462682,
+    "total_out_bytes": 1061545517
   },
   "sessions": {
     "active_count": 0,
@@ -942,6 +942,6 @@
         "status": ""
       }
     ],
-    "last_updated": "2026-07-05T14:05:01.753066+00:00"
+    "last_updated": "2026-07-05T14:35:01.942052+00:00"
   }
 }
